@@ -1,0 +1,16 @@
+.header-menu-wrapper{
+    background-color: $color-white;
+}
+
+#header-menu{
+    display: flex;
+
+    a{
+        font-size: 14px;
+        color: $color-black;
+    }
+
+    .sub-menu{
+        display: none;
+    }
+}
