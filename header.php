@@ -51,7 +51,7 @@
 			<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--calendar"><?php include get_template_directory() . '/assets/icons/calendar-icon.svg' ?></span>Αποστολή εντός 3 ημερών</div>
 		</div>
 		<div class="pre-header-col">
-			<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--phone"><?php include get_template_directory() . '/assets/icons/phone-icon.svg' ?></span>210 3221335</div>
+			<div class="pre-header-item"><a href="tel:+2103221335"><span class="pre-header-item-icon pre-header-item-icon--phone"><?php include get_template_directory() . '/assets/icons/phone-icon.svg' ?></span>210 3221335</a></div>
 		</div>
 		<div class="pre-header-col">
 			<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--store"><?php include get_template_directory() . '/assets/icons/store-icon.svg' ?></span>Τα βιβλιοπωλεία μας</div>
@@ -77,7 +77,30 @@
 <header>
 	<div class="header-top">
 		<div class="container">
-			<a href="#">ΒΙΒΛΙΟΠΩΛΕΙΟ ΜΙΕΤ</a>
+			<div class="header-top-row">
+				<div class="header-top-left">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php include get_template_directory() . '/assets/icons/home-icon.svg' ?></a>
+				</div>
+				<div class="header-top-logo">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">ΒΙΒΛΙΟΠΩΛΕΙΟ ΜΙΕΤ</a>
+				</div>
+				<div class="header-top-right">
+					<div class="header-top-right-row">
+						<div class="header-top-right-col">
+							<?php include get_template_directory() . '/assets/icons/search-icon.svg' ?>
+						</div>
+						<div class="header-top-right-col">
+							<?php include get_template_directory() . '/assets/icons/favorite-icon.svg' ?>
+						</div>
+						<div class="header-top-right-col">
+							<?php include get_template_directory() . '/assets/icons/user-icon.svg' ?>
+						</div>
+						<div class="header-top-right-col">
+							<?php include get_template_directory() . '/assets/icons/busket-icon.svg' ?>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="container">
