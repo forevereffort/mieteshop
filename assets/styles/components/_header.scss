@@ -176,10 +176,18 @@
 
 .header-sub-menu {
   left: 0;
+  opacity: 0;
   padding-top: 2px;
   position: absolute;
   top: 100%;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
+  visibility: hidden;
   width: 100%;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .header-sub-menu-inner {

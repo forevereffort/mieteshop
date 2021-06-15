@@ -114,7 +114,7 @@
 					foreach( $header_menu_array as $menu ){
 				?>
 						<div class="header-nav-col <?php echo $menu['has_child'] ? 'header-nav-col--has-child' : ''; ?>">
-							<a href="<?php echo $menu['url'] ?>" class="<?php echo $menu['has_child'] ? 'js-header-nav-parent-menu' : ''; ?> <?php echo $menu['class']; ?>" data-id="<?php echo $menu['ID']; ?>">
+							<a href="<?php echo $menu['url'] ?>" class="<?php echo $menu['has_child'] ? 'js-header-nav-parent-menu' : 'js-header-nav-menu'; ?> <?php echo $menu['class']; ?>" data-menu-id="<?php echo $menu['ID']; ?>">
 								<?php echo $menu['title']; ?>
 								<?php
 									if( $menu['has_child'] ){
