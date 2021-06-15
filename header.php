@@ -103,15 +103,66 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<?php
-			wp_nav_menu([
-				'theme_location' => 'header_menu',
-				'container_class' => 'header-menu-wrapper',
-				'container' => 'nav',
-				'menu_id' => 'header-menu',
-				'menu_class' => '',
-			]);
-		?>
-	</div>
+	<nav class="header-nav">
+		<div class="container">
+			<?php
+				$locations = get_nav_menu_locations();
+				$header_menu_array = wp_get_menu_array($locations['header_menu']);
+			?>
+			<div class="header-nav-row">
+				<?php
+					foreach( $header_menu_array as $menu ){
+				?>
+						<div class="header-nav-col <?php echo $menu['has_child'] ? 'header-nav-col--has-child' : ''; ?>">
+							<a href="<?php echo $menu['url'] ?>" class="<?php echo $menu['class']; ?>">
+								<?php echo $menu['title']; ?>
+								<?php
+									if( $menu['has_child'] ){
+										echo '<span class="header-nav-arrow">';
+										include get_template_directory() . '/assets/icons/arrow-down-icon.svg';
+										echo '</span>';
+									}
+								?>
+							</a>
+							<?php
+								if( $menu['has_child'] ){
+							?>
+									<div class="header-sub-menu">
+										<?php
+											foreach( $menu['children'] as $sub_menu ){
+										?>
+												<div class="header-sub-menu-col">
+													<a href="<?php echo $sub_menu['url'] ?>" class="<?php echo $sub_menu['class']; ?>"><?php echo $sub_menu['title']; ?></a>
+													<?php
+														if( $sub_menu['has_child'] ){
+													?>
+															<div class="header-sub-sub-menu">
+																<?php
+																	foreach( $sub_menu['children'] as $sub_sub_menu ){
+																?>
+																		<div class="header-sub-sub-menu-col">
+																			<a href="<?php echo $sub_sub_menu['url']; ?>" class="<?php echo $sub_sub_menu['class']; ?>"><?php echo $sub_sub_menu['title']; ?></a>
+																		</div>
+																<?php
+																	}
+																?>
+															</div>
+													<?php
+														}
+													?>
+												</div>
+										<?php
+											}
+										?>
+									</div>
+							<?php
+								}
+							?>
+						</div>
+				<?php
+					}
+				?>
+			</div>
+		</div>
+	</nav>
 </header>

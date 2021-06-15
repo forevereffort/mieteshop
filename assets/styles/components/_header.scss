@@ -126,19 +126,53 @@
   }
 }
 
-.header-menu-wrapper {
+.header-nav {
   background-color: $color-white;
+  border-bottom: 2px solid $color-black;
 }
 
-#header-menu {
+.header-nav-row {
   display: flex;
+  padding: 12px 0 12px 17px;
+}
 
-  a {
+.header-nav-col {
+  position: relative;
+
+  > a {
     color: $color-black;
+    display: inline-block;
     font-size: 14px;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.56px;
+    padding: 6px 25px 5px;
   }
+}
 
-  .sub-menu {
-    display: none;
+.header-nav-col--has-child {
+  > a {
+    padding-right: 60px;
   }
+}
+
+.header-nav-arrow {
+  position: absolute;
+  right: 31px;
+  top: 4px;
+}
+
+.header-nav-col+.header-nav-col {
+  &::before {
+    background-color: $color-black-1;
+    content: '';
+    height: 28px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 1px;
+  }
+}
+
+.header-sub-menu {
+  display: none;
 }

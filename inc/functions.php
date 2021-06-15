@@ -54,6 +54,53 @@ add_action('wp_enqueue_scripts', function () {
   );
 });
 
+function populate_children($menu_array, $menu_item){
+  $children = [];
+  $cpi = get_queried_object_id();
+
+  if (!empty($menu_array)){
+    foreach ($menu_array as $k=>$m) {
+      if ($m->menu_item_parent == $menu_item->ID) {
+        $children[$m->ID] = [
+          'ID' => $m->ID,
+          'title' => $m->title,
+          'url' => $m->url,
+          'class' => $cpi == $m->object_id ? 'active' : '',
+          'children' => populate_children($menu_array, $m)
+        ];
+
+        $children[$m->ID]['has_child'] = !empty($children[$m->ID]['children']);
+
+        unset($menu_array[$k]);
+      }
+    }
+  };
+
+  return $children;
+}
+
+function wp_get_menu_array($current_menu) {
+  $menu_array = wp_get_nav_menu_items($current_menu);
+
+  $cpi = get_queried_object_id();
+
+  foreach ($menu_array as $m) {
+    if (empty($m->menu_item_parent)) {
+      $menu[$m->ID] = [
+        'ID' => $m->ID,
+        'title' => $m->title,
+        'url' => $m->url,
+        'class' => $cpi == $m->object_id ? 'active' : '',
+        'children' => populate_children($menu_array, $m)
+      ];
+
+      $menu[$m->ID]['has_child'] = !empty($menu[$m->ID]['children']);
+    }
+  }
+
+  return $menu;
+}
+
 include_once 'woo-functions.php';
 
 include_once 'aq-resizer.php';
