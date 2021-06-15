@@ -114,7 +114,7 @@
 					foreach( $header_menu_array as $menu ){
 				?>
 						<div class="header-nav-col <?php echo $menu['has_child'] ? 'header-nav-col--has-child' : ''; ?>">
-							<a href="<?php echo $menu['url'] ?>" class="<?php echo $menu['class']; ?>">
+							<a href="<?php echo $menu['url'] ?>" class="<?php echo $menu['has_child'] ? 'js-header-nav-parent-menu' : ''; ?> <?php echo $menu['class']; ?>" data-id="<?php echo $menu['ID']; ?>">
 								<?php echo $menu['title']; ?>
 								<?php
 									if( $menu['has_child'] ){
@@ -124,42 +124,76 @@
 									}
 								?>
 							</a>
-							<?php
-								if( $menu['has_child'] ){
-							?>
-									<div class="header-sub-menu">
+						</div>
+				<?php
+					}
+				?>
+				<?php
+					foreach( $header_menu_array as $menu ){
+						if( $menu['has_child'] && get_field('sub_menu_row', $menu['ID']) ){
+				?>
+							<div id="header-sub-menu-<?php echo $menu['ID']; ?>" class="header-sub-menu">
+								<div class="header-sub-menu-inner">
+									<div class="header-sub-menu-row">
 										<?php
-											foreach( $menu['children'] as $sub_menu ){
+											foreach( $menu['children'] as $sub_menu_wrapper ){
+												if( get_field('sub_menu_col', $sub_menu_wrapper['ID']) ){
 										?>
-												<div class="header-sub-menu-col">
-													<a href="<?php echo $sub_menu['url'] ?>" class="<?php echo $sub_menu['class']; ?>"><?php echo $sub_menu['title']; ?></a>
-													<?php
-														if( $sub_menu['has_child'] ){
-													?>
-															<div class="header-sub-sub-menu">
-																<?php
-																	foreach( $sub_menu['children'] as $sub_sub_menu ){
-																?>
-																		<div class="header-sub-sub-menu-col">
-																			<a href="<?php echo $sub_sub_menu['url']; ?>" class="<?php echo $sub_sub_menu['class']; ?>"><?php echo $sub_sub_menu['title']; ?></a>
-																		</div>
-																<?php
-																	}
-																?>
-															</div>
-													<?php
-														}
-													?>
-												</div>
+													<div class="header-sub-menu-col">
+														<?php
+															foreach( $sub_menu_wrapper['children'] as $sub_menu ){
+														?>
+																<div class="header-sub-menu-item">
+																	<a href="<?php echo $sub_menu['url'] ?>" class="<?php echo $sub_menu['class']; ?>"><?php echo $sub_menu['title']; ?></a>
+																	<?php
+																		if( $sub_menu['has_child'] ){
+																	?>
+																			<div class="header-sub-sub-menu">
+																				<?php
+																					foreach( $sub_menu['children'] as $sub_sub_menu ){
+																				?>
+																						<div class="header-sub-sub-menu-col">
+																							<a href="<?php echo $sub_sub_menu['url']; ?>" class="<?php echo $sub_sub_menu['class']; ?>"><?php echo $sub_sub_menu['title']; ?></a>
+																						</div>
+																				<?php
+																					}
+																				?>
+																			</div>
+																	<?php
+																		}
+																	?>
+																</div>
+														<?php
+															}
+														?>
+													</div>
 										<?php
+												}
 											}
 										?>
 									</div>
-							<?php
-								}
-							?>
-						</div>
+									<div class="header-sub-menu-footer">
+										<?php
+											$link_1 = get_field('link_1', $menu['ID']);
+											$link_2 = get_field('link_2', $menu['ID']);
+											$link_3 = get_field('link_3', $menu['ID']);
+										?>
+										<div class="header-sub-menu-footer-left">
+											<div class="header-sub-menu-footer-left-col">
+												<a href="<?php echo $link_1['url']; ?>"><?php echo $link_1['title']; ?></a>
+											</div>
+											<div class="header-sub-menu-footer-left-col">
+												<a href="<?php echo $link_2['url']; ?>"><?php echo $link_2['title']; ?></a>
+											</div>
+										</div>
+										<div class="header-sub-menu-footer-right">
+											<a href="<?php echo $link_3['url']; ?>"><?php echo $link_3['title']; ?></a>
+										</div>
+									</div>
+								</div>
+							</div>
 				<?php
+						}
 					}
 				?>
 			</div>

@@ -134,6 +134,7 @@
 .header-nav-row {
   display: flex;
   padding: 12px 0 12px 17px;
+  position: relative;
 }
 
 .header-nav-col {
@@ -174,5 +175,106 @@
 }
 
 .header-sub-menu {
-  display: none;
+  left: 0;
+  padding-top: 2px;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+.header-sub-menu-inner {
+  background-color: $color-white;  
+}
+
+.header-sub-menu-row {
+  border-bottom: 2px solid $color-black;
+  display: flex;
+  padding: 32px 16px 66px;
+}
+
+.header-sub-menu-col {
+  flex: 1;
+  padding: 0 8px;
+}
+
+.header-sub-menu-item {
+  > a {
+    border-bottom: 2px solid $color-black;
+    color: $color-black;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: $font-weight-extra-bold;
+    padding-bottom: 10px;
+    width: 100%;
+  }
+}
+
+.header-sub-menu-item+.header-sub-menu-item {
+  margin-top: 26px;
+}
+
+.header-sub-sub-menu {
+  padding-top: 6px;
+}
+
+.header-sub-sub-menu-col {
+  > a {
+    color: $color-black;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    padding: 7px 0 8px;
+    width: 100%;
+  }
+}
+
+.header-sub-menu-footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 28px 24px;
+}
+
+.header-sub-menu-footer-left {
+  align-items: center;
+  display: flex;
+}
+
+.header-sub-menu-footer-left-col {
+  position: relative;
+
+  a {
+    color: $color-black;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.64px;
+  }
+}
+
+.header-sub-menu-footer-left-col+.header-sub-menu-footer-left-col {
+  padding-left: 54px;
+
+  &::before {
+    background-color: $color-black-1;
+    content: '';
+    height: 28px;
+    left: 26px;
+    position: absolute;
+    top: -5px;
+    width: 1px;
+  }
+}
+
+.header-sub-menu-footer-right {
+  a {
+    background-color: $color-black;
+    border-radius: 8px;
+    color: $color-white;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    letter-spacing: 0.5px;
+    padding: 2px 9px 4px;
+  }
 }

@@ -2,6 +2,7 @@
 @include font-face('literata', 'literata-regular', $font-weight-normal, 'normal', true, '../../assets/fonts/literata/');
 @include font-face('literata', 'literata-medium', $font-weight-medium, 'normal', true, '../../assets/fonts/literata/');
 @include font-face('literata', 'literata-semibold', $font-weight-semi-bold, 'normal', true, '../../assets/fonts/literata/');
+@include font-face('literata', 'literata-extrabold', $font-weight-extra-bold, 'normal', true, '../../assets/fonts/literata/');
 @include font-face('literata', 'literata-black', $font-weight-black, 'normal', true, '../../assets/fonts/literata/');
 
 html {
