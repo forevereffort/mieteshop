@@ -1,16 +1,104 @@
-.header-menu-wrapper{
-    background-color: $color-white;
+.pre-header-row {
+  display: flex;
+  justify-content: center;
+  padding: 7px 0 6px;
 }
 
-#header-menu{
-    display: flex;
+.pre-header-col {
+  color: $color-black-1;
+  font-size: 12px;
+  font-weight: $font-weight-light;
+  padding: 0 20px 0 22px;
+  position: relative;
+}
 
-    a{
-        font-size: 14px;
-        color: $color-black;
-    }
+.pre-header-col+.pre-header-col {
+  &::before {
+    background-color: $color-black-1;
+    content: '';
+    height: 14px;
+    left: 0;
+    position: absolute;
+    top: 3px;
+    width: 1px;
+  }
+}
 
-    .sub-menu{
-        display: none;
-    }
+.pre-header-item {
+  letter-spacing: 0.7px;
+  padding: 2px 0 0 38px;
+  position: relative;
+}
+
+.pre-header-item-icon {
+  left: 0;
+  position: absolute;
+}
+
+.pre-header-item-icon--bus {
+  top: 0;
+}
+
+.pre-header-item-icon--calendar {
+  top: -3px;
+}
+
+.pre-header-item-icon--phone {
+  top: -1px;
+}
+
+.pre-header-item-icon--store {
+  top: -1px;
+}
+
+.pre-header-social-row {
+  display: flex;
+}
+
+.pre-header-social-col+.pre-header-social-col {
+  margin-left: 20px;
+}
+
+.pre-header-social-icon {
+  background-color: $color-black-1;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+.pre-header-social-icon--youtube {
+  padding: 4px 0 0 3px;
+}
+
+.pre-header-social-icon--sound-cloude {
+  padding: 1px 0 0 4px;
+}
+
+.pre-header-social-icon--facebook {
+  padding: 4px 0 0 7px;
+}
+
+.pre-header-social-icon--instagram {
+  padding: 4px 0 0 4px;
+}
+
+.header-top {
+  background-color: $color-black-1;
+}
+
+.header-menu-wrapper {
+  background-color: $color-white;
+}
+
+#header-menu {
+  display: flex;
+
+  a {
+    color: $color-black;
+    font-size: 14px;
+  }
+
+  .sub-menu {
+    display: none;
+  }
 }
