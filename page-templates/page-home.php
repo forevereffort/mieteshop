@@ -63,6 +63,10 @@
                         src="<?php echo placeholderImage(512, 154); ?>"
                         data-src="<?php echo aq_resize($top_banner_3['url'], 512, 154, true); ?>"
                         alt="<?php echo $top_banner_3['alt']; ?>">
+                    <div class="three-banner-3-content">
+                        <h2><?php echo get_field('top_banner_3_title'); ?></h2>
+                        <p><?php echo get_field('top_banner_3_content'); ?></p>
+                    </div>
                 </div>
             </div>
         </div>

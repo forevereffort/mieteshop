@@ -864,10 +864,10 @@
         "title": "Homepage Fields",
         "fields": [
             {
-                "key": "field_60bb2b0de67c7",
-                "label": "Content Slider",
-                "name": "homepage_content_slider",
-                "type": "repeater",
+                "key": "field_60ba1d9d4f3e2",
+                "label": "Top Banner 1",
+                "name": "top_banner_1",
+                "type": "image",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -876,126 +876,8 @@
                     "class": "",
                     "id": ""
                 },
-                "collapsed": "",
-                "min": 1,
-                "max": 0,
-                "layout": "table",
-                "button_label": "",
-                "sub_fields": [
-                    {
-                        "key": "field_60bb2b3ce67c8",
-                        "label": "Slide Image",
-                        "name": "homepage_slide_image",
-                        "type": "image",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "return_format": "array",
-                        "preview_size": "full",
-                        "library": "all",
-                        "min_width": "",
-                        "min_height": "",
-                        "min_size": "",
-                        "max_width": "",
-                        "max_height": "",
-                        "max_size": "",
-                        "mime_types": ""
-                    },
-                    {
-                        "key": "field_60bb2b63e67c9",
-                        "label": "Slider Title",
-                        "name": "homepage_slide_title",
-                        "type": "text",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "maxlength": ""
-                    },
-                    {
-                        "key": "field_60bb2b8de67ca",
-                        "label": "Slide Subtitle",
-                        "name": "homepage_slide_subtitle",
-                        "type": "text",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "maxlength": ""
-                    },
-                    {
-                        "key": "field_60bb2c6021467",
-                        "label": "Slide Link Text",
-                        "name": "homepage_slide_link_text",
-                        "type": "text",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "maxlength": ""
-                    },
-                    {
-                        "key": "field_60bb2b97e67cb",
-                        "label": "Slide Link",
-                        "name": "homepage_slide_link",
-                        "type": "url",
-                        "instructions": "",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "placeholder": ""
-                    }
-                ]
-            },
-            {
-                "key": "field_60ba1d9d4f3e2",
-                "label": "Top Banner 1",
-                "name": "top_banner_1",
-                "type": "image",
-                "instructions": "Φροντίστε η εικόνα να είναι 512x230px",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
                 "return_format": "array",
-                "preview_size": "full",
+                "preview_size": "thumbnail",
                 "library": "all",
                 "min_width": "",
                 "min_height": "",
@@ -1006,10 +888,10 @@
                 "mime_types": ""
             },
             {
-                "key": "field_60be35185fa64",
-                "label": "Top Banner 1 link",
-                "name": "top_banner_1_link",
-                "type": "url",
+                "key": "field_60c974e198de9",
+                "label": "Top Banner 1 Title",
+                "name": "top_banner_1_title",
+                "type": "text",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -1019,14 +901,51 @@
                     "id": ""
                 },
                 "default_value": "",
-                "placeholder": ""
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_60c9747152260",
+                "label": "Top Banner 1 Content",
+                "name": "top_banner_1_content",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_60be35185fa64",
+                "label": "Top Banner 1 link",
+                "name": "top_banner_1_link",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array"
             },
             {
                 "key": "field_60ba1de693e37",
                 "label": "Top Banner 2",
                 "name": "top_banner_2",
                 "type": "image",
-                "instructions": "Φροντίστε η εικόνα να είναι 512x154px",
+                "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1035,7 +954,7 @@
                     "id": ""
                 },
                 "return_format": "array",
-                "preview_size": "full",
+                "preview_size": "thumbnail",
                 "library": "all",
                 "min_width": "",
                 "min_height": "",
@@ -1046,10 +965,10 @@
                 "mime_types": ""
             },
             {
-                "key": "field_60be35285fa65",
-                "label": "Top Banner 2 link",
-                "name": "top_banner_2_link",
-                "type": "url",
+                "key": "field_60c9748e52261",
+                "label": "Top Banner 2 Label",
+                "name": "top_banner_2_label",
+                "type": "text",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -1059,7 +978,106 @@
                     "id": ""
                 },
                 "default_value": "",
-                "placeholder": ""
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_60c9749f52262",
+                "label": "Top Banner 2 Title",
+                "name": "top_banner_2_title",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_60be35285fa65",
+                "label": "Top Banner 2 link",
+                "name": "top_banner_2_link",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array"
+            },
+            {
+                "key": "field_60c96b6ec5194",
+                "label": "Top Banner 3",
+                "name": "top_banner_3",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "thumbnail",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_60c97520f1fbd",
+                "label": "Top Banner 3 Title",
+                "name": "top_banner_3_title",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_60c97527f1fbe",
+                "label": "Top Banner 3 Content",
+                "name": "top_banner_3_content",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
             },
             {
                 "key": "field_60bc8bf190237",
@@ -1147,7 +1165,7 @@
                 "label": "Middle Banner 1",
                 "name": "middle_banner_1",
                 "type": "image",
-                "instructions": "Φροντίστε η εικόνα να είναι 608x230px",
+                "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1167,10 +1185,10 @@
                 "mime_types": ""
             },
             {
-                "key": "field_60be354d5fa67",
-                "label": "Middle Banner 1 link",
-                "name": "middle_banner_1_link",
-                "type": "url",
+                "key": "field_60c999f4ad42a",
+                "label": "Middle Banner 1 Label",
+                "name": "middle_banner_1_label",
+                "type": "text",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -1180,14 +1198,51 @@
                     "id": ""
                 },
                 "default_value": "",
-                "placeholder": ""
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_60be354d5fa67",
+                "label": "Middle Banner 1 link",
+                "name": "middle_banner_1_link",
+                "type": "link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array"
+            },
+            {
+                "key": "field_60c99a11ad42b",
+                "label": "Middle Banner 1 Content",
+                "name": "middle_banner_1_content",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
             },
             {
                 "key": "field_60be35595fa68",
                 "label": "Middle Banner 2",
                 "name": "middle_banner_2",
                 "type": "image",
-                "instructions": "Φροντίστε η εικόνα να είναι 608x230px",
+                "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -1208,9 +1263,9 @@
             },
             {
                 "key": "field_60be35665fa69",
-                "label": "Middle Banner 2 link",
-                "name": "middle_banner_2_link",
-                "type": "url",
+                "label": "Middle Banner 2 Title",
+                "name": "middle_banner_2_title",
+                "type": "text",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -1220,7 +1275,29 @@
                     "id": ""
                 },
                 "default_value": "",
-                "placeholder": ""
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_60c999e5ad429",
+                "label": "Middle Banner 2 Content",
+                "name": "middle_banner_2_content",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
             },
             {
                 "key": "field_60be3e425ca60",
@@ -1392,7 +1469,7 @@
                 {
                     "param": "page_template",
                     "operator": "==",
-                    "value": "homepage.php"
+                    "value": "page-templates\/page-home.php"
                 }
             ]
         ],
