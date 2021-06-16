@@ -73,6 +73,12 @@ img {
   // background-color: #eee;
 }
 
+.wide-container {
+  margin: 0 auto;
+  max-width: $wide-container-width;
+  // background-color: #eee;
+}
+
 .lazyload {
   opacity: 0;
 }
