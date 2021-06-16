@@ -82,6 +82,24 @@
         $middle_banner_2_title = get_field('middle_banner_2_title');
         $middle_banner_2_content = get_field('middle_banner_2_content');
     ?>
+
+    <div class="wide-container">
+         <div class="middle-banner-row">
+				<div class="col">	
+				<?php 
+				if( !empty( $middle_banner_1 ) ): ?>
+					<a href="<?php echo esc_url($middle_banner_1_link); ?>"><img src="<?php echo esc_url($middle_banner_1['url']); ?>" alt="<?php echo esc_attr($middle_banner_1['alt']); ?>" /></a>
+				<?php endif; ?>
+				</div>
+				<div class="col">	
+				<?php 
+				if( !empty( $middle_banner_2 ) ): ?>
+					<a href="<?php echo esc_url($middle_banner_1_link); ?>"><img src="<?php echo esc_url($middle_banner_2['url']); ?>" alt="<?php echo esc_attr($middle_banner_2['alt']); ?>" /></a>
+				<?php endif; ?>
+				</div>	
+        </div>       				
+	</div>	
+
 </section>
 <?php
         }
