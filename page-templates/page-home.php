@@ -72,16 +72,249 @@
         </div>
     </div>
 </section>
-<section class="middle-banner">
-    <?php
-        $middle_banner_1 = get_field('middle_banner_1');
-        $middle_banner_1_label = get_field('middle_banner_1_label');
-        $middle_banner_1_link = get_field('middle_banner_1_link');
-        $middle_banner_1_content = get_field('middle_banner_1_content');
-        $middle_banner_2 = get_field('middle_banner_2');
-        $middle_banner_2_title = get_field('middle_banner_2_title');
-        $middle_banner_2_content = get_field('middle_banner_2_content');
-    ?>
+<section class="book-slider" is="mieteshop-book-slider">
+    <div class="wide-container book-slider--border-bottom">
+        <div class="book-slider-container">
+            <div class="book-slider-title">
+                <h2>ΝΕΕΣ ΚΥΚΛΟΦΟΡΙΕΣ</h2>
+            </div>
+            <div class="book-slider-wrapper">
+                <div class="swiper-container" data-slider>
+                    <div class="swiper-wrapper">
+                        <?php
+                            $homepage_new_releases_rel = get_field('homepage_new_releases_rel');
+
+                            foreach($homepage_new_releases_rel as $release){
+                                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $release->ID ), 'full' );
+                                $authors = get_field('book_contributors_syggrafeas', $release->ID);
+                        ?>
+                                <div class="swiper-slide">
+                                    <div class="book-slider-item">
+                                        <div class="book-slider-image">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $release->post_title; ?>">
+                                        </div>
+                                        <div class="book-slider-info">
+                                            <?php
+                                                if( !empty($authors) ){
+                                                    echo '<div class="book-slider-author-list">';
+                                                    if( count($authors) > 3 ){
+                                                        echo '<div class="book-slider-author-item">Συλλογικό Έργο</div>';
+                                                    } else {
+                                                        foreach( $authors as $author ){
+                                                            echo '<div class="book-slider-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                                        }
+                                                    }
+                                                    echo '</div>';
+                                                }
+                                            ?>
+                                            <div class="book-slider-product-title">
+                                                <a href="<?php echo get_permalink($release->ID); ?>"><h3><?php echo $release->post_title; ?></h3></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="book-slider-nav-wrapper">
+                    <div data-slider-button="prev" class="book-slider-nav book-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                    <div data-slider-button="next" class="book-slider-nav book-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="book-slider" is="mieteshop-book-slider">
+    <div class="wide-container">
+        <div class="book-slider-container">
+            <div class="book-slider-title">
+                <h2>ΣΠΑΝΙΕΣ ΕΚΔΟΣΕΙΣ</h2>
+            </div>
+            <div class="book-slider-wrapper">
+                <div class="swiper-container" data-slider>
+                    <div class="swiper-wrapper">
+                        <?php
+                            $homepage_rare_editions_rel = get_field('homepage_rare_editions_rel');
+
+                            foreach($homepage_rare_editions_rel as $edition){
+                                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $edition->ID ), 'full' );
+                                $authors = get_field('book_contributors_syggrafeas', $edition->ID);
+                        ?>
+                                <div class="swiper-slide">
+                                    <div class="book-slider-item">
+                                        <div class="book-slider-image">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $edition->post_title; ?>">
+                                        </div>
+                                        <div class="book-slider-info">
+                                            <?php
+                                                if( !empty($authors) ){
+                                                    echo '<div class="book-slider-author-list">';
+                                                    if( count($authors) > 3 ){
+                                                        echo '<div class="book-slider-author-item">Συλλογικό Έργο</div>';
+                                                    } else {
+                                                        foreach( $authors as $author ){
+                                                            echo '<div class="book-slider-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                                        }
+                                                    }
+                                                    echo '</div>';
+                                                }
+                                            ?>
+                                            <div class="book-slider-product-title">
+                                                <a href="<?php echo get_permalink($release->ID); ?>"><h3><?php echo $release->post_title; ?></h3></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="book-slider-nav-wrapper">
+                    <div data-slider-button="prev" class="book-slider-nav book-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                    <div data-slider-button="next" class="book-slider-nav book-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="book-slider" is="mieteshop-book-slider">
+    <div class="wide-container book-slider--border-bottom">
+        <div class="book-slider-container">
+            <div class="book-slider-title">
+                <h2>ΕΚΔΟΤΙΚΕΣ ΠΡΟΤΑΣΕΙΣ</h2>
+                <p>ΕΚΔΟΣΕΙΣ ΑΚΑΔΗΜΙΑΣ ΑΘΗΝΩΝ</p>
+            </div>
+            <div class="book-slider-wrapper">
+                <div class="swiper-container" data-slider>
+                    <div class="swiper-wrapper">
+                        <?php
+                            $homepage_publisher_suggestions_rel = get_field('homepage_publisher_suggestions_rel');
+
+                            foreach($homepage_publisher_suggestions_rel as $publisher){
+                                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $publisher->ID ), 'full' );
+                                $authors = get_field('book_contributors_syggrafeas', $publisher->ID);
+                        ?>
+                                <div class="swiper-slide">
+                                    <div class="book-slider-item">
+                                        <div class="book-slider-image">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $publisher->post_title; ?>">
+                                        </div>
+                                        <div class="book-slider-info">
+                                            <?php
+                                                if( !empty($authors) ){
+                                                    echo '<div class="book-slider-author-list">';
+                                                    if( count($authors) > 3 ){
+                                                        echo '<div class="book-slider-author-item">Συλλογικό Έργο</div>';
+                                                    } else {
+                                                        foreach( $authors as $author ){
+                                                            echo '<div class="book-slider-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                                        }
+                                                    }
+                                                    echo '</div>';
+                                                }
+                                            ?>
+                                            <div class="book-slider-product-title">
+                                                <a href="<?php echo get_permalink($release->ID); ?>"><h3><?php echo $release->post_title; ?></h3></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="book-slider-nav-wrapper">
+                    <div data-slider-button="prev" class="book-slider-nav book-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                    <div data-slider-button="next" class="book-slider-nav book-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="book-slider" is="mieteshop-book-slider">
+    <div class="wide-container">
+        <div class="book-slider-container">
+            <div class="book-slider-title">
+                <h2>ΘΕΜΑΤΙΚΕΣ ΠΡΟΤΑΣΕΙΣ</h2>
+                <p>ΤΕΧΝΕΣ & ΘΕΑΤΡΟ</p>
+            </div>
+            <div class="book-slider-wrapper">
+                <div class="swiper-container" data-slider>
+                    <div class="swiper-wrapper">
+                        <?php
+                            $homepage_thematic_suggestions_rel = get_field('homepage_thematic_suggestions_rel');
+
+                            foreach($homepage_thematic_suggestions_rel as $thematic){
+                                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $thematic->ID ), 'full' );
+                                $authors = get_field('book_contributors_syggrafeas', $thematic->ID);
+                        ?>
+                                <div class="swiper-slide">
+                                    <div class="book-slider-item">
+                                        <div class="book-slider-image">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $thematic->post_title; ?>">
+                                        </div>
+                                        <div class="book-slider-info">
+                                            <?php
+                                                if( !empty($authors) ){
+                                                    echo '<div class="book-slider-author-list">';
+                                                    if( count($authors) > 3 ){
+                                                        echo '<div class="book-slider-author-item">Συλλογικό Έργο</div>';
+                                                    } else {
+                                                        foreach( $authors as $author ){
+                                                            echo '<div class="book-slider-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                                        }
+                                                    }
+                                                    echo '</div>';
+                                                }
+                                            ?>
+                                            <div class="book-slider-product-title">
+                                                <a href="<?php echo get_permalink($release->ID); ?>"><h3><?php echo $release->post_title; ?></h3></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="book-slider-nav-wrapper">
+                    <div data-slider-button="prev" class="book-slider-nav book-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                    <div data-slider-button="next" class="book-slider-nav book-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="home-blog">
+    <div class="small-container">
+        <div class="home-blog-title">
+            <h2>ΝΕΑ & ΕΚΔΗΛΩΣΕΙΣ</h2>
+        </div>
+        <?php
+            $homepage_blog_posts_rel = get_field('homepage_blog_posts_rel');
+        ?>
+    </div>
 </section>
 <?php
         }
