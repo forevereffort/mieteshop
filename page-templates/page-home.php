@@ -306,16 +306,15 @@
         </div>
     </div>
 </section>
-<section class="middle-banner">
-    <?php
-        $middle_banner_1 = get_field('middle_banner_1');
-        $middle_banner_1_label = get_field('middle_banner_1_label');
-        $middle_banner_1_link = get_field('middle_banner_1_link');
-        $middle_banner_1_content = get_field('middle_banner_1_content');
-        $middle_banner_2 = get_field('middle_banner_2');
-        $middle_banner_2_title = get_field('middle_banner_2_title');
-        $middle_banner_2_content = get_field('middle_banner_2_content');
-    ?>
+<section class="home-blog">
+    <div class="small-container">
+        <div class="home-blog-title">
+            <h2>ΝΕΑ & ΕΚΔΗΛΩΣΕΙΣ</h2>
+        </div>
+        <?php
+            $homepage_blog_posts_rel = get_field('homepage_blog_posts_rel');
+        ?>
+    </div>
 </section>
 <?php
         }
