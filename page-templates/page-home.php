@@ -72,6 +72,58 @@
         </div>
     </div>
 </section>
+<section class="book-slider" is="mieteshop-book-slider">
+    <div class="book-slider-container">
+        <div class="swiper-container" data-slider>
+            <div class="swiper-wrapper">
+                <?php
+                    $homepage_new_releases_rel = get_field('homepage_new_releases_rel');
+
+                    foreach($homepage_new_releases_rel as $release){
+                        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $release->ID ), 'full' );
+                        $authors = get_field('book_contributors_syggrafeas', $release->ID);
+                ?>
+                        <div class="swiper-slide">
+                            <div>
+                                <div>
+                                    <img
+                                        class="lazyload"
+                                        src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                        data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                        alt="<?php echo $release->post_title; ?>">
+                                </div>
+                                <?php
+                                    if( !empty($authors) ){
+                                        echo '<div>';
+                                        if( count($authors) > 3 ){
+                                            echo 'Συλλογικό Έργο';
+                                        } else {
+                                            echo '<div>';
+                                            foreach( $authors as $author ){
+                                                echo '<div><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                            }
+
+                                            echo '</div>';
+                                        }
+                                        echo '</div>';
+                                    }
+                                ?>
+                                <div>
+                                    <a href="<?php echo get_permalink($release->ID); ?>"><?php echo $release->post_title; ?></a>
+                                </div>
+                            </div>
+                        </div>
+                <?php
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="book-slider-nav-wrapper">
+            <div data-slider-button="prev" class="book-slider-nav book-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+            <div data-slider-button="next" class="book-slider-nav book-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+        </div>
+    </div>
+</section>
 <section class="middle-banner">
     <?php
         $middle_banner_1 = get_field('middle_banner_1');
