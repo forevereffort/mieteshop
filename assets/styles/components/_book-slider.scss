@@ -1,4 +1,90 @@
+.book-slider {
+  .wide-container {
+    padding: 60px 0;
+  }
+}
+
+.book-slider--border-bottom {
+  border-bottom: 2px solid $color-black;
+}
+
 .book-slider-container {
   margin: 0 auto;
   max-width: 1025px;
+}
+
+.book-slider-title {
+  margin-bottom: 50px;
+  text-align: center;
+
+  h2 {
+    font-size: 18px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 1.8px;
+    line-height: 1.556;
+  }
+}
+
+.book-slider-wrapper {
+  margin-top: 50px;
+  position: relative;
+}
+
+.book-slider-item {
+  padding: 10px;
+}
+
+.book-slider-image {
+  align-items: flex-end;
+  display: flex;
+  height: 300px;
+
+  img {
+    box-shadow: 0 0 10px rgba($color-black, 0.5);
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.book-slider-info {
+  margin-top: 45px;
+}
+
+.book-slider-author-item {
+  a {
+    color: $color-black;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    line-height: 1.286;
+    text-decoration: underline;
+  }
+}
+
+.book-slider-author-item+.book-slider-author-item {
+  margin-top: 8px;
+}
+
+.book-slider-product-title {
+  margin-top: 7px;
+
+  h3 {
+    font-size: 14px;
+    font-weight: $font-weight-extra-bold;
+    line-height: 1.286;
+  }
+}
+
+.book-slider-nav {
+  position: absolute;
+  top: 140px;
+}
+
+.book-slider-nav--prev {
+  left: -50px;
+}
+
+.book-slider-nav--next {
+  right: -50px;
 }
