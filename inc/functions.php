@@ -101,6 +101,16 @@ function wp_get_menu_array($current_menu) {
   return $menu;
 }
 
+// add options page
+if( function_exists('acf_add_options_page') ) {
+  
+  acf_add_options_page(array(
+    'page_title' 	=> 'Global Options',
+    'menu_title'	=> 'Global Options',
+    'menu_slug' 	=> 'global-options'
+  ));	
+}
+
 include_once 'woo-functions.php';
 
 include_once 'aq-resizer.php';

@@ -135,6 +135,10 @@ if ( ! function_exists( 'twentyten_setup' ) ) :
 		register_nav_menus(
 			array(
 				'header_menu' => __( 'Header Menu', 'twentyten' ),
+				'footer-menu-1' => __( 'Footer Menu 1', 'twentyten' ),
+				'footer-menu-2' => __( 'Footer Menu 2', 'twentyten' ),
+				'footer-menu-3' => __( 'Footer Menu 3', 'twentyten' ),
+				'footer-menu-4' => __( 'Footer Menu 4', 'twentyten' )
 			)
 		);
 

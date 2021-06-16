@@ -59,16 +59,16 @@
 		<div class="pre-header-col">
 			<div class="pre-header-social-row">
 				<div class="pre-header-social-col">
-					<a href="#"><div class="pre-header-social-icon pre-header-social-icon--youtube"><?php include get_template_directory() . '/assets/icons/youtube-icon.svg' ?></div></a>
+					<a href="<?php echo get_field('youtube_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--youtube"><?php include get_template_directory() . '/assets/icons/youtube-icon.svg' ?></div></a>
 				</div>
 				<div class="pre-header-social-col">
-					<a href="#"><div class="pre-header-social-icon pre-header-social-icon--sound-cloude"><?php include get_template_directory() . '/assets/icons/sound-cloude-icon.svg' ?></div></a>
+					<a href="<?php echo get_field('sound_cloude_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--sound-cloude"><?php include get_template_directory() . '/assets/icons/sound-cloude-icon.svg' ?></div></a>
 				</div>
 				<div class="pre-header-social-col">
-					<a href="#"><div class="pre-header-social-icon pre-header-social-icon--facebook"><?php include get_template_directory() . '/assets/icons/facebook-icon.svg' ?></div></a>
+					<a href="<?php echo get_field('facebook_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--facebook"><?php include get_template_directory() . '/assets/icons/facebook-icon.svg' ?></div></a>
 				</div>
 				<div class="pre-header-social-col">
-					<a href="#"><div class="pre-header-social-icon pre-header-social-icon--instagram"><?php include get_template_directory() . '/assets/icons/instagram-icon.svg' ?></div></a>
+					<a href="<?php echo get_field('instagram_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--instagram"><?php include get_template_directory() . '/assets/icons/instagram-icon.svg' ?></div></a>
 				</div>
 			</div>
 		</div>

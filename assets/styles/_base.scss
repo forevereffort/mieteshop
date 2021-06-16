@@ -67,6 +67,12 @@ img {
   // background-color: #eee;
 }
 
+.small-container {
+  margin: 0 auto;
+  max-width: $small-container-width;
+  // background-color: #eee;
+}
+
 .lazyload {
   opacity: 0;
 }
