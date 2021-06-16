@@ -26,13 +26,11 @@
                         data-src="<?php echo aq_resize($top_banner_1['url'], 720, 400, true); ?>"
                         alt="<?php echo $top_banner_1['alt']; ?>">
                     <div class="three-banner-1-content">
-                        <div class="three-banner-1-content-inner">
-                            <h2><?php echo get_field('top_banner_1_title'); ?></h2>
-                            <p><?php echo get_field('top_banner_1_content'); ?></p>
-                            <div class="three-banner-1-link">
-                                <?php $top_banner_1_link = get_field('top_banner_1_link'); ?>
-                                <a href="<?php echo $top_banner_1_link['url']; ?>"><?php echo $top_banner_1_link['title']; ?></a>
-                            </div>
+                        <h2><?php echo get_field('top_banner_1_title'); ?></h2>
+                        <p><?php echo get_field('top_banner_1_content'); ?></p>
+                        <div class="three-banner-1-link">
+                            <?php $top_banner_1_link = get_field('top_banner_1_link'); ?>
+                            <a href="<?php echo $top_banner_1_link['url']; ?>"><?php echo $top_banner_1_link['title']; ?></a>
                         </div>
                     </div>
                 </div>
@@ -44,6 +42,20 @@
                         src="<?php echo placeholderImage(512, 230); ?>"
                         data-src="<?php echo aq_resize($top_banner_2['url'], 512, 230, true); ?>"
                         alt="<?php echo $top_banner_2['alt']; ?>">
+                    <div class="three-banner-2-content">
+                        <div class="three-banner-2-content-row">
+                            <div class="three-banner-2-content-top">
+                                <p><?php echo get_field('top_banner_2_label'); ?></p>
+                            </div>
+                            <div class="three-banner-2-content-bottom">
+                                <h2><?php echo get_field('top_banner_2_title'); ?></h2>
+                                <div class="three-banner-2-link">
+                                    <?php $top_banner_2_link = get_field('top_banner_2_link'); ?>
+                                    <a href="<?php echo $top_banner_2_link['url']; ?>"><?php echo $top_banner_2_link['title']; ?></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="three-banner-3">
                     <img
