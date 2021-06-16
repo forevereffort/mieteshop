@@ -72,6 +72,7 @@
         </div>
     </div>
 </section>
+
 <section class="book-slider" is="mieteshop-book-slider">
     <div class="wide-container book-slider--border-bottom">
         <div class="book-slider-container">
@@ -187,6 +188,36 @@
             </div>
         </div>
     </div>
+</section>
+<section class="middle-banner">
+    <?php
+        $middle_banner_1 = get_field('middle_banner_1');
+        $middle_banner_1_label = get_field('middle_banner_1_label');
+        $middle_banner_1_link = get_field('middle_banner_1_link');
+        $middle_banner_1_content = get_field('middle_banner_1_content');
+        $middle_banner_2 = get_field('middle_banner_2');
+        $middle_banner_2_title = get_field('middle_banner_2_title');
+        $middle_banner_2_content = get_field('middle_banner_2_content');
+    ?>
+
+    <div class="wide-container">
+         <div class="middle-banner-row">
+				<div class="col">	
+				<?php 
+				if( !empty( $middle_banner_1 ) ): ?>
+					<a href="<?php echo esc_url($middle_banner_1_link); ?>"><img src="<?php echo esc_url($middle_banner_1['url']); ?>" alt="<?php echo esc_attr($middle_banner_1['alt']); ?>" /></a>
+				<?php endif; ?>
+				</div>
+				<div class="col">	
+				<?php 
+				if( !empty( $middle_banner_2 ) ): ?>
+					<a href="<?php echo esc_url($middle_banner_1_link); ?>"><img src="<?php echo esc_url($middle_banner_2['url']); ?>" alt="<?php echo esc_attr($middle_banner_2['alt']); ?>" /></a>
+				<?php endif; ?>
+				</div>	
+        </div>       				
+	</div>	
+
+
 </section>
 <section class="book-slider" is="mieteshop-book-slider">
     <div class="wide-container book-slider--border-bottom">
@@ -315,7 +346,8 @@
             $homepage_blog_posts_rel = get_field('homepage_blog_posts_rel');
         ?>
     </div>
-</section>
+
+
 <?php
         }
     }
