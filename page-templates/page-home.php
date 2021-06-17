@@ -12,61 +12,72 @@
 ?>
 <section class="three-banner">
     <?php
-        $top_banner_1 = get_field('top_banner_1');
         $top_banner_2 = get_field('top_banner_2');
         $top_banner_3 = get_field('top_banner_3');
     ?>
     <div class="wide-container">
         <div class="three-banner-row">
             <div class="three-banner-left-col">
-                <div class="three-banner-1">
-                    <img
-                        class="lazyload"
-                        src="<?php echo placeholderImage(720, 400); ?>"
-                        data-src="<?php echo aq_resize($top_banner_1['url'], 720, 400, true); ?>"
-                        alt="<?php echo $top_banner_1['alt']; ?>">
-                    <div class="three-banner-1-content">
-                        <h2><?php echo get_field('top_banner_1_title'); ?></h2>
-                        <p><?php echo get_field('top_banner_1_content'); ?></p>
-                        <div class="three-banner-1-link">
-                            <?php $top_banner_1_link = get_field('top_banner_1_link'); ?>
-                            <a href="<?php echo $top_banner_1_link['url']; ?>"><?php echo $top_banner_1_link['title']; ?></a>
+                <div class="three-banner-1-slider-wrapper" is="mieteshop-three-banner-1-slider">
+                    <div class="swiper-container" data-slider>
+                        <div class="swiper-wrapper">
+                            <?php
+                                if( have_rows('top_banner_1_list') ){
+                                    while( have_rows('top_banner_1_list') ){
+                                        the_row();
+                                        $image = get_sub_field('image');
+                            ?>
+                                        <div class="swiper-slide">
+                                            <div class="three-banner-1">
+                                                <img
+                                                    class="lazyload"
+                                                    src="<?php echo placeholderImage(720, 400); ?>"
+                                                    data-src="<?php echo aq_resize($image['url'], 720, 400, true); ?>"
+                                                    alt="<?php echo $image['alt']; ?>">
+                                                <div class="three-banner-1-content">
+                                                    <h2><?php echo get_sub_field('title'); ?></h2>
+                                                    <p><?php echo get_sub_field('content'); ?></p>
+                                                    <div class="three-banner-1-link">
+                                                        <?php $top_banner_1_link = get_sub_field('link'); ?>
+                                                        <a href="<?php echo $top_banner_1_link['url']; ?>"><?php echo $top_banner_1_link['title']; ?></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            <?php
+                                    }
+                                }
+                            ?>
                         </div>
+                    </div>
+                    <div class="three-banner-1-slider-nav-wrapper">
+                        <div data-slider-button="prev" class="three-banner-1-slider-nav three-banner-1-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                        <div data-slider-button="next" class="three-banner-1-slider-nav three-banner-1-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
                     </div>
                 </div>
             </div>
             <div class="three-banner-right-col">
+                <?php
+                    $top_banner_2_link = get_field('top_banner_2_link');
+                    $top_banner_3_link = get_field('top_banner_3_link');
+                ?>
                 <div class="three-banner-2">
-                    <img
-                        class="lazyload"
-                        src="<?php echo placeholderImage(512, 230); ?>"
-                        data-src="<?php echo aq_resize($top_banner_2['url'], 512, 230, true); ?>"
-                        alt="<?php echo $top_banner_2['alt']; ?>">
-                    <div class="three-banner-2-content">
-                        <div class="three-banner-2-content-row">
-                            <div class="three-banner-2-content-top">
-                                <p><?php echo get_field('top_banner_2_label'); ?></p>
-                            </div>
-                            <div class="three-banner-2-content-bottom">
-                                <h2><?php echo get_field('top_banner_2_title'); ?></h2>
-                                <div class="three-banner-2-link">
-                                    <?php $top_banner_2_link = get_field('top_banner_2_link'); ?>
-                                    <a href="<?php echo $top_banner_2_link['url']; ?>"><?php echo $top_banner_2_link['title']; ?></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="<?php echo $top_banner_2_link; ?>">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage(512, 230); ?>"
+                            data-src="<?php echo aq_resize($top_banner_2['url'], 512, 230, true); ?>"
+                            alt="<?php echo $top_banner_2['alt']; ?>">
+                    </a>
                 </div>
                 <div class="three-banner-3">
-                    <img
-                        class="lazyload"
-                        src="<?php echo placeholderImage(512, 154); ?>"
-                        data-src="<?php echo aq_resize($top_banner_3['url'], 512, 154, true); ?>"
-                        alt="<?php echo $top_banner_3['alt']; ?>">
-                    <div class="three-banner-3-content">
-                        <h2><?php echo get_field('top_banner_3_title'); ?></h2>
-                        <p><?php echo get_field('top_banner_3_content'); ?></p>
-                    </div>
+                    <a href="<?php echo $top_banner_3_link; ?>">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage(512, 154); ?>"
+                            data-src="<?php echo aq_resize($top_banner_3['url'], 512, 154, true); ?>"
+                            alt="<?php echo $top_banner_3['alt']; ?>">
+                    </a>
                 </div>
             </div>
         </div>
@@ -240,26 +251,23 @@
 <section class="middle-banner">
     <?php
         $middle_banner_1 = get_field('middle_banner_1');
-        $middle_banner_1_label = get_field('middle_banner_1_label');
         $middle_banner_1_link = get_field('middle_banner_1_link');
-        $middle_banner_1_content = get_field('middle_banner_1_content');
         $middle_banner_2 = get_field('middle_banner_2');
-        $middle_banner_2_title = get_field('middle_banner_2_title');
-        $middle_banner_2_content = get_field('middle_banner_2_content');
+        $middle_banner_2_link = get_field('middle_banner_2_link');
     ?>
 
     <div class="wide-container">
          <div class="middle-banner-row">
-				<div class="col">	
+				<div class="middle-banner-col">	
 				<?php 
 				if( !empty( $middle_banner_1 ) ): ?>
 					<a href="<?php echo esc_url($middle_banner_1_link); ?>"><img src="<?php echo esc_url($middle_banner_1['url']); ?>" alt="<?php echo esc_attr($middle_banner_1['alt']); ?>" /></a>
 				<?php endif; ?>
 				</div>
-				<div class="col">	
+				<div class="middle-banner-col">	
 				<?php 
 				if( !empty( $middle_banner_2 ) ): ?>
-					<a href="<?php echo esc_url($middle_banner_1_link); ?>"><img src="<?php echo esc_url($middle_banner_2['url']); ?>" alt="<?php echo esc_attr($middle_banner_2['alt']); ?>" /></a>
+					<a href="<?php echo esc_url($middle_banner_2_link); ?>"><img src="<?php echo esc_url($middle_banner_2['url']); ?>" alt="<?php echo esc_attr($middle_banner_2['alt']); ?>" /></a>
 				<?php endif; ?>
 				</div>	
         </div>       				
