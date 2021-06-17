@@ -1,3 +1,7 @@
+.home-blog {
+  padding: 60px 0 100px;
+}
+
 .home-blog-title {
   text-align: center;
 
@@ -8,4 +12,121 @@
     letter-spacing: 1.8px;
     line-height: 1.556;
   }
+}
+
+.home-blog-slider-wrapper {
+  margin-top: 40px;
+  position: relative;
+}
+
+.home-blog-item {
+  padding: 10px;
+}
+
+.home-blog-item-image {
+  align-items: flex-end;
+  display: flex;
+  height: 330px;
+
+  img {
+    box-shadow: 0 0 10px rgba($color-black, 0.5);
+    max-height: 330px;
+    max-width: 100%;
+  }
+}
+
+.home-blog-item-meta-row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.home-blog-item-category-list {
+  display: flex;
+}
+
+.home-blog-item-category-col {
+  a {
+    background-color: $color-black-1;
+    color: $color-white;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: $font-weight-light;
+    letter-spacing: 1.1px;
+    line-height: 1;
+    padding: 3px 3px 3px 6px;
+  }
+}
+
+.home-blog-item-category-col+.home-blog-item-category-col {
+  margin-left: 10px;
+}
+
+.home-blog-item-date {
+  color: $color-black-1;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+}
+
+.home-blog-item-title {
+  margin-top: 12px;
+
+  h3 {
+    color: $color-black-1;
+    font-size: 24px;
+    font-weight: $font-weight-extra-bold;
+  }
+}
+
+.home-blog-item-bottom-row {
+  display: flex;
+  margin-top: 15px;
+}
+
+.home-blog-item-bottom-left-col {
+  padding-top: 5px;
+  width: 70px;
+}
+
+.home-blog-item-bottom-right-col {
+  padding-left: 15px;
+  width: calc(100% - 70px);
+}
+
+.home-blog-item-duration-col+.home-blog-item-duration-col {
+  margin-top: 20px;
+}
+
+.home-blog-item-duration-label {
+  color: $color-black-1;
+  font-size: 10px;
+  font-weight: $font-weight-extra-bold;
+}
+
+.home-blog-item-duration-date {
+  color: $color-black-1;
+  font-size: 10px;
+  font-weight: $font-weight-light;
+  margin-top: 4px;
+}
+
+.home-blog-item-excerpt {
+  color: $color-black-1;
+  font-size: 16px;
+  font-weight: $font-weight-light;
+  line-height: 1.375;
+}
+
+.home-blog-slider-nav {
+  position: absolute;
+  top: 180px;
+}
+
+.home-blog-slider-nav--prev {
+  left: -120px;
+}
+
+.home-blog-slider-nav--next {
+  right: -120px;
 }

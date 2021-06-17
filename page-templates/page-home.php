@@ -72,7 +72,6 @@
         </div>
     </div>
 </section>
-
 <section class="book-slider" is="mieteshop-book-slider">
     <div class="wide-container book-slider--border-bottom">
         <div class="book-slider-container">
@@ -372,64 +371,74 @@
         <div class="home-blog-title">
             <h2>ΝΕΑ & ΕΚΔΗΛΩΣΕΙΣ</h2>
         </div>
-        <?php
-            $homepage_blog_posts_rel = get_field('homepage_blog_posts_rel');
+        <div class="home-blog-slider-wrapper"  is="mieteshop-home-blog-slider">
+            <div class="swiper-container" data-slider>
+                <div class="swiper-wrapper">
+                    <?php
+                        $homepage_blog_posts_rel = get_field('homepage_blog_posts_rel');
 
-            foreach( $homepage_blog_posts_rel as $blog ){
-                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $blog->ID ), 'full' );
-        ?>
-                <div class="home-blog-item">
-                    <div class="home-blog-item-image">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                            alt="<?php echo $blog->post_title; ?>">
-                    </div>
-                    <div class="home-blog-item-meta-row">
-                        <div class="home-blog-item-category-list">
-                            <?php
-                                $category_list = get_the_category($blog->ID);
+                        $greek_month_list = ['ΙΑΝ', 'ΦΕΒ', 'ΜΆΡ', 'ΑΠΡ', 'ΜΆΙ', 'ΙΟΎΝ', 'ΙΟΎΛ', 'ΑΎΓ', 'ΣΕΠ', 'ΟΚΤ', 'ΝΟΈ', 'ΔΕΚ'];
 
-                                foreach( $category_list as $category ){
-                            ?>
-                                    <div class="home-blog-item-category-col"><?php echo $category->name; ?></div>
-                            <?php
-                                }
-                            ?>
-                        </div>
-                        <div class="home-blog-item-date">
-                            <?php echo get_the_date('j', $blog->ID); ?>
-                            <?php echo get_the_date('n', $blog->ID); ?>
-                            <?php echo get_the_date('Y', $blog->ID); ?>
-                        </div>
-                    </div>
-                    <div class="home-blog-item-title">
-                        <h3><?php echo $blog->post_title; ?></h3>
-                    </div>
-                    <div class="home-blog-item-bottom-row">
-                        <div class="home-blog-item-bottom-left-col">
-                            <div class="home-blog-item-duration-row">
-                                <div class="home-blog-item-duration-col">
-                                    <div class="home-blog-item-duration-label">ΑΠΟ</div>
-                                    <div class="home-blog-item-duration-date">2 ΦΕΒ 2021</div>
-                                </div>
-                                <div class="home-blog-item-duration-col">
-                                    <div class="home-blog-item-duration-label">ΕΩΣ</div>
-                                    <div class="home-blog-item-duration-date">15 ΜΑΡ 2021</div>
+                        foreach( $homepage_blog_posts_rel as $blog ){
+                            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $blog->ID ), 'full' );
+                    ?>
+                            <div class="swiper-slide">
+                                <div class="home-blog-item">
+                                    <div class="home-blog-item-image">
+                                        <img
+                                            class="lazyload"
+                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                            alt="<?php echo $blog->post_title; ?>">
+                                    </div>
+                                    <div class="home-blog-item-meta-row">
+                                        <div class="home-blog-item-category-list">
+                                            <?php
+                                                $category_list = get_the_category($blog->ID);
+
+                                                foreach( $category_list as $category ){
+                                            ?>
+                                                    <div class="home-blog-item-category-col"><a href="#"><?php echo $category->name; ?></a></div>
+                                            <?php
+                                                }
+                                            ?>
+                                        </div>
+                                        <div class="home-blog-item-date"><?php echo get_the_date('j', $blog->ID); ?> <?php echo $greek_month_list[get_the_date('n', $blog->ID) - 1]; ?> <?php echo get_the_date('Y', $blog->ID); ?></div>
+                                    </div>
+                                    <div class="home-blog-item-title">
+                                        <h3><?php echo $blog->post_title; ?></h3>
+                                    </div>
+                                    <div class="home-blog-item-bottom-row">
+                                        <div class="home-blog-item-bottom-left-col">
+                                            <div class="home-blog-item-duration-row">
+                                                <div class="home-blog-item-duration-col">
+                                                    <div class="home-blog-item-duration-label">ΑΠΟ</div>
+                                                    <div class="home-blog-item-duration-date">2 ΦΕΒ 2021</div>
+                                                </div>
+                                                <div class="home-blog-item-duration-col">
+                                                    <div class="home-blog-item-duration-label">ΕΩΣ</div>
+                                                    <div class="home-blog-item-duration-date">15 ΜΑΡ 2021</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="home-blog-item-bottom-right-col">
+                                            <div class="home-blog-item-excerpt">
+                                                <?php echo $blog->post_excerpt; ?>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="home-blog-item-bottom-right-col">
-                            <div class="home-blog-item-excerpt">
-                                <?php echo $blog->post_excerpt; ?>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        }
+                    ?>
                 </div>
-        <?php
-            }
-        ?>
+            </div>
+            <div class="home-blog-slider-nav-wrapper">
+                <div data-slider-button="prev" class="home-blog-slider-nav home-blog-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                <div data-slider-button="next" class="home-blog-slider-nav home-blog-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+            </div>
+        </div>
     </div>
 </section>
 <?php
