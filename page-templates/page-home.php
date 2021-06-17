@@ -188,6 +188,55 @@
         </div>
     </div>
 </section>
+<section class="home-offers-section">
+    <div class="container">
+        <div class="home-offers-title">
+            <h2>ΠΡΟΣΦΟΡΕΣ</h2>
+        </div>
+        <div class="home-offers-row">
+            <?php
+                $homepage_offers_rel = get_field('homepage_offers_rel');
+
+                foreach($homepage_offers_rel as $offer){
+                    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $offer->ID ), 'full' );
+                    $authors = get_field('book_contributors_syggrafeas', $offer->ID);
+            ?>
+                    <div class="home-offers-col">
+                        <div class="home-offers-image">
+                            <img
+                                class="lazyload"
+                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                alt="<?php echo $offer->post_title; ?>">
+                        </div>
+                        <div class="home-offers-info">
+                            <?php
+                                if( !empty($authors) ){
+                                    echo '<div class="home-offers-author-list">';
+                                    if( count($authors) > 3 ){
+                                        echo '<div class="home-offers-author-item">Συλλογικό Έργο</div>';
+                                    } else {
+                                        foreach( $authors as $author ){
+                                            echo '<div class="home-offers-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                        }
+                                    }
+                                    echo '</div>';
+                                }
+                            ?>
+                            <div class="home-offers-product-title">
+                                <a href="<?php echo get_permalink($offer->ID); ?>"><h3><?php echo $offer->post_title; ?></h3></a>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                }
+            ?>
+        </div>
+        <div class="home-offers-link">
+            <a href="#">δείτε όλες τις Προσφορές</a>
+        </div>
+    </div>
+</section>
 <section class="middle-banner">
     <?php
         $middle_banner_1 = get_field('middle_banner_1');

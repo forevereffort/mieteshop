@@ -30,9 +30,9 @@ class MieteshopHomeBlogSlider extends window.HTMLDivElement {
       slidesPerView: 2,
       spaceBetween: 120,
       speed: 1000,
-      // autoplay: {
-      //   delay: 3000,
-      // },
+      autoplay: {
+        delay: 3000,
+      },
       loop: true,
       navigation: {
         nextEl: this.$buttonNext.get(0),
