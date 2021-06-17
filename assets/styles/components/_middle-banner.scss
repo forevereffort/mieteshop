@@ -12,3 +12,11 @@
   padding: 0 8px;
   width: 50%;
 }
+
+.middle-banner-image {
+  filter: drop-shadow(0 18px 54px rgba(0, 0, 0, 0.101233)) drop-shadow(0 6.5703px 19.7109px rgba(0, 0, 0, 0.127608)) drop-shadow(0 3.18976px 9.56927px rgba(0, 0, 0, 0.146432)) drop-shadow(0 1.56368px 4.69103px rgba(0, 0, 0, 0.168527)) drop-shadow(0 0.618281px 1.85484px rgba(0, 0, 0, 0.23));
+  
+  img {
+    width: 100%;
+  }
+}

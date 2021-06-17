@@ -261,13 +261,29 @@
 				<div class="middle-banner-col">	
 				<?php 
 				if( !empty( $middle_banner_1 ) ): ?>
-					<a href="<?php echo esc_url($middle_banner_1_link); ?>"><img src="<?php echo esc_url($middle_banner_1['url']); ?>" alt="<?php echo esc_attr($middle_banner_1['alt']); ?>" /></a>
+					<a href="<?php echo esc_url($middle_banner_1_link); ?>">
+                        <div class="middle-banner-image">
+                            <img
+                                class="lazyload"
+                                src="<?php echo placeholderImage(620, 230); ?>"
+                                data-src="<?php echo aq_resize($middle_banner_1['url'], 620, 230, true); ?>"
+                                alt="<?php echo $middle_banner_1['alt']; ?>">
+                        </div>
+                    </a>
 				<?php endif; ?>
 				</div>
 				<div class="middle-banner-col">	
 				<?php 
 				if( !empty( $middle_banner_2 ) ): ?>
-					<a href="<?php echo esc_url($middle_banner_2_link); ?>"><img src="<?php echo esc_url($middle_banner_2['url']); ?>" alt="<?php echo esc_attr($middle_banner_2['alt']); ?>" /></a>
+					<a href="<?php echo esc_url($middle_banner_2_link); ?>">
+                        <div class="middle-banner-image">
+                            <img
+                                class="lazyload"
+                                src="<?php echo placeholderImage(620, 230); ?>"
+                                data-src="<?php echo aq_resize($middle_banner_2['url'], 620, 230, true); ?>"
+                                alt="<?php echo $middle_banner_2['alt']; ?>">
+                        </div>
+                    </a>
 				<?php endif; ?>
 				</div>	
         </div>       				
