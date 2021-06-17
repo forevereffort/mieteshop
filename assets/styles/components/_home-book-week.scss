@@ -1,0 +1,98 @@
+.home-book-week-section--border-bottom {
+  border-bottom: 2px solid $color-black;
+  padding: 40px 0 100px;
+}
+
+.home-book-week-title {
+  text-align: center;
+
+  h2 {
+    color: $color-black-1;
+    font-size: 18px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 1.8px;
+  }
+}
+
+.home-book-week-row {
+  display: flex;
+  margin-top: 60px;
+}
+
+.home-book-week-left {
+  width: 340px;
+
+  img {
+    box-shadow: 0 0 10px rgba($color-black, 0.5);
+  }
+}
+
+.home-book-week-right {
+  padding-left: 60px;
+  width: calc(100% - 340px);
+}
+
+.home-book-week-author-item {
+  color: $color-black-1;
+  font-size: 22px;
+  font-weight: $font-weight-light;
+
+  a {
+    color: $color-black-1;
+    text-decoration: underline;
+  }
+}
+
+.home-book-week-author-item+.home-book-week-author-item {
+  margin-top: 10px;
+}
+
+.home-book-week-product-title {
+  margin-top: 17px;
+
+  h3 {
+    color: $color-black-1;
+    font-size: 24px;
+    font-weight: $font-weight-extra-bold;
+    line-height: 1.167;
+  }
+}
+
+.home-book-week-product-content {
+  border-bottom: 1px solid $color-black-1;
+  margin-top: 23px;
+  padding-bottom: 30px;
+
+  p {
+    color: $color-black-1;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    line-height: 1.5;
+  }
+}
+
+.home-book-week-product-discount {
+  border: 1px solid $color-black-1;
+  border-radius: 10px;
+  color: $color-black-1;
+  display: inline-block;
+  font-size: 12px;
+  padding: 0 5px;
+}
+
+.home-book-week-product-meta-row {
+  align-items: center;
+  display: flex;
+  margin-top: 14px;
+}
+
+.home-book-week-product-meta-col+.home-book-week-product-meta-col {
+  margin-left: 20px;
+}
+
+.home-book-week-product-price {
+  color: $color-black-1;
+  font-size: 12px;
+  font-weight: $font-weight-light;
+  padding-top: 4px;
+}
