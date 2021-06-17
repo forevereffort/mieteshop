@@ -100,3 +100,7 @@ img {
   margin: 0 auto;
   max-width: $container-width;
 }
+
+.swiper-container {
+  transform: translate3d(0, 0, 0);
+}

@@ -71,13 +71,15 @@
                     </a>
                 </div>
                 <div class="three-banner-3">
-                    <a href="<?php echo $top_banner_3_link; ?>">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage(512, 154); ?>"
-                            data-src="<?php echo aq_resize($top_banner_3['url'], 512, 154, true); ?>"
-                            alt="<?php echo $top_banner_3['alt']; ?>">
-                    </a>
+                    <div class="three-banner-3-inner">
+                        <a href="<?php echo $top_banner_3_link; ?>">
+                            <img
+                                class="lazyload"
+                                src="<?php echo placeholderImage(512, 154); ?>"
+                                data-src="<?php echo aq_resize($top_banner_3['url'], 512, 154, true); ?>"
+                                alt="<?php echo $top_banner_3['alt']; ?>">
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
