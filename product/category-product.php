@@ -61,7 +61,7 @@
                             <select>
                                 <option value="1">Conor Fahy</option>
                             </select>
-                            <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-gray-icon.svg'; ?></div>
+                            <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
                         </div>
                     </div>
                     <div class="pcat-author-publisher-col">
@@ -69,7 +69,7 @@
                             <select>
                                 <option value="1">Εκδότες</option>
                             </select>
-                            <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-gray-icon.svg'; ?></div>
+                            <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
                         </div>
                     </div>
                 </div>
@@ -163,6 +163,43 @@
                 }
                 wp_reset_query();
             ?>
+        </div>
+        <div class="pcat-results-footer-options">
+            <div class="pcat-results-footer-options-col">
+                <div class="pcat-results-navigation">
+                    <div class="pcat-results-navigation-row">
+                        <div class="pcat-results-navigation-item active"><a href="#">1</a></div>
+                        <div class="pcat-results-navigation-item"><a href="#">2</a></div>
+                        <div class="pcat-results-navigation-item"><a href="#">3</a></div>
+                        <div class="pcat-results-navigation-item"><a href="#">4</a></div>
+                        <div class="pcat-results-navigation-item"><span>...</span></div>
+                        <div class="pcat-results-navigation-item"><a href="#">33</a></div>
+                        <div class="pcat-results-navigation-next"><?php include get_template_directory() . '/assets/icons/arrow-right-icon.svg' ?></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pcat-results-footer-options-col">
+                <div class="pcat-results-footer-select">
+                    <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
+                    <div class="pcat-results-footer-select-elem">
+                        <select>
+                            <option value="1">1</option>
+                        </select>
+                        <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pcat-results-projection-options">
+            <div class="pcat-results-footer-select">
+                <div class="pcat-results-footer-select-label">Προβολή</div>
+                <div class="pcat-results-footer-select-elem">
+                    <select>
+                        <option value="1">1</option>
+                    </select>
+                    <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
