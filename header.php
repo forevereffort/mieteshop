@@ -97,6 +97,9 @@
 											<input type="text" placeholder="λαϊκό">
 										</form>
 									</div>
+									<?php
+										$image = wp_get_attachment_image_src( get_post_thumbnail_id( 3401 ), 'full' );
+									?>
 									<div class="header-top-search-result-group-list">
 										<div class="header-top-search-result-group">
 											<div class="header-top-search-result-group-title">
@@ -106,6 +109,11 @@
 												<div class="header-top-search-result-item-row">
 													<div class="header-top-search-result-item-left-col">
 														<div class="header-top-search-result-item-image">
+															<img
+																class="lazyload"
+																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+																alt="product-image">
 														</div>
 													</div>
 													<div class="header-top-search-result-item-right-col">
@@ -122,6 +130,11 @@
 												<div class="header-top-search-result-item-row">
 													<div class="header-top-search-result-item-left-col">
 														<div class="header-top-search-result-item-image">
+															<img
+																class="lazyload"
+																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+																alt="product-image">
 														</div>
 													</div>
 													<div class="header-top-search-result-item-right-col">
@@ -138,6 +151,11 @@
 												<div class="header-top-search-result-item-row">
 													<div class="header-top-search-result-item-left-col">
 														<div class="header-top-search-result-item-image">
+															<img
+																class="lazyload"
+																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+																alt="product-image">
 														</div>
 													</div>
 													<div class="header-top-search-result-item-right-col">
@@ -154,6 +172,11 @@
 												<div class="header-top-search-result-item-row">
 													<div class="header-top-search-result-item-left-col">
 														<div class="header-top-search-result-item-image">
+															<img
+																class="lazyload"
+																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+																alt="product-image">
 														</div>
 													</div>
 													<div class="header-top-search-result-item-right-col">
@@ -178,6 +201,11 @@
 												<div class="header-top-search-result-item-row">
 													<div class="header-top-search-result-item-left-col">
 														<div class="header-top-search-result-item-image">
+															<img
+																class="lazyload"
+																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+																alt="product-image">
 														</div>
 													</div>
 													<div class="header-top-search-result-item-right-col">
@@ -199,6 +227,11 @@
 												<div class="header-top-search-result-item-row">
 													<div class="header-top-search-result-item-left-col">
 														<div class="header-top-search-result-item-image">
+															<img
+																class="lazyload"
+																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+																alt="product-image">
 														</div>
 													</div>
 													<div class="header-top-search-result-item-right-col">
@@ -215,6 +248,11 @@
 												<div class="header-top-search-result-item-row">
 													<div class="header-top-search-result-item-left-col">
 														<div class="header-top-search-result-item-image">
+															<img
+																class="lazyload"
+																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+																alt="product-image">
 														</div>
 													</div>
 													<div class="header-top-search-result-item-right-col">
@@ -231,6 +269,11 @@
 												<div class="header-top-search-result-item-row">
 													<div class="header-top-search-result-item-left-col">
 														<div class="header-top-search-result-item-image">
+															<img
+																class="lazyload"
+																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+																alt="product-image">
 														</div>
 													</div>
 													<div class="header-top-search-result-item-right-col">
@@ -247,6 +290,11 @@
 												<div class="header-top-search-result-item-row">
 													<div class="header-top-search-result-item-left-col">
 														<div class="header-top-search-result-item-image">
+															<img
+																class="lazyload"
+																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+																alt="product-image">
 														</div>
 													</div>
 													<div class="header-top-search-result-item-right-col">
