@@ -80,6 +80,12 @@ img {
   // background-color: #eee;
 }
 
+.content-container {
+  margin: 0 auto;
+  max-width: $content-container-width;
+  // background-color: #eee;
+}
+
 .lazyload {
   opacity: 0;
 }
