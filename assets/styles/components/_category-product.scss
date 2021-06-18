@@ -70,3 +70,194 @@
 .pcat-list-label {
   font-weight: $font-weight-extra-bold;
 }
+
+.pcat-filter-section {
+  background-color: $color-white;
+  padding: 29px 0 28px;
+}
+
+.pcat-filter-row {
+  display: flex;
+}
+
+.pcat-filter-label {
+  display: flex;
+}
+
+.pcat-filter-label-text {
+  color: $color-black-1;
+  font-size: 18px;
+  font-weight: $font-weight-semi-bold;
+  letter-spacing: 1.8px;
+  margin-left: 20px;
+  padding-top: 1px;
+}
+
+.pcat-filter-button {
+  display: flex;
+  margin-left: 84px;
+  padding-top: 1px;
+}
+
+.pcat-filter-button-label {
+  color: $color-black-1;
+  font-size: 16px;
+  font-weight: $font-weight-light;
+  letter-spacing: 0.2px;
+}
+
+.pcat-filter-button-icon {
+  margin-left: 15px;
+}
+
+.pcat-extra-filter-section {
+  background-color: $color-black-1;
+  padding: 31px 0 24px;
+}
+
+.pcat-extra-filter-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pcat-author-publisher-label {
+  color: $color-white;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  letter-spacing: 0.2px;
+}
+
+.pcat-author-publisher-des {
+  color: $color-white;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  letter-spacing: 0.2px;
+  margin-top: 12px;
+}
+
+.pcat-author-publisher-row {
+  display: flex;
+  margin-top: 8px;
+}
+
+.pcat-author-publisher-col+.pcat-author-publisher-col {
+  margin-left: 22px;
+}
+
+.pcat-author-publisher-select {
+  position: relative;
+
+  select {
+    appearance: none;
+    border: 1px solid $color-gray-2;
+    border-radius: 4px;
+    color: $color-black;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    min-width: 264px;
+    padding: 9px 10px;
+  }
+}
+
+.pcat-author-publisher-select-icon {
+  display: flex;
+  position: absolute;
+  right: 15px;
+  top: 14px;
+}
+
+.pcat-classification-filter-label {
+  color: $color-white;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+}
+
+.pcat-classification-filter-select {
+  margin-top: 8px;
+  position: relative;
+
+  select {
+    appearance: none;
+    background-color: $color-black-1;
+    border: 1px solid $color-gray-2;
+    border-radius: 4px;
+    color: $color-white;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    min-width: 264px;
+    padding: 9px 10px;
+  }
+}
+
+.pcat-classification-filter-select-icon {
+  display: flex;
+  position: absolute;
+  right: 15px;
+  top: 14px;
+}
+
+.pcat-results-title {
+  h2 {
+    color: $color-black-1;
+    font-size: 18px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 1.8px;
+  }
+}
+
+.pcat-results-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -8px;
+}
+
+.pcat-results-col {
+  padding: 0 8px;
+  width: 25%;
+}
+
+.pcat-result-item-author-item {
+  color: $color-black;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  line-height: 1.286;
+  
+  a {
+    color: $color-black;
+    text-decoration: underline;
+  }
+}
+
+.pcat-result-item-info {
+  border-bottom: 1px solid $color-black;
+  padding: 0 30px 30px 0;
+}
+
+.pcat-result-item-image {
+  align-items: flex-end;
+  display: flex;
+  height: 300px;
+
+  img {
+    box-shadow: 0 0 10px rgba($color-black, 0.5);
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.pcat-result-item-author-item+.pcat-result-item-author-item {
+  margin-top: 8px;
+}
+
+.pcat-result-item-title {
+  margin-top: 8px;
+
+  h3 {
+    color: $color-black-1;
+    font-size: 14px;
+    font-weight: $font-weight-extra-bold;
+    line-height: 1.286;
+  }
+}
