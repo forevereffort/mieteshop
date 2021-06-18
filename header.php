@@ -87,7 +87,188 @@
 				<div class="header-top-right">
 					<div class="header-top-right-row">
 						<div class="header-top-right-col">
-							<?php include get_template_directory() . '/assets/icons/search-icon.svg' ?>
+							<div class="header-top-search-wrapper">
+								<div class="header-top-search-icon">
+									<?php include get_template_directory() . '/assets/icons/search-icon.svg' ?>
+								</div>
+								<div class="header-top-search-popup">
+									<div class="header-top-search-form">
+										<form action="">
+											<input type="text" placeholder="λαϊκό">
+										</form>
+									</div>
+									<div class="header-top-search-result-group-list">
+										<div class="header-top-search-result-group">
+											<div class="header-top-search-result-group-title">
+												<h3>ΒΙΒΛΙΑ</h3>
+											</div>
+											<div class="header-top-search-result-item">
+												<div class="header-top-search-result-item-row">
+													<div class="header-top-search-result-item-left-col">
+														<div class="header-top-search-result-item-image">
+														</div>
+													</div>
+													<div class="header-top-search-result-item-right-col">
+														<div class="header-top-search-result-item-info">
+															<div class="header-top-search-result-item-info-author">Δημήτριος Ι. Ζέπος</div>
+															<div class="header-top-search-result-item-info-title">
+																<h4>Λαϊκή Δικαιοσύνη. Εις τας ελευθέρας περιοχάς της υπό κατοχήν Ελλάδος</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="header-top-search-result-item">
+												<div class="header-top-search-result-item-row">
+													<div class="header-top-search-result-item-left-col">
+														<div class="header-top-search-result-item-image">
+														</div>
+													</div>
+													<div class="header-top-search-result-item-right-col">
+														<div class="header-top-search-result-item-info">
+															<div class="header-top-search-result-item-info-author">Ι. Θ. Κακριδής</div>
+															<div class="header-top-search-result-item-info-title">
+																<h4>Οι αρχαίοι Έλληνες στη νεοελληνική λαϊκή παράδοση</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="header-top-search-result-item">
+												<div class="header-top-search-result-item-row">
+													<div class="header-top-search-result-item-left-col">
+														<div class="header-top-search-result-item-image">
+														</div>
+													</div>
+													<div class="header-top-search-result-item-right-col">
+														<div class="header-top-search-result-item-info">
+															<div class="header-top-search-result-item-info-author">Σοφία Παλαμιώτη</div>
+															<div class="header-top-search-result-item-info-title">
+																<h4>Λαϊκές βιβλιοθήκες. Οδηγός για την οργάνωσή τους</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="header-top-search-result-item">
+												<div class="header-top-search-result-item-row">
+													<div class="header-top-search-result-item-left-col">
+														<div class="header-top-search-result-item-image">
+														</div>
+													</div>
+													<div class="header-top-search-result-item-right-col">
+														<div class="header-top-search-result-item-info">
+															<div class="header-top-search-result-item-info-author">Παναγιώτης Ζωγράφος</div>
+															<div class="header-top-search-result-item-info-title">
+																<h4>Στοχασμός Μακρυγιάννη. Χειρ Παναγιώτη Ζωγράφου. Εικονογραφία του Εικοσιένα</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="header-top-search-result-link">
+												<a href="#">Όλα  τα σχετικά προϊόντα</a>
+											</div>
+										</div>
+										<div class="header-top-search-result-group">
+											<div class="header-top-search-result-group-title">
+												<h3>ΜΟΥΣΙΚΗ</h3>
+											</div>
+											<div class="header-top-search-result-item">
+												<div class="header-top-search-result-item-row">
+													<div class="header-top-search-result-item-left-col">
+														<div class="header-top-search-result-item-image">
+														</div>
+													</div>
+													<div class="header-top-search-result-item-right-col">
+														<div class="header-top-search-result-item-info">
+															<div class="header-top-search-result-item-info-author">Χριστίνα Μαξούρη</div>
+															<div class="header-top-search-result-item-info-title">
+																<h4>20 + 1 Λαϊκά Μεταπολεμικά Τραγούδια με Μπαρόκ Σύνολο</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="header-top-search-result-group">
+											<div class="header-top-search-result-group-title">
+												<h3>ΑΝΤΙΚΕΙΜΕΝΑ</h3>
+											</div>
+											<div class="header-top-search-result-item">
+												<div class="header-top-search-result-item-row">
+													<div class="header-top-search-result-item-left-col">
+														<div class="header-top-search-result-item-image">
+														</div>
+													</div>
+													<div class="header-top-search-result-item-right-col">
+														<div class="header-top-search-result-item-info">
+															<div class="header-top-search-result-item-info-author">Φρέντυ Κάραμποτ</div>
+															<div class="header-top-search-result-item-info-title">
+																<h4>Γεύση Έρωτα</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="header-top-search-result-item">
+												<div class="header-top-search-result-item-row">
+													<div class="header-top-search-result-item-left-col">
+														<div class="header-top-search-result-item-image">
+														</div>
+													</div>
+													<div class="header-top-search-result-item-right-col">
+														<div class="header-top-search-result-item-info">
+															<div class="header-top-search-result-item-info-author">Γκαρδιάκος</div>
+															<div class="header-top-search-result-item-info-title">
+																<h4>Ο Δοσίλογος</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="header-top-search-result-item">
+												<div class="header-top-search-result-item-row">
+													<div class="header-top-search-result-item-left-col">
+														<div class="header-top-search-result-item-image">
+														</div>
+													</div>
+													<div class="header-top-search-result-item-right-col">
+														<div class="header-top-search-result-item-info">
+															<div class="header-top-search-result-item-info-author">Ηνωμένοι Καλλιτέχναι</div>
+															<div class="header-top-search-result-item-info-title">
+																<h4>Πικρό ψωμί</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="header-top-search-result-item">
+												<div class="header-top-search-result-item-row">
+													<div class="header-top-search-result-item-left-col">
+														<div class="header-top-search-result-item-image">
+														</div>
+													</div>
+													<div class="header-top-search-result-item-right-col">
+														<div class="header-top-search-result-item-info">
+															<div class="header-top-search-result-item-info-author">Χρήστος Βλαντίκας</div>
+															<div class="header-top-search-result-item-info-title">
+																<h4>Νέα μεταμφιεσμένη</h4>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="header-top-search-result-link">
+												<a href="#">Όλα  τα Σχετικά προΙόντα</a>
+											</div>
+										</div>
+									</div>
+									<div class="header-top-search-button">
+										<a href="#">όλα τα αποτελέσματα</a>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="header-top-right-col">
 							<?php include get_template_directory() . '/assets/icons/favorite-icon.svg' ?>

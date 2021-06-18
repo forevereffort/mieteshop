@@ -287,3 +287,107 @@
     padding: 2px 9px 4px;
   }
 }
+
+.header-top-search-wrapper {
+  position: relative;
+}
+
+.header-top-search-popup {
+  background: $color-white;
+  border-radius: 16px;
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.101233), 0 6.5703px 19.7109px rgba(0, 0, 0, 0.127608), 0 3.18976px 9.56927px rgba(0, 0, 0, 0.146432), 0 1.56368px 4.69103px rgba(0, 0, 0, 0.168527), 0 0.618281px 1.85484px rgba(0, 0, 0, 0.23);
+  left: -95px;
+  padding: 10px;
+  position: absolute;
+  top: 40px;
+  width: 360px;
+  z-index: 1;
+
+  &::before {
+    border-bottom: 18px solid $color-white;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    content: '';
+    height: 0;
+    left: 90px;
+    position: absolute;
+    top: -9px;
+    width: 0;
+  }
+}
+
+.header-top-search-form {
+  input[type=text] {
+    background-color: $color-gray;
+    border: 2px solid $color-black-1;
+    border-radius: 16px;
+    color: $color-black;
+    font-size: 16px;
+    font-weight: $font-weight-medium;
+    padding: 10px 17px 12px;
+    width: 100%;
+  }
+}
+
+.header-top-search-result-group-list {
+  margin: 0 -10px;
+}
+
+.header-top-search-result-group {
+  padding: 0 10px;
+}
+
+.header-top-search-result-group+.header-top-search-result-group {
+  border-top: 1px solid $color-black-1;
+}
+
+.header-top-search-result-group-title {
+  h3 {
+    color: $color-black-1;
+    font-size: 14px;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.15px;
+  }
+}
+
+.header-top-search-result-item-info-author {
+  color: $color-black;
+  font-size: 10px;
+  font-weight: $font-weight-light;
+}
+
+.header-top-search-result-item-info-title {
+  margin-top: 6px;
+
+  h4 {
+    color: $color-black-1;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    line-height: 1.143;
+  }
+}
+
+.header-top-search-result-link {
+  text-align: right;
+
+  a {
+    color: $color-black;
+    font-size: 12px;
+    font-weight: $font-weight-bold;
+    text-decoration: underline;
+  }
+}
+
+.header-top-search-button {
+  a {
+    background-color: $color-black-1;
+    border-radius: 16px;
+    color: $color-white;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: $font-weight-bold;
+    padding: 9px 0 11px;
+    text-align: center;
+    width: 100%;
+  }
+}
