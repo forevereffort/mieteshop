@@ -37,4 +37,22 @@ jQuery(document).ready(function(){
       jQuery('.header-sub-menu.active').removeClass('active')
     }, 200)
   })
+
+  // header top search icon click
+  jQuery('#js-header-top-search-icon').click(function(){
+    if( jQuery('#js-header-top-search-popup').hasClass('active') ){
+      jQuery('#js-header-top-search-popup').removeClass('active');
+    } else {
+      jQuery('#js-header-top-search-popup').addClass('active');
+    }
+  })
+
+  // close header popup when the outside of popup is clicked
+  jQuery(document).on("click", function (event) {
+    if( jQuery('#js-header-top-search-popup').hasClass('active') ){
+      if (jQuery(event.target).closest("#js-header-top-search-popup,#js-header-top-search-icon").length === 0) {
+        jQuery('#js-header-top-search-popup').removeClass('active');
+      }
+    }
+  });
 })

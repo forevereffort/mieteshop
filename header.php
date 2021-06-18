@@ -88,10 +88,10 @@
 					<div class="header-top-right-row">
 						<div class="header-top-right-col">
 							<div class="header-top-search-wrapper">
-								<div class="header-top-search-icon">
+								<div id="js-header-top-search-icon" class="header-top-search-icon">
 									<?php include get_template_directory() . '/assets/icons/search-icon.svg' ?>
 								</div>
-								<div class="header-top-search-popup">
+								<div id="js-header-top-search-popup" class="header-top-search-popup">
 									<div class="header-top-search-form">
 										<form action="">
 											<input type="text" placeholder="λαϊκό">
