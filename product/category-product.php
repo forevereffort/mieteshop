@@ -120,6 +120,18 @@
                                         data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
                                         alt="<?php echo $product->get_name(); ?>">
                                 </div>
+                                <div class="pcat-result-item-meta-row">
+                                    <div class="pcat-result-item-meta-col">
+                                        <div class="pcat-result-item-favorite">
+                                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="pcat-result-item-meta-col">
+                                        <div class="pcat-result-item-busket">
+                                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                        </div>
+                                    </div>
+                                </div>
                                 <?php
                                     if( !empty($authors) ){
                                         echo '<div class="pcat-result-item-author-list">';
@@ -134,6 +146,16 @@
                                     }
                                 ?>
                                 <div class="pcat-result-item-title"><h3><?php echo $product->get_name(); ?></h3></div>
+                            </div>
+                            <div class="pcat-result-item-footer-row">
+                                <div class="pcat-result-item-footer-col">
+                                    <div class="pcat-result-item-footer-product-price">
+                                        <?php echo $product->get_price_html(); ?>
+                                    </div>
+                                </div>
+                                <div class="pcat-result-item-footer-col">
+                                    <div class="pcat-result-item-footer-product-discount">-30%</div>
+                                </div>
                             </div>
                         </div>
                     </div>
