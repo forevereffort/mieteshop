@@ -44,11 +44,15 @@
                 <div class="pcat-filter-label-text">ΦΙΛΤΡΑ</div>
             </div>
             <div class="pcat-filter-button">
-                <div class="pcat-filter-button-label">Επιλέξτε θεματικά φίλτρα</div>
-                <div class="pcat-filter-button-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                <div id="js-pcat-filter-button-inner" class="pcat-filter-button-inner">
+                    <div class="pcat-filter-button-label">Επιλέξτε θεματικά φίλτρα</div>
+                    <div class="pcat-filter-button-icon">
+                        <div class="pcat-filter-button-icon-inner"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="pcat-filter-detail-row">
+        <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" style="display: none;">
             <?php
                 $product_root_categories = get_terms( 'product_cat', [
                     'orderby'    => 'name',
@@ -72,7 +76,7 @@
 
                                 foreach ($product_child_categories as $child_category) {
                             ?>
-                                    <div class="`js-pcat-filter-detail-child` pcat-filter-detail-child"><?php echo $child_category->name; ?></div>
+                                    <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_category->term_id; ?>"><?php echo $child_category->name; ?></div>
                             <?php
                                 }
                             ?>
@@ -86,27 +90,12 @@
 </section>
 <div class="pcat-extra-filter-section">
     <div class="content-container">
-        <div class="pcat-extra-thematic-filter">
-            <div class="pcat-extra-thematic-filter-title">ΘΕΜΑΤΙΚΑ ΦΙΛΤΡΑ <span>(5)</span></div>
-            <div class="pcat-extra-thematic-filter-row">
-                <div class="pcat-extra-thematic-filter-col">
-                    <div class="pcat-extra-thematic-filter-item">Αρχαία ελληνική γραμματεία<span></span></div>
-                </div>
-                <div class="pcat-extra-thematic-filter-col">
-                    <div class="pcat-extra-thematic-filter-item">Γενικά Έργα<span></span></div>
-                </div>
-                <div class="pcat-extra-thematic-filter-col">
-                    <div class="pcat-extra-thematic-filter-item">ΑΡΧΑΙΟΛΟΓΙΑ<span></span></div>
-                </div>
-                <div class="pcat-extra-thematic-filter-col">
-                    <div class="pcat-extra-thematic-filter-item">Νεότερη φιλοσοφία<span></span></div>
-                </div>
-                <div class="pcat-extra-thematic-filter-col">
-                    <div class="pcat-extra-thematic-filter-item">Φιλοσοφικό δοκίμιο<span></span></div>
-                </div>
+        <div id="js-pcat-extra-thematic-filter" class="pcat-extra-thematic-filter hide">
+            <div id="js-pcat-extra-thematic-filter-title" class="pcat-extra-thematic-filter-title">ΘΕΜΑΤΙΚΑ ΦΙΛΤΡΑ (<span>5</span>)</div>
+            <div id="js-pcat-extra-thematic-filter-row" class="pcat-extra-thematic-filter-row">
             </div>
             <div class="pcat-extra-thematic-filter-link">
-                <a href="#">καθαρισμός φίλτρων</a>
+                <a id="js-pcat-extra-thematic-filter-link-clear" href="#">καθαρισμός φίλτρων</a>
             </div>
         </div>
         <div class="pcat-extra-filter-row">
