@@ -86,6 +86,29 @@
 </section>
 <div class="pcat-extra-filter-section">
     <div class="content-container">
+        <div class="pcat-extra-thematic-filter">
+            <div class="pcat-extra-thematic-filter-title">ΘΕΜΑΤΙΚΑ ΦΙΛΤΡΑ <span>(5)</span></div>
+            <div class="pcat-extra-thematic-filter-row">
+                <div class="pcat-extra-thematic-filter-col">
+                    <div class="pcat-extra-thematic-filter-item">Αρχαία ελληνική γραμματεία<span></span></div>
+                </div>
+                <div class="pcat-extra-thematic-filter-col">
+                    <div class="pcat-extra-thematic-filter-item">Γενικά Έργα<span></span></div>
+                </div>
+                <div class="pcat-extra-thematic-filter-col">
+                    <div class="pcat-extra-thematic-filter-item">ΑΡΧΑΙΟΛΟΓΙΑ<span></span></div>
+                </div>
+                <div class="pcat-extra-thematic-filter-col">
+                    <div class="pcat-extra-thematic-filter-item">Νεότερη φιλοσοφία<span></span></div>
+                </div>
+                <div class="pcat-extra-thematic-filter-col">
+                    <div class="pcat-extra-thematic-filter-item">Φιλοσοφικό δοκίμιο<span></span></div>
+                </div>
+            </div>
+            <div class="pcat-extra-thematic-filter-link">
+                <a href="#">καθαρισμός φίλτρων</a>
+            </div>
+        </div>
         <div class="pcat-extra-filter-row">
             <div class="pcat-extra-filter-left-col">
                 <div class="pcat-author-publisher-label">Επιλέξτε Συγγραφέα ή Εκδότη</div>

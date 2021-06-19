@@ -485,3 +485,79 @@
 .pcat-filter-detail-child+.pcat-filter-detail-child {
   margin-top: 25px;
 }
+
+.pcat-extra-thematic-filter {
+  padding: 17px 0 33px;
+}
+
+.pcat-extra-thematic-filter-title {
+  color: $color-white;
+  font-size: 16px;
+  font-weight: $font-weight-medium;
+  letter-spacing: 1.28px;
+  line-height: 1.125;
+}
+
+.pcat-extra-thematic-filter-row {
+  @include clearfix();
+  margin: 8px -8px 0;
+}
+
+.pcat-extra-thematic-filter-col {
+  float: left;
+  padding: 8px;
+}
+
+.pcat-extra-thematic-filter-item {
+  background-color: $color-gray-1;
+  color: $color-black;
+  font-size: 14px;
+  letter-spacing: 0.25px;
+  line-height: 1.172;
+  padding: 2px 40px 5px 16px;
+  position: relative;
+
+  span {
+    cursor: pointer;
+    display: inline-block;
+    height: 14px;
+    position: absolute;
+    right: 12px;
+    top: 4px;
+    width: 14px;
+
+    &::before {
+      background-color: $color-black;
+      content: '';
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: 7px;
+      transform: translate3d(0, -50%, 0) rotate(45deg);
+      width: 14px;
+    }
+
+    &::after {
+      background-color: $color-black;
+      content: '';
+      height: 2px;
+      left: 0;
+      position: absolute;
+      top: 7px;
+      transform: translate3d(0, -50%, 0) rotate(-45deg);
+      width: 14px;
+    }
+  }
+}
+
+.pcat-extra-thematic-filter-link {
+  text-align: right;
+
+  a {
+    color: $color-white;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    letter-spacing: 0.3px;
+    text-decoration: underline;
+  }
+}
