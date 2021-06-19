@@ -48,6 +48,40 @@
                 <div class="pcat-filter-button-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
             </div>
         </div>
+        <div class="pcat-filter-detail-row">
+            <?php
+                $product_root_categories = get_terms( 'product_cat', [
+                    'orderby'    => 'name',
+                    'order'      => 'asc',
+                    'hide_empty' => false,
+                    'parent'     => 0,
+                ] );
+                
+                if( !empty($product_root_categories) ){
+                    foreach ($product_root_categories as $root_category) {
+            ?>
+                        <div class="pcat-filter-detail-col">
+                            <div class="pcat-filter-detail-root"><h3><?php echo $root_category->name; ?></h3></div>
+                            <?php
+                                $product_child_categories = get_terms( 'product_cat', [
+                                    'orderby'    => 'name',
+                                    'order'      => 'asc',
+                                    'hide_empty' => false,
+                                    'parent'     => $root_category->term_id,
+                                ] );
+
+                                foreach ($product_child_categories as $child_category) {
+                            ?>
+                                    <div class="pcat-filter-detail-child"><?php echo $child_category->name; ?></div>
+                            <?php
+                                }
+                            ?>
+                        </div>
+            <?php
+                    }
+                }
+            ?>
+        </div>
     </div>
 </section>
 <div class="pcat-extra-filter-section">

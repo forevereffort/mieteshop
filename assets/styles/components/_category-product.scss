@@ -411,3 +411,61 @@
 .pcat-results-section {
   padding: 60px 0 70px;
 }
+
+.pcat-filter-detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -8px;
+  padding: 10px 0 0;
+}
+
+.pcat-filter-detail-col {
+  padding: 25px 8px;
+  width: 20%;
+}
+
+.pcat-filter-detail-root {
+  padding-bottom: 22px;
+
+  h3 {
+    color: $color-black-1;
+    font-size: 14px;
+    font-weight: $font-weight-extra-bold;
+    letter-spacing: 0.15px;
+    line-height: 1.286;
+    text-transform: uppercase;
+  }
+}
+
+.pcat-filter-detail-child {
+  color: $color-black-1;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  line-height: 1.143;
+  padding-left: 17px;
+  position: relative;
+
+  &::before {
+    background-color: $color-black-1;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    top: 7px;
+    width: 10px;
+  }
+
+  &::after {
+    background-color: $color-black-1;
+    content: '';
+    height: 10px;
+    left: 4px;
+    position: absolute;
+    top: 3px;
+    width: 2px;
+  }
+}
+
+.pcat-filter-detail-child+.pcat-filter-detail-child {
+  margin-top: 25px;
+}
