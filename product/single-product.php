@@ -61,13 +61,13 @@
                         </div>
                     </div>
                     <div class="single-product-info-table-1-row">
-                        <div class="single-product-form-col">ΜΟΡΦΗ</div>
-                        <div class="single-product-form-value">Πανόδετο</div>
-                        <div class="single-product-price-col">ΤΙΜΗ</div>
-                        <div class="single-product-regular-price">15,50€</div>
-                        <div class="single-product-sale-price">14,75€</div>
+                        <div class="single-product-form-col"><span>ΜΟΡΦΗ</span></div>
+                        <div class="single-product-form-value"><span>Πανόδετο</span></div>
+                        <div class="single-product-price-col"><span>ΤΙΜΗ</span></div>
+                        <div class="single-product-regular-price"><span>15,50€</span></div>
+                        <div class="single-product-sale-price"><span>14,75€</span></div>
                         <div class="single-product-discount"><span>-30%</span></div>
-                        <div class="single-product-availability">άμεσα διαθέσιμο</div>
+                        <div class="single-product-availability"><span>άμεσα διαθέσιμο</span></div>
                     </div>
                 </div>
             </div>

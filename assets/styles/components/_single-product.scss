@@ -118,9 +118,12 @@
 }
 
 .single-product-info-table-1-row {
+  align-items: center;
   border-bottom: 2px solid $color-black;
   border-top: 2px solid $color-black;
   display: flex;
+  height: 48px;
+  justify-content: space-between;
 }
 
 .single-product-form-col {
@@ -128,6 +131,7 @@
   color: $color-black-1;
   font-size: 13px;
   font-weight: $font-weight-light;
+  height: 100%;
   letter-spacing: 1.2px;
   width: 75px;
 }
@@ -136,6 +140,7 @@
   border-right: 2px solid $color-black;
   font-size: 16px;
   font-weight: $font-weight-light;
+  height: 100%;
   width: 145px;
 }
 
@@ -144,23 +149,28 @@
   color: $color-black-1;
   font-size: 13px;
   font-weight: $font-weight-light;
+  height: 100%;
   letter-spacing: 1.2px;
-  width: 75px;   
+  width: 75px;
 }
 
 .single-product-regular-price {
   color: rgba($color-black, 0.6);
   font-size: 16px;
   font-weight: $font-weight-light;
+  height: 100%;
 }
 
 .single-product-sale-price {
   color: $color-black;
   font-size: 24px;
   font-weight: $font-weight-bold;
+  height: 100%;
 }
 
 .single-product-discount {
+  height: 100%;
+
   span {
     background-color: $color-black-1;
     border-radius: 8px;
@@ -176,4 +186,5 @@
   color: $color-black-1;
   font-size: 11px;
   font-weight: $font-weight-medium;
+  height: 100%;
 }
