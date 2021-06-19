@@ -1,0 +1,34 @@
+.breadcrumb-section {
+  background-color: $color-gray-1;
+  padding: 12px 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+}
+
+.breadcrumb-item {
+  color: $color-black-1;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  letter-spacing: 0.4px;
+  position: relative;
+
+  a {
+    color: $color-black-1;
+  }
+}
+
+.breadcrumb-item+.breadcrumb-item {
+  padding-left: 35px;
+
+  &::before {
+    color: $color-black-1;
+    content: '/';
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    left: 15px;
+    position: absolute;
+    top: 0;
+  }
+}

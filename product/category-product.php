@@ -1,8 +1,8 @@
-<section class="pcat-breadcrumb-section">
+<section class="breadcrumb-section">
     <div class="content-container">
-        <div class="pcat-breadcrumb-list">
-            <div class="pcat-breadcrumb-item"><a href="#">Βιβλία</a></div>
-            <div class="pcat-breadcrumb-item"><a href="#">Ανθρωπιστικές Επιστήμες</a></div>
+        <div class="breadcrumb-list">
+            <div class="breadcrumb-item"><a href="#">Βιβλία</a></div>
+            <div class="breadcrumb-item"><a href="#">Ανθρωπιστικές Επιστήμες</a></div>
         </div>
     </div>
 </section>
