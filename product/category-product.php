@@ -72,7 +72,7 @@
 
                                 foreach ($product_child_categories as $child_category) {
                             ?>
-                                    <div class="pcat-filter-detail-child"><?php echo $child_category->name; ?></div>
+                                    <div class="`js-pcat-filter-detail-child` pcat-filter-detail-child"><?php echo $child_category->name; ?></div>
                             <?php
                                 }
                             ?>

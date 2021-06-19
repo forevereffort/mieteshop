@@ -416,11 +416,10 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0 -8px;
-  padding: 10px 0 0;
 }
 
 .pcat-filter-detail-col {
-  padding: 25px 8px;
+  padding: 35px 8px 15px;
   width: 20%;
 }
 
@@ -439,19 +438,35 @@
 
 .pcat-filter-detail-child {
   color: $color-black-1;
+  cursor: pointer;
   font-size: 14px;
   font-weight: $font-weight-light;
   line-height: 1.143;
   padding-left: 17px;
   position: relative;
 
+  &.active {
+    font-weight: $font-weight-extra-bold;
+
+    &::before {
+      opacity: 0;
+      transform: rotate(-90deg);
+    }
+
+    &::after {
+      transform: rotate(-90deg);
+    }
+  }
+
   &::before {
     background-color: $color-black-1;
     content: '';
     height: 2px;
     left: 0;
+    opacity: 1;
     position: absolute;
     top: 7px;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
     width: 10px;
   }
 
@@ -462,6 +477,7 @@
     left: 4px;
     position: absolute;
     top: 3px;
+    transition: transform 0.2s ease-out;
     width: 2px;
   }
 }
