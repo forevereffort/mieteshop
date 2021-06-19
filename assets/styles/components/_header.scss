@@ -153,13 +153,21 @@
 .header-nav-col--has-child {
   > a {
     padding-right: 60px;
+
+    // &.active {
+    //   .header-nav-arrow {
+    //     transform: rotate(180deg);
+    //   }
+    // }
   }
 }
 
 .header-nav-arrow {
+  display: flex;
   position: absolute;
   right: 31px;
-  top: 4px;
+  top: 10px;
+  transition: transform 0.2s ease-out;
 }
 
 .header-nav-col+.header-nav-col {

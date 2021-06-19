@@ -3,6 +3,7 @@ jQuery(document).ready(function(){
   jQuery('.js-header-nav-parent-menu').hover(
     function () {
       var menuID = jQuery(this).attr('data-menu-id');
+      // jQuery(this).addClass('active');
 
       setTimeout(function () {
         jQuery('.header-sub-menu.active').removeClass('active')
@@ -26,6 +27,7 @@ jQuery(document).ready(function(){
     function () {
 
       setTimeout(function () {
+        // jQuery('.js-header-nav-parent-menu.active').removeClass('active')
         jQuery('.header-sub-menu.active').removeClass('active')
       }, 200)
     }
@@ -34,6 +36,7 @@ jQuery(document).ready(function(){
   // Close sub menu when not hovering header menu element
   jQuery('.header-nav').hover(function () {}, function () {
     setTimeout(function () {
+      // jQuery('.js-header-nav-parent-menu.active').removeClass('active')
       jQuery('.header-sub-menu.active').removeClass('active')
     }, 200)
   })
