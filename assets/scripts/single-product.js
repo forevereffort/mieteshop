@@ -28,6 +28,8 @@ class MieteshopProductReviewSlider extends window.HTMLDivElement {
     const config = {
       slidesPerView: 1,
       speed: 1000,
+      observer: true,
+      observeParents: true,
       autoplay: {
         delay: 3000,
       },
@@ -68,6 +70,8 @@ class MieteshopProductVideoSlider extends window.HTMLDivElement {
     const config = {
       slidesPerView: 1,
       speed: 1000,
+      observer: true,
+      observeParents: true,
       autoplay: {
         delay: 3000,
       },
@@ -82,6 +86,45 @@ class MieteshopProductVideoSlider extends window.HTMLDivElement {
 }
 
 window.customElements.define('mieteshop-product-video-slider', MieteshopProductVideoSlider, { extends: 'div' })
+
+class MieteshopProductBlogSlider extends window.HTMLDivElement {
+  constructor (...args) {
+    const self = super(...args)
+    self.init()
+    return self
+  }
+
+  init () {
+    this.$ = jQuery(this)
+    this.resolveElements()
+  }
+
+  resolveElements () {
+    this.$slider = jQuery('[data-slider]', this)
+  }
+
+  connectedCallback () {
+    this.initSlider()
+  }
+
+  initSlider () {
+    const config = {
+      slidesPerView: 'auto',
+      spaceBetween: 120,
+      observer: true,
+      observeParents: true,
+      speed: 1000,
+      autoplay: {
+        delay: 3000,
+      },
+      loop: true
+    }
+    
+    this.slider = new Swiper(this.$slider.get(0), config)
+  }
+}
+
+window.customElements.define('mieteshop-product-blog-slider', MieteshopProductBlogSlider, { extends: 'div' })
 
 jQuery(document).ready(function(){
   jQuery('.single-product-tab-header-item').click(function(){

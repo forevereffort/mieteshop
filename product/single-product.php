@@ -197,7 +197,7 @@
             </div>
         </div>
         <div class="single-product-meta-tab-content-row">
-            <div id="single-product-meta-tab-content--review" class="single-product-meta-tab-content-col hide">
+            <div id="single-product-meta-tab-content--review" class="single-product-meta-tab-content-col">
                 <div class="single-product-review-wrapper" is="mieteshop-product-review-slider">
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
@@ -267,15 +267,15 @@
                     <div class="single-product-video-pagination-wrapper" data-pagination></div>
                 </div>
             </div>
-            <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col">
+            <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
                 <div class="single-product-blog-wrapper" is="mieteshop-product-blog-slider">
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
                             <?php
                                 for( $i = 0; $i < 5; $i++ ){
                             ?>
-                                    <div class="swiper-slide">
-                                        <div class="single-product-blog-item">
+                                    <div class="single-product-blog-item swiper-slide">
+                                        <div class="single-product-blog-item-inner">
                                             <?php $blog_image_url = get_template_directory_uri() . '/assets/images/blog.png'; ?>
                                             <div class="single-product-blog-image">
                                                 <img
@@ -285,8 +285,8 @@
                                                     alt="video image">
                                             </div>
                                             <div class="single-product-blog-content">
-                                                <h2>Παρουσίαση της σειράς «ΜΙΝΙΜΑ»</h2>
-                                                <p>Στο βιβλιοπωλείο του ΜΙΕΤ ( Tσιμισκή 11, Θεσσαλονίκη), πραγματοποιήθηκε η παρουσίαση της σειράς "minima" των εκδόσεων του Μορφωτικού Ιδρύματος Εθνικής Τραπέζης, την Πέμπτη 19 Οκτωβρίου 2017.</p>
+                                                <h2>Ακαδημία Αθηνών Α</h2>
+                                                <p>Δοκιμαστικό κείμενο</p>
                                             </div>
                                         </div>
                                     </div>

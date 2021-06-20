@@ -350,6 +350,7 @@
 
 .single-product-meta-section {
   background-color: $color-black-1;
+  overflow: hidden;
   padding: 35px 0 60px;
 }
 
@@ -505,4 +506,33 @@
   .swiper-pagination-bullet+.swiper-pagination-bullet {
     margin-left: 12px;
   }
+}
+
+.single-product-blog-content {
+  margin-top: 16px;
+
+  h2 {
+    color: $color-white;
+    font-size: 13px;
+    font-weight: $font-weight-extra-bold;
+    letter-spacing: 0.3px;
+    line-height: 1.286;
+  }
+
+  p {
+    color: $color-white;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    line-height: 1.5;
+  }
+}
+
+.single-product-blog-item {
+  &.swiper-slide {
+    width: 400px;
+  }
+}
+
+.single-product-blog-wrapper {
+  margin-right: calc(512px - 50vw);
 }
