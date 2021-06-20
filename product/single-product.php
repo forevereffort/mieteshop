@@ -180,4 +180,46 @@
         </div>
     </div>
 </section>
-111111111
+<section class="single-product-meta-section">
+    <div class="content-container">
+        <div class="single-product-meta-tab-row">
+            <div class="single-product-meta-tab-col">
+                <div class="single-product-meta-tab-item active">Βιβλιοκρισίες</div>
+            </div>
+            <div class="single-product-meta-tab-col">
+                <div class="single-product-meta-tab-item">Audio</div>
+            </div>
+            <div class="single-product-meta-tab-col">
+                <div class="single-product-meta-tab-item">Video</div>
+            </div>
+            <div class="single-product-meta-tab-col">
+                <div class="single-product-meta-tab-item">Σχετικά  Άρθρα</div>
+            </div>
+        </div>
+        <div class="single-product-meta-tab-content-row">
+            <div class="single-product-meta-tab-content-col">
+                <div class="single-product-single-review-wrapper" is="mieteshop-product-review-slider">
+                    <div class="swiper-container" data-slider>
+                        <div class="swiper-wrapper">
+                            <?php
+                                for( $i = 0; $i < 5; $i++ ){
+                            ?>
+                                    <div class="swiper-slide">
+                                        <div class="single-product-single-review">
+                                            <div class="single-product-single-review__content">
+                                                <p>Ο Γιόνας καλεί τους ομοεθνείς του σε πόλεμο διαρκείας με τη ναζιστική μηχανή, στο πλευρό των δυτικών συμμάχων, και μάλιστα υπό το κέλυφος μιας ξεχωριστής εβραϊκής «λεγεώνας»</p>
+                                            </div>
+                                            <div class="single-product-single-review__autor">"Τα Νέα", 14/9/2019 |  Ο πόλεμος του Χανς Γιόνας</div>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="single-product-single-review-pagination-wrapper" data-pagination></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
