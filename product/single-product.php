@@ -162,3 +162,22 @@
         </div>
     </div>
 </section>
+<section class="single-product-download-section">
+    <div class="content-container">
+        <div class="single-product-download-row">
+            <div class="single-product-download-col">
+                <div class="single-product-download-label">Περιεχομενα<div class="single-product-download-icon"><?php include get_template_directory() . '/assets/icons/download-icon.svg' ?></div></div>
+            </div>
+            <div class="single-product-download-col">
+                <div class="single-product-download-label">δειγμα<div class="single-product-download-icon"><?php include get_template_directory() . '/assets/icons/download-icon.svg' ?></div></div>
+            </div>
+            <div class="single-product-download-col">
+                <div class="single-product-download-label">ευρετηριο<div class="single-product-download-icon"><?php include get_template_directory() . '/assets/icons/download-icon.svg' ?></div></div>
+            </div>
+            <div class="single-product-download-col">
+                <div class="single-product-download-label">press kit<div class="single-product-download-icon"><?php include get_template_directory() . '/assets/icons/download-icon.svg' ?></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+111111111

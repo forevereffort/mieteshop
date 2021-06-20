@@ -320,3 +320,30 @@
 .single-product-detail-information-item+.single-product-detail-information-item+.single-product-detail-information-item {
   margin-top: 29px;
 }
+
+.single-product-download-section {
+  background-color: $color-white;
+  padding: 27px 0 28px;
+}
+
+.single-product-download-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.single-product-download-label {
+  color: $color-black-1;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  letter-spacing: 5px;
+  padding-right: 38px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.single-product-download-icon {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
