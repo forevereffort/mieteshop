@@ -198,18 +198,18 @@
         </div>
         <div class="single-product-meta-tab-content-row">
             <div id="single-product-meta-tab-content--review" class="single-product-meta-tab-content-col hide">
-                <div class="single-product-single-review-wrapper" is="mieteshop-product-review-slider">
+                <div class="single-product-review-wrapper" is="mieteshop-product-review-slider">
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
                             <?php
                                 for( $i = 0; $i < 5; $i++ ){
                             ?>
                                     <div class="swiper-slide">
-                                        <div class="single-product-single-review">
-                                            <div class="single-product-single-review__content">
+                                        <div class="single-product-review">
+                                            <div class="single-product-review__content">
                                                 <p>Ο Γιόνας καλεί τους ομοεθνείς του σε πόλεμο διαρκείας με τη ναζιστική μηχανή, στο πλευρό των δυτικών συμμάχων, και μάλιστα υπό το κέλυφος μιας ξεχωριστής εβραϊκής «λεγεώνας»</p>
                                             </div>
-                                            <div class="single-product-single-review__autor">"Τα Νέα", 14/9/2019 |  Ο πόλεμος του Χανς Γιόνας</div>
+                                            <div class="single-product-review__autor">"Τα Νέα", 14/9/2019 |  Ο πόλεμος του Χανς Γιόνας</div>
                                         </div>
                                     </div>
                             <?php
@@ -217,11 +217,11 @@
                             ?>
                         </div>
                     </div>
-                    <div class="single-product-single-review-pagination-wrapper" data-pagination></div>
+                    <div class="single-product-review-pagination-wrapper" data-pagination></div>
                 </div>
             </div>
             <div id="single-product-meta-tab-content--audio" class="single-product-meta-tab-content-col hide">
-                <div class="single-product-single-audio-wrapper">
+                <div class="single-product-audio-wrapper">
                     <?php $audio_image_url = get_template_directory_uri() . '/assets/images/audio.png'; ?>
                     <img
                         class="lazyload"
@@ -230,29 +230,29 @@
                         alt="audio image">
                 </div>
             </div>
-            <div id="single-product-meta-tab-content--video" class="single-product-meta-tab-content-col">
-                <div class="single-product-single-video-wrapper" is="mieteshop-product-video-slider">
+            <div id="single-product-meta-tab-content--video" class="single-product-meta-tab-content-col hide">
+                <div class="single-product-video-wrapper" is="mieteshop-product-video-slider">
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
                             <?php
                                 for( $i = 0; $i < 5; $i++ ){
                             ?>
                                     <div class="swiper-slide">
-                                        <div class="single-product-single-video-item-row">
-                                            <div class="single-product-single-video-item-left-col">
+                                        <div class="single-product-video-item-row">
+                                            <div class="single-product-video-item-left-col">
                                                 <?php $video_image_url = get_template_directory_uri() . '/assets/images/video.png'; ?>
-                                                <div class="single-product-single-video-image-wrapper">
+                                                <div class="single-product-video-image-wrapper">
                                                     <img
                                                         class="lazyload"
                                                         src="<?php echo placeholderImage(606, 241); ?>"
                                                         data-src="<?php echo $video_image_url; ?>"
                                                         alt="video image">
-                                                    <div class="single-product-single-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
-                                                    <div class="single-product-single-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
+                                                    <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
+                                                    <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
                                                 </div>
                                             </div>
-                                            <div class="single-product-single-video-item-right-col">
-                                                <div class="single-product-single-video-item-content">
+                                            <div class="single-product-video-item-right-col">
+                                                <div class="single-product-video-item-content">
                                                     <h2>Παρουσίαση της σειράς «ΜΙΝΙΜΑ»</h2>
                                                     <p>Στο βιβλιοπωλείο του ΜΙΕΤ ( Tσιμισκή 11, Θεσσαλονίκη), πραγματοποιήθηκε η παρουσίαση της σειράς "minima" των εκδόσεων του Μορφωτικού Ιδρύματος Εθνικής Τραπέζης, την Πέμπτη 19 Οκτωβρίου 2017.</p>
                                                 </div>
@@ -264,10 +264,38 @@
                             ?>
                         </div>
                     </div>
-                    <div class="single-product-single-video-pagination-wrapper" data-pagination></div>
+                    <div class="single-product-video-pagination-wrapper" data-pagination></div>
                 </div>
             </div>
-            <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
+            <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col">
+                <div class="single-product-blog-wrapper" is="mieteshop-product-blog-slider">
+                    <div class="swiper-container" data-slider>
+                        <div class="swiper-wrapper">
+                            <?php
+                                for( $i = 0; $i < 5; $i++ ){
+                            ?>
+                                    <div class="swiper-slide">
+                                        <div class="single-product-blog-item">
+                                            <?php $blog_image_url = get_template_directory_uri() . '/assets/images/blog.png'; ?>
+                                            <div class="single-product-blog-image">
+                                                <img
+                                                    class="lazyload"
+                                                    src="<?php echo placeholderImage(399, 261); ?>"
+                                                    data-src="<?php echo $blog_image_url; ?>"
+                                                    alt="video image">
+                                            </div>
+                                            <div class="single-product-blog-content">
+                                                <h2>Παρουσίαση της σειράς «ΜΙΝΙΜΑ»</h2>
+                                                <p>Στο βιβλιοπωλείο του ΜΙΕΤ ( Tσιμισκή 11, Θεσσαλονίκη), πραγματοποιήθηκε η παρουσίαση της σειράς "minima" των εκδόσεων του Μορφωτικού Ιδρύματος Εθνικής Τραπέζης, την Πέμπτη 19 Οκτωβρίου 2017.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
