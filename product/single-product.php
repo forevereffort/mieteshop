@@ -184,20 +184,20 @@
     <div class="content-container">
         <div class="single-product-meta-tab-row">
             <div class="single-product-meta-tab-col">
-                <div class="single-product-meta-tab-item active">Βιβλιοκρισίες</div>
+                <div class="single-product-meta-tab-item active" data-section-id="review">Βιβλιοκρισίες</div>
             </div>
             <div class="single-product-meta-tab-col">
-                <div class="single-product-meta-tab-item">Audio</div>
+                <div class="single-product-meta-tab-item" data-section-id="audio">Audio</div>
             </div>
             <div class="single-product-meta-tab-col">
-                <div class="single-product-meta-tab-item">Video</div>
+                <div class="single-product-meta-tab-item" data-section-id="video">Video</div>
             </div>
             <div class="single-product-meta-tab-col">
-                <div class="single-product-meta-tab-item">Σχετικά  Άρθρα</div>
+                <div class="single-product-meta-tab-item" data-section-id="article">Σχετικά  Άρθρα</div>
             </div>
         </div>
         <div class="single-product-meta-tab-content-row">
-            <div class="single-product-meta-tab-content-col">
+            <div id="single-product-meta-tab-content--review" class="single-product-meta-tab-content-col hide">
                 <div class="single-product-single-review-wrapper" is="mieteshop-product-review-slider">
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
@@ -219,6 +219,55 @@
                     </div>
                     <div class="single-product-single-review-pagination-wrapper" data-pagination></div>
                 </div>
+            </div>
+            <div id="single-product-meta-tab-content--audio" class="single-product-meta-tab-content-col hide">
+                <div class="single-product-single-audio-wrapper">
+                    <?php $audio_image_url = get_template_directory_uri() . '/assets/images/audio.png'; ?>
+                    <img
+                        class="lazyload"
+                        src="<?php echo placeholderImage(814, 290); ?>"
+                        data-src="<?php echo $audio_image_url; ?>"
+                        alt="audio image">
+                </div>
+            </div>
+            <div id="single-product-meta-tab-content--video" class="single-product-meta-tab-content-col">
+                <div class="single-product-single-video-wrapper" is="mieteshop-product-video-slider">
+                    <div class="swiper-container" data-slider>
+                        <div class="swiper-wrapper">
+                            <?php
+                                for( $i = 0; $i < 5; $i++ ){
+                            ?>
+                                    <div class="swiper-slide">
+                                        <div class="single-product-single-video-item-row">
+                                            <div class="single-product-single-video-item-left-col">
+                                                <?php $video_image_url = get_template_directory_uri() . '/assets/images/video.png'; ?>
+                                                <div class="single-product-single-video-image-wrapper">
+                                                    <img
+                                                        class="lazyload"
+                                                        src="<?php echo placeholderImage(606, 241); ?>"
+                                                        data-src="<?php echo $video_image_url; ?>"
+                                                        alt="video image">
+                                                    <div class="single-product-single-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
+                                                    <div class="single-product-single-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
+                                                </div>
+                                            </div>
+                                            <div class="single-product-single-video-item-right-col">
+                                                <div class="single-product-single-video-item-content">
+                                                    <h2>Παρουσίαση της σειράς «ΜΙΝΙΜΑ»</h2>
+                                                    <p>Στο βιβλιοπωλείο του ΜΙΕΤ ( Tσιμισκή 11, Θεσσαλονίκη), πραγματοποιήθηκε η παρουσίαση της σειράς "minima" των εκδόσεων του Μορφωτικού Ιδρύματος Εθνικής Τραπέζης, την Πέμπτη 19 Οκτωβρίου 2017.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="single-product-single-video-pagination-wrapper" data-pagination></div>
+                </div>
+            </div>
+            <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
             </div>
         </div>
     </div>
