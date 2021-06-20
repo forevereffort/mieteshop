@@ -118,12 +118,12 @@
 }
 
 .single-product-info-table-1-row {
-  align-items: center;
   border-bottom: 2px solid $color-black;
   border-top: 2px solid $color-black;
   display: flex;
   height: 48px;
   justify-content: space-between;
+  margin-top: 14px;
 }
 
 .single-product-form-col {
@@ -131,8 +131,8 @@
   color: $color-black-1;
   font-size: 13px;
   font-weight: $font-weight-light;
-  height: 100%;
   letter-spacing: 1.2px;
+  padding-top: 17px;
   width: 75px;
 }
 
@@ -140,8 +140,8 @@
   border-right: 2px solid $color-black;
   font-size: 16px;
   font-weight: $font-weight-light;
-  height: 100%;
-  width: 145px;
+  padding-top: 13px;
+  width: 128px;
 }
 
 .single-product-price-col {
@@ -149,27 +149,28 @@
   color: $color-black-1;
   font-size: 13px;
   font-weight: $font-weight-light;
-  height: 100%;
   letter-spacing: 1.2px;
-  width: 75px;
+  padding-top: 18px;
+  width: 60px;
 }
 
 .single-product-regular-price {
   color: rgba($color-black, 0.6);
   font-size: 16px;
   font-weight: $font-weight-light;
-  height: 100%;
+  padding-top: 13px;
+  text-decoration: line-through;
 }
 
 .single-product-sale-price {
   color: $color-black;
   font-size: 24px;
   font-weight: $font-weight-bold;
-  height: 100%;
+  padding-top: 7px;
 }
 
 .single-product-discount {
-  height: 100%;
+  padding-top: 8px;
 
   span {
     background-color: $color-black-1;
@@ -186,5 +187,63 @@
   color: $color-black-1;
   font-size: 11px;
   font-weight: $font-weight-medium;
-  height: 100%;
+  padding-top: 15px;
+}
+
+.single-product-info-table-2-row {
+  border-bottom: 2px solid $color-black;
+  display: flex;
+  height: 72px;
+  justify-content: space-between;
+}
+
+.single-product-add-tocart-col {
+  padding-top: 14px;
+
+  a {
+    background-color: $color-white;
+    border: 2px solid $color-black-1;
+    border-radius: 12px;
+    color: $color-black-1;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: $font-weight-medium;
+    padding: 7px 0 11px;
+    text-align: center;
+    width: 300px;
+  }
+}
+
+.single-product-share-col {
+  border-right: 1px solid $color-black-1;
+  padding-top: 24px;
+  width: 42px;
+}
+
+.single-product-share-icon {
+  display: flex;
+}
+
+.single-product-favorite-col {
+  padding-top: 14px;
+}
+
+.single-product-favorite-button {
+  align-items: center;
+  display: flex;
+}
+
+.single-product-favorite-button__icon {
+  background-color: $color-white;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.single-product-favorite-button__label {
+  color: $color-black-1;
+  font-size: 12px;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.48px;
+  margin-left: 12px;
 }

@@ -69,6 +69,20 @@
                         <div class="single-product-discount"><span>-30%</span></div>
                         <div class="single-product-availability"><span>άμεσα διαθέσιμο</span></div>
                     </div>
+                    <div class="single-product-info-table-2-row">
+                        <div class="single-product-share-col">
+                            <div class="single-product-share-icon"><?php include get_template_directory() . '/assets/icons/share-icon.svg' ?></div>
+                        </div>
+                        <div class="single-product-favorite-col">
+                            <div class="single-product-favorite-button">
+                                <div class="single-product-favorite-button__icon"><?php include get_template_directory() . '/assets/icons/favorite-white-icon.svg' ?></div>
+                                <div class="single-product-favorite-button__label">Προσθήκη στα αγαπημένα</div>
+                            </div>
+                        </div>
+                        <div class="single-product-add-tocart-col">
+                            <a href="#">Προσθήκη στο καλάθι</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
