@@ -536,3 +536,36 @@
 .single-product-blog-wrapper {
   margin-right: calc(512px - 50vw);
 }
+
+.single-product-realted-section {
+  .wide-container {
+    border-bottom: 2px solid $color-black;
+    padding: 40px 0 60px;
+  }
+}
+
+.single-product-realted-title {
+  text-align: center;
+
+  h2 {
+    color: $color-black-1;
+    font-size: 18px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 1.8px;
+  }
+}
+
+.single-product-recently-section {
+  padding: 57px 0 100px;
+}
+
+.single-product-recently-title {
+  text-align: center;
+
+  h2 {
+    color: $color-black-1;
+    font-size: 18px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 1.8px;
+  }
+}
