@@ -153,6 +153,10 @@
   font-weight: $font-weight-light;
 }
 
+.pcat-classification-filter-label--black {
+  color: $color-black-1;
+}
+
 .pcat-classification-filter-select {
   margin-top: 8px;
   position: relative;
@@ -541,4 +545,20 @@
     letter-spacing: 0.3px;
     text-decoration: underline;
   }
+}
+
+.pcat-results-top-title {
+  padding: 7px 0 34px;
+  text-align: center;
+
+  h2 {
+    font-size: 18px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 1.8px;
+  }
+}
+
+.pcat-results-top-row {
+  display: flex;
+  justify-content: space-between;
 }
