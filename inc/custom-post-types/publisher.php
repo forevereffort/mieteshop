@@ -35,7 +35,7 @@ add_action('init', function (){
         'label'                 => __('Εκδότης', 'flynt'),
         'description'           => __('Εκδότης Description', 'flynt'),
         'labels'                => $labels,
-        'supports'              => ['title'],
+        'supports'              => ['title', 'thumbnail'],
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
@@ -92,6 +92,7 @@ add_action('init', function (){
 add_filter('manage_publisher_posts_columns', function($columns){
     return [
         'cb' => $columns['cb'],
+        'image' => 'Image',
         'title' => $columns['title'],
         'taxonomy-publisher_type' => $columns['taxonomy-publisher_type'],
         'company_biblionet_id' => 'Company Biblionet ID',
@@ -100,7 +101,9 @@ add_filter('manage_publisher_posts_columns', function($columns){
 });
 
 add_action('manage_publisher_posts_custom_column', function($column, $post_id){
-    if ($column == 'company_biblionet_id') {
+    if ($column == 'image') {
+        echo get_the_post_thumbnail($post_id);
+    } else if ($column == 'company_biblionet_id') {
         echo get_field('company_biblionet_id', $post_id);
     }
 }, 10, 2);
