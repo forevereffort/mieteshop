@@ -1,0 +1,145 @@
+.single-publisher-title {
+  .wide-container {
+    border-bottom: 2px solid $color-black-1;
+    padding: 70px 0 31px;
+  }
+
+  h1 {
+    color: $color-black-1;
+    font-size: 28px;
+    font-weight: $font-weight-extra-bold;
+    line-height: 1.143;
+  }
+}
+
+.single-publisher-image-lead-row {
+  align-items: flex-end;
+  display: flex;
+}
+
+.single-publisher-image-lead-left {
+  width: 600px;
+}
+
+.single-publisher-image-lead-right {
+  padding-left: 16px;
+  width: calc(100% - 600px);
+}
+
+.single-publisher-image-lead-content {
+  p {
+    color: $color-black-1;
+    font-size: 24px;
+    font-weight: $font-weight-light;
+    line-height: 1.36;
+  }
+}
+
+.single-publisher-image-lead-section {
+  padding-top: 32px;
+}
+
+.single-publisher-text-caption-row {
+  display: flex;
+}
+
+.single-publisher-text-caption-left {
+  color: rgba($color-black, 0.6);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: $font-weight-light;
+  letter-spacing: 1px;
+  width: 300px;
+}
+
+.single-publisher-text-caption-right {
+  padding-left: 16px;
+  width: calc(100% - 300px);
+}
+
+.single-publisher-text-caption-content {
+  p {
+    color: $color-black-1;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    letter-spacing: 0.2px;
+    line-height: 1.5;
+  }
+
+  p+p {
+    margin-top: 24px;
+  }
+}
+
+.single-publisher-text-caption-section {
+  .wide-container {
+    border-bottom: 2px solid $color-black-1;
+    padding: 30px 0 90px;
+  }
+}
+
+.single-publisher-text-caption-download {
+  margin-top: 17px;
+
+  a {
+    color: $color-black-1;
+    font-size: 18px;
+    font-weight: $font-weight-light;
+    letter-spacing: 1px;
+    text-decoration: underline;
+  }
+}
+
+.single-product-series-item-title {
+  margin-top: 26px;
+
+  h3 {
+    color: $color-black;
+    font-size: 18px;
+    font-weight: $font-weight-extra-bold;
+    line-height: 1.333;
+  }
+}
+
+.single-product-series-item-info {
+  margin-top: 10px;
+
+  p {
+    color: $color-black;
+    font-size: 18px;
+    font-weight: $font-weight-light;
+
+    strong {
+      font-weight: $font-weight-extra-bold;
+    }
+  }
+}
+
+.single-product-series-title {
+  text-align: center;
+
+  h2 {
+    color: $color-black-1;
+    font-size: 18px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 1.8px;
+  }
+}
+
+.single-product-series-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 50px -8px 0;
+}
+
+.single-product-series-col {
+  padding: 15px 8px;
+  width: 33.33333%;
+}
+
+.single-product-series-section {
+  .wide-container {
+    border-top: 2px solid $color-black;
+    padding: 57px 0 45px;
+  }
+}
