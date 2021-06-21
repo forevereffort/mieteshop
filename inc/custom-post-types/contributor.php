@@ -102,7 +102,7 @@ add_filter('manage_contributor_posts_columns', function($columns){
 
 add_action('manage_contributor_posts_custom_column', function($column, $post_id){
     if ($column == 'image') {
-        echo get_the_post_thumbnail($post_id);
+        echo get_the_post_thumbnail($post_id, 'thumbnail');
     } else if ($column == 'contributor_biblionet_id') {
         echo get_field('contributor_biblionet_id', $post_id);
     } else if ($column == 'born_died') {

@@ -102,7 +102,7 @@ add_filter('manage_publisher_posts_columns', function($columns){
 
 add_action('manage_publisher_posts_custom_column', function($column, $post_id){
     if ($column == 'image') {
-        echo get_the_post_thumbnail($post_id);
+        echo get_the_post_thumbnail($post_id, 'thumbnail');
     } else if ($column == 'company_biblionet_id') {
         echo get_field('company_biblionet_id', $post_id);
     }
