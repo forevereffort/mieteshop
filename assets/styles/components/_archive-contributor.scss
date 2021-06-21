@@ -1,0 +1,68 @@
+.archive-contributor-title {
+  .wide-container {
+    border-bottom: 2px solid $color-black-1;
+    padding: 74px 0 26px;
+  }
+
+  h1 {
+    color: $color-black-1;
+    font-size: 28px;
+    font-weight: $font-weight-extra-bold;
+    line-height: 1.143;
+  }
+}
+
+.archive-contributor-search-section {
+  padding: 50px 0 120px;
+}
+
+.archive-contributor-search-letter-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.archive-contributor-search-letter-col {
+  color: $color-black;
+  font-size: 24px;
+  font-weight: $font-weight-semi-bold;
+
+  &.disable {
+    opacity: 0.15;
+  }
+}
+
+.archive-contributor-search-result-col {
+  font-size: 22px;
+  font-weight: $font-weight-light;
+  line-height: 1.091;
+
+  a {
+    color: $color-black;
+  }
+}
+
+.archive-contributor-search-result-col+.archive-contributor-search-result-col {
+  margin-top: 15px;
+}
+
+.archive-contributor-search-result-row {
+  display: flex;
+  margin: 80px -8px 0;
+}
+
+.archive-contributor-search-result-left-col {
+  font-size: 24px;
+  font-weight: $font-weight-light;
+  line-height: 1.333;
+  padding: 0 8px;
+  width: 50%;
+}
+
+.archive-contributor-search-result-right-col {
+  padding: 0 8px;
+  width: 50%;
+}
+
+.archive-contributor-search-result-list {
+  padding-top: 4px;
+}
