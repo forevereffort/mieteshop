@@ -28,10 +28,11 @@ class MieteshopBookSlider extends window.HTMLDivElement {
   initSlider () {
     const config = {
       slidesPerView: 4,
+      slidesPerGroup: 4,
       spaceBetween: 50,
       speed: 1000,
       autoplay: {
-        delay: 3000,
+        delay: 15000,
       },
       loop: true,
       navigation: {
