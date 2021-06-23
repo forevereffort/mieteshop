@@ -35,7 +35,7 @@ add_action('init', function (){
         'label'                 => __('Εκδότης', 'flynt'),
         'description'           => __('Εκδότης Description', 'flynt'),
         'labels'                => $labels,
-        'supports'              => ['title', 'thumbnail'],
+        'supports'              => ['title', 'thumbnail', 'editor'],
         'hierarchical'          => false,
         'public'                => true,
         'show_ui'               => true,
