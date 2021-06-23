@@ -114,6 +114,52 @@
         <div class="single-post-slider-title">
             <h2>«Η υπερβολική και αναίτια σπατάλη λουλουδιών στις δυτικές κοινωνίες προσφέρει το πιο μελαγχολικό θέαμα στο τέλος της γιορτής»</h2>
         </div>
+        <div class="single-post-slider-row" is="mieteshop-post-slider">
+            <div class="single-post-slider-big-wrapper">
+                <div class="swiper-container" data-big-slider>
+                    <div class="swiper-wrapper">
+                        <?php
+                            $slider_image_url = get_template_directory_uri() . '/assets/images/slider-1.png';
+                            for( $i = 0; $i < 20; $i++ ){
+                        ?>
+                                <div class="swiper-slide">
+                                    <img
+                                        class="lazyload"
+                                        src="<?php echo placeholderImage(1024, 585); ?>"
+                                        data-src="<?php echo $slider_image_url; ?>"
+                                        alt="video image">
+                                </div>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="single-post-slider-big-nav-wrapper">
+                    <div data-slider-button="prev" class="single-post-slider-big-nav single-post-slider-big-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                    <div data-slider-button="next" class="single-post-slider-big-nav single-post-slider-big-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+                </div>
+            </div>
+            <div class="single-post-slider-small-wrapper">
+                <div class="swiper-container" data-small-slider>
+                    <div class="swiper-wrapper">
+                        <?php
+                            $slider_image_sub_url = get_template_directory_uri() . '/assets/images/slider-1-sub.png';
+                            for( $i = 0; $i < 20; $i++ ){
+                        ?>
+                                <div class="swiper-slide single-post-slider-small-item">
+                                    <img
+                                        class="lazyload"
+                                        src="<?php echo placeholderImage(93, 91); ?>"
+                                        data-src="<?php echo $slider_image_sub_url; ?>"
+                                        alt="video image">
+                                </div>
+                        <?php
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <section class="single-post-description-2-section">
