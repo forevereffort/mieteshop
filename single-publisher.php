@@ -8,10 +8,8 @@
             the_post();
 ?>
 <section class="single-publisher-title">
-    <div class="wide-container">
-        <div class="content-container">
-            <h1>Εκδόσεις ΜΙΕΤ</h1>
-        </div>
+    <div class="content-container">
+        <h1>Εκδόσεις ΜΙΕΤ</h1>
     </div>
 </section>
 <section class="single-publisher-image-lead-section">
@@ -36,18 +34,16 @@
     </div>
 </section>
 <section class="single-publisher-text-caption-section">
-    <div class="wide-container">
-        <div class="content-container">
-            <div class="single-publisher-text-caption-row">
-                <div class="single-publisher-text-caption-left">Λεζάντα φωτογραφίας με credit</div>
-                <div class="single-publisher-text-caption-right">
-                    <div class="single-publisher-text-caption-content">
-                        <p>Το βιβλίο αυτό επιχειρεί να σκιαγραφήσει τις σημαντικότερες συμβολές στον διάλογο του πολιτικού ουμανισμού και του ατομικιστικού φιλελευθερισμού, των δύο ρευμάτων που διαμόρφωσαν τη νεότερη πολιτική σκέψη, τις στοχαστικές και συστηματικές αναζητήσεις γύρω από τη συνύπαρξη των ανθρώπων σε οργανωμένα σύνολα οι οποίες διατυπώθηκαν κατά τη μετά τον Μεσαίωνα εποχή. Στόχος της ανάλυσης είναι η αποκατάσταση της ιστορικότητας καθεμιάς από τις συμβολές αυτές, ώστε να γίνουν κατανοητές οι προθέσεις και οι επιδιώξεις, πολιτικές και ηθικές, των στοχαστών που σχολιάζονται, ως προς τη διατύπωση των πολιτικών τους επιχειρημάτων.</p>
-                        <p>Μόνον έτσι μπορεί να γίνει αντιληπτός ο χαρακτήρας της συμβολικής έκφρασης που υιοθετούν οι στοχαστές, για να επικοινωνήσουν με τον πολιτισμικό τους περίγυρο, και να αποκρυπτογραφηθεί το μήνυμά τους με τα δικά τους και όχι τα δικά μας συμφραζόμενα, που συχνά μας παρασύρουν σε παρανοήσεις. Ως κλειδί της ιστορικής αποκατάστασης του νοήματος της πολιτικής σκέψης επιλέχθηκε η βιογραφική μέθοδος, η οποία επιτρέπει την ένταξη των συγγραφέων και των έργων στο ιστορικό τους πλαίσιο, αποκαλύπτοντας έτσι τις πολιτικές συγκυρίες που διαμόρφωσαν τις προθέσεις της επιχειρηματολογίας τους. Με αυτή τη μέθοδο παρουσιάζονται η πνευματική φυσιογνωμία και οι πολιτικές ιδέες των Μακιαβέλλι, Χομπς, Λοκ, Μοντεσκιέ, Ρουσσώ, Μπερκ, Μπένθαμ, Μιλλ και Τοκβίλλ. Η παρουσίαση των ιδεών τους πλαισιώνεται από εκτενείς βιβλιογραφικές συναγωγές πηγών και βοηθημάτων, που καθιστούν το βιβλίο εργαλείο για περαιτέρω έρευνα και εμβάθυνση.</p>
-                    </div>
-                    <div class="single-publisher-text-caption-download">
-                        <a href="#">Κατεβάστε τον κατάλογο (7Mb)</a>
-                    </div>
+    <div class="content-container">
+        <div class="single-publisher-text-caption-row">
+            <div class="single-publisher-text-caption-left">Λεζάντα φωτογραφίας με credit</div>
+            <div class="single-publisher-text-caption-right">
+                <div class="single-publisher-text-caption-content">
+                    <p>Το βιβλίο αυτό επιχειρεί να σκιαγραφήσει τις σημαντικότερες συμβολές στον διάλογο του πολιτικού ουμανισμού και του ατομικιστικού φιλελευθερισμού, των δύο ρευμάτων που διαμόρφωσαν τη νεότερη πολιτική σκέψη, τις στοχαστικές και συστηματικές αναζητήσεις γύρω από τη συνύπαρξη των ανθρώπων σε οργανωμένα σύνολα οι οποίες διατυπώθηκαν κατά τη μετά τον Μεσαίωνα εποχή. Στόχος της ανάλυσης είναι η αποκατάσταση της ιστορικότητας καθεμιάς από τις συμβολές αυτές, ώστε να γίνουν κατανοητές οι προθέσεις και οι επιδιώξεις, πολιτικές και ηθικές, των στοχαστών που σχολιάζονται, ως προς τη διατύπωση των πολιτικών τους επιχειρημάτων.</p>
+                    <p>Μόνον έτσι μπορεί να γίνει αντιληπτός ο χαρακτήρας της συμβολικής έκφρασης που υιοθετούν οι στοχαστές, για να επικοινωνήσουν με τον πολιτισμικό τους περίγυρο, και να αποκρυπτογραφηθεί το μήνυμά τους με τα δικά τους και όχι τα δικά μας συμφραζόμενα, που συχνά μας παρασύρουν σε παρανοήσεις. Ως κλειδί της ιστορικής αποκατάστασης του νοήματος της πολιτικής σκέψης επιλέχθηκε η βιογραφική μέθοδος, η οποία επιτρέπει την ένταξη των συγγραφέων και των έργων στο ιστορικό τους πλαίσιο, αποκαλύπτοντας έτσι τις πολιτικές συγκυρίες που διαμόρφωσαν τις προθέσεις της επιχειρηματολογίας τους. Με αυτή τη μέθοδο παρουσιάζονται η πνευματική φυσιογνωμία και οι πολιτικές ιδέες των Μακιαβέλλι, Χομπς, Λοκ, Μοντεσκιέ, Ρουσσώ, Μπερκ, Μπένθαμ, Μιλλ και Τοκβίλλ. Η παρουσίαση των ιδεών τους πλαισιώνεται από εκτενείς βιβλιογραφικές συναγωγές πηγών και βοηθημάτων, που καθιστούν το βιβλίο εργαλείο για περαιτέρω έρευνα και εμβάθυνση.</p>
+                </div>
+                <div class="single-publisher-text-caption-download">
+                    <a href="#">Κατεβάστε τον κατάλογο (7Mb)</a>
                 </div>
             </div>
         </div>
@@ -212,112 +208,110 @@
     </div>
 </div>
 <section class="single-product-series-section">
-    <div class="wide-container">
-        <div class="small-container">
-            <div class="single-product-series-title">
-                <h2>ΣΕΙΡΕΣ</h2>
+    <div class="small-container">
+        <div class="single-product-series-title">
+            <h2>ΣΕΙΡΕΣ</h2>
+        </div>
+        <div class="single-product-series-row">
+            <div class="single-product-series-col">
+                <div class="single-product-series-item">
+                    <div class="single-product-series-item-image">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
+                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
+                            alt="dump">
+                    </div>
+                    <div class="single-product-series-item-title">
+                        <h3>Minima</h3>
+                    </div>
+                    <div class="single-product-series-item-info">
+                        <p><strong>16</strong> τίτλοι</p>
+                    </div>
+                </div>
             </div>
-            <div class="single-product-series-row">
-                <div class="single-product-series-col">
-                    <div class="single-product-series-item">
-                        <div class="single-product-series-item-image">
-                            <img
-                                class="lazyload"
-                                src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                                data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                                alt="dump">
-                        </div>
-                        <div class="single-product-series-item-title">
-                            <h3>Minima</h3>
-                        </div>
-                        <div class="single-product-series-item-info">
-                            <p><strong>16</strong> τίτλοι</p>
-                        </div>
+            <div class="single-product-series-col">
+                <div class="single-product-series-item">
+                    <div class="single-product-series-item-image">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
+                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
+                            alt="dump">
+                    </div>
+                    <div class="single-product-series-item-title">
+                        <h3>Demo</h3>
+                    </div>
+                    <div class="single-product-series-item-info">
+                        <p><strong>3</strong> τίτλοι</p>
                     </div>
                 </div>
-                <div class="single-product-series-col">
-                    <div class="single-product-series-item">
-                        <div class="single-product-series-item-image">
-                            <img
-                                class="lazyload"
-                                src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                                data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                                alt="dump">
-                        </div>
-                        <div class="single-product-series-item-title">
-                            <h3>Demo</h3>
-                        </div>
-                        <div class="single-product-series-item-info">
-                            <p><strong>3</strong> τίτλοι</p>
-                        </div>
+            </div>
+            <div class="single-product-series-col">
+                <div class="single-product-series-item">
+                    <div class="single-product-series-item-image">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
+                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
+                            alt="dump">
+                    </div>
+                    <div class="single-product-series-item-title">
+                        <h3>Αρχειοθήκη</h3>
+                    </div>
+                    <div class="single-product-series-item-info">
+                        <p><strong>3</strong> τίτλοι</p>
                     </div>
                 </div>
-                <div class="single-product-series-col">
-                    <div class="single-product-series-item">
-                        <div class="single-product-series-item-image">
-                            <img
-                                class="lazyload"
-                                src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                                data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                                alt="dump">
-                        </div>
-                        <div class="single-product-series-item-title">
-                            <h3>Αρχειοθήκη</h3>
-                        </div>
-                        <div class="single-product-series-item-info">
-                            <p><strong>3</strong> τίτλοι</p>
-                        </div>
+            </div>
+            <div class="single-product-series-col">
+                <div class="single-product-series-item">
+                    <div class="single-product-series-item-image">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
+                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
+                            alt="dump">
+                    </div>
+                    <div class="single-product-series-item-title">
+                        <h3>ΑΦΕΛΙΑ</h3>
+                    </div>
+                    <div class="single-product-series-item-info">
+                        <p><strong>3</strong> τίτλοι</p>
                     </div>
                 </div>
-                <div class="single-product-series-col">
-                    <div class="single-product-series-item">
-                        <div class="single-product-series-item-image">
-                            <img
-                                class="lazyload"
-                                src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                                data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                                alt="dump">
-                        </div>
-                        <div class="single-product-series-item-title">
-                            <h3>ΑΦΕΛΙΑ</h3>
-                        </div>
-                        <div class="single-product-series-item-info">
-                            <p><strong>3</strong> τίτλοι</p>
-                        </div>
+            </div>
+            <div class="single-product-series-col">
+                <div class="single-product-series-item">
+                    <div class="single-product-series-item-image">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
+                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
+                            alt="dump">
+                    </div>
+                    <div class="single-product-series-item-title">
+                        <h3>Βυζαντινή & Νεοελληνική βιβλιοθήκη</h3>
+                    </div>
+                    <div class="single-product-series-item-info">
+                        <p><strong>3</strong> τίτλοι</p>
                     </div>
                 </div>
-                <div class="single-product-series-col">
-                    <div class="single-product-series-item">
-                        <div class="single-product-series-item-image">
-                            <img
-                                class="lazyload"
-                                src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                                data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                                alt="dump">
-                        </div>
-                        <div class="single-product-series-item-title">
-                            <h3>Βυζαντινή & Νεοελληνική βιβλιοθήκη</h3>
-                        </div>
-                        <div class="single-product-series-item-info">
-                            <p><strong>3</strong> τίτλοι</p>
-                        </div>
+            </div>
+            <div class="single-product-series-col">
+                <div class="single-product-series-item">
+                    <div class="single-product-series-item-image">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
+                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
+                            alt="dump">
                     </div>
-                </div>
-                <div class="single-product-series-col">
-                    <div class="single-product-series-item">
-                        <div class="single-product-series-item-image">
-                            <img
-                                class="lazyload"
-                                src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                                data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                                alt="dump">
-                        </div>
-                        <div class="single-product-series-item-title">
-                            <h3>Νεοελληνική Προσωπογραφία</h3>
-                        </div>
-                        <div class="single-product-series-item-info">
-                            <p><strong>3</strong> τίτλοι</p>
-                        </div>
+                    <div class="single-product-series-item-title">
+                        <h3>Νεοελληνική Προσωπογραφία</h3>
+                    </div>
+                    <div class="single-product-series-item-info">
+                        <p><strong>3</strong> τίτλοι</p>
                     </div>
                 </div>
             </div>

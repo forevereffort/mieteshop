@@ -4,10 +4,8 @@
     get_header();
 ?>
 <section class="archive-contributor-title">
-    <div class="wide-container">
-        <div class="content-container">
-            <h1>Συγγραφείς</h1>
-        </div>
+    <div class="content-container">
+        <h1>Συγγραφείς</h1>
     </div>
 </section>
 <div class="archive-contributor-search-section">

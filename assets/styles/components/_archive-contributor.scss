@@ -1,8 +1,8 @@
 .archive-contributor-title {
-  .wide-container {
-    border-bottom: 2px solid $color-black-1;
-    padding: 74px 0 26px;
-  }
+  border-bottom: 2px solid $color-black-1;
+  margin: 0 auto;
+  max-width: $general-container-width;
+  padding: 74px 0 26px;
 
   h1 {
     color: $color-black-1;

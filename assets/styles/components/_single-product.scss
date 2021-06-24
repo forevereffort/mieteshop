@@ -538,7 +538,7 @@
 }
 
 .single-product-blog-wrapper {
-  margin-right: calc(512px - 50vw);
+  margin-right: -130px;
 }
 
 .single-product-realted-section {
@@ -560,16 +560,14 @@
 }
 
 .single-product-recently-section {
+  margin: 0 auto;
+  max-width: $general-container-width;
   padding: 57px 0 100px;
 }
 
 .single-product-recently-section--border-bottom {
-  padding: 0;
-
-  .wide-container {
-    border-bottom: 2px solid $color-black;
-    padding: 57px 0 40px;
-  }
+  border-bottom: 2px solid $color-black;
+  padding: 57px 0 40px;
 }
 
 .single-product-recently-title {
