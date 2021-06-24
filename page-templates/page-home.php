@@ -103,11 +103,13 @@
                             <div class="swiper-slide">
                                 <div class="book-slider-item">
                                     <div class="book-slider-image">
-                                        <img
-                                            class="lazyload"
-                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                            alt="<?php echo $release->post_title; ?>">
+                                        <a href="<?php echo get_permalink($release->ID); ?>">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $release->post_title; ?>">
+                                        </a>
                                     </div>
                                     <div class="book-slider-info">
                                         <?php
@@ -159,11 +161,13 @@
                             <div class="swiper-slide">
                                 <div class="book-slider-item">
                                     <div class="book-slider-image">
-                                        <img
-                                            class="lazyload"
-                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                            alt="<?php echo $edition->post_title; ?>">
+                                        <a href="<?php echo get_permalink($edition->ID); ?>">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $edition->post_title; ?>">
+                                        </a>
                                     </div>
                                     <div class="book-slider-info">
                                         <?php
@@ -180,7 +184,7 @@
                                             }
                                         ?>
                                         <div class="book-slider-product-title">
-                                            <a href="<?php echo get_permalink($release->ID); ?>"><h3><?php echo $release->post_title; ?></h3></a>
+                                            <a href="<?php echo get_permalink($edition->ID); ?>"><h3><?php echo $edition->post_title; ?></h3></a>
                                         </div>
                                     </div>
                                 </div>
@@ -212,11 +216,13 @@
             ?>
                     <div class="home-offers-col">
                         <div class="home-offers-image">
-                            <img
-                                class="lazyload"
-                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                alt="<?php echo $offer->post_title; ?>">
+                            <a href="<?php echo get_permalink($offer->ID); ?>">
+                                <img
+                                    class="lazyload"
+                                    src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                    data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                    alt="<?php echo $offer->post_title; ?>">
+                            </a>
                         </div>
                         <div class="home-offers-info">
                             <?php
@@ -374,11 +380,13 @@
                             <div class="swiper-slide">
                                 <div class="book-slider-item">
                                     <div class="book-slider-image">
-                                        <img
-                                            class="lazyload"
-                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                            alt="<?php echo $publisher->post_title; ?>">
+                                        <a href="<?php echo get_permalink($publisher->ID); ?>">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $publisher->post_title; ?>">
+                                        </a>
                                     </div>
                                     <div class="book-slider-info">
                                         <?php
@@ -395,7 +403,7 @@
                                             }
                                         ?>
                                         <div class="book-slider-product-title">
-                                            <a href="<?php echo get_permalink($release->ID); ?>"><h3><?php echo $release->post_title; ?></h3></a>
+                                            <a href="<?php echo get_permalink($publisher->ID); ?>"><h3><?php echo $publisher->post_title; ?></h3></a>
                                         </div>
                                     </div>
                                 </div>
@@ -431,11 +439,13 @@
                             <div class="swiper-slide">
                                 <div class="book-slider-item">
                                     <div class="book-slider-image">
-                                        <img
-                                            class="lazyload"
-                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                            alt="<?php echo $thematic->post_title; ?>">
+                                        <a href="<?php echo get_permalink($thematic->ID); ?>">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $thematic->post_title; ?>">
+                                        </a>
                                     </div>
                                     <div class="book-slider-info">
                                         <?php
@@ -452,7 +462,7 @@
                                             }
                                         ?>
                                         <div class="book-slider-product-title">
-                                            <a href="<?php echo get_permalink($release->ID); ?>"><h3><?php echo $release->post_title; ?></h3></a>
+                                            <a href="<?php echo get_permalink($thematic->ID); ?>"><h3><?php echo $thematic->post_title; ?></h3></a>
                                         </div>
                                     </div>
                                 </div>
@@ -483,14 +493,16 @@
             ?>
                     <div class="home-authors-col">
                         <div class="home-authors-image">
-                            <img
-                                class="lazyload"
-                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                alt="<?php echo $author->post_title; ?>">
+                            <a href="<?php echo get_permalink($author->ID); ?>">
+                                <img
+                                    class="lazyload"
+                                    src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                    data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                    alt="<?php echo $author->post_title; ?>">
+                            </a>
                         </div>
                         <div class="home-authors-name">
-                            <h3><?php echo $author->post_title; ?></h3>
+                            <h3><a href="<?php echo get_permalink($author->ID); ?>"><?php echo $author->post_title; ?></a></h3>
                         </div>
                     </div>
             <?php
@@ -518,11 +530,13 @@
                             <div class="swiper-slide">
                                 <div class="home-blog-item">
                                     <div class="home-blog-item-image">
-                                        <img
-                                            class="lazyload"
-                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                            alt="<?php echo $blog->post_title; ?>">
+                                        <a href="<?php echo get_permalink($blog->ID); ?>">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $blog->post_title; ?>">
+                                        </a>
                                     </div>
                                     <div class="home-blog-item-meta-row">
                                         <div class="home-blog-item-category-list">
@@ -531,7 +545,7 @@
 
                                                 foreach( $category_list as $category ){
                                             ?>
-                                                    <div class="home-blog-item-category-col"><a href="#"><?php echo $category->name; ?></a></div>
+                                                    <div class="home-blog-item-category-col"><a href="<?php echo get_term_link($category->term_id); ?>"><?php echo $category->name; ?></a></div>
                                             <?php
                                                 }
                                             ?>
@@ -539,7 +553,7 @@
                                         <div class="home-blog-item-date"><?php echo get_the_date('j', $blog->ID); ?> <?php echo $greek_month_list[get_the_date('n', $blog->ID) - 1]; ?> <?php echo get_the_date('Y', $blog->ID); ?></div>
                                     </div>
                                     <div class="home-blog-item-title">
-                                        <h3><?php echo $blog->post_title; ?></h3>
+                                        <h3><a href="<?php echo get_permalink($blog->ID); ?>"><?php echo $blog->post_title; ?></a></h3>
                                     </div>
                                     <div class="home-blog-item-bottom-row">
                                         <div class="home-blog-item-bottom-left-col">

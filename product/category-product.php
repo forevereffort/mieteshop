@@ -160,11 +160,13 @@
                         <div class="pcat-result-item">
                             <div class="pcat-result-item-info">
                                 <div class="pcat-result-item-image">
-                                    <img
-                                        class="lazyload"
-                                        src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                        data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                        alt="<?php echo $product->get_name(); ?>">
+                                    <a href="<?php echo get_permalink($product->get_id()); ?>">
+                                        <img
+                                            class="lazyload"
+                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                            alt="<?php echo $product->get_name(); ?>">
+                                    </a>
                                 </div>
                                 <div class="pcat-result-item-meta-row">
                                     <div class="pcat-result-item-meta-col">
@@ -191,7 +193,7 @@
                                         echo '</div>';
                                     }
                                 ?>
-                                <div class="pcat-result-item-title"><h3><?php echo $product->get_name(); ?></h3></div>
+                                <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($product->get_id()); ?>"><?php echo $product->get_name(); ?></a></h3></div>
                             </div>
                             <div class="pcat-result-item-footer-row">
                                 <div class="pcat-result-item-footer-col">
