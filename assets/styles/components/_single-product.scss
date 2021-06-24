@@ -323,6 +323,8 @@
 
 .single-product-download-section {
   background-color: $color-white;
+  margin: 0 auto;
+  max-width: $general-container-width;
   padding: 27px 0 28px;
 }
 
@@ -350,6 +352,8 @@
 
 .single-product-meta-section {
   background-color: $color-black-1;
+  margin: 0 auto;
+  max-width: $general-container-width;
   overflow: hidden;
   padding: 35px 0 60px;
 }
@@ -538,10 +542,10 @@
 }
 
 .single-product-realted-section {
-  .wide-container {
-    border-bottom: 2px solid $color-black;
-    padding: 40px 0 60px;
-  }
+  border-bottom: 2px solid $color-black;
+  margin: 0 auto;
+  max-width: $general-container-width;
+  padding: 40px 0 60px;
 }
 
 .single-product-realted-title {
