@@ -1,5 +1,7 @@
-.home-book-week-section--border-bottom {
+.home-book-week-section {
   border-bottom: 2px solid $color-black;
+  margin: 0 auto;
+  max-width: $general-container-width;
   padding: 40px 0 100px;
 }
 

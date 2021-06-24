@@ -74,7 +74,7 @@
 		</div>
 	</div>
 </section>
-<header>
+<header class="site-header">
 	<div class="header-top">
 		<div class="container">
 			<div class="header-top-row">

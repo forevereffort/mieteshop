@@ -1,4 +1,4 @@
-<footer>
+<footer class="site-footer">
     <div class="footer-top">
         <div class="small-container">
             <div class="footer-top-row">
