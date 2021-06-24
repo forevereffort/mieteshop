@@ -1,5 +1,7 @@
 .pcat-list-section {
   border-bottom: 2px solid $color-black-1;
+  margin: 0 auto;
+  max-width: $general-container-width;
   padding: 74px 0 32px;
 }
 
@@ -38,6 +40,8 @@
 
 .pcat-filter-section {
   background-color: $color-white;
+  margin: 0 auto;
+  max-width: $general-container-width;
   padding: 29px 0 28px;
 }
 
@@ -93,6 +97,8 @@
 
 .pcat-extra-filter-section {
   background-color: $color-black-1;
+  margin: 0 auto;
+  max-width: $general-container-width;
   padding: 31px 0 24px;
 }
 
