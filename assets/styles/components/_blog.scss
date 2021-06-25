@@ -1,0 +1,125 @@
+.blog-result-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -60px;
+}
+
+.blog-result-col {
+  padding: 25px 60px;
+  width: 50%;
+}
+
+.blog-result-section {
+  padding: 0 0 200px;
+}
+
+.blog-hero-filter-select {
+  position: relative;
+
+  select {
+    appearance: none;
+    background-color: $color-black-1;
+    border: 1px solid $color-gray-2;
+    border-radius: 4px;
+    color: $color-white;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    min-width: 264px;
+    padding: 9px 10px;
+  }
+}
+
+.blog-hero-filter-select-icon {
+  display: flex;
+  position: absolute;
+  right: 15px;
+  top: 14px;
+}
+
+.blog-hero-filter-select-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.blog-hero-section {
+  padding: 30px 0 0;
+}
+
+.blog-hero-image {
+  margin-top: 40px;
+
+  img {
+    box-shadow: 0 0 10px rgba($color-black, 0.5);
+    width: 100%;
+  }
+}
+
+.blog-hero-content {
+  display: flex;
+  justify-content: flex-end;
+  margin: -100px -130px 0 0;
+}
+
+.blog-hero-content-inner {
+  background-color: $color-gray;
+  max-width: 700px;
+  padding: 13px 22px;
+}
+
+.blog-hero-content-meta-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-hero-content-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -5px;
+}
+
+.blog-hero-content-category-col {
+  padding: 1px 5px;
+
+  a {
+    background-color: $color-white;
+    color: $color-black-1;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: $font-weight-light;
+    letter-spacing: 1.3px;
+    line-height: 1;
+    padding: 3px 3px 3px 6px;
+    text-transform: uppercase;
+  }
+}
+
+.blog-hero-content-date {
+  color: $color-black-1;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  padding-top: 3px;
+  width: 100px;
+}
+
+.blog-hero-content-info {
+  margin-top: 10px;
+
+  h2 {
+    color: $color-black-1;
+    font-size: 36px;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+  }
+}
+
+.blog-hero-content-des {
+  margin-top: 10px;
+  padding: 0 0 0 100px;
+
+  p {
+    color: $color-black-1;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    line-height: 1.375;
+  }
+}
