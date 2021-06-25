@@ -1,0 +1,216 @@
+.about-hero-section {
+  margin: 0 auto;
+  max-width: $general-container-width;
+  padding: 50px 0;
+}
+
+.about-hero-image {
+  max-width: 1100px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.about-hero-des-1 {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 55px;
+}
+
+.about-hero-des-1-content {
+  max-width: 700px;
+
+  p {
+    color: $color-black-1;
+    font-size: 24px;
+    font-weight: $font-weight-light;
+    line-height: 1.333;
+  }
+}
+
+.about-hero-des-2 {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.about-hero-des-2-content {
+  max-width: 600px;
+
+  p {
+    color: $color-black-1;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    line-height: 1.5;
+  }
+}
+
+.about-store-section {
+  background-color: $color-black-1;
+  margin: 0 auto;
+  max-width: $general-container-width;
+  padding: 50px 0 75px;
+}
+
+.about-store-title {
+  margin-bottom: 50px;
+  text-align: center;
+
+  h2 {
+    color: $color-white;
+    font-size: 18px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 1.8px;
+  }
+}
+
+.about-store-item-row {
+  display: flex;
+  margin: 0 -8px;
+}
+
+.about-store-item-col-1 {
+  padding: 0 8px;
+  width: 300px;
+}
+
+.about-store-item-col-2 {
+  padding: 0 8px;
+  width: 200px;
+}
+
+.about-store-item-col-3 {
+  padding: 0 8px;
+  width: calc(100% - 500px);
+}
+
+.about-store-item-store-name {
+  color: $color-white;
+  font-size: 24px;
+  font-weight: $font-weight-light;
+  line-height: 1.583;
+
+  strong {
+    font-weight: $font-weight-extra-bold;
+  }
+}
+
+.about-store-item-store-address {
+  color: $color-white;
+  font-size: 18px;
+  font-weight: $font-weight-light;
+  line-height: 1.333;
+  margin-top: 15px;
+}
+
+.about-store-item-store-phone-label {
+  color: $color-white;
+  font-size: 16px;
+  font-weight: $font-weight-bold;
+  line-height: 1.5;
+  margin-top: 15px;
+}
+
+.about-store-item-store-phone-list {
+  color: $color-white;
+  font-size: 16px;
+  font-weight: $font-weight-light;
+  line-height: 1.5;
+    
+  a {
+    color: $color-white;
+  }
+}
+
+.about-store-item-store-email-label {
+  color: $color-white;
+  font-size: 16px;
+  font-weight: $font-weight-bold;
+  line-height: 1.5;
+  margin-top: 15px;
+}
+
+.about-store-item-store-email-list {
+  color: $color-white;
+  font-size: 16px;
+  font-weight: $font-weight-light;
+  line-height: 1.5;
+
+  a {
+    color: $color-white;
+  }
+}
+
+.about-store-item-store-hour {
+  padding-top: 7px;
+}
+
+.about-store-item-store-hour-title {
+  color: $color-white;
+  font-size: 16px;
+  font-weight: $font-weight-bold;
+  line-height: 1.3125;
+}
+
+.about-store-item-store-hour-label {
+  color: $color-white;
+  font-size: 16px;
+  font-weight: $font-weight-bold;
+  line-height: 1.3125;
+  margin-top: 25px;
+}
+
+.about-store-item-store-hour-value {
+  color: $color-white;
+  font-size: 16px;
+  font-weight: $font-weight-light;
+  line-height: 1.3125;
+}
+
+.about-store-item-map {
+  padding-top: 12px;
+}
+
+.about-store-item-map-link {
+  padding-top: 35px;
+  text-align: right;
+
+  a {
+    color: $color-white;
+    font-size: 18px;
+    line-height: 1.333;
+    text-decoration: underline;
+  }
+}
+
+.about-store-item-map-wrapper {
+  img {
+    border-radius: 16px;
+    width: 100%;
+  }
+}
+
+.about-store-list+.about-store-list {
+  margin-top: 90px;
+}
+
+.about-footer-des-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.about-footer-des-content {
+  max-width: 600px;
+
+  p {
+    color: $color-black-1;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    line-height: 1.5;
+  }
+}
+
+.about-footer-des-section {
+  padding: 55px 0 100px;
+}
