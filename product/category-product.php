@@ -114,7 +114,7 @@
                     ?>
                             <div class="pcat-author-publisher-col">
                                 <div class="pcat-author-publisher-select">
-                                    <select>
+                                    <select id="js-pcat-author-list" style="width:100%;">
                                         <?php
                                             while ( $the_query->have_posts() ) {
                                                 $the_query->the_post();
@@ -124,7 +124,6 @@
                                             }
                                         ?>
                                     </select>
-                                    <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
                                 </div>
                             </div>
                     <?php
@@ -143,7 +142,7 @@
                     ?>
                             <div class="pcat-author-publisher-col">
                                 <div class="pcat-author-publisher-select">
-                                    <select>
+                                    <select id="js-pcat-publisher-list" style="width:100%;">
                                         <?php
                                             while ( $the_query->have_posts() ) {
                                                 $the_query->the_post();
@@ -153,7 +152,6 @@
                                             }
                                         ?>
                                     </select>
-                                    <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
                                 </div>
                             </div>
                     <?php

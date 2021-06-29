@@ -1,4 +1,11 @@
-jQuery(document).ready(function(){
+import $ from 'jquery';
+import 'select2';
+import 'select2/dist/css/select2.css';
+
+jQuery(function(){
+
+    $('#js-pcat-author-list').select2();
+    $('#js-pcat-publisher-list').select2();
 
     function updateFilterCountLabel(){
         const filterCount = jQuery('#js-pcat-extra-thematic-filter-row .pcat-extra-thematic-filter-col').length;
@@ -30,7 +37,7 @@ jQuery(document).ready(function(){
             `);
 
             // add close button event
-            jQuery('span', $newElem).click(function(){
+            jQuery('span', $newElem).on('click', function(){
                 const termID = jQuery(this).attr('data-term-id');
 
                 jQuery(`#js-pcat-extra-thematic-filter-col-${termID}`).remove();
@@ -46,7 +53,7 @@ jQuery(document).ready(function(){
     })
 
     // the thematic filter clear all button click
-    jQuery('#js-pcat-extra-thematic-filter-link-clear').click(function(){
+    jQuery('#js-pcat-extra-thematic-filter-link-clear').on('click', function(){
         jQuery('#js-pcat-extra-thematic-filter-row').html('');
         jQuery('.js-pcat-filter-detail-child').removeClass('active');
         jQuery('#js-pcat-extra-thematic-filter').addClass('hide');
@@ -54,7 +61,7 @@ jQuery(document).ready(function(){
     });
 
     // filter detail box hidden/show
-    jQuery('#js-pcat-filter-button-inner').click(function(){
+    jQuery('#js-pcat-filter-button-inner').on('click', function(){
         if( jQuery(this).hasClass('active') ){
             jQuery(this).removeClass('active')
             jQuery('#js-pcat-filter-detail-row').slideUp();
