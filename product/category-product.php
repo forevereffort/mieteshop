@@ -115,6 +115,7 @@
                             <div class="pcat-author-publisher-col">
                                 <div class="pcat-author-publisher-select">
                                     <select id="js-pcat-author-list" style="width:100%;">
+                                        <option></option>
                                         <?php
                                             while ( $the_query->have_posts() ) {
                                                 $the_query->the_post();
@@ -143,6 +144,7 @@
                             <div class="pcat-author-publisher-col">
                                 <div class="pcat-author-publisher-select">
                                     <select id="js-pcat-publisher-list" style="width:100%;">
+                                        <option></option>
                                         <?php
                                             while ( $the_query->have_posts() ) {
                                                 $the_query->the_post();
@@ -167,7 +169,10 @@
                     <div class="pcat-classification-filter-label">ΤΑΞΙΝΟΜΗΣΗ</div>
                     <div class="pcat-classification-filter-select">
                         <select>
-                            <option value="1">Χρονολογική</option>
+                            <option value="-1">Χρονολογική</option>
+                            <option value="price-low-to-high">Price low to high</option>
+                            <option value="price-high-to-low">Price high to low</option>
+                            <option value="alphabetical">Alphabetical</option>
                         </select>
                         <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                     </div>
