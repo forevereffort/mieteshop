@@ -141,6 +141,43 @@
       border-radius: 4px;
       height: 36px;
 
+      .select2-selection__clear {
+        font-size: 25px;
+        height: 12px;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 35px;
+        top: 13px;
+        width: 12px;
+
+        &::before {
+          background-color: $color-black;
+          content: '';
+          height: 2px;
+          left: 0;
+          position: absolute;
+          top: 6px;
+          transform: translate3d(0, -50%, 0) rotate(45deg);
+          width: 12px;
+        }
+
+        &::after {
+          background-color: $color-black;
+          content: '';
+          height: 2px;
+          left: 0;
+          position: absolute;
+          top: 6px;
+          transform: translate3d(0, -50%, 0) rotate(-45deg);
+          width: 12px;
+        }
+
+        span {
+          display: none;
+        }
+      }
+
       .select2-selection__rendered {
         font-size: 14px;
         font-weight: $font-weight-light;

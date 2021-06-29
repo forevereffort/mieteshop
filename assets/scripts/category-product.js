@@ -4,8 +4,14 @@ import 'select2/dist/css/select2.css';
 
 jQuery(function(){
 
-    $('#js-pcat-author-list').select2();
-    $('#js-pcat-publisher-list').select2();
+    $('#js-pcat-author-list').select2({
+        placeholder: " Συγγραφείς",
+        allowClear: true
+    });
+    $('#js-pcat-publisher-list').select2({
+        placeholder: "Εκδότες",
+        allowClear: true
+    });
 
     function updateFilterCountLabel(){
         const filterCount = jQuery('#js-pcat-extra-thematic-filter-row .pcat-extra-thematic-filter-col').length;
