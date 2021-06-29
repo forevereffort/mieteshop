@@ -50,11 +50,56 @@ jQuery(document).ready(function(){
     }
   })
 
+  // header top favorite icon click
+  jQuery('#js-header-top-favorite-icon').click(function(){
+    if( jQuery('#js-header-top-favorite-popup').hasClass('active') ){
+      jQuery('#js-header-top-favorite-popup').removeClass('active');
+    } else {
+      jQuery('#js-header-top-favorite-popup').addClass('active');
+    }
+  })
+
+  // header top busket icon click
+  jQuery('#js-header-top-busket-icon').click(function(){
+    if( jQuery('#js-header-top-busket-popup').hasClass('active') ){
+      jQuery('#js-header-top-busket-popup').removeClass('active');
+    } else {
+      jQuery('#js-header-top-busket-popup').addClass('active');
+    }
+  })
+
+  // header top user icon click
+  jQuery('#js-header-top-user-icon').click(function(){
+    if( jQuery('#js-header-top-user-popup').hasClass('active') ){
+      jQuery('#js-header-top-user-popup').removeClass('active');
+    } else {
+      jQuery('#js-header-top-user-popup').addClass('active');
+    }
+  })
+
   // close header popup when the outside of popup is clicked
   jQuery(document).on("click", function (event) {
     if( jQuery('#js-header-top-search-popup').hasClass('active') ){
       if (jQuery(event.target).closest("#js-header-top-search-popup,#js-header-top-search-icon").length === 0) {
         jQuery('#js-header-top-search-popup').removeClass('active');
+      }
+    }
+
+    if( jQuery('#js-header-top-favorite-popup').hasClass('active') ){
+      if (jQuery(event.target).closest("#js-header-top-favorite-popup,#js-header-top-favorite-icon").length === 0) {
+        jQuery('#js-header-top-favorite-popup').removeClass('active');
+      }
+    }
+
+    if( jQuery('#js-header-top-busket-popup').hasClass('active') ){
+      if (jQuery(event.target).closest("#js-header-top-busket-popup,#js-header-top-busket-icon").length === 0) {
+        jQuery('#js-header-top-busket-popup').removeClass('active');
+      }
+    }
+
+    if( jQuery('#js-header-top-user-popup').hasClass('active') ){
+      if (jQuery(event.target).closest("#js-header-top-user-popup,#js-header-top-user-icon").length === 0) {
+        jQuery('#js-header-top-user-popup').removeClass('active');
       }
     }
   });
