@@ -102,22 +102,65 @@
             <div class="pcat-extra-filter-left-col">
                 <div class="pcat-author-publisher-label">Επιλέξτε Συγγραφέα ή Εκδότη</div>
                 <div class="pcat-author-publisher-row">
-                    <div class="pcat-author-publisher-col">
-                        <div class="pcat-author-publisher-select">
-                            <select>
-                                <option value="1">Conor Fahy</option>
-                            </select>
-                            <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
-                        </div>
-                    </div>
-                    <div class="pcat-author-publisher-col">
-                        <div class="pcat-author-publisher-select">
-                            <select>
-                                <option value="1">Εκδότες</option>
-                            </select>
-                            <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
-                        </div>
-                    </div>
+                    <?php
+                        $the_query = new WP_Query([
+                            'post_type' => 'contributor',
+                            'posts_per_page' => -1,
+                            'orderby' => 'title',
+                            'order' => 'ASC'
+                        ]);
+
+                        if ( $the_query->have_posts() ) {
+                    ?>
+                            <div class="pcat-author-publisher-col">
+                                <div class="pcat-author-publisher-select">
+                                    <select>
+                                        <?php
+                                            while ( $the_query->have_posts() ) {
+                                                $the_query->the_post();
+                                        ?>
+                                                <option value="<?php echo get_the_ID(); ?>"><?php echo get_the_title(); ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                    <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                                </div>
+                            </div>
+                    <?php
+                        }
+
+                        wp_reset_postdata();
+                    
+                        $the_query = new WP_Query([
+                            'post_type' => 'publisher',
+                            'posts_per_page' => -1,
+                            'orderby' => 'title',
+                            'order' => 'ASC'
+                        ]);
+
+                        if ( $the_query->have_posts() ) {
+                    ?>
+                            <div class="pcat-author-publisher-col">
+                                <div class="pcat-author-publisher-select">
+                                    <select>
+                                        <?php
+                                            while ( $the_query->have_posts() ) {
+                                                $the_query->the_post();
+                                        ?>
+                                                <option value="<?php echo get_the_ID(); ?>"><?php echo get_the_title(); ?></option>
+                                        <?php
+                                            }
+                                        ?>
+                                    </select>
+                                    <div class="pcat-author-publisher-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                                </div>
+                            </div>
+                    <?php
+                        }
+
+                        wp_reset_postdata();
+                    ?>
                 </div>
                 <div class="pcat-author-publisher-des">Για να περιορίσετε τα αποτελέσματα επιλέξτε συγγραφείς ή εκδότες</div>
             </div>
