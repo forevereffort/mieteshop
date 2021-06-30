@@ -409,11 +409,29 @@
   margin-left: 8px;
 }
 
+.pcat-results-navigation-prev {
+  @include clearfix();
+  align-items: center;
+  display: flex;
+  height: 22px;
+  margin-right: 16px;
+
+  svg {
+    float: left;
+    transform: rotate(180deg);
+  }
+}
+
 .pcat-results-navigation-next {
+  @include clearfix();
   align-items: center;
   display: flex;
   height: 22px;
   margin-left: 16px;
+
+  svg {
+    float: left;
+  }
 }
 
 .pcat-results-footer-select {

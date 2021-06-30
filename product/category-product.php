@@ -321,32 +321,23 @@
                 </div>
                 <div class="pcat-results-footer-options">
                     <div class="pcat-results-footer-options-col">
-                        <?php
-                            require dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
-
-                            $pagination = new Zebra_Pagination();
-                            $pagination->records($total_product_count);
-                            $pagination->records_per_page($product_per_page);
-                            $pagination->selectable_pages(5);
-                            $pagination->set_page(9);
-                            $pagination->padding(false);
-                            $pagination->css_classes([
-                                'list' => 'pcat-results-navigation-row',
-                                'list_item' => 'pcat-results-navigation-item',
-                                'anchor' => '',
-                            ]);
-                            $pagination->render();
-                        ?>
                         <div class="pcat-results-navigation">
-                            <div class="pcat-results-navigation-row">
-                                <div class="pcat-results-navigation-item active"><a href="#">1</a></div>
-                                <div class="pcat-results-navigation-item"><a href="#">2</a></div>
-                                <div class="pcat-results-navigation-item"><a href="#">3</a></div>
-                                <div class="pcat-results-navigation-item"><a href="#">4</a></div>
-                                <div class="pcat-results-navigation-item"><span>...</span></div>
-                                <div class="pcat-results-navigation-item"><a href="#">33</a></div>
-                                <div class="pcat-results-navigation-next"><?php include get_template_directory() . '/assets/icons/arrow-right-icon.svg' ?></div>
-                            </div>
+                            <?php
+                                require dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
+
+                                $pagination = new Zebra_Pagination();
+                                $pagination->records($total_product_count);
+                                $pagination->records_per_page($product_per_page);
+                                $pagination->selectable_pages(5);
+                                $pagination->set_page(9);
+                                $pagination->padding(false);
+                                $pagination->css_classes([
+                                    'list' => 'pcat-results-navigation-row',
+                                    'list_item' => 'pcat-results-navigation-item',
+                                    'anchor' => '',
+                                ]);
+                                $pagination->render();
+                            ?>
                         </div>
                     </div>
                     <div class="pcat-results-footer-options-col">

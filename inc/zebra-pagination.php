@@ -45,7 +45,7 @@ class Zebra_Pagination {
         'method'                    =>  'get',
 
         // string for "next page"
-        'next'                      =>  '&raquo;',
+        'next'                      =>  '<svg width="8" height="12" viewBox="0 0 8 12" fill="none"><path d="M1.99984 0L0.589844 1.41L5.16984 6L0.589844 10.59L1.99984 12L7.99984 6L1.99984 0Z" fill="black"/></svg>',
 
         // by default, prefix page number with zeros
         'padding'                   =>  true,
@@ -63,7 +63,7 @@ class Zebra_Pagination {
         'preserve_query_string'     =>  0,
 
         // string for "previous page"
-        'previous'                  =>  '&laquo;',
+        'previous'                  =>  '<svg width="8" height="12" viewBox="0 0 8 12" fill="none"><path d="M1.99984 0L0.589844 1.41L5.16984 6L0.589844 10.59L1.99984 12L7.99984 6L1.99984 0Z" fill="black"/></svg>',
 
         // by default, we assume there are no records
         // we expect this number to be set after the class is instantiated
@@ -925,10 +925,7 @@ class Zebra_Pagination {
             if ($this->_properties['page'] == $this->_properties['total_pages']) $css_classes[] = 'disabled';
 
             // generate markup
-            $output = '<li' .
-
-                // add CSS classes to the list item, if necessary
-                (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a href="' .
+            $output = '<li class="pcat-results-navigation-next"><a href="' .
 
                 // the href is different if we're on the last page
                 ($this->_properties['page'] == $this->_properties['total_pages'] ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] + 1)) . '"' .
@@ -1227,10 +1224,7 @@ class Zebra_Pagination {
             if ($this->_properties['page'] == 1) $css_classes[] = 'disabled';
 
             // generate markup
-            $output = '<li' .
-
-                // add CSS classes to the list item, if necessary
-                (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a href="' .
+            $output = '<li class="pcat-results-navigation-prev"><a href="' .
 
                 // the href is different if we're on the first page
                 ($this->_properties['page'] == 1 ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] - 1)) . '"' .
