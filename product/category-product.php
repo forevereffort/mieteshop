@@ -11,7 +11,8 @@
         'parent' => $product_cat->term_id,
     ]);
 
-    $posts_per_page = 16;
+    $product_per_page = 16;
+    $current_page = 1;
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
@@ -223,7 +224,25 @@
                 'terms' => $product_cat->term_id,
             ],
         ],
-        'posts_per_page' => -1,
+        'posts_per_page' => $product_per_page,
+        'offset' => ( $current_page - 1 ) * $product_per_page
+    ];
+
+    $loop = new WP_Query( $args );
+
+    $total_product_count = $loop->found_posts;
+
+    $args = [
+        'post_type' => 'product',
+        'tax_query' => [
+            [
+                'taxonomy' => 'product_cat',
+                'field' => 'term_id',
+                'terms' => $product_cat->term_id,
+            ],
+        ],
+        'posts_per_page' => $product_per_page,
+        'offset' => ( $current_page - 1 ) * $product_per_page
     ];
 
     $loop = new WP_Query( $args );
@@ -233,7 +252,7 @@
         <section class="pcat-results-section">
             <div class="content-container">
                 <div class="pcat-results-title">
-                    <h2>ΤΙΤΛΟΙ: <?php echo $loop->found_posts; ?></h2>
+                    <h2>ΤΙΤΛΟΙ: <?php echo $total_product_count; ?></h2>
                 </div>
                 <div class="pcat-results-row">
                     <?php
@@ -302,6 +321,22 @@
                 </div>
                 <div class="pcat-results-footer-options">
                     <div class="pcat-results-footer-options-col">
+                        <?php
+                            require dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
+
+                            $pagination = new Zebra_Pagination();
+                            $pagination->records($total_product_count);
+                            $pagination->records_per_page($product_per_page);
+                            $pagination->selectable_pages(5);
+                            $pagination->set_page(9);
+                            $pagination->padding(false);
+                            $pagination->css_classes([
+                                'list' => 'pcat-results-navigation-row',
+                                'list_item' => 'pcat-results-navigation-item',
+                                'anchor' => '',
+                            ]);
+                            $pagination->render();
+                        ?>
                         <div class="pcat-results-navigation">
                             <div class="pcat-results-navigation-row">
                                 <div class="pcat-results-navigation-item active"><a href="#">1</a></div>
