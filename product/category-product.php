@@ -36,18 +36,18 @@
             if( !empty($child_cat_list) ){
         ?>
                 <div class="pcat-list-row">
-                    <div class="pcat-list-col">
-                        <div class="pcat-list-label">Μετάβαση σε:</div>
+                    <div class="pcat-list-label">Μετάβαση σε:</div>
+                    <div class="pcat-list-col-row">
+                        <?php
+                            foreach($child_cat_list as $child_cat){
+                        ?>
+                                <div class="pcat-list-col">
+                                    <a href="<?php echo get_term_link($child_cat->term_id); ?>"><?php echo $child_cat->name; ?></a>
+                                </div>
+                        <?php
+                            }
+                        ?>
                     </div>
-                    <?php
-                        foreach($child_cat_list as $child_cat){
-                    ?>
-                            <div class="pcat-list-col">
-                                <a href="<?php echo get_term_link($child_cat->term_id); ?>"><?php echo $child_cat->name; ?></a>
-                            </div>
-                    <?php
-                        }
-                    ?>
                 </div>
         <?php
             }
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" style="1display: none;">
+                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" style="display: none;">
                     <?php
                         if( $product_cat_level === 1 ){
                             foreach ($child_cat_list as $child_cat) {
