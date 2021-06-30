@@ -1,93 +1,123 @@
+<?php
+    global $wp_query;
+    $product_cat = $wp_query->get_queried_object();
+    $product_cat_parent_list = array_reverse(get_ancestors($product_cat->term_id, 'product_cat'));
+    $product_cat_level = count($product_cat_parent_list) + 1;
+
+    $child_cat_list = get_terms([
+        'taxonomy' => 'product_cat', 
+        'hide_empty' => false, 
+        // 'child_of' => $product_cat->term_id,
+        'parent' => $product_cat->term_id,
+    ]);
+?>
 <section class="breadcrumb-section">
     <div class="content-container">
         <div class="breadcrumb-list">
-            <div class="breadcrumb-item"><a href="#">Βιβλία</a></div>
-            <div class="breadcrumb-item"><a href="#">Ανθρωπιστικές Επιστήμες</a></div>
+            <div class="breadcrumb-item"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Βιβλία</a></div>
+            <?php
+                foreach( $product_cat_parent_list as $parent ){
+                    $parent_object = get_term($parent);
+            ?>
+                    <div class="breadcrumb-item"><a href="<?php echo get_term_link($parent_object->term_id); ?>"><?php echo $parent_object->name; ?></a></div>
+            <?php
+                }
+            ?>
+            <div class="breadcrumb-item"><a href="<?php echo get_term_link($product_cat->term_id); ?>"><?php echo $product_cat->name; ?></a></div>
         </div>
     </div>
 </section>
 <section class="pcat-list-section">
     <div class="content-container">
         <div class="pcat-list-title">
-            <h1>Ανθρωπιστικές Επιστήμες</h1>
+            <h1><?php echo $product_cat->name; ?></h1>
         </div>
-        <div class="pcat-list-row">
-            <div class="pcat-list-col">
-                <div class="pcat-list-label">Μετάβαση σε:</div>
-            </div>
-            <div class="pcat-list-col">
-                <a href="#">Φιλολογία</a>
-            </div>
-            <div class="pcat-list-col">
-                <a href="#">Ιστορία</a>
-            </div>
-            <div class="pcat-list-col">
-                <a href="#">Αρχαιολογία</a>
-            </div>
-            <div class="pcat-list-col">
-                <a href="#">Θρησκεία</a>
-            </div>
-            <div class="pcat-list-col">
-                <a href="#">Φιλοσοφία</a>
-            </div>
-            <div class="pcat-list-col">
-                <a href="#">Βιογραφίες</a>
-            </div>
-        </div>
+        <?php
+            if( !empty($child_cat_list) ){
+        ?>
+                <div class="pcat-list-row">
+                    <div class="pcat-list-col">
+                        <div class="pcat-list-label">Μετάβαση σε:</div>
+                    </div>
+                    <?php
+                        foreach($child_cat_list as $child_cat){
+                    ?>
+                            <div class="pcat-list-col">
+                                <a href="<?php echo get_term_link($child_cat->term_id); ?>"><?php echo $child_cat->name; ?></a>
+                            </div>
+                    <?php
+                        }
+                    ?>
+                </div>
+        <?php
+            }
+        ?>
     </div>
 </section>
-<section class="pcat-filter-section">
-    <div class="content-container">
-        <div class="pcat-filter-row">
-            <div class="pcat-filter-label">
-                <div class="pcat-filter-label-icon"><?php include get_template_directory() . '/assets/icons/filter-icon.svg'; ?></div>
-                <div class="pcat-filter-label-text">ΦΙΛΤΡΑ</div>
-            </div>
-            <div class="pcat-filter-button">
-                <div id="js-pcat-filter-button-inner" class="pcat-filter-button-inner">
-                    <div class="pcat-filter-button-label">Επιλέξτε θεματικά φίλτρα</div>
-                    <div class="pcat-filter-button-icon">
-                        <div class="pcat-filter-button-icon-inner"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+<?php
+    if( $product_cat_level < 3 && !empty($child_cat_list) ){
+?>
+        <section class="pcat-filter-section">
+            <div class="content-container">
+                <div class="pcat-filter-row">
+                    <div class="pcat-filter-label">
+                        <div class="pcat-filter-label-icon"><?php include get_template_directory() . '/assets/icons/filter-icon.svg'; ?></div>
+                        <div class="pcat-filter-label-text">ΦΙΛΤΡΑ</div>
+                    </div>
+                    <div class="pcat-filter-button">
+                        <div id="js-pcat-filter-button-inner" class="pcat-filter-button-inner">
+                            <div class="pcat-filter-button-label">Επιλέξτε θεματικά φίλτρα</div>
+                            <div class="pcat-filter-button-icon">
+                                <div class="pcat-filter-button-icon-inner"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" style="display: none;">
-            <?php
-                $product_root_categories = get_terms( 'product_cat', [
-                    'orderby'    => 'name',
-                    'order'      => 'asc',
-                    'hide_empty' => false,
-                    'parent'     => 0,
-                ] );
-                
-                if( !empty($product_root_categories) ){
-                    foreach ($product_root_categories as $root_category) {
-            ?>
-                        <div class="pcat-filter-detail-col">
-                            <div class="pcat-filter-detail-root"><h3><?php echo $root_category->name; ?></h3></div>
-                            <?php
-                                $product_child_categories = get_terms( 'product_cat', [
-                                    'orderby'    => 'name',
-                                    'order'      => 'asc',
-                                    'hide_empty' => false,
-                                    'parent'     => $root_category->term_id,
-                                ] );
+                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" style="display: none;">
+                    <?php
+                        if( $product_cat_level === 1 ){
+                            foreach ($child_cat_list as $child_cat) {
+                    ?>
+                                <div class="pcat-filter-detail-col">
+                                    <div class="pcat-filter-detail-root"><h3><?php echo $child_cat->name; ?></h3></div>
+                                    <?php
+                                        $child_child_cat_list = get_terms([
+                                            'taxonomy' => 'product_cat', 
+                                            'hide_empty' => false, 
+                                            // 'child_of' => $child_cat->term_id,
+                                            'parent' => $child_cat->term_id,
+                                        ]);
 
-                                foreach ($product_child_categories as $child_category) {
-                            ?>
-                                    <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_category->term_id; ?>"><?php echo $child_category->name; ?></div>
-                            <?php
-                                }
-                            ?>
-                        </div>
-            <?php
-                    }
-                }
-            ?>
-        </div>
-    </div>
-</section>
+                                        foreach ($child_child_cat_list as $child_child_cat) {
+                                    ?>
+                                            <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_child_cat->term_id; ?>"><?php echo $child_child_cat->name; ?></div>
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                    <?php
+                            }
+                        } else if( $product_cat_level === 2 ) {
+                    ?>
+                            <div class="pcat-filter-detail-col">
+                                <?php
+
+                                    foreach ($child_cat_list as $child_cat) {
+                                ?>
+                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?></div>
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                    <?php
+                        }
+                    ?>
+                </div>
+            </div>
+        </section>
+<?php
+    }
+?>
 <div class="pcat-extra-filter-section">
     <div class="content-container">
         <div id="js-pcat-extra-thematic-filter" class="pcat-extra-thematic-filter hide">
