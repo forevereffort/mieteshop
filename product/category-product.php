@@ -73,13 +73,13 @@
                         </div>
                     </div>
                 </div>
-                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" style="display: none;">
+                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" style="1display: none;">
                     <?php
                         if( $product_cat_level === 1 ){
                             foreach ($child_cat_list as $child_cat) {
                     ?>
                                 <div class="pcat-filter-detail-col">
-                                    <div class="pcat-filter-detail-root"><h3><?php echo $child_cat->name; ?></h3></div>
+                                    <div class="js-pcat-filter-detail-parent pcat-filter-detail-root" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?></div>
                                     <?php
                                         $child_child_cat_list = get_terms([
                                             'taxonomy' => 'product_cat', 

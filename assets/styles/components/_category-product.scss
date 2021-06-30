@@ -476,26 +476,15 @@
 }
 
 .pcat-filter-detail-root {
-  padding-bottom: 22px;
-
-  h3 {
-    color: $color-black-1;
-    font-size: 14px;
-    font-weight: $font-weight-extra-bold;
-    letter-spacing: 0.15px;
-    line-height: 1.286;
-    text-transform: uppercase;
-  }
-}
-
-.pcat-filter-detail-child {
   color: $color-black-1;
   cursor: pointer;
   font-size: 14px;
   font-weight: $font-weight-light;
   line-height: 1.143;
+  padding-bottom: 22px;
   padding-left: 17px;
   position: relative;
+  text-transform: uppercase;
 
   &.active {
     font-weight: $font-weight-extra-bold;
@@ -527,6 +516,61 @@
     content: '';
     height: 10px;
     left: 4px;
+    position: absolute;
+    top: 3px;
+    transition: transform 0.2s ease-out;
+    width: 2px;
+  }
+}
+
+.pcat-filter-detail-child {
+  color: $color-black-1;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  line-height: 1.143;
+  padding-left: 25px;
+  position: relative;
+
+  &.active {
+    font-weight: $font-weight-extra-bold;
+
+    &::before {
+      opacity: 0;
+      transform: rotate(-90deg);
+    }
+
+    &::after {
+      transform: rotate(-90deg);
+    }
+  }
+
+  &.disable {
+    color: #97979f;
+
+    &::after,
+    &::before {
+      background-color: #97979f;  
+    }
+  }
+
+  &::before {
+    background-color: $color-black-1;
+    content: '';
+    height: 2px;
+    left: 8px;
+    opacity: 1;
+    position: absolute;
+    top: 7px;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    width: 10px;
+  }
+
+  &::after {
+    background-color: $color-black-1;
+    content: '';
+    height: 10px;
+    left: 12px;
     position: absolute;
     top: 3px;
     transition: transform 0.2s ease-out;

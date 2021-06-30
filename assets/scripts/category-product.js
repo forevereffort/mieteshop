@@ -25,13 +25,16 @@ jQuery(function(){
         }
     }
     
-    jQuery('.js-pcat-filter-detail-child').click(function(){
+    jQuery('.js-pcat-filter-detail-parent').on('click', function(){
         const termID = jQuery(this).attr('data-term-id')
+        const $parentElem = jQuery(this).parent();
 
         if( jQuery(this).hasClass('active') ){
+            jQuery('.pcat-filter-detail-child', $parentElem).removeClass('disable');
             jQuery(this).removeClass('active')
             jQuery(`#js-pcat-extra-thematic-filter-col-${termID}`).remove();
         } else {
+            jQuery('.pcat-filter-detail-child', $parentElem).addClass('disable');
             const labelName = jQuery(this).text()
 
             jQuery(this).addClass('active')
@@ -47,7 +50,8 @@ jQuery(function(){
                 const termID = jQuery(this).attr('data-term-id');
 
                 jQuery(`#js-pcat-extra-thematic-filter-col-${termID}`).remove();
-                jQuery('.js-pcat-filter-detail-child[data-term-id=' + termID + ']').remove();
+                jQuery('.js-pcat-filter-detail-parent[data-term-id=' + termID + ']').removeClass('active');
+                jQuery('.pcat-filter-detail-child', jQuery('.js-pcat-filter-detail-parent[data-term-id=' + termID + ']').parent()).removeClass('disable');
 
                 updateFilterCountLabel();
             })
@@ -56,12 +60,48 @@ jQuery(function(){
         }
 
         updateFilterCountLabel();
+    });
+
+    jQuery('.js-pcat-filter-detail-child').on('click', function(){
+        if( !jQuery(this).hasClass('disable') ){
+            const termID = jQuery(this).attr('data-term-id')
+
+            if( jQuery(this).hasClass('active') ){
+                jQuery(this).removeClass('active')
+                jQuery(`#js-pcat-extra-thematic-filter-col-${termID}`).remove();
+            } else {
+                const labelName = jQuery(this).text()
+
+                jQuery(this).addClass('active')
+
+                const $newElem = jQuery(`
+                    <div id="js-pcat-extra-thematic-filter-col-${termID}" class="pcat-extra-thematic-filter-col">
+                        <div class="pcat-extra-thematic-filter-item">${labelName}<span data-term-id="${termID}"></span></div>
+                    </div>
+                `);
+
+                // add close button event
+                jQuery('span', $newElem).on('click', function(){
+                    const termID = jQuery(this).attr('data-term-id');
+
+                    jQuery(`#js-pcat-extra-thematic-filter-col-${termID}`).remove();
+                    jQuery('.js-pcat-filter-detail-child[data-term-id=' + termID + ']').removeClass('active');
+
+                    updateFilterCountLabel();
+                })
+
+                jQuery('#js-pcat-extra-thematic-filter-row').append($newElem);
+            }
+
+            updateFilterCountLabel();
+        }
     })
 
     // the thematic filter clear all button click
     jQuery('#js-pcat-extra-thematic-filter-link-clear').on('click', function(){
         jQuery('#js-pcat-extra-thematic-filter-row').html('');
-        jQuery('.js-pcat-filter-detail-child').removeClass('active');
+        jQuery('.js-pcat-filter-detail-child').removeClass('active disable');
+        jQuery('.js-pcat-filter-detail-parent').removeClass('active');
         jQuery('#js-pcat-extra-thematic-filter').addClass('hide');
         return false;
     });
