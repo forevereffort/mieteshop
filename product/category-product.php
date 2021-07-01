@@ -323,7 +323,7 @@
                     <div class="pcat-results-footer-options-col">
                         <div class="pcat-results-navigation">
                             <?php
-                                require dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
+                                require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
 
                                 $pagination = new Zebra_Pagination();
                                 $pagination->records($total_product_count);

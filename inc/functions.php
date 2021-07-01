@@ -127,3 +127,9 @@ include_once 'custom-post-types/publisher.php';
 include_once 'custom-post-types/contributor.php';
 
 include_once 'page-functions/category-product-function.php';
+
+require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';
+
+$loader = new \Twig\Loader\FilesystemLoader(dirname(dirname(__FILE__)) . '/twig-templates');
+global $twig;
+$twig = new \Twig\Environment($loader);

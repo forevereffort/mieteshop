@@ -1,5 +1,4 @@
 <?php
-
 add_action('wp_ajax_filter_category_product', 'filterCategoryProduct');
 add_action('wp_ajax_nopriv_filter_category_product', 'filterCategoryProduct');
 
@@ -15,10 +14,14 @@ function filterCategoryProduct()
     $filterAuthorId = intval($_REQUEST['filterAuthorId']);
     $filterPublisherId = intval($_REQUEST['filterPublisherId']);
     
-
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         // $result = json_encode($result);
-        $result = json_encode([$filterTermIds, $filterAuthorId, $filterPublisherId]);
+        global $twig;
+        
+        $result = json_encode([
+            $filterTermIds, $filterAuthorId, $filterPublisherId,
+            $twig->render('category-product-search-result.twig', ['name' => 'Fabien'])
+        ]);
         echo $result;
     } else {
         header("Location: " . $_SERVER["HTTP_REFERER"]);
