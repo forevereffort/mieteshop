@@ -117,3 +117,17 @@ img {
 .hide {
   display: none;
 }
+
+.load-spinner {
+  background-color: #000;
+  background-image: url('../../assets/images/ajax-spin.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  bottom: 0;
+  left: 0;
+  opacity: 0.5;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 99999;
+}
