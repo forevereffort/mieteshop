@@ -254,7 +254,7 @@
                 <div class="pcat-results-title">
                     <h2>ΤΙΤΛΟΙ: <?php echo $total_product_count; ?></h2>
                 </div>
-                <div class="pcat-results-row">
+                <div id="js-pcat-results-row" class="pcat-results-row">
                     <?php
                         while ( $loop->have_posts() ){
                             $loop->the_post();

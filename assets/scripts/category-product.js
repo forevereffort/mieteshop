@@ -10,7 +10,7 @@ jQuery(function(){
         const filterPublisherId = jQuery('#js-pcat-publisher-list').val();
         const nonce = jQuery('#js-pcat-filter-detail-row').attr('data-nonce')
 
-        jQuery('.js-category-product-filter-load-spinner').removeClass('hide')
+        jQuery('#js-category-product-filter-load-spinner').removeClass('hide')
 
         jQuery.ajax({
             type: 'get',
@@ -24,9 +24,9 @@ jQuery(function(){
                 filterPublisherId,
             },
             success: function (response) {
-                console.log(response);
+                jQuery('#js-pcat-results-row').html(response.result);
 
-                jQuery('.js-category-product-filter-load-spinner').addClass('hide')
+                jQuery('#js-category-product-filter-load-spinner').addClass('hide')
             }
         })
     }
