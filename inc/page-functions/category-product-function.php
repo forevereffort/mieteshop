@@ -36,7 +36,7 @@ function filterCategoryProduct()
                 [
                     'taxonomy' => 'product_cat',
                     'field' => 'term_id',
-                    'terms' => $filterTermIds
+                    'terms' => explode(',', $filterTermIds)
                 ],
             ],
             'posts_per_page' => -1
@@ -105,6 +105,7 @@ function filterCategoryProduct()
             'count' => $products_search_count,
             'result' => $twig->render('category-product-search-result.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
+            'arg' => $args,
         ]);
         echo $result;
     } else {

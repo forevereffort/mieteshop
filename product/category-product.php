@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="js-pcat-filter-detail-row" data-nonce="<?php echo wp_create_nonce('filter_category_product_nonce'); ?>" class="pcat-filter-detail-row" data-filter-term-list="" style="display: none;">
+                <div id="js-pcat-filter-detail-row" data-nonce="<?php echo wp_create_nonce('filter_category_product_nonce'); ?>" class="pcat-filter-detail-row" data-filter-term-list="" style="1display: none;">
                     <?php
                         if( $product_cat_level === 1 ){
                             foreach ($child_cat_list as $child_cat) {
