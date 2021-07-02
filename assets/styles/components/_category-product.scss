@@ -1,4 +1,5 @@
 .pcat-list-section {
+  background-color: #dedbd4;
   border-bottom: 2px solid $color-black-1;
   margin: 0 auto;
   max-width: $general-container-width;
@@ -496,7 +497,9 @@
 }
 
 .pcat-results-section {
-  padding: 60px 0 70px;
+  .general-container {
+    padding: 60px 0 70px;
+  }
 }
 
 .pcat-filter-detail-row {

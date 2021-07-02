@@ -1,5 +1,7 @@
 .single-post-title-section {
-  padding: 56px 0;
+  .general-container {
+    padding: 56px 0;
+  }
 }
 
 .single-post-title-row {
@@ -102,7 +104,9 @@
 }
 
 .single-post-description-1-section {
-  padding: 60px 0 45px;
+  .general-container {
+    padding: 60px 0 45px;
+  }
 
   .content-container {
     display: flex;
@@ -142,7 +146,9 @@
 }
 
 .single-post-description-2-section {
-  padding: 70px 0 112px;
+  .general-container {
+    padding: 70px 0 112px;
+  }
 
   .content-container {
     display: flex;

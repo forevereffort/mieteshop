@@ -13,21 +13,23 @@
     </div>
 </section>
 <section class="single-contributor-image-lead-section">
-    <div class="content-container">
-        <div class="single-contributor-image-lead-row">
-            <div class="single-contributor-image-lead-left">
-                <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
-                <div class="single-contributor-image-lead-image">
-                    <img
-                        class="lazyload"
-                        src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                        data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                        alt="<?php echo $post->post_title; ?>">
+    <div class="general-container">
+        <div class="content-container">
+            <div class="single-contributor-image-lead-row">
+                <div class="single-contributor-image-lead-left">
+                    <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' ); ?>
+                    <div class="single-contributor-image-lead-image">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                            alt="<?php echo $post->post_title; ?>">
+                    </div>
                 </div>
-            </div>
-            <div class="single-contributor-image-lead-right">
-                <div class="single-contributor-image-lead-content">
-                    <p>Ο Κωνσταντίνος Καβάφης (Αλεξάνδρεια, 29 Απριλίου 1863 (π.ημ.) / 29 Απριλίου 1863 Αλεξάνδρεια, 29 Απριλίου 1933) ήταν Έλληνας ποιητής ο οποίος θεωρείται ως ένας από τους σημαντικότερους ποιητές της σύγχρονης εποχής. Γεννήθηκε και έζησε στην Αλεξάνδρεια, γι' αυτό και αναφέρεται συχνά ως «ο Αλεξανδρινός».  Δημοσίευσε ποιήματα, ενώ δεκάδες παρέμειναν ως προσχέδια. Τα σημαντικότερα έργα του τα δημιούργησε μετά τα 40 έτη.</p>
+                <div class="single-contributor-image-lead-right">
+                    <div class="single-contributor-image-lead-content">
+                        <p>Ο Κωνσταντίνος Καβάφης (Αλεξάνδρεια, 29 Απριλίου 1863 (π.ημ.) / 29 Απριλίου 1863 Αλεξάνδρεια, 29 Απριλίου 1933) ήταν Έλληνας ποιητής ο οποίος θεωρείται ως ένας από τους σημαντικότερους ποιητές της σύγχρονης εποχής. Γεννήθηκε και έζησε στην Αλεξάνδρεια, γι' αυτό και αναφέρεται συχνά ως «ο Αλεξανδρινός».  Δημοσίευσε ποιήματα, ενώ δεκάδες παρέμειναν ως προσχέδια. Τα σημαντικότερα έργα του τα δημιούργησε μετά τα 40 έτη.</p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 .single-publisher-title {
+  background-color: #dedbd4;
   border-bottom: 2px solid $color-black-1;
   margin: 0 auto;
   max-width: $general-container-width;
@@ -36,7 +37,9 @@
 }
 
 .single-publisher-image-lead-section {
-  padding-top: 32px;
+  .general-container {
+    padding-top: 32px;
+  }
 }
 
 .single-publisher-text-caption-row {
@@ -72,6 +75,7 @@
 }
 
 .single-publisher-text-caption-section {
+  background-color: #dedbd4;
   border-bottom: 2px solid $color-black-1;
   margin: 0 auto;
   max-width: $general-container-width;
@@ -138,6 +142,7 @@
 }
 
 .single-product-series-section {
+  background-color: #dedbd4;
   border-top: 2px solid $color-black;
   margin: 0 auto;
   max-width: $general-container-width;
