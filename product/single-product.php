@@ -35,10 +35,10 @@
                         <a href="#">Hans Jonas</a>
                     </div>
                     <div class="single-product-title">
-                        <h1>Η συμμετοχή μας σ’αυτόν τον πόλεμο</h1>
+                        <h1><?php echo get_the_title(); ?></h1>
                     </div>
                     <div class="single-product-subtitle">
-                        <h2>Έκκληση προς άρρενες Εβραίους (β έκδοση, 2018)</h2>
+                        <h2><?php echo get_field('book_subtitle'); ?></h2>
                     </div>
                     <div class="single-product-role-detail-first">
                         <div class="single-product-role-detail">
