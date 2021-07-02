@@ -16,7 +16,7 @@ jQuery(function(){
         const filterPublisherId = jQuery('#js-pcat-publisher-list').val();
         const nonce = jQuery('#js-pcat-filter-detail-row').attr('data-nonce');
         const mainProductCatId = jQuery('#js-pcat-list-title').attr('data-main-product-cat-id');
-        const productPerPage = 16;
+        const productPerPage = jQuery('#js-pcat-products-per-page').val();
 
         jQuery('#js-category-product-filter-load-spinner').removeClass('hide')
 
@@ -39,7 +39,7 @@ jQuery(function(){
                 jQuery('#js-pcat-results-count').html(response.count);
                 jQuery('#js-pcat-results-navigation').html(response.navigation);
                 addPageNavigationClickFunc();
-                
+
                 jQuery('#js-category-product-filter-load-spinner').addClass('hide')
 
                 goSearchResultTop();
@@ -58,6 +58,10 @@ jQuery(function(){
         placeholder: "Εκδότες",
         allowClear: true
     }).on('change', function(){
+        categoryProductSearch(1);
+    });
+
+    jQuery('#js-pcat-products-per-page').on('change', function(){
         categoryProductSearch(1);
     });
 

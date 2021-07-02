@@ -974,7 +974,7 @@ class Zebra_Pagination {
                 $output .= '<li' .
 
                     // add CSS classes to the list item, if necessary
-                    (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a href="' . $this->_build_uri($i) . '"' .
+                    (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a data-page="' . $i . '" href="' . $this->_build_uri($i) . '"' .
 
                     // add CSS classes to the anchor, if necessary
                     (isset($this->_properties['css_classes']['anchor']) && $this->_properties['css_classes']['anchor'] != '' ? ' class="' . trim($this->_properties['css_classes']['anchor']) . '"' : '') . '>' .
