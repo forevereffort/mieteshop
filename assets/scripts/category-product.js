@@ -25,6 +25,7 @@ jQuery(function(){
             },
             success: function (response) {
                 jQuery('#js-pcat-results-row').html(response.result);
+                jQuery('#js-pcat-results-count').html(response.count);
 
                 jQuery('#js-category-product-filter-load-spinner').addClass('hide')
             }

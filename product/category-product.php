@@ -1,5 +1,5 @@
 <?php
-    global $wp_query;
+    global $wp_query, $post;
     $product_cat = $wp_query->get_queried_object();
     $product_cat_parent_list = array_reverse(get_ancestors($product_cat->term_id, 'product_cat'));
     $product_cat_level = count($product_cat_parent_list) + 1;
@@ -136,64 +136,73 @@
                 <div class="pcat-author-publisher-label">Επιλέξτε Συγγραφέα ή Εκδότη</div>
                 <div class="pcat-author-publisher-row">
                     <?php
-                        $the_query = new WP_Query([
-                            'post_type' => 'contributor',
-                            'posts_per_page' => -1,
-                            'orderby' => 'title',
-                            'order' => 'ASC'
-                        ]);
-
-                        if ( $the_query->have_posts() ) {
-                    ?>
-                            <div class="pcat-author-publisher-col">
-                                <div class="pcat-author-publisher-select">
-                                    <select id="js-pcat-author-list" style="width:100%;">
-                                        <option></option>
-                                        <?php
-                                            while ( $the_query->have_posts() ) {
-                                                $the_query->the_post();
-                                        ?>
-                                                <option value="<?php echo get_the_ID(); ?>"><?php echo get_the_title(); ?></option>
-                                        <?php
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                    <?php
-                        }
-
-                        wp_reset_postdata();
+                        // get author & publisher list that include in the search result
+                        $args = [
+                            'post_type' => 'product',
+                            'tax_query' => [
+                                [
+                                    'taxonomy' => 'product_cat',
+                                    'field' => 'term_id',
+                                    'terms' => $product_cat->term_id,
+                                ],
+                            ]
+                        ];
                     
-                        $the_query = new WP_Query([
-                            'post_type' => 'publisher',
-                            'posts_per_page' => -1,
-                            'orderby' => 'title',
-                            'order' => 'ASC'
-                        ]);
+                        $loop = new WP_Query( $args );
+                    
+                        $total_product_count = $loop->found_posts;
+                        $author_list_in_search_result = [];
+                        $publisher_list_in_search_result = [];
+                    
+                        if ( $loop->have_posts() ) {
+                            while ( $loop->have_posts() ){
+                                $loop->the_post();
+                    
+                                $authors = get_field('book_contributors_syggrafeas', $post->ID);
+                                $publishers = get_field('book_publishers', $post->ID);
 
-                        if ( $the_query->have_posts() ) {
-                    ?>
-                            <div class="pcat-author-publisher-col">
-                                <div class="pcat-author-publisher-select">
-                                    <select id="js-pcat-publisher-list" style="width:100%;">
-                                        <option></option>
-                                        <?php
-                                            while ( $the_query->have_posts() ) {
-                                                $the_query->the_post();
-                                        ?>
-                                                <option value="<?php echo get_the_ID(); ?>"><?php echo get_the_title(); ?></option>
-                                        <?php
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                    <?php
+                                if( !empty($authors) ){
+                                    foreach($authors as $author){
+                                        $author_list_in_search_result[$author->ID] = $author->post_title;
+                                    }
+                                }
+
+                                if( !empty($publishers) ){
+                                    foreach($publishers as $publisher){
+                                        $publisher_list_in_search_result[$publisher->ID] = $publisher->post_title;
+                                    }
+                                }
+                            }
                         }
-
-                        wp_reset_postdata();
                     ?>
+                        <div class="pcat-author-publisher-col">
+                            <div class="pcat-author-publisher-select">
+                                <select id="js-pcat-author-list" style="width:100%;">
+                                    <option></option>
+                                    <?php
+                                        foreach($author_list_in_search_result as $author_id => $author_title){
+                                    ?>
+                                            <option value="<?php echo $author_id; ?>"><?php echo $author_title; ?></option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="pcat-author-publisher-col">
+                            <div class="pcat-author-publisher-select">
+                                <select id="js-pcat-publisher-list" style="width:100%;">
+                                    <option></option>
+                                    <?php
+                                        foreach($publisher_list_in_search_result as $publisher_id => $publisher_title){
+                                    ?>
+                                            <option value="<?php echo $publisher_id; ?>"><?php echo $publisher_title; ?></option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
                 </div>
                 <div class="pcat-author-publisher-des">Για να περιορίσετε τα αποτελέσματα επιλέξτε συγγραφείς ή εκδότες</div>
             </div>
@@ -228,51 +237,34 @@
         'offset' => ( $current_page - 1 ) * $product_per_page
     ];
 
-    $loop = new WP_Query( $args );
-
-    $total_product_count = $loop->found_posts;
-
-    $args = [
-        'post_type' => 'product',
-        'tax_query' => [
-            [
-                'taxonomy' => 'product_cat',
-                'field' => 'term_id',
-                'terms' => $product_cat->term_id,
-            ],
-        ],
-        'posts_per_page' => $product_per_page,
-        'offset' => ( $current_page - 1 ) * $product_per_page
-    ];
-
-    $loop = new WP_Query( $args );
+    $the_query = new WP_Query( $args );
 
     if ( $the_query->have_posts() ) {
 ?>
         <section class="pcat-results-section">
             <div class="content-container">
                 <div class="pcat-results-title">
-                    <h2>ΤΙΤΛΟΙ: <?php echo $total_product_count; ?></h2>
+                    <h2>ΤΙΤΛΟΙ: <span id="js-pcat-results-count"><?php echo $total_product_count; ?></span></h2>
                 </div>
                 <div id="js-pcat-results-row" class="pcat-results-row">
                     <?php
-                        while ( $loop->have_posts() ){
-                            $loop->the_post();
+                        while ( $the_query->have_posts() ){
+                            $the_query->the_post();
                             global $product;
 
-                            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-                            $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+                            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+                            $authors = get_field('book_contributors_syggrafeas', $post->ID);
                     ?>
                             <div class="pcat-results-col">
                                 <div class="pcat-result-item">
                                     <div class="pcat-result-item-info">
                                         <div class="pcat-result-item-image">
-                                            <a href="<?php echo get_permalink($product->get_id()); ?>">
+                                            <a href="<?php echo get_permalink($post->ID); ?>">
                                                 <img
                                                     class="lazyload"
                                                     src="<?php echo placeholderImage($image[1], $image[2]); ?>"
                                                     data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                                    alt="<?php echo $product->get_name(); ?>">
+                                                    alt="<?php echo $post->post_title; ?>">
                                             </a>
                                         </div>
                                         <div class="pcat-result-item-meta-row">
@@ -300,7 +292,7 @@
                                                 echo '</div>';
                                             }
                                         ?>
-                                        <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($product->get_id()); ?>"><?php echo $product->get_name(); ?></a></h3></div>
+                                        <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a></h3></div>
                                     </div>
                                     <div class="pcat-result-item-footer-row">
                                         <div class="pcat-result-item-footer-col">
@@ -329,7 +321,7 @@
                                 $pagination->records($total_product_count);
                                 $pagination->records_per_page($product_per_page);
                                 $pagination->selectable_pages(5);
-                                $pagination->set_page(9);
+                                $pagination->set_page(1);
                                 $pagination->padding(false);
                                 $pagination->css_classes([
                                     'list' => 'pcat-results-navigation-row',

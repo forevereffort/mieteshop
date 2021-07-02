@@ -26,10 +26,15 @@ function filterCategoryProduct()
                 'terms' => $filterTermIds
             ],
         ],
-        'posts_per_page' => -1,
-        // 'posts_per_page' => $product_per_page,
-        // 'offset' => ( $current_page - 1 ) * $product_per_page
+        'posts_per_page' => -1
     ];
+
+    $the_query = new WP_Query( $args );
+
+    $products_search_count = $the_query->found_posts;
+
+    $args['posts_per_page'] = $product_per_page;
+    $args['offset'] = ( $current_page - 1 ) * $product_per_page;
 
     $products_search_list = [];
     
@@ -68,6 +73,7 @@ function filterCategoryProduct()
         global $twig;
 
         $result = json_encode([
+            'count' => $products_search_count,
             'result' => $twig->render('category-product-search-result.twig', ['products' => $products_search_list])
         ]);
         echo $result;
