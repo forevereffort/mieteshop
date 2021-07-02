@@ -173,6 +173,9 @@
                                     }
                                 }
                             }
+
+                            asort($author_list_in_search_result);
+                            asort($publisher_list_in_search_result);
                         }
                     ?>
                         <div class="pcat-author-publisher-col">
@@ -311,39 +314,45 @@
                         wp_reset_query();
                     ?>
                 </div>
-                <div class="pcat-results-footer-options">
-                    <div class="pcat-results-footer-options-col">
-                        <div class="pcat-results-navigation">
-                            <?php
-                                require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
+                <?php
+                    if( $total_product_count > $product_per_page ){
+                ?>
+                        <div class="pcat-results-footer-options">
+                            <div class="pcat-results-footer-options-col">
+                                <div class="pcat-results-navigation">
+                                    <?php
+                                        require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
 
-                                $pagination = new Zebra_Pagination();
-                                $pagination->records($total_product_count);
-                                $pagination->records_per_page($product_per_page);
-                                $pagination->selectable_pages(5);
-                                $pagination->set_page(1);
-                                $pagination->padding(false);
-                                $pagination->css_classes([
-                                    'list' => 'pcat-results-navigation-row',
-                                    'list_item' => 'pcat-results-navigation-item',
-                                    'anchor' => '',
-                                ]);
-                                $pagination->render();
-                            ?>
-                        </div>
-                    </div>
-                    <div class="pcat-results-footer-options-col">
-                        <div class="pcat-results-footer-select">
-                            <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
-                            <div class="pcat-results-footer-select-elem">
-                                <select>
-                                    <option value="1">1</option>
-                                </select>
-                                <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                                        $pagination = new Zebra_Pagination();
+                                        $pagination->records($total_product_count);
+                                        $pagination->records_per_page($product_per_page);
+                                        $pagination->selectable_pages(5);
+                                        $pagination->set_page(1);
+                                        $pagination->padding(false);
+                                        $pagination->css_classes([
+                                            'list' => 'pcat-results-navigation-row',
+                                            'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
+                                            'anchor' => '',
+                                        ]);
+                                        $pagination->render();
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="pcat-results-footer-options-col">
+                                <div class="pcat-results-footer-select">
+                                    <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
+                                    <div class="pcat-results-footer-select-elem">
+                                        <select>
+                                            <option value="1">1</option>
+                                        </select>
+                                        <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                ?>
                 <div class="pcat-results-projection-options">
                     <div class="pcat-results-footer-select">
                         <div class="pcat-results-footer-select-label">Προβολή</div>

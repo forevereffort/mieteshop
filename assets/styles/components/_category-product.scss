@@ -416,6 +416,10 @@
   height: 22px;
   margin-right: 16px;
 
+  &.disabled {
+    display: none;
+  }
+
   svg {
     float: left;
     transform: rotate(180deg);
@@ -428,6 +432,10 @@
   display: flex;
   height: 22px;
   margin-left: 16px;
+
+  &.disabled {
+    display: none;
+  }
 
   svg {
     float: left;
@@ -458,7 +466,7 @@
     color: $color-black;
     font-size: 14px;
     font-weight: $font-weight-light;
-    min-width: 45px;
+    min-width: 60px;
     padding: 7px 10px 10px;
   }
 }
