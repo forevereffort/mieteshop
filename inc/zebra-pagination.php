@@ -925,7 +925,7 @@ class Zebra_Pagination {
             if ($this->_properties['page'] < $this->_properties['total_pages']){
 
                 // generate markup
-                $output = '<li class="pcat-results-navigation-next ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] + 1) . '" href="' .
+                $output = '<li class="js-pcat-results-navigation-item pcat-results-navigation-next ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] + 1) . '" href="' .
 
                     // the href is different if we're on the last page
                     ($this->_properties['page'] == $this->_properties['total_pages'] ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] + 1)) . '"' .
@@ -1225,7 +1225,7 @@ class Zebra_Pagination {
             if ($this->_properties['page'] > 1){
 
                 // generate markup
-                $output = '<li class="pcat-results-navigation-prev ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] - 1) . '" href="' .
+                $output = '<li class="js-pcat-results-navigation-item pcat-results-navigation-prev ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] - 1) . '" href="' .
 
                     // the href is different if we're on the first page
                     ($this->_properties['page'] == 1 ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] - 1)) . '"' .

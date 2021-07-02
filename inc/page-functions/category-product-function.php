@@ -13,9 +13,9 @@ function filterCategoryProduct()
     $filterTermIds = $_REQUEST['filterTermIds'];
     $filterAuthorId = intval($_REQUEST['filterAuthorId']);
     $filterPublisherId = intval($_REQUEST['filterPublisherId']);
-
-    $product_per_page = 16;
-    $current_page = 1;
+    $mainProductCatId = intval($_REQUEST['mainProductCatId']);
+    $page = intval($_REQUEST['page']);
+    $productPerPage = intval($_REQUEST['productPerPage']);
 
     $args = [
         'post_type' => 'product',
@@ -23,20 +23,49 @@ function filterCategoryProduct()
             [
                 'taxonomy' => 'product_cat',
                 'field' => 'term_id',
-                'terms' => $filterTermIds
+                'terms' => $mainProductCatId
             ],
         ],
         'posts_per_page' => -1
     ];
 
+    if( !empty($filterTermIds) ){
+        $args = [
+            'post_type' => 'product',
+            'tax_query' => [
+                [
+                    'taxonomy' => 'product_cat',
+                    'field' => 'term_id',
+                    'terms' => $filterTermIds
+                ],
+            ],
+            'posts_per_page' => -1
+        ];
+    }
+
     $the_query = new WP_Query( $args );
 
     $products_search_count = $the_query->found_posts;
 
-    $args['posts_per_page'] = $product_per_page;
-    $args['offset'] = ( $current_page - 1 ) * $product_per_page;
+    require_once dirname(dirname(__FILE__)) . '/zebra-pagination.php';
+
+    $pagination = new Zebra_Pagination();
+    $pagination->records($products_search_count);
+    $pagination->records_per_page($productPerPage);
+    $pagination->selectable_pages(5);
+    $pagination->set_page($page);
+    $pagination->padding(false);
+    $pagination->css_classes([
+        'list' => 'pcat-results-navigation-row',
+        'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
+        'anchor' => '',
+    ]);
+
+    $args['posts_per_page'] = $productPerPage;
+    $args['offset'] = ( $page - 1 ) * $productPerPage;
 
     $products_search_list = [];
+    global $post;
     
     $the_query = new WP_Query( $args );
 
@@ -46,8 +75,8 @@ function filterCategoryProduct()
 
             global $product;
 
-            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-            $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+            $authors = get_field('book_contributors_syggrafeas', $post->ID);
             $author_list = [];
 
             foreach( $authors as $author ){
@@ -58,10 +87,10 @@ function filterCategoryProduct()
             }
 
             $products_search_list[] = [
-                'url' => get_permalink($product->get_id()),
+                'url' => get_permalink($post->ID),
                 'placeholder' => placeholderImage($image[1], $image[2]),
                 'image_url' => aq_resize($image[0], $image[1], $image[2], true),
-                'title' => $product->get_name(),
+                'title' => $post->post_title,
                 'authors' => $author_list,
                 'price' => $product->get_price_html()
             ];
@@ -74,7 +103,8 @@ function filterCategoryProduct()
 
         $result = json_encode([
             'count' => $products_search_count,
-            'result' => $twig->render('category-product-search-result.twig', ['products' => $products_search_list])
+            'result' => $twig->render('category-product-search-result.twig', ['products' => $products_search_list]),
+            'navigation' => $pagination->render(true),
         ]);
         echo $result;
     } else {

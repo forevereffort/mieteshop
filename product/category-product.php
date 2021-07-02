@@ -32,7 +32,7 @@
 </section>
 <section class="pcat-list-section">
     <div class="content-container">
-        <div class="pcat-list-title">
+        <div id="js-pcat-list-title" class="pcat-list-title" data-main-product-cat-id="<?php echo $product_cat->term_id; ?>">
             <h1><?php echo $product_cat->name; ?></h1>
         </div>
         <?php
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="js-pcat-filter-detail-row" data-nonce="<?php echo wp_create_nonce('filter_category_product_nonce'); ?>" class="pcat-filter-detail-row" data-filter-term-list="" style="1display: none;">
+                <div id="js-pcat-filter-detail-row" data-nonce="<?php echo wp_create_nonce('filter_category_product_nonce'); ?>" class="pcat-filter-detail-row" data-filter-term-list="" style="display: none;">
                     <?php
                         if( $product_cat_level === 1 ){
                             foreach ($child_cat_list as $child_cat) {
@@ -244,7 +244,7 @@
 
     if ( $the_query->have_posts() ) {
 ?>
-        <section class="pcat-results-section">
+        <section id="js-pcat-results-section" class="pcat-results-section">
             <div class="content-container">
                 <div class="pcat-results-title">
                     <h2>ΤΙΤΛΟΙ: <span id="js-pcat-results-count"><?php echo $total_product_count; ?></span></h2>
@@ -319,7 +319,7 @@
                 ?>
                         <div class="pcat-results-footer-options">
                             <div class="pcat-results-footer-options-col">
-                                <div class="pcat-results-navigation">
+                                <div id="js-pcat-results-navigation" class="pcat-results-navigation">
                                     <?php
                                         require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
 
