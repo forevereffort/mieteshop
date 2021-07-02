@@ -13,6 +13,23 @@
 
     $product_per_page = 16;
     $current_page = 1;
+
+    // $args = [
+    //     'post_type' => 'product',
+    //     'posts_per_page' => -1,
+    // ];
+
+    // $loop = new WP_Query( $args );
+
+    // if ( $loop->have_posts() ) {
+    //     while ( $loop->have_posts() ){
+    //         $loop->the_post();
+
+    //         echo $post->post_title. '<br/>';
+    //     }
+    // }
+
+    // wp_reset_query();
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
