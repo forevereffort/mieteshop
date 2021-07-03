@@ -91,12 +91,12 @@
 						<div class="header-top-right-col">
 							<div class="header-top-search-wrapper">
 								<div id="js-header-top-search-icon" class="header-top-search-icon">
-									<label for="js-header-top-search-form-text"><?php include get_template_directory() . '/assets/icons/search-icon.svg' ?></label>
+									<?php include get_template_directory() . '/assets/icons/search-icon.svg' ?>
 								</div>
 								<div id="js-header-top-search-popup" class="header-top-search-popup">
 									<div class="header-top-search-form">
 										<form action="">
-											<input type="text" id="js-header-top-search-form-text" placeholder="λαϊκό">
+											<input type="text" id="js-header-top-search-form-text" placeholder="λαϊκό" data-nonce="<?php echo wp_create_nonce('header_top_search_nonce'); ?>">
 										</form>
 									</div>
 									<?php

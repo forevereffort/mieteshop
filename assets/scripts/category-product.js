@@ -20,7 +20,6 @@ jQuery(function(){
         const productPerPage = jQuery('#js-pcat-products-per-page').val();
 
         jQuery('#js-category-product-filter-load-spinner').removeClass('hide');
-        console.log(nonce);
 
         jQuery.ajax({
             type: 'get',
