@@ -91,12 +91,12 @@
 						<div class="header-top-right-col">
 							<div class="header-top-search-wrapper">
 								<div id="js-header-top-search-icon" class="header-top-search-icon">
-									<?php include get_template_directory() . '/assets/icons/search-icon.svg' ?>
+									<label for="js-header-top-search-form-text"><?php include get_template_directory() . '/assets/icons/search-icon.svg' ?></label>
 								</div>
 								<div id="js-header-top-search-popup" class="header-top-search-popup">
 									<div class="header-top-search-form">
 										<form action="">
-											<input type="text" placeholder="λαϊκό">
+											<input type="text" id="js-header-top-search-form-text" placeholder="λαϊκό">
 										</form>
 									</div>
 									<?php
