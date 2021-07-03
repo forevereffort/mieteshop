@@ -30,6 +30,7 @@ function filterCategoryProduct()
         'anchor' => '',
     ]);
 
+    // default tax query is for the current category page cat id
     $args = [
         'post_type' => 'product',
         'tax_query' => [
@@ -42,6 +43,7 @@ function filterCategoryProduct()
         'posts_per_page' => -1
     ];
 
+    // if there is any of filter term id, change tax query
     if( !empty($filterTermIds) ){
         $args = [
             'post_type' => 'product',
@@ -62,11 +64,14 @@ function filterCategoryProduct()
     global $post;
     
     if( empty($filterAuthorId) && empty($filterPublisherId) ){
+        // if there are no any option of filter author & publisher
+        // search will work only for tax query
         $args['posts_per_page'] = $productPerPage;
         $args['offset'] = ( $page - 1 ) * $productPerPage;
         
-        
         $the_query = new WP_Query( $args );
+
+        // get total search result count
         $products_search_count = $the_query->found_posts;
 
         if ( $the_query->have_posts() ) {
@@ -105,6 +110,7 @@ function filterCategoryProduct()
             while ( $the_query->have_posts() ) {
                 $the_query->the_post();
 
+                // check author & publisher with filter value in the searched result by category
                 $filter_author_status = empty($filterAuthorId) ? true : false;
                 $filter_publisher_status = empty($filterPublisherId) ? true : false;
 
@@ -139,9 +145,10 @@ function filterCategoryProduct()
             }
         }
 
-        // get all search result
+        // get all search result that is filtered by term, author, publisher
         $products_search_count = count($products_all_list);
 
+        // get page nav info
         $products_id_list_of_selected_page = array_slice($products_all_list, ($page - 1) * $productPerPage, $productPerPage);
 
         foreach($products_id_list_of_selected_page as $product_id){

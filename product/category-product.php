@@ -13,23 +13,6 @@
 
     $product_per_page = 16;
     $current_page = 1;
-
-    // $args = [
-    //     'post_type' => 'product',
-    //     'posts_per_page' => -1,
-    // ];
-
-    // $loop = new WP_Query( $args );
-
-    // if ( $loop->have_posts() ) {
-    //     while ( $loop->have_posts() ){
-    //         $loop->the_post();
-
-    //         echo $post->post_title. '<br/>';
-    //     }
-    // }
-
-    // wp_reset_query();
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
@@ -49,7 +32,7 @@
 </section>
 <section class="pcat-list-section">
     <div class="content-container">
-        <div id="js-pcat-list-title" class="pcat-list-title" data-main-product-cat-id="<?php echo $product_cat->term_id; ?>">
+        <div id="js-pcat-list-title" class="pcat-list-title" data-main-product-cat-id="<?php echo $product_cat->term_id; ?>" data-nonce="<?php echo wp_create_nonce('filter_category_product_nonce'); ?>">
             <h1><?php echo $product_cat->name; ?></h1>
         </div>
         <?php
@@ -93,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="js-pcat-filter-detail-row" data-nonce="<?php echo wp_create_nonce('filter_category_product_nonce'); ?>" class="pcat-filter-detail-row" data-filter-term-list="" style="display: none;">
+                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" data-filter-term-list="" style="display: none;">
                     <?php
                         if( $product_cat_level === 1 ){
                             foreach ($child_cat_list as $child_cat) {
@@ -153,7 +136,7 @@
                 <div class="pcat-author-publisher-label">Επιλέξτε Συγγραφέα ή Εκδότη</div>
                 <div class="pcat-author-publisher-row">
                     <?php
-                        // get author & publisher list that include in the search result
+                        // get all products in current category
                         $args = [
                             'post_type' => 'product',
                             'tax_query' => [
@@ -166,7 +149,8 @@
                         ];
                     
                         $loop = new WP_Query( $args );
-                    
+
+                        // get total search result count
                         $total_product_count = $loop->found_posts;
                         $author_list_in_search_result = [];
                         $publisher_list_in_search_result = [];
@@ -174,7 +158,8 @@
                         if ( $loop->have_posts() ) {
                             while ( $loop->have_posts() ){
                                 $loop->the_post();
-                    
+
+                                // get author & publisher list that include in the search result
                                 $authors = get_field('book_contributors_syggrafeas', $post->ID);
                                 $publishers = get_field('book_publishers', $post->ID);
 
@@ -191,6 +176,7 @@
                                 }
                             }
 
+                            // sort array by value
                             asort($author_list_in_search_result);
                             asort($publisher_list_in_search_result);
                         }
@@ -244,6 +230,7 @@
     </div>
 </div>
 <?php
+    // get products of selected category by page
     $args = [
         'post_type' => 'product',
         'tax_query' => [

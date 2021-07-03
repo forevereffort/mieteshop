@@ -10,15 +10,17 @@ jQuery(function(){
         }, 1000)
     }
 
+    // get products with term, author, publisher and page
     function categoryProductSearch(page){
         const filterTermIds = jQuery('#js-pcat-filter-detail-row').attr('data-filter-term-list');
         const filterAuthorId = jQuery('#js-pcat-author-list').val();
         const filterPublisherId = jQuery('#js-pcat-publisher-list').val();
-        const nonce = jQuery('#js-pcat-filter-detail-row').attr('data-nonce');
+        const nonce = jQuery('#js-pcat-list-title').attr('data-nonce');
         const mainProductCatId = jQuery('#js-pcat-list-title').attr('data-main-product-cat-id');
         const productPerPage = jQuery('#js-pcat-products-per-page').val();
 
-        jQuery('#js-category-product-filter-load-spinner').removeClass('hide')
+        jQuery('#js-category-product-filter-load-spinner').removeClass('hide');
+        console.log(nonce);
 
         jQuery.ajax({
             type: 'get',
@@ -38,10 +40,13 @@ jQuery(function(){
                 jQuery('#js-pcat-results-row').html(response.result);
                 jQuery('#js-pcat-results-count').html(response.count);
                 jQuery('#js-pcat-results-navigation').html(response.navigation);
+
+                // add page navigation click event into new added nav html
                 addPageNavigationClickFunc();
 
                 jQuery('#js-category-product-filter-load-spinner').addClass('hide')
 
+                // smoth go to the top of result section
                 goSearchResultTop();
             }
         })
