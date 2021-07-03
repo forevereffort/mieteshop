@@ -93,7 +93,7 @@
 								<div id="js-header-top-search-icon" class="header-top-search-icon">
 									<?php include get_template_directory() . '/assets/icons/search-icon.svg' ?>
 								</div>
-								<div id="js-header-top-search-popup" class="header-top-search-popup">
+								<div id="js-header-top-search-popup" class="header-top-search-popup active">
 									<div class="header-top-search-form">
 										<form action="">
 											<input type="text" id="js-header-top-search-form-text" placeholder="λαϊκό" data-nonce="<?php echo wp_create_nonce('header_top_search_nonce'); ?>">
@@ -103,6 +103,37 @@
 										$image = wp_get_attachment_image_src( get_post_thumbnail_id( 3401 ), 'full' );
 									?>
 									<div class="header-top-search-result-group-list">
+										<div class="header-top-search-cat">
+											<div class="header-top-search-cat-title">
+												<h3>ΘΕΜΑΤΙΚΕΣ</h3>
+											</div>
+											<div class="header-top-search-cat-item">
+												<span><a href="#">Ανθρωπιστικές επιστήμες</a></span><span><a href="#">Φιλολογία</a></span><span><a href="#">Λαϊκό</a></span>
+											</div>
+											<div class="header-top-search-cat-item">
+												<span><a href="#">Ανθρωπιστικές επιστήμες</a></span><span><a href="#">Φιλολογία</a></span><span><a href="#">Λαϊκό</a></span>
+											</div>
+											<div class="header-top-search-cat-item">
+												<span><a href="#">Ανθρωπιστικές επιστήμες</a></span><span><a href="#">Φιλολογία</a></span><span><a href="#">Λαϊκό</a></span><span><a href="#">Ανθρωπιστικές επιστήμες</a></span><span><a href="#">Φιλολογία</a></span><span><a href="#">Λαϊκό</a></span><span><a href="#">Ανθρωπιστικές επιστήμες</a></span><span><a href="#">Φιλολογία</a></span><span><a href="#">Λαϊκό</a></span>
+											</div>
+											<div class="header-top-search-cat-item">
+												<span><a href="#">Ανθρωπιστικές επιστήμες</a></span><span><a href="#">Φιλολογία</a></span><span><a href="#">Λαϊκό</a></span>
+											</div>
+										</div>
+										<div class="header-top-search-post">
+											<div class="header-top-search-post-title">
+												<h3>ΕΚΔΟΤΗΣ</h3>
+											</div>
+											<div class="header-top-search-post-item">
+												<a href="#">Εκδόσεις Λαϊκόν</a>
+											</div>
+											<div class="header-top-search-post-item">
+												<a href="#">Εκδόσεις Λαϊκόν</a>
+											</div>
+											<div class="header-top-search-post-item">
+												<a href="#">Εκδόσεις Λαϊκόν</a>
+											</div>
+										</div>
 										<div class="header-top-search-result-group">
 											<div class="header-top-search-result-group-title">
 												<h3>ΒΙΒΛΙΑ</h3>

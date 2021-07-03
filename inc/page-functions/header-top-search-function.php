@@ -9,10 +9,16 @@ function headerTopSearchFuc()
     }
     
     $searchKey = $_REQUEST['searchKey'];
+
+    $child_cat_list = get_terms([
+        'taxonomy' => 'product_cat', 
+        'hide_empty' => false, 
+        'name__like' => $searchKey
+    ]);
     
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         $result = json_encode([
-            'searchKey' => $searchKey
+            'child_cat_list' => $child_cat_list
         ]);
 
         echo $result;
