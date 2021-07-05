@@ -1,7 +1,20 @@
+<style type="text/css">
+    .single-product-role-detail-wrapper { padding: 20px 0; display: flex; }
+    .single-product-role-detail { justify-content: space-between; width: 50%; }
+    .single-product-blog-image img { max-height: 200px; }
+    .single-product-comments { padding-bottom:10px; }
+    .single-product-blog-content { margin-top: 16px; }
+    .pcat-result-item-image img { max-height: 300px; }
+</style>
+
 <?php
     global $product;
 
     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
+    $publishers = get_field('book_publishers', $product->ID);
+    $series = get_the_terms( $product->ID, 'series' );
+    $epiloges = get_the_terms( $product->ID, 'epiloges' );
+    
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
@@ -27,9 +40,25 @@
             <div class="single-product-right-col">
                 <div class="single-product-info">
                     <div class="single-product-tag-row">
-                        <div class="single-product-tag"><a href="#">μιετ</a></div>
-                        <div class="single-product-tag"><a href="#">MINIMA</a></div>
-                        <div class="single-product-tag active"><a href="#">ΝΕΟΙ ΤΙΤΛΟΙ</a></div>
+                        <?php 
+                            if($series) {
+                                foreach ( $series as $series_term ) {
+                                    echo '<div class="single-product-tag"><a href="#">'.$series_term->name .'</a></div>';
+                                }        
+                            }
+                            if($publishers) {
+                                foreach($publishers as $publisher) {
+                                    echo '<div class="single-product-tag"><a href="'.$publisher->guid.'">'.$publisher->post_title.'</a></div>';
+                                }	     
+                            }
+                            if($epiloges) { 
+                                foreach($epiloges as $epilogi) {
+                                    if ($epilogi->slug == 'nees-kyklofories') {    
+                                        echo '<div class="single-product-tag active"><a href="'.$epilogi->guid.'">'.$epilogi->name.'</a></div>';
+                                    }    
+                                }
+                            }
+                        ?>
                     </div>
                     <div class="single-product-author">
                         <?php $authors = get_field('book_contributors_syggrafeas', $product->get_id()); 
@@ -53,38 +82,54 @@
                     <div class="single-product-subtitle">
                         <h2><?php echo get_field('book_subtitle'); ?></h2>
                     </div>
-                    <div class="single-product-role-detail-first">
-                        <div class="single-product-role-detail">
-                            <div class="single-product-role-detail__role">ΕΠΙΜΕΤΡΟ</div>
-                            <div class="single-product-role-detail__detail"><a href="#">Σταύρος Ζουμπουλάκης</a></div>
-                        </div>
+                    <div class="single-product-role-detail-wrapper">
+                    <?php 
+                       $contributorFields = acf_get_fields(3523);
+                       //var_dump($contributorFields);
+                       foreach($contributorFields as $contributorField) {
+                            $contributors = get_field($contributorField['name']);
+                            if($contributors){
+                                //echo  $contributorField['name'] .'<br/>';
+
+                                echo '<div class="single-product-role-detail">';
+                                echo '<div class="single-product-role-detail__role">'.$contributorField['label'].'</div>';
+                           
+                                foreach($contributors as $contributor) {
+                                    echo '<div class="single-product-role-detail__detail"><a href="'.$contributor->post_title.'">'.$contributor->post_title.'</a></div>';
+                                }
+                                echo '</div>';  
+                            }
+                                                    
+                       }
+                    ?>
                     </div>
-                    <div class="single-product-role-detail-row">
-                        <div class="single-product-role-detail-col">
-                            <div class="single-product-role-detail">
-                                <div class="single-product-role-detail__role">Μετάφραση</div>
-                                <div class="single-product-role-detail__detail"><a href="#">Γιώργος Ανδρουλιδάκης</a></div>
-                            </div>
-                        </div>
-                        <div class="single-product-role-detail-col">
-                            <div class="single-product-role-detail">
-                                <div class="single-product-role-detail__role">ΠΡΟΛΟΓΟΣ</div>
-                                <div class="single-product-role-detail__detail">John Doe</div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="single-product-comments">
+                        <?php echo get_field('book_comments'); ?>
+                    </div>   
                     <div class="single-product-info-table-1-row">
                         <div class="single-product-form-col"><span>ΜΟΡΦΗ</span></div>
                         <div class="single-product-form-value"><span><?php echo get_field('book_cover_type'); ?></span></div>
                         <div class="single-product-price-col"><span>ΤΙΜΗ</span></div>
-                        <?php if(get_post_meta( get_the_ID(), '_sale_price', true)) { ?>
-                        <div class="single-product-regular-price"><span><?php echo wc_trim_zeros(get_post_meta( get_the_ID(), '_regular_price', true)) .get_woocommerce_currency_symbol(); ?></span></div>
-                        <div class="single-product-sale-price"><span><?php echo wc_trim_zeros(get_post_meta( get_the_ID(), '_sale_price', true)) .get_woocommerce_currency_symbol(); ?></span></div>
+                        <?php 
+                        $regular_price = get_post_meta( get_the_ID(), '_regular_price', true);
+                        $sale_price = get_post_meta( get_the_ID(), '_sale_price', true);
+                        if($sale_price) { ?>
+                            <div class="single-product-regular-price"><span><?php echo wc_trim_zeros($regular_price) .get_woocommerce_currency_symbol(); ?></span></div>
+                            <div class="single-product-sale-price"><span><?php echo wc_trim_zeros($sale_price) .get_woocommerce_currency_symbol(); ?></span></div>
                         <?php } else { ?>
-                            <div class="single-product-sale-price"><span><?php echo wc_trim_zeros(get_post_meta( get_the_ID(), '_regular_price', true)) .get_woocommerce_currency_symbol(); ?></span></div>
+                            <div class="single-product-sale-price"><span><?php echo wc_trim_zeros($regular_price) .get_woocommerce_currency_symbol(); ?></span></div>
                         <?php } ?>
-                        <div class="single-product-discount"><span>-30%</span></div>
-                        <div class="single-product-availability"><span>άμεσα διαθέσιμο</span></div>
+                        
+                        <?php
+                        if($sale_price) {
+                            $saving_percentage = round( 100 - ( $sale_price / $regular_price * 100 ), 1 ) . '%';
+                            echo '<div class="single-product-discount"><span>'.$saving_percentage.'</span></div>'; 
+                        }
+                        ?>
+                        <div class="single-product-availability"><span><?php 
+                        $availability = $product->get_availability();
+                        echo $availability['availability']; 
+                        ?></span></div>
                     </div>
                     <div class="single-product-info-table-2-row">
                         <div class="single-product-share-col">
@@ -162,7 +207,6 @@
                             </div>
                             <?php } ?>
                             <?php 
-                                $publishers = get_field('book_publishers', $product->ID);
                                 if($publishers) {
                             ?>
                                 <div class="single-product-detail-information-item">
@@ -184,7 +228,6 @@
                             </div>
                             <?php } ?>
                             <?php 
-                                $series = get_the_terms( $product->ID, 'series' );
                                 if($series) {
                             ?>                
                                 <div class="single-product-detail-information-item">
@@ -279,6 +322,8 @@
 <?php
     }
 ?>
+
+<?php if( have_rows('book_reviews') || have_rows('book_audio_repeater') || have_rows('book_videos') || get_field('book_related_articles')  ) { ?>
 <section class="single-product-meta-section">
     <div class="content-container">
         <div class="single-product-meta-tab-row">
@@ -420,6 +465,7 @@
         </div>
     </div>
 </section>
+<?php } ?>
 <div class="single-product-realted-section">
     <div class="content-container">
         <div class="single-product-realted-title">
@@ -564,7 +610,7 @@
                     'post_status'    => 'publish',
                     'post_type'      => 'product',
                     'post__in'       => $viewed_products,
-                    //'orderby'        => 'rand'
+                    'orderby'        => 'rand'
                     );
     // Add meta_query to query args
     $query_args['meta_query'] = array();
