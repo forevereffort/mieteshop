@@ -32,7 +32,20 @@
                         <div class="single-product-tag active"><a href="#">ΝΕΟΙ ΤΙΤΛΟΙ</a></div>
                     </div>
                     <div class="single-product-author">
-                        <a href="#">Hans Jonas</a>
+                        <?php $authors = get_field('book_contributors_syggrafeas', $product->get_id()); 
+                        if($authors) {
+                            if(count($authors)>3) {
+                                $displayauthors .= 'Συλλογικό Έργο<br/>';	
+                            } else {					
+                                foreach($authors as $author) {
+                                    $displayauthors .= '<a href="'.$author->guid.'">'.$author->post_title.'</a><br/>';
+                                }	
+                            }	
+                        } else {
+                            $displayauthors = get_field('book_biblionet_writer_name');
+                        }              
+                        
+                        echo $displayauthors; ?>
                     </div>
                     <div class="single-product-title">
                         <h1><?php echo get_the_title(); ?></h1>
@@ -55,17 +68,21 @@
                         </div>
                         <div class="single-product-role-detail-col">
                             <div class="single-product-role-detail">
-                                <div class="single-product-role-detail__role">προλογοσ</div>
+                                <div class="single-product-role-detail__role">ΠΡΟΛΟΓΟΣ</div>
                                 <div class="single-product-role-detail__detail">John Doe</div>
                             </div>
                         </div>
                     </div>
                     <div class="single-product-info-table-1-row">
                         <div class="single-product-form-col"><span>ΜΟΡΦΗ</span></div>
-                        <div class="single-product-form-value"><span>Πανόδετο</span></div>
+                        <div class="single-product-form-value"><span><?php echo get_field('book_cover_type'); ?></span></div>
                         <div class="single-product-price-col"><span>ΤΙΜΗ</span></div>
-                        <div class="single-product-regular-price"><span>15,50€</span></div>
-                        <div class="single-product-sale-price"><span>14,75€</span></div>
+                        <?php if(get_post_meta( get_the_ID(), '_sale_price', true)) { ?>
+                        <div class="single-product-regular-price"><span><?php echo wc_trim_zeros(get_post_meta( get_the_ID(), '_regular_price', true)) .get_woocommerce_currency_symbol(); ?></span></div>
+                        <div class="single-product-sale-price"><span><?php echo wc_trim_zeros(get_post_meta( get_the_ID(), '_sale_price', true)) .get_woocommerce_currency_symbol(); ?></span></div>
+                        <?php } else { ?>
+                            <div class="single-product-sale-price"><span><?php echo wc_trim_zeros(get_post_meta( get_the_ID(), '_regular_price', true)) .get_woocommerce_currency_symbol(); ?></span></div>
+                        <?php } ?>
                         <div class="single-product-discount"><span>-30%</span></div>
                         <div class="single-product-availability"><span>άμεσα διαθέσιμο</span></div>
                     </div>
@@ -90,71 +107,115 @@
                 </div>
                 <div class="single-product-tab-content-row">
                     <div id="single-product-tab-content-item--description" class="single-product-tab-content-item">
-                        <div class="single-product-description">
-                            <p>«Τούτη είναι η δική μας ώρα, τούτος είναι ο δικός μας πόλεμος.</p>
-                            <p>Είναι η ώρα που περιμέναμε, με απόγνωση και ελπίδα στην καρδιά μας, όλα αυτά τα θανατερά χρόνια: η ώρα εκείνη όπου, αφού υπομείναμε αδύναμοι κάθε ταπείνωση και αδικία, κάθε σωματική στέρηση και ηθική μείωση του λαού μας, θα αξιωνόμασταν επιτέλους να αντιμετωπίσουμε τον θανάσιμο εχθρό μας κατά πρόσωπο, με το όπλο στο χέρι· να ζητήσουμε ικανοποίηση· να τακτοποιήσουμε κι εμείς τον λογαριασμό μας,  τον πρώτο απ’ όλους, στο μεγάλο ξεκαθάρισμα· και να συμβάλουμε ενεργά στην ανατροπή του παγκόσμιου εχθρού, που ήταν ευθύς εξαρχής και θα είναι μέχρι τέλους ο δικός μας εχθρός.»</p>
-                            <p>Έτσι ανοίγει το συγκλονιστικό κείμενο Η συμμετοχή μας σ’ αυτόν τον πόλεμο. Έκκληση προς άρρενες Εβραίους, το οποίο έγραψε και εκφώνησε για πρώτη φορά στις 6 Οκτωβρίου 1939 ο Χανς Γιόνας, πεπεισμένος ότι οι Εβραίοι όφειλαν να συμμετάσχουν ενεργά στις πολεμικές επιχειρήσεις εναντίον της χιτλερικής Γερμανίας. Όπως επισημαίνει ο Σταύρος Ζουμπουλάκης στο Επίμετρο, «η Έκκληση δεν είναι μόνο ένα κείμενο υψηλής ηθικής αξίας, είναι και ένα κείμενο μεγάλης πολιτικής διαύγειας και διορατικότητας».</p>
-                            <p>Tο βιβλίο υπάγεται στο Nόμο περί Eνιαίας Tιμής Bιβλίου, ισχύει μέγιστη έκπτωση 10%.</p>
-                        </div>
+                        <div class="single-product-description"><p><?php echo get_the_content(); ?></p></div>
                     </div>
                     <div id="single-product-tab-content-item--detail-information" class="single-product-tab-content-item hide">
                         <div class="single-product-detail-information-row">
+                            <?php if (get_field('book_setisbn')) { ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ISBN</div>
-                                <div class="single-product-detail-information-item__value">978-960-250-741-4</div>
+                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_isbn'); ?></div>
                             </div>
+                            <?php } ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ΔΙΑΣΤΑΣΕΙΣ</div>
-                                <div class="single-product-detail-information-item__value">11,5 × 18,5 εκ.</div>
+                                <div class="single-product-detail-information-item__value"><?php echo $product->get_width() .' x ' .$product->get_height(); ?> εκ.</div>
                             </div>
+                            <?php if (get_field('book_setisbn')) { ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ISBN SET</div>
-                                <div class="single-product-detail-information-item__value">978-960-250-741-5</div>
+                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_setisbn'); ?></div>
                             </div>
+                            <?php } ?>
+                            <?php if (get_field('book_language')) { ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ΓΛΩΣΣΑ</div>
-                                <div class="single-product-detail-information-item__value">ΕΛΛΗΝΙΚΑ</div>
+                                <div class="single-product-detail-information-item__value">
+                                    <?php $booklanguage = get_field('book_language'); echo $booklanguage['label']; ?>
+                                </div>
                             </div>
+                            <?php } ?>
+                            <?php if (get_field('book_first_publish_date')) { ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ΠΡΩΤΗ ΕΚΔΟΣΗ</div>
-                                <div class="single-product-detail-information-item__value">12/2018</div>
+                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_first_publish_date'); ?></div>
                             </div>
+                            <?php } ?>
+                            <?php if (get_field('book_original_title')) { ?>
                             <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">Πρωτοτυποσ τιτλοσ</div>
-                                <div class="single-product-detail-information-item__value">Unsere Teilnahme an diesem Kriege.</div>
+                                <div class="single-product-detail-information-item__label">ΠΡΩΤΟΤΥΠΟΣ ΤΙΤΛΟΣ</div>
+                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_original_title'); ?></div>
                             </div>
+                            <?php } ?>
+                            <?php if (get_field('book_current_publish_date')) { ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ΤΡΕΧΟΥΣΑ ΕΚΔΟΣΗ</div>
-                                <div class="single-product-detail-information-item__value">2021</div>
+                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_current_publish_date'); ?></div>
                             </div>
+                            <?php } ?>
+                            <?php if (get_field('book_original_language')) { ?>
                             <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">Γλώσσα Πρωτοτύπου</div>
-                                <div class="single-product-detail-information-item__value">Γερμανικά</div>
+                                <div class="single-product-detail-information-item__label">ΓΛΩΣΣΑ ΠΡΩΤΟΤΥΠΟΥ</div>
+                                <div class="single-product-detail-information-item__value">
+                                    <?php $booklanguageOrig = get_field('book_original_language'); echo $booklanguageOrig['label']; ?>
+                                </div>
                             </div>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΕΚΔΟΤΗΣ</div>
-                                <div class="single-product-detail-information-item__value">ΜΙΕΤ</div>
-                            </div>
+                            <?php } ?>
+                            <?php 
+                                $publishers = get_field('book_publishers', $product->ID);
+                                if($publishers) {
+                            ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΕΚΔΟΤΗΣ</div>
+                                    <div class="single-product-detail-information-item__value">
+                                    <?php 
+                                        foreach($publishers as $publisher) {
+                                            echo '<a href="'.$publisher->guid.'">'.$publisher->post_title.'</a><br/>';
+                                        }	                                    
+                                    ?></div>
+                                </div>
+                            <?php
+                                }   
+                            ?>
+                            <?php if ($product->get_weight()) { ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ΒΑΡΟΣ</div>
-                                <div class="single-product-detail-information-item__value">140 γρ.</div>
+                                <div class="single-product-detail-information-item__value"><?php echo $product->get_weight(); ?> γρ.</div>
                             </div>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΣΕΙΡΑ</div>
-                                <div class="single-product-detail-information-item__value">ΜΙΝΙΜΑ</div>
-                            </div>
+                            <?php } ?>
+                            <?php 
+                                $series = get_the_terms( $product->ID, 'series' );
+                                if($series) {
+                            ?>                
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΣΕΙΡΑ</div>
+                                    <div class="single-product-detail-information-item__value">
+                                    <?php 
+                                        foreach ( $series as $series_term ) {
+                                            echo $series_term->name .'<br/>';
+                                        }            
+                                    ?>                    
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            <?php if (get_field('book_miet_code')) { ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ΚΩΔΙΚΟΣ ΜΙΕΤ</div>
-                                <div class="single-product-detail-information-item__value">Μ-Μ2376</div>
+                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_miet_code'); ?></div>
                             </div>
+                            <?php } ?>
+                            <?php if (get_field('book_page_number')) { ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ΑΡΙΘΜΟΣ ΣΕΛΙΔΩΝ</div>
-                                <div class="single-product-detail-information-item__value">65 (26 Εικόνες)</div>
+                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_page_number'); ?></div>
                             </div>
+                            <?php } ?>
+                            <?php if (get_field('book_eudoxus_code')) { ?>
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ΚΩΔΙΚΟΣ ΣΤΟ ΕΥΔΟΞΟ</div>
-                                <div class="single-product-detail-information-item__value">384098</div>
+                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_eudoxus_code'); ?></div>
                             </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -240,17 +301,19 @@
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
                             <?php
-                                for( $i = 0; $i < 5; $i++ ){
-                            ?>
+                                if( have_rows('book_reviews') ) { 
+                                while( have_rows('book_reviews') ) : the_row();    
+                                ?>
                                     <div class="swiper-slide">
                                         <div class="single-product-review">
                                             <div class="single-product-review__content">
-                                                <p>Ο Γιόνας καλεί τους ομοεθνείς του σε πόλεμο διαρκείας με τη ναζιστική μηχανή, στο πλευρό των δυτικών συμμάχων, και μάλιστα υπό το κέλυφος μιας ξεχωριστής εβραϊκής «λεγεώνας»</p>
+                                                <p><?php echo get_sub_field('book_reviews_text'); ?></p>
                                             </div>
-                                            <div class="single-product-review__autor">"Τα Νέα", 14/9/2019 |  Ο πόλεμος του Χανς Γιόνας</div>
+                                            <div class="single-product-review__autor"><a href="<?php echo get_sub_field('book_reviews_source_link'); ?>"><?php echo get_sub_field('book_reviews_source_text'); ?></a></div>
                                         </div>
                                     </div>
-                            <?php
+                                <?php
+                                endwhile;
                                 }
                             ?>
                         </div>
@@ -259,13 +322,27 @@
                 </div>
             </div>
             <div id="single-product-meta-tab-content--audio" class="single-product-meta-tab-content-col hide">
-                <div class="single-product-audio-wrapper">
-                    <?php $audio_image_url = get_template_directory_uri() . '/assets/images/audio.png'; ?>
-                    <img
-                        class="lazyload"
-                        src="<?php echo placeholderImage(814, 290); ?>"
-                        data-src="<?php echo $audio_image_url; ?>"
-                        alt="audio image">
+                <div class="single-product-audio-wrapper" is="mieteshop-product-audio-slider">
+                <div class="swiper-container" data-slider>
+                    <div class="swiper-wrapper">
+                        <?php
+                            if( have_rows('book_audio_repeater') ) { 
+                            while( have_rows('book_audio_repeater') ) : the_row();    
+                            ?>
+                                <div class="swiper-slide">
+                                    <div class="single-product-audio-row">
+                                        <div class="single-product-audio__content">
+                                            <p><?php echo get_sub_field('book_audio_embed_code'); ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php
+                            endwhile;
+                            }
+                            ?>
+                    </div>
+                </div>
+                <div class="single-product-audio-pagination-wrapper" data-pagination></div>
                 </div>
             </div>
             <div id="single-product-meta-tab-content--video" class="single-product-meta-tab-content-col hide">
@@ -273,32 +350,34 @@
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
                             <?php
-                                for( $i = 0; $i < 5; $i++ ){
+                            if( have_rows('book_videos') ) { 
+                                //var_dump(get_field('book_videos'));
+                                while( have_rows('book_videos') ) : the_row();  
                             ?>
                                     <div class="swiper-slide">
                                         <div class="single-product-video-item-row">
                                             <div class="single-product-video-item-left-col">
-                                                <?php $video_image_url = get_template_directory_uri() . '/assets/images/video.png'; ?>
+                                                <?php echo get_sub_field('book_video_embed_code'); ?>    
+                                                <?php //$video_image_url = get_template_directory_uri() . '/assets/images/video.png'; 
+                                                    $video_image_url = get_sub_field('book_video_cover_image');
+                                                ?>
                                                 <div class="single-product-video-image-wrapper">
-                                                    <img
-                                                        class="lazyload"
-                                                        src="<?php echo placeholderImage(606, 241); ?>"
-                                                        data-src="<?php echo $video_image_url; ?>"
-                                                        alt="video image">
-                                                    <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
-                                                    <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
+                                                    <!--img class="lazyload" src="<?php echo $video_image_url; ?>" data-src="<?php echo $video_image_url; ?>" alt="video image"-->
+                                                    <!--div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
+                                                    <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div-->
                                                 </div>
                                             </div>
                                             <div class="single-product-video-item-right-col">
                                                 <div class="single-product-video-item-content">
-                                                    <h2>Παρουσίαση της σειράς «ΜΙΝΙΜΑ»</h2>
-                                                    <p>Στο βιβλιοπωλείο του ΜΙΕΤ ( Tσιμισκή 11, Θεσσαλονίκη), πραγματοποιήθηκε η παρουσίαση της σειράς "minima" των εκδόσεων του Μορφωτικού Ιδρύματος Εθνικής Τραπέζης, την Πέμπτη 19 Οκτωβρίου 2017.</p>
+                                                    <h2><?php echo get_sub_field('book_video_title'); ?></h2>
+                                                    <p><?php echo get_sub_field('book_video_description'); ?></p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                             <?php
-                                }
+                                endwhile;
+                            }
                             ?>
                         </div>
                     </div>
@@ -310,21 +389,24 @@
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
                             <?php
-                                for( $i = 0; $i < 5; $i++ ){
+                                $related_articles = get_field('book_related_articles');
+                                foreach($related_articles as $article) {
+                                    //echo '<a href="'.$publisher->guid.'">'.$publisher->post_title.'</a><br/>';
+                                    //var_dump($article);
                             ?>
                                     <div class="single-product-blog-item swiper-slide">
                                         <div class="single-product-blog-item-inner">
-                                            <?php $blog_image_url = get_template_directory_uri() . '/assets/images/blog.png'; ?>
+                                            <?php $blog_image_url = wp_get_attachment_url( get_post_thumbnail_id($article->ID) ); //get_template_directory_uri() . '/assets/images/blog.png'; ?>
                                             <div class="single-product-blog-image">
-                                                <img
+                                                <a href="<?php echo $article->guid; ?>"><img
                                                     class="lazyload"
                                                     src="<?php echo placeholderImage(399, 261); ?>"
                                                     data-src="<?php echo $blog_image_url; ?>"
-                                                    alt="video image">
+                                                    alt="video image"></a>
                                             </div>
                                             <div class="single-product-blog-content">
-                                                <h2>Ακαδημία Αθηνών Α</h2>
-                                                <p>Δοκιμαστικό κείμενο</p>
+                                                <h2><?php echo '<a href="'.$article->guid.'">' .$article->post_title .'</a>'; ?></h2>
+                                                <p><?php echo $article->post_excerpt; ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -341,19 +423,63 @@
 <div class="single-product-realted-section">
     <div class="content-container">
         <div class="single-product-realted-title">
-            <h2>ΣΧΕΤΙΚΟΙ ΤΙΤΛΟΙ</h2>
+            <h2>ΣΧΕΤΙΚΟΙ ΤΙΤΛΟΙ</h2> <!-- RELATED PRODUCTS -->
         </div>
         <div class="pcat-results-row">
             <?php
-                $args = [
-                    'post_type' => 'product',
-                    'posts_per_page' => 16,
-                ];
+
+                // Related products are found from category and tag
+                $tags_array = array(0);
+                $cats_array = array(0);
+                // Get tags
+                $terms = wp_get_post_terms($product->id, 'product_tag');
+                foreach ( $terms as $term ) $tags_array[] = $term->term_id;
+                // Get categories
+                $terms = wp_get_post_terms($product->id, 'product_cat');
+                foreach ( $terms as $key => $term ){
+                    $check_for_children = get_categories(array('parent' => $term->term_id, 'taxonomy' => 'product_cat'));
+                    if(empty($check_for_children)){
+                        $cats_array[] = $term->term_id;
+                    }
+                }
+                // Don't bother if none are set
+                if ( sizeof($cats_array)==1 && sizeof($tags_array)==1 ) return array();
+                // Meta query
+                $meta_query = array();
+                //$meta_query[] = $woocommerce->query->visibility_meta_query();
+                //$meta_query[] = $woocommerce->query->stock_status_meta_query();
+                //$meta_query   = array_filter( $meta_query );
+                // Get the posts
+                $args = array(
+                        'orderby'        => 'rand',
+                        'posts_per_page' => 16,
+                        'post_type'      => 'product',
+                        'fields'         => 'ids',
+                        'meta_query'     => $meta_query,
+                        'tax_query'      => array(
+                            'relation'      => 'OR',
+                            array(
+                                'taxonomy'     => 'product_cat',
+                                'field'        => 'id',
+                                'terms'        => $cats_array
+                            ),
+                            array(
+                                'taxonomy'     => 'product_tag',
+                                'field'        => 'id',
+                                'terms'        => $tags_array
+                            )
+                        )
+                    );
+                //$related_posts = array_diff( $related_posts, array( $product->id ), $product->get_upsells() );
+
+                //$args = [
+                //    'post_type' => 'product',
+                //    'posts_per_page' => 16,
+                //];
+                $related_posts = new WP_Query( $args );
             
-                $loop = new WP_Query( $args );
-            
-                while ( $loop->have_posts() ){
-                    $loop->the_post();
+                while ( $related_posts->have_posts() ){
+                    $related_posts->the_post();
                     global $product;
 
                     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
@@ -417,22 +543,59 @@
         </div>
     </div>
 </div>
+
+<?php 
+    // Get recently viewed product cookies data
+    $viewed_products = ! empty( $_COOKIE['woocommerce_recently_viewed'] ) ? (array) explode( '|', $_COOKIE['woocommerce_recently_viewed'] ) : array();
+    $viewed_products = array_filter( array_map( 'absint', $viewed_products ) );
+    // If no data, quit
+    /*
+    if ( empty( $viewed_products ) )
+        return __( 'You have not viewed any product yet!', 'rc_wc_rvp' );
+    */    
+    // Create the object
+    ob_start();
+    // Get products per page
+    if( !isset( $per_page ) ? $number = 4 : $number = $per_page )
+    // Create query arguments array
+    $query_args = array(
+                    'posts_per_page' => $number,
+                    'no_found_rows'  => 1,
+                    'post_status'    => 'publish',
+                    'post_type'      => 'product',
+                    'post__in'       => $viewed_products,
+                    //'orderby'        => 'rand'
+                    );
+    // Add meta_query to query args
+    $query_args['meta_query'] = array();
+    // Check products stock status
+    //$query_args['meta_query'][] = $woocommerce->query->stock_status_meta_query();
+    // Create a new query
+    $loop = new WP_Query($query_args);
+
+    // ----
+    if (!empty($loop)) {
+
+?>
 <div class="single-product-recently-section">
     <div class="content-container">
         <div class="single-product-recently-title">
-            <h2>ΕΙΔΑΤΕ ΠΡΟΣΦΑΤΑ</h2>
+            <h2>ΕΙΔΑΤΕ ΠΡΟΣΦΑΤΑ</h2> <!-- RECENTLY VIEWED PRODUCTS -->
         </div>
         <div class="pcat-results-row">
             <?php
+
+                /* 
                 $args = [
                     'post_type' => 'product',
                     'posts_per_page' => 4,
                 ];
             
                 $loop = new WP_Query( $args );
-            
+                */    
                 while ( $loop->have_posts() ){
                     $loop->the_post();
+                    
                     global $product;
 
                     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
@@ -496,3 +659,5 @@
         </div>
     </div>
 </div>
+
+<?php } ?>
