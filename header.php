@@ -94,7 +94,7 @@
 									<?php include get_template_directory() . '/assets/icons/search-icon.svg' ?>
 								</div>
 								<div id="js-header-top-search-popup" class="header-top-search-popup active">
-									<div class="header-top-search-form">
+									<div id="js-header-top-search-form" class="header-top-search-form">
 										<form action="">
 											<input type="text" id="js-header-top-search-form-text" placeholder="λαϊκό" data-nonce="<?php echo wp_create_nonce('header_top_search_nonce'); ?>">
 										</form>

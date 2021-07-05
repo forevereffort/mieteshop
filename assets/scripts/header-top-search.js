@@ -8,6 +8,7 @@ jQuery(function(){
         const searchKey = headerTopSearchInputElem.value;
 
         if( searchKey !== '' ){
+            jQuery('#js-header-top-search-form').addClass('searching');
             const nonce = jQuery(headerTopSearchInputElem).attr('data-nonce');
 
             jQuery.ajax({
@@ -21,7 +22,7 @@ jQuery(function(){
                 },
                 success: function (response) {
                     jQuery('#js-header-top-search-result-group-list').html(response.result);
-                    console.log(response)
+                    jQuery('#js-header-top-search-form').removeClass('searching');
                 }
             })
         }
