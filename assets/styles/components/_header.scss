@@ -488,6 +488,10 @@
   color: $color-black;
   font-size: 10px;
   font-weight: $font-weight-light;
+  
+  a {
+    color: $color-black;
+  }
 }
 
 .header-top-search-result-item-info-title {
@@ -498,6 +502,10 @@
     font-size: 14px;
     font-weight: $font-weight-light;
     line-height: 1.143;
+  }
+  
+  a {
+    color: $color-black-1;
   }
 }
 

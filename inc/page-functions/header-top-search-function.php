@@ -1,4 +1,14 @@
 <?php
+function title_filter( $where, $wp_query ){
+    global $wpdb;
+    if ( $search_term = $wp_query->get( 'search_prod_title' ) ) {
+        $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . esc_sql( like_escape( $search_term ) ) . '%\'';
+    }
+    return $where;
+}
+
+add_filter( 'posts_where', 'title_filter', 10, 2 );
+
 add_action('wp_ajax_header_top_search', 'headerTopSearchFuc');
 add_action('wp_ajax_nopriv_header_top_search', 'headerTopSearchFuc');
 
@@ -49,7 +59,8 @@ function headerTopSearchFuc()
     $the_query = new WP_Query([
         'post_type' => 'publisher',
         'posts_per_page' => 4,
-        's' => $searchKey
+        // 's' => $searchKey
+        'search_prod_title' => $searchKey
     ]);
 
     $publisher_list = [];
@@ -71,7 +82,8 @@ function headerTopSearchFuc()
     $the_query = new WP_Query([
         'post_type' => 'contributor',
         'posts_per_page' => 4,
-        's' => $searchKey
+        // 's' => $searchKey
+        'search_prod_title' => $searchKey
     ]);
 
     $contributor_list = [];
@@ -89,17 +101,104 @@ function headerTopSearchFuc()
     }
 
     wp_reset_postdata();
+
+    $the_query = new WP_Query([
+        'post_type' => 'product',
+        'posts_per_page' => 4,
+        // 's' => $searchKey,
+        'search_prod_title' => $searchKey,
+        'tax_query' => [
+            [
+                'taxonomy' => 'title_type',
+                'field' => 'slug',
+                'terms' => 'book',
+            ]
+        ]
+    ]);
+
+    $product_book_list = [];
+    $product_book_list_count = $the_query->found_posts;
+ 
+    if ( $the_query->have_posts() ) {
+        while ( $the_query->have_posts() ) {
+            $the_query->the_post();
+
+            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+
+            $authors = get_field('book_contributors_syggrafeas', $post->ID);
+
+            $author_list = [];
+
+            foreach( $authors as $author ){
+                $author_list[] = [
+                    'url' => get_permalink($author->ID),
+                    'title' => $author->post_title
+                ];
+            }
+
+            $product_book_list[] = [
+                'title' => $post->post_title,
+                'url' => get_permalink($post->ID),
+                'placeholder' => placeholderImage($image[1], $image[2]),
+                'imageurl' => aq_resize($image[0], $image[1], $image[2], true),
+                'authors' => $author_list,
+            ];
+        }
+    }
+
+    wp_reset_postdata();
+
+    $the_query = new WP_Query([
+        'post_type' => 'product',
+        'posts_per_page' => 4,
+        // 's' => $searchKey,
+        'search_prod_title' => $searchKey,
+        'tax_query' => [
+            [
+                'taxonomy' => 'title_type',
+                'field' => 'slug',
+                'terms' => 'book',
+                'operator' => 'NOT IN',
+            ]
+        ]
+    ]);
+
+    $product_art_object_list = [];
+    $product_art_object_list_count = $the_query->found_posts;
+ 
+    if ( $the_query->have_posts() ) {
+        while ( $the_query->have_posts() ) {
+            $the_query->the_post();
+
+            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+
+            $authors = get_field('book_contributors_syggrafeas', $post->ID);
+
+            $author_list = [];
+
+            foreach( $authors as $author ){
+                $author_list[] = [
+                    'url' => get_permalink($author->ID),
+                    'title' => $author->post_title
+                ];
+            }
+
+            $product_art_object_list[] = [
+                'title' => $post->post_title,
+                'url' => get_permalink($post->ID),
+                'placeholder' => placeholderImage($image[1], $image[2]),
+                'imageurl' => aq_resize($image[0], $image[1], $image[2], true),
+                'authors' => $author_list,
+            ];
+        }
+    }
+
+    wp_reset_postdata();
     
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         global $twig;
 
         $result = json_encode([
-            'child_cat_list' => $child_cat_list,
-            'child_cat_list_count' => $child_cat_list_count,
-            'publisher_list' => $publisher_list,
-            'publisher_list_count' => $publisher_list_count,
-            'contributor_list' => $contributor_list,
-            'contributor_list_count' => $contributor_list_count,
             'result' => $twig->render(
                 'header-top-search-result.twig',
                 [
@@ -108,7 +207,11 @@ function headerTopSearchFuc()
                     'publisher_list' => $publisher_list,
                     'publisher_list_count' => $publisher_list_count,
                     'contributor_list' => $contributor_list,
-                    'contributor_list_count' => $contributor_list_count
+                    'contributor_list_count' => $contributor_list_count,
+                    'product_book_list' => $product_book_list,
+                    'product_book_list_count' => $product_book_list_count,
+                    'product_art_object_list' => $product_art_object_list,
+                    'product_art_object_list_count' => $product_art_object_list_count
                 ]
             ),
         ]);
