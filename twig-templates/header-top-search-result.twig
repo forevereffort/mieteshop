@@ -1,0 +1,53 @@
+{% if child_cat_list %}
+    <div class="header-top-search-cat">
+        <div class="header-top-search-cat-title">
+            <h3>ΘΕΜΑΤΙΚΕΣ</h3>
+        </div>
+        {% for items in child_cat_list %}
+            <div class="header-top-search-cat-item">
+                {% for item in items %}
+                    <span><a href="{{ item.url }}">{{ item.title }}</a></span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        {% if child_cat_list_count > 4 %}
+            <div class="header-top-search-result-link">
+                <a href="#">Όλα  τα σχετικά προϊόντα</a>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
+{% if publisher_list %}
+    <div class="header-top-search-post">
+        <div class="header-top-search-post-title">
+            <h3>ΕΚΔΟΤΗΣ</h3>
+        </div>
+        {% for item in publisher_list %}
+            <div class="header-top-search-post-item">
+                <a href="{{ item.url }}">{{ item.title }}</a>
+            </div>
+        {% endfor %}
+        {% if publisher_list_count > 4 %}
+            <div class="header-top-search-result-link">
+                <a href="#">Όλα  τα σχετικά προϊόντα</a>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}
+{% if contributor_list %}
+    <div class="header-top-search-post">
+        <div class="header-top-search-post-title">
+            <h3>ΣΥΝΤΕΛΕΣΤΈΣ</h3>
+        </div>
+        {% for item in contributor_list %}
+            <div class="header-top-search-post-item">
+                <a href="{{ item.url }}">{{ item.title }}</a>
+            </div>
+        {% endfor %}
+        {% if contributor_list_count > 4 %}
+            <div class="header-top-search-result-link">
+                <a href="#">Όλα  τα σχετικά προϊόντα</a>
+            </div>
+        {% endif %}
+    </div>
+{% endif %}

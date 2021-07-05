@@ -179,7 +179,6 @@ function filterCategoryProduct()
     $pagination->records($products_search_count);
     
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-        // $result = json_encode($result);
         global $twig;
 
         $result = json_encode([

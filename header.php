@@ -102,7 +102,7 @@
 									<?php
 										$image = wp_get_attachment_image_src( get_post_thumbnail_id( 3401 ), 'full' );
 									?>
-									<div class="header-top-search-result-group-list">
+									<div id="js-header-top-search-result-group-list" class="header-top-search-result-group-list">
 										<div class="header-top-search-cat">
 											<div class="header-top-search-cat-title">
 												<h3>ΘΕΜΑΤΙΚΕΣ</h3>
@@ -119,6 +119,9 @@
 											<div class="header-top-search-cat-item">
 												<span><a href="#">Ανθρωπιστικές επιστήμες</a></span><span><a href="#">Φιλολογία</a></span><span><a href="#">Λαϊκό</a></span>
 											</div>
+											<div class="header-top-search-result-link">
+												<a href="#">Όλα  τα σχετικά προϊόντα</a>
+											</div>
 										</div>
 										<div class="header-top-search-post">
 											<div class="header-top-search-post-title">
@@ -132,6 +135,26 @@
 											</div>
 											<div class="header-top-search-post-item">
 												<a href="#">Εκδόσεις Λαϊκόν</a>
+											</div>
+											<div class="header-top-search-result-link">
+												<a href="#">Όλα  τα σχετικά προϊόντα</a>
+											</div>
+										</div>
+										<div class="header-top-search-post">
+											<div class="header-top-search-post-title">
+												<h3>ΣΥΝΤΕΛΕΣΤΈΣ</h3>
+											</div>
+											<div class="header-top-search-post-item">
+												<a href="#">Εκδόσεις Λαϊκόν</a>
+											</div>
+											<div class="header-top-search-post-item">
+												<a href="#">Εκδόσεις Λαϊκόν</a>
+											</div>
+											<div class="header-top-search-post-item">
+												<a href="#">Εκδόσεις Λαϊκόν</a>
+											</div>
+											<div class="header-top-search-result-link">
+												<a href="#">Όλα  τα σχετικά προϊόντα</a>
 											</div>
 										</div>
 										<div class="header-top-search-result-group">
