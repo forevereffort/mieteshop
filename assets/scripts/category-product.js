@@ -52,7 +52,7 @@ jQuery(function(){
     }
 
     $('#js-pcat-author-list').select2({
-        placeholder: " Συγγραφείς",
+        placeholder: "Συγγραφείς",
         allowClear: true
     }).on('change', function(){
         categoryProductSearch(1);

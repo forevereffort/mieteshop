@@ -18,15 +18,37 @@
     </div>
     <div class="search-page-extra-filter-row">
         <div class="search-page-extra-filter-left">
-            <div class="search-page-extra-filter-left-label">Για να περιορίσετε τα αποτελέσματα επιλέξτε Θεματική ή Συγγραφέα  ή Εκδότη</div>
-            <div class="pcat-author-publisher-col">
-                <div class="pcat-author-publisher-select">
-                    <select>
-                        <option>Θεματικές</option>
-                        <option>Θεματικές</option>
-                        <option>Θεματικές</option>
-                        <option>Θεματικές</option>
-                    </select>
+            <div class="pcat-author-publisher-label pcat-author-publisher-label--black">Για να περιορίσετε τα αποτελέσματα επιλέξτε Θεματική ή Συγγραφέα  ή Εκδότη</div>
+            <div class="pcat-author-publisher-row">
+                <div class="pcat-author-publisher-col">
+                    <div class="pcat-author-publisher-select">
+                        <select id="js-search-product-category-list" style="width:100%;">
+                            <option></option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pcat-author-publisher-col">
+                    <div class="pcat-author-publisher-select">
+                        <select id="js-search-contributor-list" style="width:100%;">
+                            <option></option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pcat-author-publisher-col">
+                    <div class="pcat-author-publisher-select">
+                        <select id="js-search-publisher-list" style="width:100%;">
+                            <option></option>
+                            <option>A</option>
+                            <option>B</option>
+                            <option>C</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>

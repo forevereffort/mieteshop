@@ -24,7 +24,7 @@
   border-bottom: 2px solid $color-black-1;
   margin: 0 auto;
   max-width: $general-container-width;
-  padding: 0 50px;
+  padding: 40px 50px;
 }
 
 .search-page-filter-list {
@@ -48,10 +48,5 @@
 .search-page-extra-filter-row {
   display: flex;
   justify-content: space-between;
-}
-
-.search-page-extra-filter-left-label {
-  color: $color-black-1;
-  font-size: 14px;
-  line-height: 1.143;
+  margin-top: 47px;
 }
