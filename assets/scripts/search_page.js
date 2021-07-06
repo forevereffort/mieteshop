@@ -17,4 +17,12 @@ jQuery(function(){
         placeholder: "Εκδότες",
         allowClear: true
     });
+
+    jQuery('.js-search-page-filter-item').on('click', function(){
+        const slug = jQuery(this).attr('data-slug');
+        jQuery('.js-search-page-filter-item').removeClass('active');
+        jQuery(this).addClass('active');
+
+        console.log(slug);
+    })
 });

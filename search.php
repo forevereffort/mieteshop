@@ -8,12 +8,12 @@
 </section>
 <div class="search-page-filter-section">
     <div class="search-page-filter-list">
-        <div class="search-page-filter-item active">ΒΙΒΛΙΑ</div>
-        <div class="search-page-filter-item">ΑΝΤΙΚΕΙΜΕΝΑ</div>
-        <div class="search-page-filter-item">ΣΥΝΤΕΛΕΣΤΕΣ</div>
-        <div class="search-page-filter-item">ΕΚΔΟΤΕΣ/ ΟΡΓΑΝΙΣΜΟΙ</div>
-        <div class="search-page-filter-item">ΝΕΑ/ ΕΚΔΗΛΩΣΕΙΣ</div>
-        <div class="search-page-filter-item">ΘΕΜΑΤΙΚΕΣ</div>
+        <div class="js-search-page-filter-item search-page-filter-item active" data-slug="book">ΒΙΒΛΙΑ</div>
+        <div class="js-search-page-filter-item search-page-filter-item" data-slug="art-object">ΑΝΤΙΚΕΙΜΕΝΑ</div>
+        <div class="js-search-page-filter-item search-page-filter-item" data-slug="contributor">ΣΥΝΤΕΛΕΣΤΕΣ</div>
+        <div class="js-search-page-filter-item search-page-filter-item" data-slug="publisher">ΕΚΔΟΤΕΣ/ ΟΡΓΑΝΙΣΜΟΙ</div>
+        <div class="js-search-page-filter-item search-page-filter-item" data-slug="news">ΝΕΑ/ ΕΚΔΗΛΩΣΕΙΣ</div>
+        <div class="js-search-page-filter-item search-page-filter-item" data-slug="product-category">ΘΕΜΑΤΙΚΕΣ</div>
     </div>
     <div class="search-page-extra-filter-row">
         <div class="search-page-extra-filter-left">
