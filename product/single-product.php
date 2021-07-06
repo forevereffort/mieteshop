@@ -577,7 +577,7 @@
                                     </div>
                                 </div>
                                 <div class="pcat-result-item-footer-col">
-                                    <div class="pcat-result-item-footer-product-discount">-30%</div>
+                                    <?php echo display_percentage_discount( $product->get_id() ); ?>
                                 </div>
                             </div>
                         </div>
@@ -693,7 +693,7 @@
                                     </div>
                                 </div>
                                 <div class="pcat-result-item-footer-col">
-                                    <div class="pcat-result-item-footer-product-discount">-30%</div>
+                                    <?php echo display_percentage_discount( $product->get_id() ); ?>
                                 </div>
                             </div>
                         </div>

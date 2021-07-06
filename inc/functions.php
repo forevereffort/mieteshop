@@ -173,3 +173,15 @@ function pro_custom_get_availability( $availability, $_product ) {
     }
     return $availability;
 }
+
+function display_percentage_discount($postid) {
+  $regular_price = get_post_meta( $postid, '_regular_price', true);
+  $sale_price = get_post_meta( $postid, '_sale_price', true);
+  if($sale_price) {
+    $saving_percentage = round( 100 - ( $sale_price  / $regular_price * 100 ), 1 ) . '%';
+    $percentage_discount = '<div class="pcat-result-item-footer-product-discount">'.$saving_percentage.'</div>'; 
+  }  else {
+    $percentage_discount = '';
+  } 
+  return $percentage_discount;
+}
