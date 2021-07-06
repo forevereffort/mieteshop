@@ -95,7 +95,7 @@
                                 echo '<div class="single-product-role-detail__role">'.$contributorField['label'].'</div>';
                            
                                 foreach($contributors as $contributor) {
-                                    echo '<div class="single-product-role-detail__detail"><a href="'.$contributor->post_title.'">'.$contributor->post_title.'</a></div>';
+                                    echo '<div class="single-product-role-detail__detail"><a href="'.$contributor->guid.'">'.$contributor->post_title.'</a></div>';
                                 }
                                 echo '</div>';  
                             }
