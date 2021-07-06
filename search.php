@@ -9,7 +9,6 @@
 <div class="search-page-filter-section">
     <div class="search-page-filter-list">
         <div class="search-page-filter-item active">ΒΙΒΛΙΑ</div>
-        <div class="search-page-filter-item">ΜΟΥΣΙΚΗ</div>
         <div class="search-page-filter-item">ΑΝΤΙΚΕΙΜΕΝΑ</div>
         <div class="search-page-filter-item">ΣΥΝΤΕΛΕΣΤΕΣ</div>
         <div class="search-page-filter-item">ΕΚΔΟΤΕΣ/ ΟΡΓΑΝΙΣΜΟΙ</div>
