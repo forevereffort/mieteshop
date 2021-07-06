@@ -114,10 +114,10 @@
                         $regular_price = get_post_meta( get_the_ID(), '_regular_price', true);
                         $sale_price = get_post_meta( get_the_ID(), '_sale_price', true);
                         if($sale_price) { ?>
-                            <div class="single-product-regular-price"><span><?php echo wc_trim_zeros($regular_price) .get_woocommerce_currency_symbol(); ?></span></div>
-                            <div class="single-product-sale-price"><span><?php echo wc_trim_zeros($sale_price) .get_woocommerce_currency_symbol(); ?></span></div>
+                            <div class="single-product-regular-price"><span><?php echo wc_price($regular_price); ?></span></div>
+                            <div class="single-product-sale-price"><span><?php echo wc_price($sale_price); ?></span></div>
                         <?php } else { ?>
-                            <div class="single-product-sale-price"><span><?php echo wc_trim_zeros($regular_price) .get_woocommerce_currency_symbol(); ?></span></div>
+                            <div class="single-product-sale-price"><span><?php echo wc_price($regular_price); ?></span></div>
                         <?php } ?>
                         
                         <?php
