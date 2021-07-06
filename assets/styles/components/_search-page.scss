@@ -50,3 +50,36 @@
   justify-content: space-between;
   margin-top: 47px;
 }
+
+.search-result-category-section {
+  .general-container {
+    padding: 42px 0 120px;
+  }
+}
+
+.search-result-category-title {
+  h2 {
+    color: $color-black-1;
+    font-size: 18px;
+    font-weight: $font-weight-semi-bold;
+    letter-spacing: 1.8px;
+    line-height: 1.556;
+  }
+}
+
+.search-result-category-list {
+  margin-top: 45px;
+}
+
+.search-result-category-item {
+  a {
+    color: $color-black-1;
+    font-size: 22px;
+    font-weight: $font-weight-light;
+    line-height: 1.091;
+  }
+}
+
+.search-result-category-item+.search-result-category-item {
+  margin-top: 15px;
+}

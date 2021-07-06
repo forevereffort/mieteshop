@@ -84,13 +84,13 @@
 
     if ( $the_query->have_posts() ) {
 ?>
-        <section id="js-pcat-results-section" class="pcat-results-section">
+        <section id="search-result-product-section" class="pcat-results-section">
             <div class="general-container">
                 <div class="content-container">
                     <div class="pcat-results-title">
-                        <h2>ΤΙΤΛΟΙ: <span id="js-pcat-results-count"><?php echo $total_product_count; ?></span></h2>
+                        <h2>ΤΙΤΛΟΙ: <span><?php echo $total_product_count; ?></span></h2>
                     </div>
-                    <div id="js-pcat-results-row" class="pcat-results-row">
+                    <div class="pcat-results-row">
                         <?php
                             while ( $the_query->have_posts() ){
                                 $the_query->the_post();
@@ -160,7 +160,7 @@
                     ?>
                             <div class="pcat-results-footer-options">
                                 <div class="pcat-results-footer-options-col">
-                                    <div id="js-pcat-results-navigation" class="pcat-results-navigation">
+                                    <div class="pcat-results-navigation">
                                         <?php
                                             require_once dirname(__FILE__) . '/inc/zebra-pagination.php';
 
@@ -172,7 +172,7 @@
                                             $pagination->padding(false);
                                             $pagination->css_classes([
                                                 'list' => 'pcat-results-navigation-row',
-                                                'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
+                                                'list_item' => 'js-search-results-navigation-item pcat-results-navigation-item',
                                                 'anchor' => '',
                                             ]);
                                             $pagination->render();
@@ -198,7 +198,7 @@
                         <div class="pcat-results-footer-select">
                             <div class="pcat-results-footer-select-label">Προβολή</div>
                             <div class="pcat-results-footer-select-elem">
-                                <select id="js-pcat-products-per-page">
+                                <select>
                                     <option value="16">16</option>
                                     <option value="32">32</option>
                                     <option value="64">64</option>
@@ -213,5 +213,46 @@
 <?php
     }
 ?>
+<section id="js-search-result-category-section" class="search-result-category-section hide">
+    <div class="general-container">
+        <div class="content-container">
+            <div class="search-result-category-title">
+                <h2>ΣΥΝΤΕΛΕΣΤΕΣ: 486</h2>
+            </div>
+            <div class="search-result-category-list">
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+                <div class="search-result-category-item">
+                    <a href="#">Καβάφης Κ. Π. </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div id="js-search-load-spinner" class="load-spinner hide"></div>
 <?php get_footer(); ?>

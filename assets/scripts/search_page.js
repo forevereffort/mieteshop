@@ -23,6 +23,12 @@ jQuery(function(){
         jQuery('.js-search-page-filter-item').removeClass('active');
         jQuery(this).addClass('active');
 
-        console.log(slug);
+        if( slug === 'book' || slug === 'art-object' || slug === 'news'){
+            jQuery('#search-result-product-section').removeClass('hide');
+            jQuery('#js-search-result-category-section').addClass('hide');
+        } else {
+            jQuery('#js-search-result-category-section').removeClass('hide');
+            jQuery('#search-result-product-section').addClass('hide');
+        }
     })
 });
