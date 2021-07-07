@@ -26,17 +26,18 @@
     </div>
 </section>
 <section class="single-product-section">
-    <div class="content-container">
-        <div class="single-product-row">
-            <div class="single-product-left-col">
-                <div class="single-product-image">
-                    <img
-                        class="lazyload"
-                        src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                        data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                        alt="<?php echo $product->get_name(); ?>">
+    <div class="general-container">
+        <div class="content-container">
+            <div class="single-product-row">
+                <div class="single-product-left-col">
+                    <div class="single-product-image">
+                        <img
+                            class="lazyload"
+                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                            alt="<?php echo $product->get_name(); ?>">
+                    </div>
                 </div>
-            </div>
             <div class="single-product-right-col">
                 <div class="single-product-info">
                     <div class="single-product-tag-row">
@@ -135,10 +136,10 @@
                         <div class="single-product-share-col">
                             <div class="single-product-share-icon"><?php include get_template_directory() . '/assets/icons/share-icon.svg' ?></div>
                         </div>
-                        <div class="single-product-favorite-col">
-                            <div class="single-product-favorite-button">
-                                <div class="single-product-favorite-button__icon"><?php include get_template_directory() . '/assets/icons/favorite-white-icon.svg' ?></div>
-                                <div class="single-product-favorite-button__label">Προσθήκη στα αγαπημένα</div>
+                        <div class="single-product-role-detail-first">
+                            <div class="single-product-role-detail">
+                                <div class="single-product-role-detail__role">ΕΠΙΜΕΤΡΟ</div>
+                                <div class="single-product-role-detail__detail"><a href="#">Σταύρος Ζουμπουλάκης</a></div>
                             </div>
                         </div>
                         <div class="single-product-add-tocart-col">
@@ -257,6 +258,32 @@
                             <div class="single-product-detail-information-item">
                                 <div class="single-product-detail-information-item__label">ΚΩΔΙΚΟΣ ΣΤΟ ΕΥΔΟΞΟ</div>
                                 <div class="single-product-detail-information-item__value"><?php echo get_field('book_eudoxus_code'); ?></div>
+                        <div class="single-product-role-detail-row">
+                            <div class="single-product-role-detail-col">
+                                <div class="single-product-role-detail">
+                                    <div class="single-product-role-detail__role">Μετάφραση</div>
+                                    <div class="single-product-role-detail__detail"><a href="#">Γιώργος Ανδρουλιδάκης</a></div>
+                                </div>
+                            </div>
+                            <div class="single-product-role-detail-col">
+                                <div class="single-product-role-detail">
+                                    <div class="single-product-role-detail__role">προλογοσ</div>
+                                    <div class="single-product-role-detail__detail">John Doe</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-product-info-table-2-row">
+                            <div class="single-product-share-col">
+                                <div class="single-product-share-icon"><?php include get_template_directory() . '/assets/icons/share-icon.svg' ?></div>
+                            </div>
+                            <div class="single-product-favorite-col">
+                                <div class="single-product-favorite-button">
+                                    <div class="single-product-favorite-button__icon"><?php include get_template_directory() . '/assets/icons/favorite-white-icon.svg' ?></div>
+                                    <div class="single-product-favorite-button__label">Προσθήκη στα αγαπημένα</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                             </div>
                             <?php } ?>
                         </div>

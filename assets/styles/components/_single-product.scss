@@ -1,5 +1,7 @@
 .single-product-section {
-  padding: 50px 0;
+  .general-container {
+    padding: 50px 0;
+  }
 }
 
 .single-product-row {
@@ -19,6 +21,7 @@
 .single-product-image {
   img {
     box-shadow: 0 0 10px rgba($color-black, 0.5);
+    width: 100%;
   }
 }
 
@@ -546,6 +549,7 @@
 }
 
 .single-product-realted-section {
+  background-color: #dedbd4;
   border-bottom: 2px solid $color-black;
   margin: 0 auto;
   max-width: $general-container-width;
@@ -564,6 +568,7 @@
 }
 
 .single-product-recently-section {
+  background-color: #dedbd4;
   margin: 0 auto;
   max-width: $general-container-width;
   padding: 57px 0 100px;

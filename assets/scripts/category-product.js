@@ -4,13 +4,22 @@ import 'select2/dist/css/select2.css';
 
 jQuery(function(){
 
-    function categoryProductSearch(){
+    function goSearchResultTop(){
+        $('html, body').animate({
+            scrollTop: jQuery('#js-pcat-results-section').offset().top
+        }, 1000)
+    }
+
+    // get products with term, author, publisher and page
+    function categoryProductSearch(page){
         const filterTermIds = jQuery('#js-pcat-filter-detail-row').attr('data-filter-term-list');
         const filterAuthorId = jQuery('#js-pcat-author-list').val();
         const filterPublisherId = jQuery('#js-pcat-publisher-list').val();
-        const nonce = jQuery('#js-pcat-filter-detail-row').attr('data-nonce')
+        const nonce = jQuery('#js-pcat-list-title').attr('data-nonce');
+        const mainProductCatId = jQuery('#js-pcat-list-title').attr('data-main-product-cat-id');
+        const productPerPage = jQuery('#js-pcat-products-per-page').val();
 
-        jQuery('#js-category-product-filter-load-spinner').removeClass('hide')
+        jQuery('#js-category-product-filter-load-spinner').removeClass('hide');
 
         jQuery.ajax({
             type: 'get',
@@ -22,27 +31,42 @@ jQuery(function(){
                 filterTermIds,
                 filterAuthorId,
                 filterPublisherId,
+                page,
+                mainProductCatId,
+                productPerPage
             },
             success: function (response) {
                 jQuery('#js-pcat-results-row').html(response.result);
+                jQuery('#js-pcat-results-count').html(response.count);
+                jQuery('#js-pcat-results-navigation').html(response.navigation);
+
+                // add page navigation click event into new added nav html
+                addPageNavigationClickFunc();
 
                 jQuery('#js-category-product-filter-load-spinner').addClass('hide')
+
+                // smoth go to the top of result section
+                goSearchResultTop();
             }
         })
     }
 
     $('#js-pcat-author-list').select2({
-        placeholder: " Συγγραφείς",
+        placeholder: "Συγγραφείς",
         allowClear: true
     }).on('change', function(){
-        categoryProductSearch();
+        categoryProductSearch(1);
     });
 
     $('#js-pcat-publisher-list').select2({
         placeholder: "Εκδότες",
         allowClear: true
     }).on('change', function(){
-        categoryProductSearch();
+        categoryProductSearch(1);
+    });
+
+    jQuery('#js-pcat-products-per-page').on('change', function(){
+        categoryProductSearch(1);
     });
 
     function updateFilterCountLabel(){
@@ -68,7 +92,7 @@ jQuery(function(){
         });
 
         jQuery('#js-pcat-filter-detail-row').attr('data-filter-term-list', filterTermIds.join(','))
-        categoryProductSearch();
+        categoryProductSearch(1);
 
         const filterCount = jQuery('#js-pcat-extra-thematic-filter-row .pcat-extra-thematic-filter-col').length;
 
@@ -175,4 +199,21 @@ jQuery(function(){
             jQuery('#js-pcat-filter-detail-row').slideDown();
         }
     })
+
+    // page navigation click
+    function addPageNavigationClickFunc(){
+        jQuery('.js-pcat-results-navigation-item a').on('click', function(){
+
+            // check this is current page
+            if( !jQuery(this).parent().hasClass('active') ){
+                const page = jQuery(this).attr('data-page');
+
+                categoryProductSearch(page)
+            }
+
+            return false;
+        })
+    }
+
+    addPageNavigationClickFunc();
 })

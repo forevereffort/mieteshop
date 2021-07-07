@@ -367,6 +367,28 @@
 }
 
 .header-top-search-form {
+  position: relative;
+
+  &::after {
+    background-image: url('data:image/gif;base64,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');
+    background-position: center;
+    background-repeat: no-repeat;
+    content: '';
+    height: 16px;
+    opacity: 0;
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    transition: opacity 0.1s ease-out;
+    width: 16px;
+  }
+
+  &.searching {
+    &::after {
+      opacity: 1;
+    }
+  }
+
   input[type=text] {
     background-color: $color-gray;
     border: 2px solid $color-black-1;
@@ -374,13 +396,14 @@
     color: $color-black;
     font-size: 16px;
     font-weight: $font-weight-medium;
-    padding: 10px 17px 12px;
+    padding: 10px 47px 12px 17px;
     width: 100%;
   }
 }
 
 .header-top-search-result-group-list {
   margin: 0 -10px;
+  padding-top: 10px;
 }
 
 .header-top-search-result-group {
@@ -465,6 +488,10 @@
   color: $color-black;
   font-size: 10px;
   font-weight: $font-weight-light;
+  
+  a {
+    color: $color-black;
+  }
 }
 
 .header-top-search-result-item-info-title {
@@ -475,6 +502,10 @@
     font-size: 14px;
     font-weight: $font-weight-light;
     line-height: 1.143;
+  }
+  
+  a {
+    color: $color-black-1;
   }
 }
 
@@ -559,5 +590,73 @@
     font-size: 14px;
     font-weight: $font-weight-light;
     padding: 26px 10px;
+  }
+}
+
+.header-top-search-cat {
+  padding: 10px;
+}
+
+.header-top-search-cat-title {
+  h3 {
+    color: $color-black-1;
+    font-size: 14px;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.15px;
+    line-height: 1.286;
+  }
+}
+
+.header-top-search-cat-item {
+  margin-top: 8px;
+
+  span {
+    display: inline-block;
+    position: relative;
+  }
+
+  span+span {
+    padding-left: 18px;
+
+    &::before {
+      color: $color-black-1;
+      content: '/';
+      font-size: 14px;
+      left: 6px;
+      position: absolute;
+      top: 3px;
+    }
+  }
+
+  a {
+    color: $color-black-1;
+    font-size: 14px;
+    letter-spacing: 0.15px;
+    line-height: 1.286;
+  }
+}
+
+.header-top-search-post {
+  padding: 10px;
+}
+
+.header-top-search-post-title {
+  h3 {
+    color: $color-black-1;
+    font-size: 14px;
+    font-weight: $font-weight-bold;
+    letter-spacing: 0.15px;
+    line-height: 1.286;
+  }
+}
+
+.header-top-search-post-item {
+  margin-top: 8px;
+
+  a {
+    color: $color-black-1;
+    font-size: 14px;
+    letter-spacing: 0.15px;
+    line-height: 1.286;
   }
 }

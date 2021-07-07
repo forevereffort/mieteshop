@@ -1,4 +1,5 @@
 .pcat-list-section {
+  background-color: #dedbd4;
   border-bottom: 2px solid $color-black-1;
   margin: 0 auto;
   max-width: $general-container-width;
@@ -121,6 +122,10 @@
   font-size: 14px;
   font-weight: $font-weight-light;
   letter-spacing: 0.2px;
+}
+
+.pcat-author-publisher-label--black {
+  color: $color-black-1;
 }
 
 .pcat-author-publisher-des {
@@ -416,6 +421,10 @@
   height: 22px;
   margin-right: 16px;
 
+  &.disabled {
+    display: none;
+  }
+
   svg {
     float: left;
     transform: rotate(180deg);
@@ -428,6 +437,10 @@
   display: flex;
   height: 22px;
   margin-left: 16px;
+
+  &.disabled {
+    display: none;
+  }
 
   svg {
     float: left;
@@ -458,7 +471,7 @@
     color: $color-black;
     font-size: 14px;
     font-weight: $font-weight-light;
-    min-width: 45px;
+    min-width: 60px;
     padding: 7px 10px 10px;
   }
 }
@@ -488,7 +501,9 @@
 }
 
 .pcat-results-section {
-  padding: 60px 0 70px;
+  .general-container {
+    padding: 60px 0 70px;
+  }
 }
 
 .pcat-filter-detail-row {

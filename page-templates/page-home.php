@@ -11,74 +11,76 @@
             the_post();
 ?>
 <section class="three-banner">
-    <?php
-        $top_banner_2 = get_field('top_banner_2');
-        $top_banner_3 = get_field('top_banner_3');
-    ?>
-    <div class="wide-container">
-        <div class="three-banner-row">
-            <div class="three-banner-left-col">
-                <div class="three-banner-1-slider-wrapper" is="mieteshop-three-banner-1-slider">
-                    <div class="swiper-container" data-slider>
-                        <div class="swiper-wrapper">
-                            <?php
-                                if( have_rows('top_banner_1_list') ){
-                                    while( have_rows('top_banner_1_list') ){
-                                        the_row();
-                                        $image = get_sub_field('image');
-                            ?>
-                                        <div class="swiper-slide">
-                                            <div class="three-banner-1">
-                                                <img
-                                                    class="lazyload"
-                                                    src="<?php echo placeholderImage(720, 400); ?>"
-                                                    data-src="<?php echo aq_resize($image['url'], 720, 400, true); ?>"
-                                                    alt="<?php echo $image['alt']; ?>">
-                                                <div class="three-banner-1-content">
-                                                    <h2><?php echo get_sub_field('title'); ?></h2>
-                                                    <p><?php echo get_sub_field('content'); ?></p>
-                                                    <div class="three-banner-1-link">
-                                                        <?php $top_banner_1_link = get_sub_field('link'); ?>
-                                                        <a href="<?php echo $top_banner_1_link['url']; ?>"><?php echo $top_banner_1_link['title']; ?></a>
+    <div class="general-container">
+        <?php
+            $top_banner_2 = get_field('top_banner_2');
+            $top_banner_3 = get_field('top_banner_3');
+        ?>
+        <div class="wide-container">
+            <div class="three-banner-row">
+                <div class="three-banner-left-col">
+                    <div class="three-banner-1-slider-wrapper" is="mieteshop-three-banner-1-slider">
+                        <div class="swiper-container" data-slider>
+                            <div class="swiper-wrapper">
+                                <?php
+                                    if( have_rows('top_banner_1_list') ){
+                                        while( have_rows('top_banner_1_list') ){
+                                            the_row();
+                                            $image = get_sub_field('image');
+                                ?>
+                                            <div class="swiper-slide">
+                                                <div class="three-banner-1">
+                                                    <img
+                                                        class="lazyload"
+                                                        src="<?php echo placeholderImage(720, 400); ?>"
+                                                        data-src="<?php echo aq_resize($image['url'], 720, 400, true); ?>"
+                                                        alt="<?php echo $image['alt']; ?>">
+                                                    <div class="three-banner-1-content">
+                                                        <h2><?php echo get_sub_field('title'); ?></h2>
+                                                        <p><?php echo get_sub_field('content'); ?></p>
+                                                        <div class="three-banner-1-link">
+                                                            <?php $top_banner_1_link = get_sub_field('link'); ?>
+                                                            <a href="<?php echo $top_banner_1_link['url']; ?>"><?php echo $top_banner_1_link['title']; ?></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                            <?php
+                                <?php
+                                        }
                                     }
-                                }
-                            ?>
+                                ?>
+                            </div>
+                        </div>
+                        <div class="three-banner-1-slider-nav-wrapper">
+                            <div data-slider-button="prev" class="three-banner-1-slider-nav three-banner-1-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                            <div data-slider-button="next" class="three-banner-1-slider-nav three-banner-1-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
                         </div>
                     </div>
-                    <div class="three-banner-1-slider-nav-wrapper">
-                        <div data-slider-button="prev" class="three-banner-1-slider-nav three-banner-1-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
-                        <div data-slider-button="next" class="three-banner-1-slider-nav three-banner-1-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
-                    </div>
                 </div>
-            </div>
-            <div class="three-banner-right-col">
-                <?php
-                    $top_banner_2_link = get_field('top_banner_2_link');
-                    $top_banner_3_link = get_field('top_banner_3_link');
-                ?>
-                <div class="three-banner-2">
-                    <a href="<?php echo $top_banner_2_link; ?>">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage(512, 230); ?>"
-                            data-src="<?php echo aq_resize($top_banner_2['url'], 512, 230, true); ?>"
-                            alt="<?php echo $top_banner_2['alt']; ?>">
-                    </a>
-                </div>
-                <div class="three-banner-3">
-                    <div class="three-banner-3-inner">
-                        <a href="<?php echo $top_banner_3_link; ?>">
+                <div class="three-banner-right-col">
+                    <?php
+                        $top_banner_2_link = get_field('top_banner_2_link');
+                        $top_banner_3_link = get_field('top_banner_3_link');
+                    ?>
+                    <div class="three-banner-2">
+                        <a href="<?php echo $top_banner_2_link; ?>">
                             <img
                                 class="lazyload"
-                                src="<?php echo placeholderImage(512, 154); ?>"
-                                data-src="<?php echo aq_resize($top_banner_3['url'], 512, 154, true); ?>"
-                                alt="<?php echo $top_banner_3['alt']; ?>">
+                                src="<?php echo placeholderImage(512, 230); ?>"
+                                data-src="<?php echo aq_resize($top_banner_2['url'], 512, 230, true); ?>"
+                                alt="<?php echo $top_banner_2['alt']; ?>">
                         </a>
+                    </div>
+                    <div class="three-banner-3">
+                        <div class="three-banner-3-inner">
+                            <a href="<?php echo $top_banner_3_link; ?>">
+                                <img
+                                    class="lazyload"
+                                    src="<?php echo placeholderImage(512, 154); ?>"
+                                    data-src="<?php echo aq_resize($top_banner_3['url'], 512, 154, true); ?>"
+                                    alt="<?php echo $top_banner_3['alt']; ?>">
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -512,78 +514,80 @@
     </div>
 </section>
 <section class="home-blog">
-    <div class="small-container">
-        <div class="home-blog-title">
-            <h2>ΝΕΑ & ΕΚΔΗΛΩΣΕΙΣ</h2>
-        </div>
-        <div class="home-blog-slider-wrapper"  is="mieteshop-home-blog-slider">
-            <div class="swiper-container" data-slider>
-                <div class="swiper-wrapper">
-                    <?php
-                        $homepage_blog_posts_rel = get_field('homepage_blog_posts_rel');
+    <div class="general-container">
+        <div class="small-container">
+            <div class="home-blog-title">
+                <h2>ΝΕΑ & ΕΚΔΗΛΩΣΕΙΣ</h2>
+            </div>
+            <div class="home-blog-slider-wrapper"  is="mieteshop-home-blog-slider">
+                <div class="swiper-container" data-slider>
+                    <div class="swiper-wrapper">
+                        <?php
+                            $homepage_blog_posts_rel = get_field('homepage_blog_posts_rel');
 
-                        $greek_month_list = ['ΙΑΝ', 'ΦΕΒ', 'ΜΆΡ', 'ΑΠΡ', 'ΜΆΙ', 'ΙΟΎΝ', 'ΙΟΎΛ', 'ΑΎΓ', 'ΣΕΠ', 'ΟΚΤ', 'ΝΟΈ', 'ΔΕΚ'];
+                            $greek_month_list = ['ΙΑΝ', 'ΦΕΒ', 'ΜΆΡ', 'ΑΠΡ', 'ΜΆΙ', 'ΙΟΎΝ', 'ΙΟΎΛ', 'ΑΎΓ', 'ΣΕΠ', 'ΟΚΤ', 'ΝΟΈ', 'ΔΕΚ'];
 
-                        foreach( $homepage_blog_posts_rel as $blog ){
-                            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $blog->ID ), 'full' );
-                    ?>
-                            <div class="swiper-slide">
-                                <div class="home-blog-item">
-                                    <div class="home-blog-item-image">
-                                        <a href="<?php echo get_permalink($blog->ID); ?>">
-                                            <img
-                                                class="lazyload"
-                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                                alt="<?php echo $blog->post_title; ?>">
-                                        </a>
-                                    </div>
-                                    <div class="home-blog-item-meta-row">
-                                        <div class="home-blog-item-category-list">
-                                            <?php
-                                                $category_list = get_the_category($blog->ID);
-
-                                                foreach( $category_list as $category ){
-                                            ?>
-                                                    <div class="home-blog-item-category-col"><a href="<?php echo get_term_link($category->term_id); ?>"><?php echo $category->name; ?></a></div>
-                                            <?php
-                                                }
-                                            ?>
+                            foreach( $homepage_blog_posts_rel as $blog ){
+                                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $blog->ID ), 'full' );
+                        ?>
+                                <div class="swiper-slide">
+                                    <div class="home-blog-item">
+                                        <div class="home-blog-item-image">
+                                            <a href="<?php echo get_permalink($blog->ID); ?>">
+                                                <img
+                                                    class="lazyload"
+                                                    src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                    data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                    alt="<?php echo $blog->post_title; ?>">
+                                            </a>
                                         </div>
-                                        <div class="home-blog-item-date"><?php echo get_the_date('j', $blog->ID); ?> <?php echo $greek_month_list[get_the_date('n', $blog->ID) - 1]; ?> <?php echo get_the_date('Y', $blog->ID); ?></div>
-                                    </div>
-                                    <div class="home-blog-item-title">
-                                        <h3><a href="<?php echo get_permalink($blog->ID); ?>"><?php echo $blog->post_title; ?></a></h3>
-                                    </div>
-                                    <div class="home-blog-item-bottom-row">
-                                        <div class="home-blog-item-bottom-left-col">
-                                            <div class="home-blog-item-duration-row">
-                                                <div class="home-blog-item-duration-col">
-                                                    <div class="home-blog-item-duration-label">ΑΠΟ</div>
-                                                    <div class="home-blog-item-duration-date">2 ΦΕΒ 2021</div>
-                                                </div>
-                                                <div class="home-blog-item-duration-col">
-                                                    <div class="home-blog-item-duration-label">ΕΩΣ</div>
-                                                    <div class="home-blog-item-duration-date">15 ΜΑΡ 2021</div>
+                                        <div class="home-blog-item-meta-row">
+                                            <div class="home-blog-item-category-list">
+                                                <?php
+                                                    $category_list = get_the_category($blog->ID);
+
+                                                    foreach( $category_list as $category ){
+                                                ?>
+                                                        <div class="home-blog-item-category-col"><a href="<?php echo get_term_link($category->term_id); ?>"><?php echo $category->name; ?></a></div>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </div>
+                                            <div class="home-blog-item-date"><?php echo get_the_date('j', $blog->ID); ?> <?php echo $greek_month_list[get_the_date('n', $blog->ID) - 1]; ?> <?php echo get_the_date('Y', $blog->ID); ?></div>
+                                        </div>
+                                        <div class="home-blog-item-title">
+                                            <h3><a href="<?php echo get_permalink($blog->ID); ?>"><?php echo $blog->post_title; ?></a></h3>
+                                        </div>
+                                        <div class="home-blog-item-bottom-row">
+                                            <div class="home-blog-item-bottom-left-col">
+                                                <div class="home-blog-item-duration-row">
+                                                    <div class="home-blog-item-duration-col">
+                                                        <div class="home-blog-item-duration-label">ΑΠΟ</div>
+                                                        <div class="home-blog-item-duration-date">2 ΦΕΒ 2021</div>
+                                                    </div>
+                                                    <div class="home-blog-item-duration-col">
+                                                        <div class="home-blog-item-duration-label">ΕΩΣ</div>
+                                                        <div class="home-blog-item-duration-date">15 ΜΑΡ 2021</div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="home-blog-item-bottom-right-col">
-                                            <div class="home-blog-item-excerpt">
-                                                <?php echo $blog->post_excerpt; ?>
+                                            <div class="home-blog-item-bottom-right-col">
+                                                <div class="home-blog-item-excerpt">
+                                                    <?php echo $blog->post_excerpt; ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                    <?php
-                        }
-                    ?>
+                        <?php
+                            }
+                        ?>
+                    </div>
                 </div>
-            </div>
-            <div class="home-blog-slider-nav-wrapper">
-                <div data-slider-button="prev" class="home-blog-slider-nav home-blog-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
-                <div data-slider-button="next" class="home-blog-slider-nav home-blog-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+                <div class="home-blog-slider-nav-wrapper">
+                    <div data-slider-button="prev" class="home-blog-slider-nav home-blog-slider-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                    <div data-slider-button="next" class="home-blog-slider-nav home-blog-slider-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+                </div>
             </div>
         </div>
     </div>

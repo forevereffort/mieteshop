@@ -47,6 +47,12 @@ jQuery(document).ready(function(){
       jQuery('#js-header-top-search-popup').removeClass('active');
     } else {
       jQuery('#js-header-top-search-popup').addClass('active');
+
+      // after appearing auto complete box, set focus the inputfield
+      // as the popup has fade in effect for .2s, we need the time delay
+      setTimeout(function(){
+        document.getElementById('js-header-top-search-form-text').focus();
+      }, 300);
     }
   })
 

@@ -1,4 +1,5 @@
 .archive-contributor-title {
+  background-color: #dedbd4;
   border-bottom: 2px solid $color-black-1;
   margin: 0 auto;
   max-width: $general-container-width;
@@ -13,7 +14,9 @@
 }
 
 .archive-contributor-search-section {
-  padding: 50px 0 120px;
+  .general-container {
+    padding: 50px 0 120px;
+  }
 }
 
 .archive-contributor-search-letter-row {

@@ -43,32 +43,34 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <section class="pre-header">
-	<div class="pre-header-row">
-		<div class="pre-header-col">
-			<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--bus"><?php include get_template_directory() . '/assets/icons/bus-icon.svg' ?></span>Δωρεάν μεταφορικά από €40</div>
-		</div>
-		<div class="pre-header-col">
-			<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--calendar"><?php include get_template_directory() . '/assets/icons/calendar-icon.svg' ?></span>Αποστολή εντός 3 ημερών</div>
-		</div>
-		<div class="pre-header-col">
-			<div class="pre-header-item"><a href="tel:+2103221335"><span class="pre-header-item-icon pre-header-item-icon--phone"><?php include get_template_directory() . '/assets/icons/phone-icon.svg' ?></span>210 3221335</a></div>
-		</div>
-		<div class="pre-header-col">
-			<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--store"><?php include get_template_directory() . '/assets/icons/store-icon.svg' ?></span>Τα βιβλιοπωλεία μας</div>
-		</div>
-		<div class="pre-header-col">
-			<div class="pre-header-social-row">
-				<div class="pre-header-social-col">
-					<a href="<?php echo get_field('youtube_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--youtube"><?php include get_template_directory() . '/assets/icons/youtube-icon.svg' ?></div></a>
-				</div>
-				<div class="pre-header-social-col">
-					<a href="<?php echo get_field('sound_cloude_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--sound-cloude"><?php include get_template_directory() . '/assets/icons/sound-cloude-icon.svg' ?></div></a>
-				</div>
-				<div class="pre-header-social-col">
-					<a href="<?php echo get_field('facebook_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--facebook"><?php include get_template_directory() . '/assets/icons/facebook-icon.svg' ?></div></a>
-				</div>
-				<div class="pre-header-social-col">
-					<a href="<?php echo get_field('instagram_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--instagram"><?php include get_template_directory() . '/assets/icons/instagram-icon.svg' ?></div></a>
+	<div class="general-container">
+		<div class="pre-header-row">
+			<div class="pre-header-col">
+				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--bus"><?php include get_template_directory() . '/assets/icons/bus-icon.svg' ?></span>Δωρεάν μεταφορικά από €40</div>
+			</div>
+			<div class="pre-header-col">
+				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--calendar"><?php include get_template_directory() . '/assets/icons/calendar-icon.svg' ?></span>Αποστολή εντός 3 ημερών</div>
+			</div>
+			<div class="pre-header-col">
+				<div class="pre-header-item"><a href="tel:+2103221335"><span class="pre-header-item-icon pre-header-item-icon--phone"><?php include get_template_directory() . '/assets/icons/phone-icon.svg' ?></span>210 3221335</a></div>
+			</div>
+			<div class="pre-header-col">
+				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--store"><?php include get_template_directory() . '/assets/icons/store-icon.svg' ?></span>Τα βιβλιοπωλεία μας</div>
+			</div>
+			<div class="pre-header-col">
+				<div class="pre-header-social-row">
+					<div class="pre-header-social-col">
+						<a href="<?php echo get_field('youtube_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--youtube"><?php include get_template_directory() . '/assets/icons/youtube-icon.svg' ?></div></a>
+					</div>
+					<div class="pre-header-social-col">
+						<a href="<?php echo get_field('sound_cloude_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--sound-cloude"><?php include get_template_directory() . '/assets/icons/sound-cloude-icon.svg' ?></div></a>
+					</div>
+					<div class="pre-header-social-col">
+						<a href="<?php echo get_field('facebook_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--facebook"><?php include get_template_directory() . '/assets/icons/facebook-icon.svg' ?></div></a>
+					</div>
+					<div class="pre-header-social-col">
+						<a href="<?php echo get_field('instagram_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--instagram"><?php include get_template_directory() . '/assets/icons/instagram-icon.svg' ?></div></a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -92,229 +94,15 @@
 									<?php include get_template_directory() . '/assets/icons/search-icon.svg' ?>
 								</div>
 								<div id="js-header-top-search-popup" class="header-top-search-popup">
-									<div class="header-top-search-form">
+									<div id="js-header-top-search-form" class="header-top-search-form">
 										<form action="">
-											<input type="text" placeholder="λαϊκό">
+											<input type="text" id="js-header-top-search-form-text" placeholder="λαϊκό" data-nonce="<?php echo wp_create_nonce('header_top_search_nonce'); ?>">
 										</form>
 									</div>
 									<?php
 										$image = wp_get_attachment_image_src( get_post_thumbnail_id( 3401 ), 'full' );
 									?>
-									<div class="header-top-search-result-group-list">
-										<div class="header-top-search-result-group">
-											<div class="header-top-search-result-group-title">
-												<h3>ΒΙΒΛΙΑ</h3>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Δημήτριος Ι. Ζέπος</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Λαϊκή Δικαιοσύνη. Εις τας ελευθέρας περιοχάς της υπό κατοχήν Ελλάδος</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Ι. Θ. Κακριδής</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Οι αρχαίοι Έλληνες στη νεοελληνική λαϊκή παράδοση</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Σοφία Παλαμιώτη</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Λαϊκές βιβλιοθήκες. Οδηγός για την οργάνωσή τους</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Παναγιώτης Ζωγράφος</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Στοχασμός Μακρυγιάννη. Χειρ Παναγιώτη Ζωγράφου. Εικονογραφία του Εικοσιένα</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-link">
-												<a href="#">Όλα  τα σχετικά προϊόντα</a>
-											</div>
-										</div>
-										<div class="header-top-search-result-group">
-											<div class="header-top-search-result-group-title">
-												<h3>ΜΟΥΣΙΚΗ</h3>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Χριστίνα Μαξούρη</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>20 + 1 Λαϊκά Μεταπολεμικά Τραγούδια με Μπαρόκ Σύνολο</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="header-top-search-result-group">
-											<div class="header-top-search-result-group-title">
-												<h3>ΑΝΤΙΚΕΙΜΕΝΑ</h3>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Φρέντυ Κάραμποτ</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Γεύση Έρωτα</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Γκαρδιάκος</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Ο Δοσίλογος</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Ηνωμένοι Καλλιτέχναι</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Πικρό ψωμί</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Χρήστος Βλαντίκας</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Νέα μεταμφιεσμένη</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-link">
-												<a href="#">Όλα  τα Σχετικά προΙόντα</a>
-											</div>
-										</div>
-									</div>
-									<div class="header-top-search-button">
-										<a href="#">όλα τα αποτελέσματα</a>
-									</div>
+									<div id="js-header-top-search-result-group-wrapper"></div>
 								</div>
 							</div>
 						</div>

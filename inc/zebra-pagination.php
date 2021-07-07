@@ -922,19 +922,20 @@ class Zebra_Pagination {
             $css_classes = isset($this->_properties['css_classes']['list_item']) && $this->_properties['css_classes']['list_item'] != '' ? array(trim($this->_properties['css_classes']['list_item'])) : array();
 
             // if we're on the last page, the link is disabled
-            if ($this->_properties['page'] == $this->_properties['total_pages']) $css_classes[] = 'disabled';
+            if ($this->_properties['page'] < $this->_properties['total_pages']){
 
-            // generate markup
-            $output = '<li class="pcat-results-navigation-next"><a href="' .
+                // generate markup
+                $output = '<li class="js-pcat-results-navigation-item pcat-results-navigation-next ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] + 1) . '" href="' .
 
-                // the href is different if we're on the last page
-                ($this->_properties['page'] == $this->_properties['total_pages'] ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] + 1)) . '"' .
+                    // the href is different if we're on the last page
+                    ($this->_properties['page'] == $this->_properties['total_pages'] ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] + 1)) . '"' .
 
-                // add CSS classes to the anchor, if necessary
-                (isset($this->_properties['css_classes']['anchor']) && $this->_properties['css_classes']['anchor'] != '' ? ' class="' . trim($this->_properties['css_classes']['anchor']) . '"' : '') . '>' .
+                    // add CSS classes to the anchor, if necessary
+                    (isset($this->_properties['css_classes']['anchor']) && $this->_properties['css_classes']['anchor'] != '' ? ' class="' . trim($this->_properties['css_classes']['anchor']) . '"' : '') . '>' .
 
-                // reverse arrows if necessary
-                ($this->_properties['reverse'] ? $this->_properties['previous'] : $this->_properties['next']) . '</a></li>';
+                    // reverse arrows if necessary
+                    ($this->_properties['reverse'] ? $this->_properties['previous'] : $this->_properties['next']) . '</a></li>';
+            }
 
         }
 
@@ -973,7 +974,7 @@ class Zebra_Pagination {
                 $output .= '<li' .
 
                     // add CSS classes to the list item, if necessary
-                    (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a href="' . $this->_build_uri($i) . '"' .
+                    (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a data-page="' . $i . '" href="' . $this->_build_uri($i) . '"' .
 
                     // add CSS classes to the anchor, if necessary
                     (isset($this->_properties['css_classes']['anchor']) && $this->_properties['css_classes']['anchor'] != '' ? ' class="' . trim($this->_properties['css_classes']['anchor']) . '"' : '') . '>' .
@@ -1003,7 +1004,7 @@ class Zebra_Pagination {
                 $output .= '<li' .
 
                     // add CSS classes to the list item, if necessary
-                    (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a href="' . $this->_build_uri($this->_properties['reverse'] ? $this->_properties['total_pages'] : 1) . '"' .
+                    (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a data-page="' . ($this->_properties['reverse'] ? $this->_properties['total_pages'] : 1) . '" href="' . $this->_build_uri($this->_properties['reverse'] ? $this->_properties['total_pages'] : 1) . '"' .
 
                     // add CSS classes to the anchor, if necessary
                     (isset($this->_properties['css_classes']['anchor']) && $this->_properties['css_classes']['anchor'] != '' ? ' class="' . trim($this->_properties['css_classes']['anchor']) . '"' : '') . '>' .
@@ -1114,7 +1115,7 @@ class Zebra_Pagination {
                     $output .= '<li' .
 
                         // add CSS classes to the list item, if necessary
-                        (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a href="' . $this->_build_uri($i) . '"' .
+                        (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a data-page="' . $i . '" href="' . $this->_build_uri($i) . '"' .
 
                         // add CSS classes to the anchor, if necessary
                         (isset($this->_properties['css_classes']['anchor']) && $this->_properties['css_classes']['anchor'] != '' ? ' class="' . trim($this->_properties['css_classes']['anchor']) . '"' : '') . '>' .
@@ -1186,7 +1187,7 @@ class Zebra_Pagination {
                 $output .= '<li' .
 
                     // add CSS classes to the list item, if necessary
-                    (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a href="' . $this->_build_uri($this->_properties['reverse'] ? 1 : $this->_properties['total_pages']) . '"' .
+                    (!empty($css_classes) ? ' class="' . implode(' ', $css_classes) . '"' : '') . '><a data-page="' . ($this->_properties['reverse'] ? 1 : $this->_properties['total_pages']) . '" href="' . $this->_build_uri($this->_properties['reverse'] ? 1 : $this->_properties['total_pages']) . '"' .
 
                     // add CSS classes to the anchor, if necessary
                     (isset($this->_properties['css_classes']['anchor']) && $this->_properties['css_classes']['anchor'] != '' ? ' class="' . trim($this->_properties['css_classes']['anchor']) . '"' : '') . '>' .
@@ -1221,19 +1222,19 @@ class Zebra_Pagination {
             $css_classes = isset($this->_properties['css_classes']['list_item']) && $this->_properties['css_classes']['list_item'] != '' ? array(trim($this->_properties['css_classes']['list_item'])) : array();
 
             // if we're on the first page, the link is disabled
-            if ($this->_properties['page'] == 1) $css_classes[] = 'disabled';
+            if ($this->_properties['page'] > 1){
 
-            // generate markup
-            $output = '<li class="pcat-results-navigation-prev"><a href="' .
+                // generate markup
+                $output = '<li class="js-pcat-results-navigation-item pcat-results-navigation-prev ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] - 1) . '" href="' .
 
-                // the href is different if we're on the first page
-                ($this->_properties['page'] == 1 ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] - 1)) . '"' .
+                    // the href is different if we're on the first page
+                    ($this->_properties['page'] == 1 ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] - 1)) . '"' .
 
-                // add CSS classes to the anchor, if necessary
-                (isset($this->_properties['css_classes']['anchor']) && $this->_properties['css_classes']['anchor'] != '' ? ' class="' . trim($this->_properties['css_classes']['anchor']) . '"' : '') . '>' .
+                    // add CSS classes to the anchor, if necessary
+                    (isset($this->_properties['css_classes']['anchor']) && $this->_properties['css_classes']['anchor'] != '' ? ' class="' . trim($this->_properties['css_classes']['anchor']) . '"' : '') . '>' .
 
-                ($this->_properties['reverse'] ? $this->_properties['next'] : $this->_properties['previous']) . '</a></li>';
-
+                    ($this->_properties['reverse'] ? $this->_properties['next'] : $this->_properties['previous']) . '</a></li>';
+            }
         }
 
         // return the resulting string
