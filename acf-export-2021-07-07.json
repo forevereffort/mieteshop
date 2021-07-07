@@ -470,6 +470,84 @@
                 "min": "",
                 "max": "",
                 "return_format": "object"
+            },
+            {
+                "key": "field_60e32fc1a9c08",
+                "label": "Επίμετρο",
+                "name": "book_contributors_epimetro",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "contributor"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            },
+            {
+                "key": "field_60e32fe4a9c09",
+                "label": "Πρόλογος",
+                "name": "book_contributors_prologos",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "contributor"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            },
+            {
+                "key": "field_60e32ff2a9c0a",
+                "label": "Σχολιασμός",
+                "name": "book_contributors_scholiasmos",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "contributor"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
             }
         ],
         "location": [
@@ -2026,7 +2104,7 @@
                 "allow_null": 0,
                 "multiple": 0,
                 "ui": 0,
-                "return_format": "value",
+                "return_format": "array",
                 "ajax": 0,
                 "placeholder": ""
             },
@@ -2111,7 +2189,7 @@
                 "allow_null": 0,
                 "multiple": 0,
                 "ui": 0,
-                "return_format": "value",
+                "return_format": "array",
                 "ajax": 0,
                 "placeholder": ""
             },
@@ -2538,7 +2616,7 @@
                             "class": "",
                             "id": ""
                         },
-                        "width": "",
+                        "width": 600,
                         "height": ""
                     }
                 ]
@@ -2709,6 +2787,150 @@
                 "prepend": "",
                 "append": "",
                 "maxlength": ""
+            },
+            {
+                "key": "field_60e5729c74a23",
+                "label": "Συνοπτική Περιγραφή Εκδότη",
+                "name": "company_description_lead",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_60e577cc71c6c",
+                "label": "Σχετικά Άρθρα",
+                "name": "company_related_articles",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "post"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            },
+            {
+                "key": "field_60e577a8e66d0",
+                "label": "Video",
+                "name": "company_videos",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "",
+                "min": 0,
+                "max": 0,
+                "layout": "table",
+                "button_label": "",
+                "sub_fields": [
+                    {
+                        "key": "field_60e577a8e66d1",
+                        "label": "Τίτλος video",
+                        "name": "company_video_title",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_60e577a8e66d2",
+                        "label": "Περιγραφή video",
+                        "name": "company_video_description",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "maxlength": "",
+                        "rows": "",
+                        "new_lines": ""
+                    },
+                    {
+                        "key": "field_60e577a8e66d3",
+                        "label": "Φωτογραφία video",
+                        "name": "company_video_cover_image",
+                        "type": "image",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "array",
+                        "preview_size": "medium",
+                        "library": "all",
+                        "min_width": "",
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": "",
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": ""
+                    },
+                    {
+                        "key": "field_60e577a8e66d4",
+                        "label": "Ενσωμάτωση video",
+                        "name": "company_video_embed_code",
+                        "type": "oembed",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "width": "",
+                        "height": ""
+                    }
+                ]
             }
         ],
         "location": [
