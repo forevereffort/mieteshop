@@ -589,3 +589,15 @@
     letter-spacing: 1.8px;
   }
 }
+
+.single-product-role-detail-wrapper { display: flex;
+  padding: 20px 0; }
+
+.single-product-role-detail { justify-content: space-between;
+  width: 50%; }
+
+.single-product-blog-image {
+  img { max-height: 200px; }
+}
+
+.single-product-comments { padding-bottom: 10px; }

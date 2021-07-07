@@ -1,12 +1,3 @@
-<style type="text/css">
-    .single-product-role-detail-wrapper { padding: 20px 0; display: flex; }
-    .single-product-role-detail { justify-content: space-between; width: 50%; }
-    .single-product-blog-image img { max-height: 200px; }
-    .single-product-comments { padding-bottom:10px; }
-    .single-product-blog-content { margin-top: 16px; }
-    .pcat-result-item-image img { max-height: 300px; }
-</style>
-
 <?php
     global $product;
 
