@@ -38,239 +38,100 @@
                             alt="<?php echo $product->get_name(); ?>">
                     </div>
                 </div>
-            <div class="single-product-right-col">
-                <div class="single-product-info">
-                    <div class="single-product-tag-row">
-                        <?php 
-                            if($series) {
-                                foreach ( $series as $series_term ) {
-                                    echo '<div class="single-product-tag"><a href="#">'.$series_term->name .'</a></div>';
-                                }        
-                            }
-                            if($publishers) {
-                                foreach($publishers as $publisher) {
-                                    echo '<div class="single-product-tag"><a href="'.$publisher->guid.'">'.$publisher->post_title.'</a></div>';
-                                }	     
-                            }
-                            if($epiloges) { 
-                                foreach($epiloges as $epilogi) {
-                                    if ($epilogi->slug == 'nees-kyklofories') {    
-                                        echo '<div class="single-product-tag active"><a href="'.$epilogi->guid.'">'.$epilogi->name.'</a></div>';
-                                    }    
-                                }
-                            }
-                        ?>
-                    </div>
-                    <div class="single-product-author">
-                        <?php $authors = get_field('book_contributors_syggrafeas', $product->get_id()); 
-                        if($authors) {
-                            if(count($authors)>3) {
-                                $displayauthors .= 'Συλλογικό Έργο<br/>';	
-                            } else {					
-                                foreach($authors as $author) {
-                                    $displayauthors .= '<a href="'.$author->guid.'">'.$author->post_title.'</a><br/>';
-                                }	
-                            }	
-                        } else {
-                            $displayauthors = get_field('book_biblionet_writer_name');
-                        }              
-                        
-                        echo $displayauthors; ?>
-                    </div>
-                    <div class="single-product-title">
-                        <h1><?php echo get_the_title(); ?></h1>
-                    </div>
-                    <div class="single-product-subtitle">
-                        <h2><?php echo get_field('book_subtitle'); ?></h2>
-                    </div>
-                    <div class="single-product-role-detail-wrapper">
-                    <?php 
-                       $contributorFields = acf_get_fields(3523);
-                       //var_dump($contributorFields);
-                       foreach($contributorFields as $contributorField) {
-                            $contributors = get_field($contributorField['name']);
-                            if($contributors){
-                                //echo  $contributorField['name'] .'<br/>';
-
-                                echo '<div class="single-product-role-detail">';
-                                echo '<div class="single-product-role-detail__role">'.$contributorField['label'].'</div>';
-                           
-                                foreach($contributors as $contributor) {
-                                    echo '<div class="single-product-role-detail__detail"><a href="'.$contributor->guid.'">'.$contributor->post_title.'</a></div>';
-                                }
-                                echo '</div>';  
-                            }
-                                                    
-                       }
-                    ?>
-                    </div>
-                    <div class="single-product-comments">
-                        <?php echo get_field('book_comments'); ?>
-                    </div>   
-                    <div class="single-product-info-table-1-row">
-                        <div class="single-product-form-col"><span>ΜΟΡΦΗ</span></div>
-                        <div class="single-product-form-value"><span><?php echo get_field('book_cover_type'); ?></span></div>
-                        <div class="single-product-price-col"><span>ΤΙΜΗ</span></div>
-                        <?php 
-                        $regular_price = get_post_meta( get_the_ID(), '_regular_price', true);
-                        $sale_price = get_post_meta( get_the_ID(), '_sale_price', true);
-                        if($sale_price) { ?>
-                            <div class="single-product-regular-price"><span><?php echo wc_price($regular_price); ?></span></div>
-                            <div class="single-product-sale-price"><span><?php echo wc_price($sale_price); ?></span></div>
-                        <?php } else { ?>
-                            <div class="single-product-sale-price"><span><?php echo wc_price($regular_price); ?></span></div>
-                        <?php } ?>
-                        
-                        <?php
-                        if($sale_price) {
-                            $saving_percentage = round( 100 - ( $sale_price / $regular_price * 100 ), 1 ) . '%';
-                            echo '<div class="single-product-discount"><span>'.$saving_percentage.'</span></div>'; 
-                        }
-                        ?>
-                        <div class="single-product-availability"><span><?php 
-                        $availability = $product->get_availability();
-                        echo $availability['availability']; 
-                        ?></span></div>
-                    </div>
-                    <div class="single-product-info-table-2-row">
-                        <div class="single-product-share-col">
-                            <div class="single-product-share-icon"><?php include get_template_directory() . '/assets/icons/share-icon.svg' ?></div>
-                        </div>
-                        <div class="single-product-role-detail-first">
-                            <div class="single-product-role-detail">
-                                <div class="single-product-role-detail__role">ΕΠΙΜΕΤΡΟ</div>
-                                <div class="single-product-role-detail__detail"><a href="#">Σταύρος Ζουμπουλάκης</a></div>
-                            </div>
-                        </div>
-                        <div class="single-product-add-tocart-col">
-                            <a href="#">Προσθήκη στο καλάθι</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-product-tab-header-row">
-                    <div class="single-product-tab-header-item active" data-section-id="description">ΠΕΡΙΓΡΑΦΗ</div>
-                    <div class="single-product-tab-header-item" data-section-id="detail-information">ΑΝΑΛΥΤΙΚΑ ΣΤΟΙΧΕΙΑ</div>
-                </div>
-                <div class="single-product-tab-content-row">
-                    <div id="single-product-tab-content-item--description" class="single-product-tab-content-item">
-                        <div class="single-product-description"><p><?php echo get_the_content(); ?></p></div>
-                    </div>
-                    <div id="single-product-tab-content-item--detail-information" class="single-product-tab-content-item hide">
-                        <div class="single-product-detail-information-row">
-                            <?php if (get_field('book_setisbn')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ISBN</div>
-                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_isbn'); ?></div>
-                            </div>
-                            <?php } ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΔΙΑΣΤΑΣΕΙΣ</div>
-                                <div class="single-product-detail-information-item__value"><?php echo $product->get_width() .' x ' .$product->get_height(); ?> εκ.</div>
-                            </div>
-                            <?php if (get_field('book_setisbn')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ISBN SET</div>
-                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_setisbn'); ?></div>
-                            </div>
-                            <?php } ?>
-                            <?php if (get_field('book_language')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΓΛΩΣΣΑ</div>
-                                <div class="single-product-detail-information-item__value">
-                                    <?php $booklanguage = get_field('book_language'); echo $booklanguage['label']; ?>
-                                </div>
-                            </div>
-                            <?php } ?>
-                            <?php if (get_field('book_first_publish_date')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΠΡΩΤΗ ΕΚΔΟΣΗ</div>
-                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_first_publish_date'); ?></div>
-                            </div>
-                            <?php } ?>
-                            <?php if (get_field('book_original_title')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΠΡΩΤΟΤΥΠΟΣ ΤΙΤΛΟΣ</div>
-                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_original_title'); ?></div>
-                            </div>
-                            <?php } ?>
-                            <?php if (get_field('book_current_publish_date')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΤΡΕΧΟΥΣΑ ΕΚΔΟΣΗ</div>
-                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_current_publish_date'); ?></div>
-                            </div>
-                            <?php } ?>
-                            <?php if (get_field('book_original_language')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΓΛΩΣΣΑ ΠΡΩΤΟΤΥΠΟΥ</div>
-                                <div class="single-product-detail-information-item__value">
-                                    <?php $booklanguageOrig = get_field('book_original_language'); echo $booklanguageOrig['label']; ?>
-                                </div>
-                            </div>
-                            <?php } ?>
-                            <?php 
-                                if($publishers) {
-                            ?>
-                                <div class="single-product-detail-information-item">
-                                    <div class="single-product-detail-information-item__label">ΕΚΔΟΤΗΣ</div>
-                                    <div class="single-product-detail-information-item__value">
-                                    <?php 
-                                        foreach($publishers as $publisher) {
-                                            echo '<a href="'.$publisher->guid.'">'.$publisher->post_title.'</a><br/>';
-                                        }	                                    
-                                    ?></div>
-                                </div>
-                            <?php
-                                }   
-                            ?>
-                            <?php if ($product->get_weight()) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΒΑΡΟΣ</div>
-                                <div class="single-product-detail-information-item__value"><?php echo $product->get_weight(); ?> γρ.</div>
-                            </div>
-                            <?php } ?>
+                <div class="single-product-right-col">
+                    <div class="single-product-info">
+                        <div class="single-product-tag-row">
                             <?php 
                                 if($series) {
-                            ?>                
-                                <div class="single-product-detail-information-item">
-                                    <div class="single-product-detail-information-item__label">ΣΕΙΡΑ</div>
-                                    <div class="single-product-detail-information-item__value">
-                                    <?php 
-                                        foreach ( $series as $series_term ) {
-                                            echo $series_term->name .'<br/>';
-                                        }            
-                                    ?>                    
-                                    </div>
-                                </div>
+                                    foreach ( $series as $series_term ) {
+                                        echo '<div class="single-product-tag"><a href="#">'.$series_term->name .'</a></div>';
+                                    }        
+                                }
+                                if($publishers) {
+                                    foreach($publishers as $publisher) {
+                                        echo '<div class="single-product-tag"><a href="'.$publisher->guid.'">'.$publisher->post_title.'</a></div>';
+                                    }	     
+                                }
+                                if($epiloges) { 
+                                    foreach($epiloges as $epilogi) {
+                                        if ($epilogi->slug == 'nees-kyklofories') {    
+                                            echo '<div class="single-product-tag active"><a href="'.$epilogi->guid.'">'.$epilogi->name.'</a></div>';
+                                        }    
+                                    }
+                                }
+                            ?>
+                        </div>
+                        <div class="single-product-author">
+                            <?php $authors = get_field('book_contributors_syggrafeas', $product->get_id()); 
+                            if($authors) {
+                                if(count($authors)>3) {
+                                    $displayauthors .= 'Συλλογικό Έργο<br/>';	
+                                } else {					
+                                    foreach($authors as $author) {
+                                        $displayauthors .= '<a href="'.$author->guid.'">'.$author->post_title.'</a><br/>';
+                                    }	
+                                }	
+                            } else {
+                                $displayauthors = get_field('book_biblionet_writer_name');
+                            }              
+                            
+                            echo $displayauthors; ?>
+                        </div>
+                        <div class="single-product-title">
+                            <h1><?php echo get_the_title(); ?></h1>
+                        </div>
+                        <div class="single-product-subtitle">
+                            <h2><?php echo get_field('book_subtitle'); ?></h2>
+                        </div>
+                        <div class="single-product-role-detail-wrapper">
+                        <?php 
+                        $contributorFields = acf_get_fields(3523);
+                        //var_dump($contributorFields);
+                        foreach($contributorFields as $contributorField) {
+                            //REMEMBER TO REMOVE Συγγραφέας FROM CONTRIBUTOR SECTION
+                                $contributors = get_field($contributorField['name']);
+                                if($contributors){
+                                    //echo  $contributorField['name'] .'<br/>';
+
+                                    echo '<div class="single-product-role-detail">';
+                                    echo '<div class="single-product-role-detail__role">'.$contributorField['label'].'</div>';
+                            
+                                    foreach($contributors as $contributor) {
+                                        echo '<div class="single-product-role-detail__detail"><a href="'.$contributor->guid.'">'.$contributor->post_title.'</a></div>';
+                                    }
+                                    echo '</div>';  
+                                }
+                                                        
+                        }
+                        ?>
+                        </div>
+                        <div class="single-product-comments">
+                            <?php echo get_field('book_comments'); ?>
+                        </div>   
+                        <div class="single-product-info-table-1-row">
+                            <div class="single-product-form-col"><span>ΜΟΡΦΗ</span></div>
+                            <div class="single-product-form-value"><span><?php echo get_field('book_cover_type'); ?></span></div>
+                            <div class="single-product-price-col"><span>ΤΙΜΗ</span></div>
+                            <?php 
+                            $regular_price = get_post_meta( get_the_ID(), '_regular_price', true);
+                            $sale_price = get_post_meta( get_the_ID(), '_sale_price', true);
+                            if($sale_price) { ?>
+                                <div class="single-product-regular-price"><span><?php echo wc_price($regular_price); ?></span></div>
+                                <div class="single-product-sale-price"><span><?php echo wc_price($sale_price); ?></span></div>
+                            <?php } else { ?>
+                                <div class="single-product-sale-price"><span><?php echo wc_price($regular_price); ?></span></div>
                             <?php } ?>
-                            <?php if (get_field('book_miet_code')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΚΩΔΙΚΟΣ ΜΙΕΤ</div>
-                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_miet_code'); ?></div>
-                            </div>
-                            <?php } ?>
-                            <?php if (get_field('book_page_number')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΑΡΙΘΜΟΣ ΣΕΛΙΔΩΝ</div>
-                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_page_number'); ?></div>
-                            </div>
-                            <?php } ?>
-                            <?php if (get_field('book_eudoxus_code')) { ?>
-                            <div class="single-product-detail-information-item">
-                                <div class="single-product-detail-information-item__label">ΚΩΔΙΚΟΣ ΣΤΟ ΕΥΔΟΞΟ</div>
-                                <div class="single-product-detail-information-item__value"><?php echo get_field('book_eudoxus_code'); ?></div>
-                        <div class="single-product-role-detail-row">
-                            <div class="single-product-role-detail-col">
-                                <div class="single-product-role-detail">
-                                    <div class="single-product-role-detail__role">Μετάφραση</div>
-                                    <div class="single-product-role-detail__detail"><a href="#">Γιώργος Ανδρουλιδάκης</a></div>
-                                </div>
-                            </div>
-                            <div class="single-product-role-detail-col">
-                                <div class="single-product-role-detail">
-                                    <div class="single-product-role-detail__role">προλογοσ</div>
-                                    <div class="single-product-role-detail__detail">John Doe</div>
-                                </div>
-                            </div>
+                            
+                            <?php
+                            if($sale_price) {
+                                $saving_percentage = round( 100 - ( $sale_price / $regular_price * 100 ), 1 ) . '%';
+                                echo '<div class="single-product-discount"><span>'.$saving_percentage.'</span></div>'; 
+                            }
+                            ?>
+                            <div class="single-product-availability"><span><?php 
+                            $availability = $product->get_availability();
+                            echo $availability['availability']; 
+                            ?></span></div>
                         </div>
                         <div class="single-product-info-table-2-row">
                             <div class="single-product-share-col">
@@ -282,10 +143,125 @@
                                     <div class="single-product-favorite-button__label">Προσθήκη στα αγαπημένα</div>
                                 </div>
                             </div>
+                            <div class="single-product-add-tocart-col">
+                                <a href="#">Προσθήκη στο καλάθι</a>
+                            </div>
                         </div>
                     </div>
+                    <div class="single-product-tab-header-row">
+                        <div class="single-product-tab-header-item active" data-section-id="description">ΠΕΡΙΓΡΑΦΗ</div>
+                        <div class="single-product-tab-header-item" data-section-id="detail-information">ΑΝΑΛΥΤΙΚΑ ΣΤΟΙΧΕΙΑ</div>
+                    </div>
+                    <div class="single-product-tab-content-row">
+                        <div id="single-product-tab-content-item--description" class="single-product-tab-content-item">
+                            <div class="single-product-description"><p><?php echo get_the_content(); ?></p></div>
+                        </div>
+                        <div id="single-product-tab-content-item--detail-information" class="single-product-tab-content-item hide">
+                            <div class="single-product-detail-information-row">
+                                <?php if (get_field('book_setisbn')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ISBN</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo get_field('book_isbn'); ?></div>
+                                </div>
+                                <?php } ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΔΙΑΣΤΑΣΕΙΣ</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo $product->get_width() .' x ' .$product->get_height(); ?> εκ.</div>
+                                </div>
+                                <?php if (get_field('book_setisbn')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ISBN SET</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo get_field('book_setisbn'); ?></div>
+                                </div>
+                                <?php } ?>
+                                <?php if (get_field('book_language')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΓΛΩΣΣΑ</div>
+                                    <div class="single-product-detail-information-item__value">
+                                        <?php $booklanguage = get_field('book_language'); echo $booklanguage['label']; ?>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                                <?php if (get_field('book_first_publish_date')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΠΡΩΤΗ ΕΚΔΟΣΗ</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo get_field('book_first_publish_date'); ?></div>
+                                </div>
+                                <?php } ?>
+                                <?php if (get_field('book_original_title')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΠΡΩΤΟΤΥΠΟΣ ΤΙΤΛΟΣ</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo get_field('book_original_title'); ?></div>
+                                </div>
+                                <?php } ?>
+                                <?php if (get_field('book_current_publish_date')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΤΡΕΧΟΥΣΑ ΕΚΔΟΣΗ</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo get_field('book_current_publish_date'); ?></div>
+                                </div>
+                                <?php } ?>
+                                <?php if (get_field('book_original_language')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΓΛΩΣΣΑ ΠΡΩΤΟΤΥΠΟΥ</div>
+                                    <div class="single-product-detail-information-item__value">
+                                        <?php $booklanguageOrig = get_field('book_original_language'); echo $booklanguageOrig['label']; ?>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                                <?php 
+                                    if($publishers) {
+                                ?>
+                                    <div class="single-product-detail-information-item">
+                                        <div class="single-product-detail-information-item__label">ΕΚΔΟΤΗΣ</div>
+                                        <div class="single-product-detail-information-item__value">
+                                        <?php 
+                                            foreach($publishers as $publisher) {
+                                                echo '<a href="'.$publisher->guid.'">'.$publisher->post_title.'</a><br/>';
+                                            }	                                    
+                                        ?></div>
+                                    </div>
+                                <?php
+                                    }   
+                                ?>
+                                <?php if ($product->get_weight()) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΒΑΡΟΣ</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo $product->get_weight(); ?> γρ.</div>
+                                </div>
+                                <?php } ?>
+                                <?php 
+                                    if($series) {
+                                ?>                
+                                    <div class="single-product-detail-information-item">
+                                        <div class="single-product-detail-information-item__label">ΣΕΙΡΑ</div>
+                                        <div class="single-product-detail-information-item__value">
+                                        <?php 
+                                            foreach ( $series as $series_term ) {
+                                                echo $series_term->name .'<br/>';
+                                            }            
+                                        ?>                    
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                                <?php if (get_field('book_miet_code')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΚΩΔΙΚΟΣ ΜΙΕΤ</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo get_field('book_miet_code'); ?></div>
+                                </div>
+                                <?php } ?>
+                                <?php if (get_field('book_page_number')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΑΡΙΘΜΟΣ ΣΕΛΙΔΩΝ</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo get_field('book_page_number'); ?></div>
+                                </div>
+                                <?php } ?>
+                                <?php if (get_field('book_eudoxus_code')) { ?>
+                                <div class="single-product-detail-information-item">
+                                    <div class="single-product-detail-information-item__label">ΚΩΔΙΚΟΣ ΣΤΟ ΕΥΔΟΞΟ</div>
+                                    <div class="single-product-detail-information-item__value"><?php echo get_field('book_eudoxus_code'); ?></div>
+                                </div>
+                                <?php } ?>
                             </div>
-                            <?php } ?>
                         </div>
                     </div>
                 </div>
