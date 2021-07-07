@@ -152,115 +152,41 @@
     </div>
 </div>
 <?php if($post->ID == 733 ) { //only show series for publisher MIET ?>
-<section class="single-product-series-section">
+    <section class="single-product-series-section">
     <div class="small-container">
         <div class="single-product-series-title">
             <h2>ΣΕΙΡΕΣ</h2>
         </div>
+        <?php 
+        $series = get_terms( array( 
+            'taxonomy' => 'series',
+            'hide_empty' => false,       
+        ) );
+        ?>
         <div class="single-product-series-row">
-            <div class="single-product-series-col">
-                <div class="single-product-series-item">
-                    <div class="single-product-series-item-image">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                            alt="dump">
-                    </div>
-                    <div class="single-product-series-item-title">
-                        <h3>Minima</h3>
-                    </div>
-                    <div class="single-product-series-item-info">
-                        <p><strong>16</strong> τίτλοι</p>
-                    </div>
+        <?php
+        foreach($series as $series_term) {
+            ?>
+            <div class="single-product-series-item">
+                <div class="single-product-series-item-image">
+                <?php $series_image = get_field('series_image', 'series_'.$series_term->term_id); ?>
+                    <a href="<?php esc_url( get_term_link( $series_term->term_id ) ); ?>"><img class="lazyload" src="<?php echo $series_image['url']; ?>" alt="<?php echo $series_term->name; ?>" /></a>    
+                       <!--img
+                        class="lazyload"
+                        src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
+                        data-src="<?php echo aq_resize('', 300, 160, true); ?>"
+                        alt="dump"-->
+                </div>
+                <div class="single-product-series-item-title">
+                    <h3><a href="<?php esc_url( get_term_link( $series_term->term_id ) ); ?>"><?php echo $series_term->name; ?></a></h3>
+                </div>
+                <div class="single-product-series-item-info">
+                    <p><strong><?php echo $series_term->count; ?></strong> τίτλοι</p>
                 </div>
             </div>
-            <div class="single-product-series-col">
-                <div class="single-product-series-item">
-                    <div class="single-product-series-item-image">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                            alt="dump">
-                    </div>
-                    <div class="single-product-series-item-title">
-                        <h3>Demo</h3>
-                    </div>
-                    <div class="single-product-series-item-info">
-                        <p><strong>3</strong> τίτλοι</p>
-                    </div>
-                </div>
-            </div>
-            <div class="single-product-series-col">
-                <div class="single-product-series-item">
-                    <div class="single-product-series-item-image">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                            alt="dump">
-                    </div>
-                    <div class="single-product-series-item-title">
-                        <h3>Αρχειοθήκη</h3>
-                    </div>
-                    <div class="single-product-series-item-info">
-                        <p><strong>3</strong> τίτλοι</p>
-                    </div>
-                </div>
-            </div>
-            <div class="single-product-series-col">
-                <div class="single-product-series-item">
-                    <div class="single-product-series-item-image">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                            alt="dump">
-                    </div>
-                    <div class="single-product-series-item-title">
-                        <h3>ΑΦΕΛΙΑ</h3>
-                    </div>
-                    <div class="single-product-series-item-info">
-                        <p><strong>3</strong> τίτλοι</p>
-                    </div>
-                </div>
-            </div>
-            <div class="single-product-series-col">
-                <div class="single-product-series-item">
-                    <div class="single-product-series-item-image">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                            alt="dump">
-                    </div>
-                    <div class="single-product-series-item-title">
-                        <h3>Βυζαντινή & Νεοελληνική βιβλιοθήκη</h3>
-                    </div>
-                    <div class="single-product-series-item-info">
-                        <p><strong>3</strong> τίτλοι</p>
-                    </div>
-                </div>
-            </div>
-            <div class="single-product-series-col">
-                <div class="single-product-series-item">
-                    <div class="single-product-series-item-image">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                            data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                            alt="dump">
-                    </div>
-                    <div class="single-product-series-item-title">
-                        <h3>Νεοελληνική Προσωπογραφία</h3>
-                    </div>
-                    <div class="single-product-series-item-info">
-                        <p><strong>3</strong> τίτλοι</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <?php
+        }    
+        ?>
     </div>
 </section>
 <?php } ?>
