@@ -68,27 +68,22 @@
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
                             <?php
-                                for( $i = 0; $i < 5; $i++ ){
+                                $related_articles = get_field('company_related_articles');
+                                foreach($related_articles as $article) {
                             ?>
-                                    <div class="swiper-slide">
-                                        <div class="single-product-video-item-row">
-                                            <div class="single-product-video-item-left-col">
-                                                <?php $video_image_url = get_template_directory_uri() . '/assets/images/video.png'; ?>
-                                                <div class="single-product-video-image-wrapper">
-                                                    <img
-                                                        class="lazyload"
-                                                        src="<?php echo placeholderImage(606, 241); ?>"
-                                                        data-src="<?php echo $video_image_url; ?>"
-                                                        alt="video image">
-                                                    <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
-                                                    <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
-                                                </div>
+                                    <div class="single-product-blog-item swiper-slide">
+                                        <div class="single-product-blog-item-inner">
+                                            <?php $blog_image_url = wp_get_attachment_url( get_post_thumbnail_id($article->ID) ); //get_template_directory_uri() . '/assets/images/blog.png'; ?>
+                                            <div class="single-product-blog-image">
+                                                <a href="<?php echo $article->guid; ?>"><img
+                                                    class="lazyload"
+                                                    src="<?php echo placeholderImage(399, 261); ?>"
+                                                    data-src="<?php echo $blog_image_url; ?>"
+                                                    alt="video image"></a>
                                             </div>
-                                            <div class="single-product-video-item-right-col">
-                                                <div class="single-product-video-item-content">
-                                                    <h2>Παρουσίαση της σειράς «ΜΙΝΙΜΑ»</h2>
-                                                    <p>Στο βιβλιοπωλείο του ΜΙΕΤ ( Tσιμισκή 11, Θεσσαλονίκη), πραγματοποιήθηκε η παρουσίαση της σειράς "minima" των εκδόσεων του Μορφωτικού Ιδρύματος Εθνικής Τραπέζης, την Πέμπτη 19 Οκτωβρίου 2017.</p>
-                                                </div>
+                                            <div class="single-product-blog-content">
+                                                <h2><?php echo '<a href="'.$article->guid.'">' .$article->post_title .'</a>'; ?></h2>
+                                                <p><?php echo $article->post_excerpt; ?></p>
                                             </div>
                                         </div>
                                     </div>
