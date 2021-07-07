@@ -617,3 +617,13 @@
 .single-product-blog-content { 
   margin-top: 16px; 
 }
+
+.single-product-series-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.single-product-series-item {
+  width: 33.33%;
+  padding-bottom: 30px;
+}
