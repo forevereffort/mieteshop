@@ -68,6 +68,44 @@
                     <div class="swiper-container" data-slider>
                         <div class="swiper-wrapper">
                             <?php
+                            if( have_rows('company_videos') ) { 
+                                while( have_rows('company_videos') ) : the_row();  
+                            ?>
+                                    <div class="swiper-slide">
+                                        <div class="single-product-video-item-row">
+                                            <div class="single-product-video-item-left-col">
+                                                <?php echo get_sub_field('company_video_embed_code'); ?>    
+                                                <?php //$video_image_url = get_template_directory_uri() . '/assets/images/video.png'; 
+                                                    $video_image_url = get_sub_field('company_video_cover_image');
+                                                ?>
+                                                <div class="single-product-video-image-wrapper">
+                                                    <!--img class="lazyload" src="<?php echo $video_image_url; ?>" data-src="<?php echo $video_image_url; ?>" alt="video image"-->
+                                                    <!--div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
+                                                    <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div-->
+                                                </div>
+                                            </div>
+                                            <div class="single-product-video-item-right-col">
+                                                <div class="single-product-video-item-content">
+                                                    <h2><?php echo get_sub_field('company_video_title'); ?></h2>
+                                                    <p><?php echo get_sub_field('company_video_description'); ?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php
+                                endwhile;
+                            }                            
+                            ?>
+                        </div>
+                    </div>
+                    <div class="single-product-video-pagination-wrapper" data-pagination></div>
+                </div>
+            </div>
+            <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
+                <div class="single-product-blog-wrapper" is="mieteshop-product-blog-slider">
+                    <div class="swiper-container" data-slider>
+                        <div class="swiper-wrapper">
+                            <?php
                                 $related_articles = get_field('company_related_articles');
                                 foreach($related_articles as $article) {
                             ?>
@@ -84,37 +122,6 @@
                                             <div class="single-product-blog-content">
                                                 <h2><?php echo '<a href="'.$article->guid.'">' .$article->post_title .'</a>'; ?></h2>
                                                 <p><?php echo $article->post_excerpt; ?></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                            <?php
-                                }
-                            ?>
-                        </div>
-                    </div>
-                    <div class="single-product-video-pagination-wrapper" data-pagination></div>
-                </div>
-            </div>
-            <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
-                <div class="single-product-blog-wrapper" is="mieteshop-product-blog-slider">
-                    <div class="swiper-container" data-slider>
-                        <div class="swiper-wrapper">
-                            <?php
-                                for( $i = 0; $i < 5; $i++ ){
-                            ?>
-                                    <div class="single-product-blog-item swiper-slide">
-                                        <div class="single-product-blog-item-inner">
-                                            <?php $blog_image_url = get_template_directory_uri() . '/assets/images/blog.png'; ?>
-                                            <div class="single-product-blog-image">
-                                                <img
-                                                    class="lazyload"
-                                                    src="<?php echo placeholderImage(399, 261); ?>"
-                                                    data-src="<?php echo $blog_image_url; ?>"
-                                                    alt="video image">
-                                            </div>
-                                            <div class="single-product-blog-content">
-                                                <h2>Ακαδημία Αθηνών Α</h2>
-                                                <p>Δοκιμαστικό κείμενο</p>
                                             </div>
                                         </div>
                                     </div>
