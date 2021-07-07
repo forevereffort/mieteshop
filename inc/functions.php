@@ -2,6 +2,9 @@
 // Disable Gutenberg
 // add_filter( 'use_block_editor_for_post_type', '__return_false' );
 
+add_filter( 'jetpack_sharing_counts', '__return_false', 99 );
+add_filter( 'jetpack_implode_frontend_css', '__return_false', 99 );
+
 add_filter('use_block_editor_for_post_type', 'prefix_disable_gutenberg', 10, 2);
 function prefix_disable_gutenberg($current_status, $post_type){
   // Use your post type key instead of 'product'
