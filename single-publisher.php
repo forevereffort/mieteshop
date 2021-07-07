@@ -28,7 +28,7 @@
                 </div>
                 <div class="single-publisher-image-lead-right">
                     <div class="single-publisher-image-lead-content">
-                        <?php echo get_field('company_description_lead'); ?>
+                        <p><?php echo get_field('company_description_lead'); ?></p>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
 <section class="single-publisher-text-caption-section">
     <div class="content-container">
         <div class="single-publisher-text-caption-row">
-            <div class="single-publisher-text-caption-left">Λεζάντα φωτογραφίας με credit</div>
+            <div class="single-publisher-text-caption-left"></div>
             <div class="single-publisher-text-caption-right">
                 <div class="single-publisher-text-caption-content">
                     <?php echo get_the_content(); ?>
@@ -142,6 +142,13 @@
                 $args = [
                     'post_type' => 'product',
                     'posts_per_page' => 4,
+                    'meta_query'     => array(
+                        array(
+                            'key'     => 'book_publishers',
+                            'value'   => $post->ID,
+                            'compare' => 'LIKE'
+                        ),
+                    ) 
                 ];
             
                 show_books($args);
