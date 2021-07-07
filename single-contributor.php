@@ -158,6 +158,7 @@
     </div>
 </div>
 <div class="single-product-recently-section">
+    <?php if ( get_field('contributor_related_books') ) { ?> 
     <div class="content-container">
         <div class="single-product-recently-title">
             <h2>ΣΧΕΤΙΚΟΙ ΤΙΤΛΟΙ</h2>
@@ -226,6 +227,7 @@
             ?>
         </div>
     </div>
+    <?php } ?>
 </div>
 <?php
         }
