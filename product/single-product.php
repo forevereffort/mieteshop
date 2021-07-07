@@ -517,67 +517,70 @@
                 //    'posts_per_page' => 16,
                 //];
                 $related_posts = new WP_Query( $args );
-            
-                while ( $related_posts->have_posts() ){
-                    $related_posts->the_post();
-                    global $product;
+                
+                if ( $related_posts->have_posts() ) {
+                    while ( $related_posts->have_posts() ){
+                        $related_posts->the_post();
+                        global $product;
 
-                    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-                    $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+                        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
+                        $authors = get_field('book_contributors_syggrafeas', $product->get_id());
             ?>
-                    <div class="pcat-results-col">
-                        <div class="pcat-result-item">
-                            <div class="pcat-result-item-info">
-                                <div class="pcat-result-item-image">
-                                    <a href="<?php echo get_permalink($product->get_id()); ?>">
-                                        <img
-                                            class="lazyload"
-                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                            alt="<?php echo $product->get_name(); ?>">
-                                    </a>
-                                </div>
-                                <div class="pcat-result-item-meta-row">
-                                    <div class="pcat-result-item-meta-col">
-                                        <div class="pcat-result-item-favorite">
-                                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
+                        <div class="pcat-results-col">
+                            <div class="pcat-result-item">
+                                <div class="pcat-result-item-info">
+                                    <div class="pcat-result-item-image">
+                                        <a href="<?php echo get_permalink($product->get_id()); ?>">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $product->get_name(); ?>">
+                                        </a>
+                                    </div>
+                                    <div class="pcat-result-item-meta-row">
+                                        <div class="pcat-result-item-meta-col">
+                                            <div class="pcat-result-item-favorite">
+                                                <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
+                                            </div>
+                                        </div>
+                                        <div class="pcat-result-item-meta-col">
+                                            <div class="pcat-result-item-busket">
+                                                <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="pcat-result-item-meta-col">
-                                        <div class="pcat-result-item-busket">
-                                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                                    if( !empty($authors) ){
-                                        echo '<div class="pcat-result-item-author-list">';
-                                        if( count($authors) > 3 ){
-                                            echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
-                                        } else {
-                                            foreach( $authors as $author ){
-                                                echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                    <?php
+                                        if( !empty($authors) ){
+                                            echo '<div class="pcat-result-item-author-list">';
+                                            if( count($authors) > 3 ){
+                                                echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
+                                            } else {
+                                                foreach( $authors as $author ){
+                                                    echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                                }
                                             }
+                                            echo '</div>';
                                         }
-                                        echo '</div>';
-                                    }
-                                ?>
-                                <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($product->get_id()); ?>"><?php echo $product->get_name(); ?></a></h3></div>
-                            </div>
-                            <div class="pcat-result-item-footer-row">
-                                <div class="pcat-result-item-footer-col">
-                                    <div class="pcat-result-item-footer-product-price">
-                                        <?php echo $product->get_price_html(); ?>
-                                    </div>
+                                    ?>
+                                    <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($product->get_id()); ?>"><?php echo $product->get_name(); ?></a></h3></div>
                                 </div>
-                                <div class="pcat-result-item-footer-col">
-                                    <?php echo display_percentage_discount( $product->get_id() ); ?>
+                                <div class="pcat-result-item-footer-row">
+                                    <div class="pcat-result-item-footer-col">
+                                        <div class="pcat-result-item-footer-product-price">
+                                            <?php echo $product->get_price_html(); ?>
+                                        </div>
+                                    </div>
+                                    <div class="pcat-result-item-footer-col">
+                                        <?php echo display_percentage_discount( $product->get_id() ); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
             <?php
+                    }
                 }
+                
                 wp_reset_query();
             ?>
         </div>
