@@ -21,10 +21,9 @@
 
 .search-page-filter-section {
   background-color: $color-white;
-  border-bottom: 2px solid $color-black-1;
   margin: 0 auto;
   max-width: $general-container-width;
-  padding: 40px 50px;
+  padding: 40px 50px 47px;
 }
 
 .search-page-filter-list {
@@ -45,14 +44,21 @@
   }
 }
 
+.search-page-filter-options-section {
+  background-color: $color-white;
+  margin: 0 auto;
+  max-width: $general-container-width;
+  padding: 0 50px 40px;
+}
+
 .search-page-extra-filter-row {
   display: flex;
   justify-content: space-between;
-  margin-top: 47px;
 }
 
 .search-result-category-section {
   .general-container {
+    border-top: 2px solid $color-black-1;
     padding: 42px 0 120px;
   }
 }
@@ -82,4 +88,11 @@
 
 .search-result-category-item+.search-result-category-item {
   margin-top: 15px;
+}
+
+.search-results-section {
+  .general-container {
+    border-top: 2px solid $color-black-1;
+    padding: 60px 0 70px;
+  }
 }
