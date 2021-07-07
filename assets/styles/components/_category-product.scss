@@ -309,13 +309,14 @@
   display: flex;
   height: 300px;
 
-  img, a img {
+  img,
+  a img {
     box-shadow: 0 0 10px rgba($color-black, 0.5);
     height: auto;
     max-height: 300px;
+    max-height: 300px;
     max-width: 100%;
     width: 100%;
-    max-height: 300px;
   }
 }
 

@@ -602,28 +602,34 @@
 
 .single-product-comments { padding-bottom: 10px; }
 
-.single-product-role-detail-wrapper { 
-  padding: 20px 0; display: flex; 
+.single-product-role-detail-wrapper { display: flex;
+  padding: 20px 0; 
 }
+
 .single-product-role-detail { 
-  justify-content: space-between; width: 50%; 
+  justify-content: space-between;
+  width: 50%; 
 }
+
 .single-product-blog-image img { 
   max-height: 200px; 
 }
+
 .single-product-comments { 
-  padding-bottom:10px; 
+  padding-bottom: 10px; 
 }
+
 .single-product-blog-content { 
   margin-top: 16px; 
 }
 
 .single-product-series-wrapper {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
+
 .single-product-series-item {
-  width: 33.33%;
   padding-bottom: 30px;
+  width: 33.33%;
 }
