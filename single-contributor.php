@@ -26,12 +26,13 @@
                             alt="<?php echo $post->post_title; ?>">
                     </div>
                 </div>
-            </div>
+
             <div class="single-contributor-image-lead-right">
                 <div class="single-contributor-image-lead-content">
                     <p><?php echo get_the_content(); ?></p>
                 </div>
             </div>
+            </div>            
         </div>
     </div>
 </section>
