@@ -151,6 +151,7 @@
         </div>
     </div>
 </div>
+<?php if($post->ID == 733 ) { //only show series for publisher MIET ?>
 <section class="single-product-series-section">
     <div class="small-container">
         <div class="single-product-series-title">
@@ -262,6 +263,7 @@
         </div>
     </div>
 </section>
+<?php } ?>
 <section class="home-authors-section">
     <div class="small-container">
         <div class="home-authors-title">
