@@ -460,6 +460,59 @@
     </div>
 </section>
 <?php } ?>
+<?php
+    // Related products are found from category and tag
+    $tags_array = array(0);
+    $cats_array = array(0);
+    // Get tags
+    $terms = wp_get_post_terms($product->id, 'product_tag');
+    foreach ( $terms as $term ) $tags_array[] = $term->term_id;
+    // Get categories
+    $terms = wp_get_post_terms($product->id, 'product_cat');
+    foreach ( $terms as $key => $term ){
+        $check_for_children = get_categories(array('parent' => $term->term_id, 'taxonomy' => 'product_cat'));
+        if(empty($check_for_children)){
+            $cats_array[] = $term->term_id;
+        }
+    }
+    // Don't bother if none are set
+    if ( sizeof($cats_array)==1 && sizeof($tags_array)==1 ) return array();
+    // Meta query
+    $meta_query = array();
+    //$meta_query[] = $woocommerce->query->visibility_meta_query();
+    //$meta_query[] = $woocommerce->query->stock_status_meta_query();
+    //$meta_query   = array_filter( $meta_query );
+    // Get the posts
+    $args = array(
+            'orderby'        => 'rand',
+            'posts_per_page' => 16,
+            'post_type'      => 'product',
+            'fields'         => 'ids',
+            'meta_query'     => $meta_query,
+            'tax_query'      => array(
+                'relation'      => 'OR',
+                array(
+                    'taxonomy'     => 'product_cat',
+                    'field'        => 'id',
+                    'terms'        => $cats_array
+                ),
+                array(
+                    'taxonomy'     => 'product_tag',
+                    'field'        => 'id',
+                    'terms'        => $tags_array
+                )
+            )
+        );
+    //$related_posts = array_diff( $related_posts, array( $product->id ), $product->get_upsells() );
+
+    //$args = [
+    //    'post_type' => 'product',
+    //    'posts_per_page' => 16,
+    //];
+    $related_posts = new WP_Query( $args );
+    
+    if ( $related_posts->have_posts() ) {
+?>
 <div class="single-product-realted-section">
     <div class="content-container">
         <div class="single-product-realted-title">
@@ -467,118 +520,65 @@
         </div>
         <div class="pcat-results-row">
             <?php
+                while ( $related_posts->have_posts() ){
+                    $related_posts->the_post();
+                    global $product;
 
-                // Related products are found from category and tag
-                $tags_array = array(0);
-                $cats_array = array(0);
-                // Get tags
-                $terms = wp_get_post_terms($product->id, 'product_tag');
-                foreach ( $terms as $term ) $tags_array[] = $term->term_id;
-                // Get categories
-                $terms = wp_get_post_terms($product->id, 'product_cat');
-                foreach ( $terms as $key => $term ){
-                    $check_for_children = get_categories(array('parent' => $term->term_id, 'taxonomy' => 'product_cat'));
-                    if(empty($check_for_children)){
-                        $cats_array[] = $term->term_id;
-                    }
-                }
-                // Don't bother if none are set
-                if ( sizeof($cats_array)==1 && sizeof($tags_array)==1 ) return array();
-                // Meta query
-                $meta_query = array();
-                //$meta_query[] = $woocommerce->query->visibility_meta_query();
-                //$meta_query[] = $woocommerce->query->stock_status_meta_query();
-                //$meta_query   = array_filter( $meta_query );
-                // Get the posts
-                $args = array(
-                        'orderby'        => 'rand',
-                        'posts_per_page' => 16,
-                        'post_type'      => 'product',
-                        'fields'         => 'ids',
-                        'meta_query'     => $meta_query,
-                        'tax_query'      => array(
-                            'relation'      => 'OR',
-                            array(
-                                'taxonomy'     => 'product_cat',
-                                'field'        => 'id',
-                                'terms'        => $cats_array
-                            ),
-                            array(
-                                'taxonomy'     => 'product_tag',
-                                'field'        => 'id',
-                                'terms'        => $tags_array
-                            )
-                        )
-                    );
-                //$related_posts = array_diff( $related_posts, array( $product->id ), $product->get_upsells() );
-
-                //$args = [
-                //    'post_type' => 'product',
-                //    'posts_per_page' => 16,
-                //];
-                $related_posts = new WP_Query( $args );
-                
-                if ( $related_posts->have_posts() ) {
-                    while ( $related_posts->have_posts() ){
-                        $related_posts->the_post();
-                        global $product;
-
-                        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
+                    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
                         $authors = get_field('book_contributors_syggrafeas', $product->get_id());
             ?>
-                        <div class="pcat-results-col">
-                            <div class="pcat-result-item">
-                                <div class="pcat-result-item-info">
-                                    <div class="pcat-result-item-image">
-                                        <a href="<?php echo get_permalink($product->get_id()); ?>">
-                                            <img
-                                                class="lazyload"
-                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                                alt="<?php echo $product->get_name(); ?>">
-                                        </a>
-                                    </div>
-                                    <div class="pcat-result-item-meta-row">
-                                        <div class="pcat-result-item-meta-col">
-                                            <div class="pcat-result-item-favorite">
-                                                <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
-                                            </div>
-                                        </div>
-                                        <div class="pcat-result-item-meta-col">
-                                            <div class="pcat-result-item-busket">
-                                                <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php
-                                        if( !empty($authors) ){
-                                            echo '<div class="pcat-result-item-author-list">';
-                                            if( count($authors) > 3 ){
-                                                echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
-                                            } else {
-                                                foreach( $authors as $author ){
-                                                    echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
-                                                }
-                                            }
-                                            echo '</div>';
-                                        }
-                                    ?>
-                                    <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($product->get_id()); ?>"><?php echo $product->get_name(); ?></a></h3></div>
+                    <div class="pcat-results-col">
+                        <div class="pcat-result-item">
+                            <div class="pcat-result-item-info">
+                                <div class="pcat-result-item-image">
+                                    <a href="<?php echo get_permalink($product->get_id()); ?>">
+                                        <img
+                                            class="lazyload"
+                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                            alt="<?php echo $product->get_name(); ?>">
+                                    </a>
                                 </div>
-                                <div class="pcat-result-item-footer-row">
-                                    <div class="pcat-result-item-footer-col">
-                                        <div class="pcat-result-item-footer-product-price">
-                                            <?php echo $product->get_price_html(); ?>
+                                <div class="pcat-result-item-meta-row">
+                                    <div class="pcat-result-item-meta-col">
+                                        <div class="pcat-result-item-favorite">
+                                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
                                         </div>
                                     </div>
-                                    <div class="pcat-result-item-footer-col">
-                                        <?php echo display_percentage_discount( $product->get_id() ); ?>
+                                    <div class="pcat-result-item-meta-col">
+                                        <div class="pcat-result-item-busket">
+                                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                        </div>
                                     </div>
+                                </div>
+                                <?php
+                                    if( !empty($authors) ){
+                                        echo '<div class="pcat-result-item-author-list">';
+                                        if( count($authors) > 3 ){
+                                            echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
+                                        } else {
+                                            foreach( $authors as $author ){
+                                                echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                            }
+                                        }
+                                        echo '</div>';
+                                    }
+                                ?>
+                                <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($product->get_id()); ?>"><?php echo $product->get_name(); ?></a></h3></div>
+                            </div>
+                            <div class="pcat-result-item-footer-row">
+                                <div class="pcat-result-item-footer-col">
+                                    <div class="pcat-result-item-footer-product-price">
+                                        <?php echo $product->get_price_html(); ?>
+                                    </div>
+                                </div>
+                                <div class="pcat-result-item-footer-col">
+                                    <?php echo display_percentage_discount( $product->get_id() ); ?>
                                 </div>
                             </div>
                         </div>
+                    </div>
             <?php
-                    }
                 }
                 
                 wp_reset_query();
@@ -586,6 +586,9 @@
         </div>
     </div>
 </div>
+<?php
+    }
+?>
 
 <?php 
     // Get recently viewed product cookies data
