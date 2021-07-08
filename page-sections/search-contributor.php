@@ -1,4 +1,4 @@
-<section id="js-search-result-category-section" class="search-result-category-section hide">
+<section class="search-result-category-section">
     <div class="general-container">
         <div class="content-container">
             <div class="search-result-category-title">

@@ -19,16 +19,13 @@ jQuery(function(){
     });
 
     jQuery('.js-search-page-filter-item').on('click', function(){
-        const slug = jQuery(this).attr('data-slug');
-        jQuery('.js-search-page-filter-item').removeClass('active');
-        jQuery(this).addClass('active');
+        const searchType = jQuery(this).attr('data-search-type');
 
-        if( slug === 'book' || slug === 'art-object' || slug === 'news'){
-            jQuery('#search-result-product-section').removeClass('hide');
-            jQuery('#js-search-result-category-section').addClass('hide');
-        } else {
-            jQuery('#js-search-result-category-section').removeClass('hide');
-            jQuery('#search-result-product-section').addClass('hide');
-        }
+        const { protocol, host, pathname } = window.location;
+        const fullUrlWithoutParams = `${protocol}//${host}${pathname}`;
+        const url = new URL(window.location.href);
+        const s = url.searchParams.get("s");
+
+        window.location = `${fullUrlWithoutParams}?s=${s}&search_type=${searchType}`;
     })
 });
