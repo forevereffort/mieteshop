@@ -211,7 +211,9 @@ function headerTopSearchFuc()
                     'product_book_list' => $product_book_list,
                     'product_book_list_count' => $product_book_list_count,
                     'product_art_object_list' => $product_art_object_list,
-                    'product_art_object_list_count' => $product_art_object_list_count
+                    'product_art_object_list_count' => $product_art_object_list_count,
+                    'search_key' => $searchKey,
+                    'site_url' => get_site_url()
                 ]
             ),
         ]);

@@ -13,7 +13,7 @@
             {% endfor %}
             {% if child_cat_list_count > 4 %}
                 <div class="header-top-search-result-link">
-                    <a href="#">Όλα  τα σχετικά προϊόντα</a>
+                    <a href="{{ site_url }}?s={{ search_key }}&search_type=product-category">Όλα  τα σχετικά προϊόντα</a>
                 </div>
             {% endif %}
         </div>
@@ -30,7 +30,7 @@
             {% endfor %}
             {% if publisher_list_count > 4 %}
                 <div class="header-top-search-result-link">
-                    <a href="#">Όλα  τα σχετικά προϊόντα</a>
+                    <a href="{{ site_url }}?s={{ search_key }}&search_type=publisher">Όλα  τα σχετικά προϊόντα</a>
                 </div>
             {% endif %}
         </div>
@@ -47,7 +47,7 @@
             {% endfor %}
             {% if contributor_list_count > 4 %}
                 <div class="header-top-search-result-link">
-                    <a href="#">Όλα  τα σχετικά προϊόντα</a>
+                    <a href="{{ site_url }}?s={{ search_key }}&search_type=contributor">Όλα  τα σχετικά προϊόντα</a>
                 </div>
             {% endif %}
         </div>
@@ -94,7 +94,7 @@
             {% endfor %}
             {% if product_book_list_count > 4 %}
                 <div class="header-top-search-result-link">
-                    <a href="#">Όλα  τα σχετικά προϊόντα</a>
+                    <a href="{{ site_url }}?s={{ search_key }}&search_type=book">Όλα  τα σχετικά προϊόντα</a>
                 </div>
             {% endif %}
         </div>
@@ -141,7 +141,7 @@
             {% endfor %}
             {% if product_art_object_list_count > 4 %}
                 <div class="header-top-search-result-link">
-                    <a href="#">Όλα  τα σχετικά προϊόντα</a>
+                    <a href="{{ site_url }}?s={{ search_key }}&search_type=art-object">Όλα  τα σχετικά προϊόντα</a>
                 </div>
             {% endif %}
         </div>
