@@ -1,10 +1,10 @@
 <?php
-add_action('wp_ajax_filter_search_book', 'filterSearchBookFunc');
-add_action('wp_ajax_nopriv_filter_search_book', 'filterSearchBookFunc');
+add_action('wp_ajax_filter_search_art_object', 'filterSearchArtObjectFunc');
+add_action('wp_ajax_nopriv_filter_search_art_object', 'filterSearchArtObjectFunc');
 
-function filterSearchBookFunc()
+function filterSearchArtObjectFunc()
 {
-    if (!wp_verify_nonce($_REQUEST['nonce'], 'filter_search_book_nonce')) {
+    if (!wp_verify_nonce($_REQUEST['nonce'], 'filter_search_art_object_nonce')) {
         exit('No naughty business please');
     }
 
@@ -26,9 +26,9 @@ function filterSearchBookFunc()
     $pagination->padding(false);
     $pagination->css_classes([
         'list' => 'pcat-results-navigation-row',
-        'list_item' => 'js-search-book__results-navigation-item pcat-results-navigation-item',
-        'prev' => 'js-search-book__results-navigation-item pcat-results-navigation-prev',
-        'next' => 'js-search-book__results-navigation-item pcat-results-navigation-next',
+        'list_item' => 'js-search-art-object__results-navigation-item pcat-results-navigation-item',
+        'prev' => 'js-search-art-object__results-navigation-item pcat-results-navigation-prev',
+        'next' => 'js-search-art-object__results-navigation-item pcat-results-navigation-next',
         'anchor' => '',
     ]);
 
@@ -42,6 +42,7 @@ function filterSearchBookFunc()
                 'taxonomy' => 'title_type',
                 'field' => 'slug',
                 'terms' => 'book',
+                'operator' => 'NOT IN',
             ]
         ]
     ];
@@ -182,7 +183,7 @@ function filterSearchBookFunc()
 
         $result = json_encode([
             'count' => $products_search_count,
-            'result' => $twig->render('search-book-result.twig', ['products' => $products_search_list]),
+            'result' => $twig->render('search-art-object-result.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
             // 'arg' => $args
         ]);
