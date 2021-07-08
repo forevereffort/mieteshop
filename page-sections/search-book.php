@@ -150,7 +150,7 @@
 
     if ( $the_query->have_posts() ) {
 ?>
-        <section id="js-search-book__results-section" class="search-results-section" data-nonce="<?php echo wp_create_nonce('filter_search_book_nonce'); ?>">
+        <section id="js-search-book__results-section" class="search-results-section" data-nonce="<?php echo wp_create_nonce('filter_search_book_nonce'); ?>" data-search-key="<?php echo $searchKey; ?>">
             <div class="general-container">
                 <div class="content-container">
                     <div class="pcat-results-title">

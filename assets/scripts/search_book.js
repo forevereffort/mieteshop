@@ -17,6 +17,7 @@ jQuery(function(){
         const filterPublisherId = jQuery('#js-search-book__publisher-list').val();
         const productPerPage = jQuery('#js-search-book__per-page').val();
         const nonce = jQuery('#js-search-book__results-section').attr('data-nonce');
+        const searchKey = jQuery('#js-search-book__results-section').attr('data-search-key');
 
         jQuery('#js-search-book__load-spinner').removeClass('hide');
 
@@ -31,7 +32,8 @@ jQuery(function(){
                 filterAuthorId,
                 filterPublisherId,
                 page,
-                productPerPage
+                productPerPage,
+                searchKey
             },
             success: function (response) {
                 jQuery('#js-search-book__results-row').html(response.result);
