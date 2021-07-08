@@ -48,16 +48,12 @@ function filterSearchBookFunc()
 
     // if there is any of filter term id, change tax query
     if( !empty($filterTermId) ){
-        $args['tax_query'][] = [
-            'relation' => 'AND'
-        ];
+        $args['tax_query']['relation'] = 'AND';
         
         $args['tax_query'][] = [
-            [
-                'taxonomy' => 'product_cat',
-                'field' => 'term_id',
-                'terms' => explode(',', $filterTermIds)
-            ],
+            'taxonomy' => 'product_cat',
+            'field' => 'term_id',
+            'terms' => $filterTermId
         ];
     }
 
@@ -186,7 +182,7 @@ function filterSearchBookFunc()
 
         $result = json_encode([
             'count' => $products_search_count,
-            'result' => $twig->render('category-product-search-result.twig', ['products' => $products_search_list]),
+            'result' => $twig->render('search-book-result.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
             'arg' => $args
         ]);

@@ -54,16 +54,26 @@ jQuery(function(){
     $('#js-search-book__product-category-list').select2({
         placeholder: "Θεματικές",
         allowClear: true
+    }).on('change', function(){
+        searchBook(1);
     });
 
     $('#js-search-book__author-list').select2({
         placeholder: "Συγγραφείς",
         allowClear: true
+    }).on('change', function(){
+        searchBook(1);
     });
 
     $('#js-search-book__publisher-list').select2({
         placeholder: "Εκδότες",
         allowClear: true
+    }).on('change', function(){
+        searchBook(1);
+    });
+
+    jQuery('#js-search-book__per-page').on('change', function(){
+        searchBook(1);
     });
 
     // page navigation click
