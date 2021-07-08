@@ -26,7 +26,7 @@ jQuery(function(){
             dataType: 'json',
             url: window.MieteshopData.ajaxurl,
             data: {
-                action: 'filter_search_book',
+                action: 'filter_search_art_object',
                 nonce,
                 filterTermId,
                 filterAuthorId,

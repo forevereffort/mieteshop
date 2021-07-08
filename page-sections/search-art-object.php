@@ -143,6 +143,7 @@
                 'taxonomy' => 'title_type',
                 'field' => 'slug',
                 'terms' => 'book',
+                'operator' => 'NOT IN',
             ]
         ]
     ];
