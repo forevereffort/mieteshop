@@ -150,13 +150,13 @@
 
     if ( $the_query->have_posts() ) {
 ?>
-        <section class="search-results-section">
+        <section id="js-search-book__results-section" class="search-results-section" data-nonce="<?php echo wp_create_nonce('filter_search_book_nonce'); ?>">
             <div class="general-container">
                 <div class="content-container">
                     <div class="pcat-results-title">
-                        <h2>ΤΙΤΛΟΙ: <span><?php echo $total_product_count; ?></span></h2>
+                        <h2>ΤΙΤΛΟΙ: <span id="js-search-book__results-count"><?php echo $total_product_count; ?></span></h2>
                     </div>
-                    <div class="pcat-results-row">
+                    <div id="js-search-book__results-row" class="pcat-results-row">
                         <?php
                             while ( $the_query->have_posts() ){
                                 $the_query->the_post();
@@ -226,7 +226,7 @@
                     ?>
                             <div class="pcat-results-footer-options">
                                 <div class="pcat-results-footer-options-col">
-                                    <div class="pcat-results-navigation">
+                                    <div id="js-search-book__results-navigation" class="pcat-results-navigation">
                                         <?php
                                             require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
 
@@ -266,7 +266,7 @@
                         <div class="pcat-results-footer-select">
                             <div class="pcat-results-footer-select-label">Προβολή</div>
                             <div class="pcat-results-footer-select-elem">
-                                <select>
+                                <select id="js-search-book__per-page">
                                     <option value="16">16</option>
                                     <option value="32">32</option>
                                     <option value="64">64</option>
@@ -281,4 +281,4 @@
 <?php
     }
 ?>
-<div id="js-search__book-load-spinner" class="load-spinner hide"></div>
+<div id="js-search-book__load-spinner" class="load-spinner hide"></div>
