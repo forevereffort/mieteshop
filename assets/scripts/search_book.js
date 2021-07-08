@@ -17,4 +17,21 @@ jQuery(function(){
         placeholder: "Εκδότες",
         allowClear: true
     });
+
+    // page navigation click
+    function addSearchBookPageNavigationClickFunc(){
+        jQuery('.js-search-book__results-navigation-item a').on('click', function(){
+
+            // check this is current page
+            if( !jQuery(this).parent().hasClass('active') ){
+                const page = jQuery(this).attr('data-page');
+                console.log(page);
+                // categoryProductSearch(page)
+            }
+
+            return false;
+        })
+    }
+
+    addSearchBookPageNavigationClickFunc();
 });

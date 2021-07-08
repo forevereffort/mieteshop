@@ -38,6 +38,8 @@ class Zebra_Pagination {
         'css_classes'   =>  array(
             'list'      =>  'pagination',
             'list_item' =>  'page-item',
+            'prev'      =>  'prev',
+            'next'      =>  'next',
             'anchor'    =>  'page-link',
         ),
 
@@ -333,7 +335,7 @@ class Zebra_Pagination {
     public function css_classes($css_classes) {
 
         // if argument is invalid
-        if (!is_array($css_classes) || empty($css_classes) || array_keys($css_classes) != array_filter(array_keys($css_classes), function($value) { return in_array($value, array('list', 'list_item', 'anchor'), true); }))
+        if (!is_array($css_classes) || empty($css_classes) || array_keys($css_classes) != array_filter(array_keys($css_classes), function($value) { return in_array($value, array('list', 'list_item', 'prev', 'next', 'anchor'), true); }))
 
             // stop execution
             trigger_error('Invalid argument. Method <strong>classes()</strong> accepts as argument an associative array with one or more of the following keys: <em>list, list_item, anchor</em>' , E_USER_ERROR);
@@ -921,11 +923,13 @@ class Zebra_Pagination {
             // CSS classes to be applied to the list item, if any
             $css_classes = isset($this->_properties['css_classes']['list_item']) && $this->_properties['css_classes']['list_item'] != '' ? array(trim($this->_properties['css_classes']['list_item'])) : array();
 
+            $css_next_classes = isset($this->_properties['css_classes']['next']) && $this->_properties['css_classes']['next'] != '' ? array(trim($this->_properties['css_classes']['next'])) : array();
+
             // if we're on the last page, the link is disabled
             if ($this->_properties['page'] < $this->_properties['total_pages']){
 
                 // generate markup
-                $output = '<li class="js-pcat-results-navigation-item pcat-results-navigation-next ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] + 1) . '" href="' .
+                $output = '<li class="' . (!empty($css_next_classes) ? implode(' ', $css_next_classes) : '') . ' ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] + 1) . '" href="' .
 
                     // the href is different if we're on the last page
                     ($this->_properties['page'] == $this->_properties['total_pages'] ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] + 1)) . '"' .
@@ -1221,11 +1225,13 @@ class Zebra_Pagination {
             // CSS classes to be applied to the list item, if any
             $css_classes = isset($this->_properties['css_classes']['list_item']) && $this->_properties['css_classes']['list_item'] != '' ? array(trim($this->_properties['css_classes']['list_item'])) : array();
 
+            $css_prev_classes = isset($this->_properties['css_classes']['prev']) && $this->_properties['css_classes']['prev'] != '' ? array(trim($this->_properties['css_classes']['prev'])) : array();
+
             // if we're on the first page, the link is disabled
             if ($this->_properties['page'] > 1){
 
                 // generate markup
-                $output = '<li class="js-pcat-results-navigation-item pcat-results-navigation-prev ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] - 1) . '" href="' .
+                $output = '<li class="' . (!empty($css_prev_classes) ? implode(' ', $css_prev_classes) : '') . ' ' . $disable_css . '"><a data-page="' . ($this->_properties['page'] - 1) . '" href="' .
 
                     // the href is different if we're on the first page
                     ($this->_properties['page'] == 1 ? 'javascript:void(0)' : $this->_build_uri($this->_properties['page'] - 1)) . '"' .

@@ -34,5 +34,4 @@
         get_template_part( 'page-sections/search', 'product-category' );
     }
 ?>
-<div id="js-search-load-spinner" class="load-spinner hide"></div>
 <?php get_footer(); ?>

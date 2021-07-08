@@ -342,6 +342,8 @@
                                             $pagination->css_classes([
                                                 'list' => 'pcat-results-navigation-row',
                                                 'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
+                                                'prev' => 'js-pcat-results-navigation-item pcat-results-navigation-prev',
+                                                'next' => 'js-pcat-results-navigation-item pcat-results-navigation-next',
                                                 'anchor' => '',
                                             ]);
                                             $pagination->render();

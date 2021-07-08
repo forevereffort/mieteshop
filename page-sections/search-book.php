@@ -8,7 +8,14 @@
     $args = [
         'post_type' => 'product',
         'search_prod_title' => $searchKey,
-        'posts_per_page' => -1
+        'posts_per_page' => -1,
+        'tax_query' => [
+            [
+                'taxonomy' => 'title_type',
+                'field' => 'slug',
+                'terms' => 'book',
+            ]
+        ]
     ];
 
     $the_query = new WP_Query( $args );
@@ -129,7 +136,14 @@
         'post_type' => 'product',
         'search_prod_title' => $searchKey,
         'posts_per_page' => $product_per_page,
-        'offset' => ( $current_page - 1 ) * $product_per_page
+        'offset' => ( $current_page - 1 ) * $product_per_page,
+        'tax_query' => [
+            [
+                'taxonomy' => 'title_type',
+                'field' => 'slug',
+                'terms' => 'book',
+            ]
+        ]
     ];
 
     $the_query = new WP_Query( $args );
@@ -224,7 +238,9 @@
                                             $pagination->padding(false);
                                             $pagination->css_classes([
                                                 'list' => 'pcat-results-navigation-row',
-                                                'list_item' => 'js-search-results-navigation-item pcat-results-navigation-item',
+                                                'list_item' => 'js-search-book__results-navigation-item pcat-results-navigation-item',
+                                                'prev' => 'js-search-book__results-navigation-item pcat-results-navigation-prev',
+                                                'next' => 'js-search-book__results-navigation-item pcat-results-navigation-next',
                                                 'anchor' => '',
                                             ]);
                                             $pagination->render();
@@ -265,3 +281,4 @@
 <?php
     }
 ?>
+<div id="js-search__book-load-spinner" class="load-spinner hide"></div>
