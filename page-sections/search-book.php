@@ -1,4 +1,4 @@
-<div class="search-page-filter-options-section">
+<section class="search-page-filter-options-section">
     <div class="search-page-extra-filter-row">
         <div class="search-page-extra-filter-left">
             <div class="pcat-author-publisher-label pcat-author-publisher-label--black">Για να περιορίσετε τα αποτελέσματα επιλέξτε Θεματική ή Συγγραφέα  ή Εκδότη</div>
@@ -50,14 +50,16 @@
             </div>
         </div>
     </div>
-</div>
+</section>
 <?php
     global $post;
+    $searchKey = get_search_query();
     $product_per_page = 16;
     $current_page = 1;
 
     $args = [
         'post_type' => 'product',
+        'search_prod_title' => $searchKey,
         'posts_per_page' => $product_per_page,
         'offset' => ( $current_page - 1 ) * $product_per_page
     ];
@@ -68,7 +70,7 @@
 
     if ( $the_query->have_posts() ) {
 ?>
-        <div class="search-results-section">
+        <section class="search-results-section">
             <div class="general-container">
                 <div class="content-container">
                     <div class="pcat-results-title">
@@ -193,7 +195,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 <?php
     }
 ?>

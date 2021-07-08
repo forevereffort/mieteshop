@@ -9,7 +9,7 @@
 <?php
     $search_type = isset($_GET['search_type']) ? $_GET['search_type'] : 'book';
 ?>
-<div class="search-page-filter-section">
+<section class="search-page-filter-section">
     <div class="search-page-filter-list">
         <div class="js-search-page-filter-item search-page-filter-item <?php echo $search_type === 'book' ? 'active' : ''; ?>" data-search-type="book">ΒΙΒΛΙΑ</div>
         <div class="js-search-page-filter-item search-page-filter-item  <?php echo $search_type === 'art-object' ? 'active' : ''; ?>" data-search-type="art-object">ΑΝΤΙΚΕΙΜΕΝΑ</div>
@@ -18,7 +18,7 @@
         <div class="js-search-page-filter-item search-page-filter-item  <?php echo $search_type === 'news' ? 'active' : ''; ?>" data-search-type="news">ΝΕΑ/ ΕΚΔΗΛΩΣΕΙΣ</div>
         <div class="js-search-page-filter-item search-page-filter-item  <?php echo $search_type === 'product-category' ? 'active' : ''; ?>" data-search-type="product-category">ΘΕΜΑΤΙΚΕΣ</div>
     </div>
-</div>
+</section>
 <?php
     if( $search_type === 'book' ){
         get_template_part( 'page-sections/search', 'book' );
