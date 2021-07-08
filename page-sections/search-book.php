@@ -1,3 +1,64 @@
+<?php
+    global $post;
+    $searchKey = get_search_query();
+    $product_per_page = 16;
+    $current_page = 1;
+
+    // get all products in current search key
+    $args = [
+        'post_type' => 'product',
+        'search_prod_title' => $searchKey,
+        'posts_per_page' => -1
+    ];
+
+    $the_query = new WP_Query( $args );
+
+    // get total search result count
+    $total_product_count = $the_query->found_posts;
+
+    // get author list that included in search result
+    $author_list_in_search_result = [];
+
+    // get publisher list that included in search result
+    $publisher_list_in_search_result = [];
+
+    // get product category list that included in search result
+    $product_category_list_in_search_result = [];
+
+    if ( $the_query->have_posts() ) {
+        while ( $the_query->have_posts() ){
+            $the_query->the_post();
+
+            // get author & publisher & product category list that include in the search result
+            $authors = get_field('book_contributors_syggrafeas', $post->ID);
+            $publishers = get_field('book_publishers', $post->ID);
+            $prorudct_categories = get_the_terms($post->ID, 'product_cat');
+
+            if( !empty($authors) ){
+                foreach($authors as $author){
+                    $author_list_in_search_result[$author->ID] = $author->post_title;
+                }
+            }
+
+            if( !empty($publishers) ){
+                foreach($publishers as $publisher){
+                    $publisher_list_in_search_result[$publisher->ID] = $publisher->post_title;
+                }
+            }
+
+            if( !empty($prorudct_categories) ){
+                foreach($prorudct_categories as $cat){
+                    $product_category_list_in_search_result[$cat->term_id] = $cat->name;
+                }
+            }
+        }
+
+        // sort array by value
+        asort($author_list_in_search_result);
+        asort($publisher_list_in_search_result);
+        asort($product_category_list_in_search_result);
+    }
+?>
 <section class="search-page-filter-options-section">
     <div class="search-page-extra-filter-row">
         <div class="search-page-extra-filter-left">
@@ -5,31 +66,43 @@
             <div class="pcat-author-publisher-row">
                 <div class="pcat-author-publisher-col">
                     <div class="pcat-author-publisher-select">
-                        <select id="js-search-product-category-list" style="width:100%;">
+                        <select id="js-search-book__product-category-list" style="width:100%;">
                             <option></option>
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
+                            <?php
+                                foreach($product_category_list_in_search_result as $cat_id => $cat_title){
+                            ?>
+                                    <option value="<?php echo $cat_id; ?>"><?php echo $cat_title; ?></option>
+                            <?php
+                                }
+                            ?>
                         </select>
                     </div>
                 </div>
                 <div class="pcat-author-publisher-col">
                     <div class="pcat-author-publisher-select">
-                        <select id="js-search-contributor-list" style="width:100%;">
+                        <select id="js-search-book__author-list" style="width:100%;">
                             <option></option>
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
+                            <?php
+                                foreach($author_list_in_search_result as $author_id => $author_title){
+                            ?>
+                                    <option value="<?php echo $author_id; ?>"><?php echo $author_title; ?></option>
+                            <?php
+                                }
+                            ?>
                         </select>
                     </div>
                 </div>
                 <div class="pcat-author-publisher-col">
                     <div class="pcat-author-publisher-select">
-                        <select id="js-search-publisher-list" style="width:100%;">
+                        <select id="js-search-book__publisher-list" style="width:100%;">
                             <option></option>
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
+                            <?php
+                                foreach($publisher_list_in_search_result as $publisher_id => $publisher_title){
+                            ?>
+                                    <option value="<?php echo $publisher_id; ?>"><?php echo $publisher_title; ?></option>
+                            <?php
+                                }
+                            ?>
                         </select>
                     </div>
                 </div>
@@ -52,11 +125,6 @@
     </div>
 </section>
 <?php
-    global $post;
-    $searchKey = get_search_query();
-    $product_per_page = 16;
-    $current_page = 1;
-
     $args = [
         'post_type' => 'product',
         'search_prod_title' => $searchKey,
@@ -65,8 +133,6 @@
     ];
 
     $the_query = new WP_Query( $args );
-
-    $total_product_count = $the_query->found_posts;
 
     if ( $the_query->have_posts() ) {
 ?>

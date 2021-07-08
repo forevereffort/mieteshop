@@ -145,14 +145,19 @@
                                     'field' => 'term_id',
                                     'terms' => $product_cat->term_id,
                                 ],
-                            ]
+                            ],
+                            'posts_per_page' => -1
                         ];
                     
                         $loop = new WP_Query( $args );
 
                         // get total search result count
                         $total_product_count = $loop->found_posts;
+
+                        // get author list that included in search result
                         $author_list_in_search_result = [];
+
+                        // get publisher list that included in search result
                         $publisher_list_in_search_result = [];
                     
                         if ( $loop->have_posts() ) {
