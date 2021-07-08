@@ -48,16 +48,16 @@ function filterSearchBookFunc()
 
     // if there is any of filter term id, change tax query
     if( !empty($filterTermId) ){
-        $args = [
-            'post_type' => 'product',
-            'tax_query' => [
-                [
-                    'taxonomy' => 'product_cat',
-                    'field' => 'term_id',
-                    'terms' => explode(',', $filterTermIds)
-                ],
+        $args['tax_query'][] = [
+            'relation' => 'AND'
+        ];
+        
+        $args['tax_query'][] = [
+            [
+                'taxonomy' => 'product_cat',
+                'field' => 'term_id',
+                'terms' => explode(',', $filterTermIds)
             ],
-            'posts_per_page' => -1
         ];
     }
 
