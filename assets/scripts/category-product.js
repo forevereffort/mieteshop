@@ -228,9 +228,7 @@ jQuery(function(){
             jQuery('#js-pcat-author-list-wrapper').removeClass('hide');
         }
         
-        $('#js-pcat-author-list').select2('val', '');
-        $('#js-pcat-publisher-list').select2('val', '');
-        jQuery('#js-pcat-author-list').val('');
-        jQuery('#js-pcat-publisher-list').val('');
+        $('#js-pcat-author-list').val(null).trigger('change');
+        $('#js-pcat-publisher-list').val(null).trigger('change');
     });
 })

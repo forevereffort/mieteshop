@@ -202,7 +202,7 @@
                     ?>
                     <div id="js-pcat-author-list-wrapper" class="pcat-author-publisher-select">
                         <select id="js-pcat-author-list" style="width:100%;">
-                            <option value=''></option>
+                            <option></option>
                             <?php
                                 foreach($author_list_in_search_result as $author_id => $author_title){
                             ?>
@@ -214,7 +214,7 @@
                     </div>
                     <div id="js-pcat-publisher-list-wrapper" class="pcat-author-publisher-select hide">
                         <select id="js-pcat-publisher-list" style="width:100%;">
-                            <option value=''></option>
+                            <option></option>
                             <?php
                                 foreach($publisher_list_in_search_result as $publisher_id => $publisher_title){
                             ?>
