@@ -131,10 +131,24 @@
                 <a id="js-pcat-extra-thematic-filter-link-clear" href="#">καθαρισμός φίλτρων</a>
             </div>
         </div>
+        <div class="pcat-extra-filter-top-row">Επιλέξτε</div>
         <div class="pcat-extra-filter-row">
             <div class="pcat-extra-filter-left-col">
-                <div class="pcat-author-publisher-label">Επιλέξτε Συγγραφέα ή Εκδότη</div>
-                <div class="pcat-author-publisher-row">
+                <div class="pcat-author-publisher-choice-wrapper">
+                    <div class="pcat-author-publisher-choice-row">
+                        <div class="pcat-author-publisher-choice-col">
+                            <div class="pcat-author-publisher-choice-item">
+                                <label>Συγγραφέα<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="author" checked><span></span></label>
+                            </div>
+                        </div>
+                        <div class="pcat-author-publisher-choice-col">
+                            <div class="pcat-author-publisher-choice-item">
+                                <label>Εκδότη<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="publisher"><span></span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcat-author-publisher-select-wrapper">
                     <?php
                         // get all products in current category
                         $args = [
@@ -186,36 +200,31 @@
                             asort($publisher_list_in_search_result);
                         }
                     ?>
-                        <div class="pcat-author-publisher-col">
-                            <div class="pcat-author-publisher-select">
-                                <select id="js-pcat-author-list" style="width:100%;">
-                                    <option></option>
-                                    <?php
-                                        foreach($author_list_in_search_result as $author_id => $author_title){
-                                    ?>
-                                            <option value="<?php echo $author_id; ?>"><?php echo $author_title; ?></option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="pcat-author-publisher-col">
-                            <div class="pcat-author-publisher-select">
-                                <select id="js-pcat-publisher-list" style="width:100%;">
-                                    <option></option>
-                                    <?php
-                                        foreach($publisher_list_in_search_result as $publisher_id => $publisher_title){
-                                    ?>
-                                            <option value="<?php echo $publisher_id; ?>"><?php echo $publisher_title; ?></option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
+                    <div id="js-pcat-author-list-wrapper" class="pcat-author-publisher-select">
+                        <select id="js-pcat-author-list" style="width:100%;">
+                            <option value=''></option>
+                            <?php
+                                foreach($author_list_in_search_result as $author_id => $author_title){
+                            ?>
+                                    <option value="<?php echo $author_id; ?>"><?php echo $author_title; ?></option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div id="js-pcat-publisher-list-wrapper" class="pcat-author-publisher-select hide">
+                        <select id="js-pcat-publisher-list" style="width:100%;">
+                            <option value=''></option>
+                            <?php
+                                foreach($publisher_list_in_search_result as $publisher_id => $publisher_title){
+                            ?>
+                                    <option value="<?php echo $publisher_id; ?>"><?php echo $publisher_title; ?></option>
+                            <?php
+                                }
+                            ?>
+                        </select>
+                    </div>
                 </div>
-                <div class="pcat-author-publisher-des">Για να περιορίσετε τα αποτελέσματα επιλέξτε συγγραφείς ή εκδότες</div>
             </div>
             <div class="pcat-extra-filter-right-col">
                 <div class="pcat-classification-filter">

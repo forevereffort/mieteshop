@@ -216,4 +216,21 @@ jQuery(function(){
     }
 
     addPageNavigationClickFunc();
+
+    jQuery('.js-pcat-author-publisher-choice-item').on('change', function(){
+        const choiceType = jQuery('.js-pcat-author-publisher-choice-item:checked').val();
+
+        if( choiceType === 'publisher' ){
+            jQuery('#js-pcat-author-list-wrapper').addClass('hide');
+            jQuery('#js-pcat-publisher-list-wrapper').removeClass('hide');
+        } else if( choiceType === 'author' ){
+            jQuery('#js-pcat-publisher-list-wrapper').addClass('hide');
+            jQuery('#js-pcat-author-list-wrapper').removeClass('hide');
+        }
+        
+        $('#js-pcat-author-list').select2('val', '');
+        $('#js-pcat-publisher-list').select2('val', '');
+        jQuery('#js-pcat-author-list').val('');
+        jQuery('#js-pcat-publisher-list').val('');
+    });
 })

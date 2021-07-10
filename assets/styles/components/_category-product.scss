@@ -115,6 +115,7 @@
 .pcat-extra-filter-row {
   display: flex;
   justify-content: space-between;
+  margin-top: 18px;
 }
 
 .pcat-author-publisher-label {
@@ -228,6 +229,7 @@
   color: $color-white;
   font-size: 14px;
   font-weight: $font-weight-light;
+  line-height: 1.143;
 }
 
 .pcat-classification-filter-label--black {
@@ -716,4 +718,72 @@
 .pcat-results-top-row {
   display: flex;
   justify-content: space-between;
+}
+
+.pcat-extra-filter-top-row {
+  color: $color-white;
+  font-size: 14px;
+  font-weight: $font-weight-bold;
+  line-height: 1.143;
+}
+
+.pcat-author-publisher-choice-row {
+  display: flex;
+  margin-top: -8px;
+}
+
+.pcat-author-publisher-choice-item {
+  label {
+    color: $color-white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    letter-spacing: 0.2px;
+    line-height: 1.143;
+    padding-left: 40px;
+    position: relative;
+  }
+
+  span {
+    border: 2px solid $color-white;
+    border-radius: 50%;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 20px;
+
+    &::after {
+      background-color: $color-white;
+      border-radius: 50%;
+      content: '';
+      height: 10px;
+      left: 3px;
+      opacity: 0;
+      position: absolute;
+      top: 3px;
+      transition: opacity 0.2s ease-out;
+      width: 10px;
+    }
+  }
+
+  input {
+    cursor: pointer;
+    height: 0;
+    opacity: 0;
+    position: absolute;
+    width: 0;
+
+    &:checked ~ span::after {
+      opacity: 1;
+    }
+  }
+}
+
+.pcat-author-publisher-select-wrapper {
+  margin-top: 14px;
+}
+
+.pcat-author-publisher-choice-col+.pcat-author-publisher-choice-col {
+  margin-left: 25px;
 }
