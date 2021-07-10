@@ -55,17 +55,23 @@
             <div class="archive-publisher-search-title">
                 <h2>ΕΥΡΕΤΗΡΙΟ ΕΚΔΟΤΩΝ</h2>
             </div>
-            <div class="archive-publisher-search-letter-row">
+            <div class="archive-publisher-search-greek-letter-row">
                 <?php
-                    $greek_letter_list = ['Α','Β','Γ','Δ','Ε','Ζ','Η','Θ','Ι','Κ','Λ','Μ','Ν','Ξ','O','Π','Ρ','Σ','Τ','Υ','Φ','Χ','Ψ','Ω'];
+                    $greek_letter_list = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','o','π','ρ','σ','τ','υ','φ','χ','ψ','ω'];
                     for($i = 0; $i < 24; $i++){
-                        $disable_class = '';
-
-                        if( $i == 7 || $i == 15 || $i == 16 || $i == 20  || $i == 23 ){
-                            $disable_class = 'disable';
-                        }
                 ?>
-                        <div class="archive-publisher-search-letter-col <?php echo $disable_class; ?>"><?php echo $greek_letter_list[$i]; ?></div>
+                        <div class="archive-publisher-search-greek-letter-col js-archive-publisher-search-greek-letter-col <?php echo $i == 0 ? 'active' : ''; ?>"><?php echo $greek_letter_list[$i]; ?></div>
+                <?php
+                    }
+                ?>
+            </div>
+            <div class="archive-publisher-search-english-letter-row">
+                <?php
+                    $english_letter_list = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+                    for($i = 0; $i < 26; $i++){
+                ?>
+                        <div class="archive-publisher-search-english-letter-col js-archive-publisher-search-english-letter-col"><?php echo $english_letter_list[$i]; ?></div>
                 <?php
                     }
                 ?>
@@ -80,7 +86,7 @@
                     foreach($taxonomies as $term){
                 ?>
                         <div class="archive-publisher-search-type-col">
-                            <label><?php echo $term->name; ?><input type="checkbox"><span></span></label>
+                            <label><?php echo $term->name; ?><input type="checkbox" class="js-archive-publisher-search-type-col" value="<?php echo $term->term_id; ?>"><span></span></label>
                         </div>
                 <?php
                     }
@@ -108,4 +114,7 @@
         </div>
     </div>
 </div>
+
+<div id="js-archive-publisher__load-spinner" class="load-spinner hide"></div>
+
 <?php get_footer(); ?>

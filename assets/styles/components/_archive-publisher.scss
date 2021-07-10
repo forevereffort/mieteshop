@@ -68,18 +68,40 @@
   }
 }
 
-.archive-publisher-search-letter-row {
+.archive-publisher-search-greek-letter-row {
   display: flex;
   justify-content: space-between;
   margin-top: 68px;
 }
 
-.archive-publisher-search-letter-col {
+.archive-publisher-search-greek-letter-col {
   color: $color-black;
   font-size: 24px;
   font-weight: $font-weight-semi-bold;
+  cursor: pointer;
+  transition: opacity 0.1s ease-out;
+  text-transform: uppercase;
 
-  &.disable {
+  &.active {
+    opacity: 0.15;
+  }
+}
+
+.archive-publisher-search-english-letter-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px -40px 0;
+}
+
+.archive-publisher-search-english-letter-col {
+  cursor: pointer;
+  color: $color-black;
+  font-size: 24px;
+  font-weight: $font-weight-semi-bold;
+  transition: opacity 0.1s ease-out;
+  text-transform: uppercase;
+
+  &.active {
     opacity: 0.15;
   }
 }
@@ -141,7 +163,7 @@
 
 .archive-publisher-search-result-list {
   margin-top: 70px;
-  padding: 0 200px;
+  padding: 0 0 0 310px;
 }
 
 .archive-publisher-search-result-col {
