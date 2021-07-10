@@ -97,6 +97,9 @@
                     $args = [
                         'post_type' => 'publisher',
                         'posts_per_page' => -1,
+                        'search_title_with_first_letter' => 'α',
+                        'orderby' => 'title',
+                        'order' => 'ASC'
                     ];
                 
                     $loop = new WP_Query( $args );

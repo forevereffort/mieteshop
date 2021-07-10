@@ -1,16 +1,15 @@
 jQuery(function(){
     function searchArchivePublisher(){
-        const greekLetters = [];
-        const englishLetters = [];
+        const firstLetters = [];
         const publisherTypeList = [];
         const nonce = jQuery('#js-archive-publisher-search-result-list').attr('data-nonce');
 
         jQuery('.js-archive-publisher-search-greek-letter-col.active').each(function(){
-            greekLetters.push(jQuery(this).text());
+            firstLetters.push(jQuery(this).text());
         })
 
         jQuery('.js-archive-publisher-search-english-letter-col.active').each(function(){
-            englishLetters.push(jQuery(this).text());
+            firstLetters.push(jQuery(this).text());
         })
 
         jQuery('.js-archive-publisher-search-type-col:checked').each(function(){
@@ -26,8 +25,7 @@ jQuery(function(){
             data: {
                 action: 'filter_search_archive_publisher',
                 nonce,
-                greekLetters,
-                englishLetters,
+                firstLetters,
                 publisherTypeList
             },
             success: function (response) {

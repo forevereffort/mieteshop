@@ -1,4 +1,5 @@
 <?php
+// add wp_query arg to search only in title
 function title_filter( $where, $wp_query ){
     global $wpdb;
     if ( $search_term = $wp_query->get( 'search_prod_title' ) ) {
