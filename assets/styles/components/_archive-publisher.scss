@@ -76,11 +76,11 @@
 
 .archive-publisher-search-greek-letter-col {
   color: $color-black;
+  cursor: pointer;
   font-size: 24px;
   font-weight: $font-weight-semi-bold;
-  cursor: pointer;
-  transition: opacity 0.1s ease-out;
   text-transform: uppercase;
+  transition: opacity 0.1s ease-out;
 
   &.active {
     opacity: 0.15;
@@ -94,12 +94,12 @@
 }
 
 .archive-publisher-search-english-letter-col {
-  cursor: pointer;
   color: $color-black;
+  cursor: pointer;
   font-size: 24px;
   font-weight: $font-weight-semi-bold;
-  transition: opacity 0.1s ease-out;
   text-transform: uppercase;
+  transition: opacity 0.1s ease-out;
 
   &.active {
     opacity: 0.15;

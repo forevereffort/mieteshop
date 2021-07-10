@@ -92,11 +92,11 @@
                     }
                 ?>
             </div>
-            <div class="archive-publisher-search-result-list">
+            <div id="js-archive-publisher-search-result-list" class="archive-publisher-search-result-list" data-nonce="<?php echo wp_create_nonce('filter_search_archive_publisher_nonce'); ?>">
                 <?php
                     $args = [
                         'post_type' => 'publisher',
-                        'posts_per_page' => 30,
+                        'posts_per_page' => -1,
                     ];
                 
                     $loop = new WP_Query( $args );
