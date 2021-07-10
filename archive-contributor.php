@@ -11,33 +11,43 @@
 <div class="archive-contributor-search-section">
     <div class="general-container">
         <div class="content-container">
-            <div class="archive-contributor-search-letter-row">
+            <div class="archive-contributor-search-greek-letter-row">
                 <?php
-                    $greek_letter_list = ['Α','Β','Γ','Δ','Ε','Ζ','Η','Θ','Ι','Κ','Λ','Μ','Ν','Ξ','O','Π','Ρ','Σ','Τ','Υ','Φ','Χ','Ψ','Ω'];
+                    $greek_letter_list = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','o','π','ρ','σ','τ','υ','φ','χ','ψ','ω'];
                     for($i = 0; $i < 24; $i++){
-                        $disable_class = '';
-
-                        if( $i != 9 ){
-                            $disable_class = 'disable';
-                        }
                 ?>
-                        <div class="archive-contributor-search-letter-col <?php echo $disable_class; ?>"><?php echo $greek_letter_list[$i]; ?></div>
+                        <div class="archive-contributor-search-greek-letter-col js-archive-contributor-search-greek-letter-col <?php echo $i == 0 ? 'active' : ''; ?>"><?php echo $greek_letter_list[$i]; ?></div>
+                <?php
+                    }
+                ?>
+            </div>
+            <div class="archive-contributor-search-english-letter-row">
+                <?php
+                    $english_letter_list = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+                    for($i = 0; $i < 26; $i++){
+                ?>
+                        <div class="archive-contributor-search-english-letter-col js-archive-contributor-search-english-letter-col"><?php echo $english_letter_list[$i]; ?></div>
                 <?php
                     }
                 ?>
             </div>
             <div class="archive-contributor-search-result-row">
-                <div class="archive-contributor-search-result-left-col">58 Συγγραφείς</div>
+                <?php
+                    $args = [
+                        'post_type' => 'contributor',
+                        'posts_per_page' => -1,
+                        'search_title_with_first_letter' => 'α',
+                        'orderby' => 'title',
+                        'order' => 'ASC'
+                    ];
+                
+                    $loop = new WP_Query( $args );
+                ?>
+                <div class="archive-contributor-search-result-left-col"><span id="js-archive-contributor-search-result-count"><?php echo $loop->found_posts; ?></span> Συγγραφείς</div>
                 <div class="archive-contributor-search-result-right-col">
-                    <div class="archive-contributor-search-result-list">
+                    <div id="js-archive-contributor-search-result-list" class="archive-contributor-search-result-list" data-nonce="<?php echo wp_create_nonce('filter_search_archive_contributor_nonce'); ?>">
                         <?php
-                            $args = [
-                                'post_type' => 'contributor',
-                                'posts_per_page' => 58,
-                            ];
-                        
-                            $loop = new WP_Query( $args );
-                        
                             while ( $loop->have_posts() ){
                                 $loop->the_post();
                         ?>
@@ -53,4 +63,7 @@
         </div>
     </div>
 </div>
+
+<div id="js-archive-contributor__load-spinner" class="load-spinner hide"></div>
+
 <?php get_footer(); ?>

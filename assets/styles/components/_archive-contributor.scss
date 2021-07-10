@@ -19,17 +19,39 @@
   }
 }
 
-.archive-contributor-search-letter-row {
+.archive-contributor-search-greek-letter-row {
   display: flex;
   justify-content: space-between;
 }
 
-.archive-contributor-search-letter-col {
+.archive-contributor-search-greek-letter-col {
   color: $color-black;
+  cursor: pointer;
   font-size: 24px;
   font-weight: $font-weight-semi-bold;
+  text-transform: uppercase;
+  transition: opacity 0.1s ease-out;
 
-  &.disable {
+  &.active {
+    opacity: 0.15;
+  }
+}
+
+.archive-contributor-search-english-letter-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px -40px 0;
+}
+
+.archive-contributor-search-english-letter-col {
+  color: $color-black;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: $font-weight-semi-bold;
+  text-transform: uppercase;
+  transition: opacity 0.1s ease-out;
+
+  &.active {
     opacity: 0.15;
   }
 }

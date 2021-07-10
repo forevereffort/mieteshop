@@ -4,23 +4,25 @@ function title_filter_with_first_letter( $where, $wp_query ){
     global $wpdb;
 
     if ( $search_term = $wp_query->get( 'search_title_with_first_letter' ) ) {
-        $where .= ' AND ';
-        
-        if( is_array($search_term) ){
+        if( !empty($search_term) ){
+            $where .= ' AND ';
+            
+            if( is_array($search_term) ){
 
-            $s = '';
+                $s = '';
 
-            foreach($search_term as $item){
-                if( !empty($s) ){
-                    $s .= ' OR ';
+                foreach($search_term as $item){
+                    if( !empty($s) ){
+                        $s .= ' OR ';
+                    }
+
+                    $s .= $wpdb->posts . '.post_title LIKE \'' . esc_sql( like_escape( $item ) ) . '%\'';
                 }
 
-                $s .= $wpdb->posts . '.post_title LIKE \'' . esc_sql( like_escape( $item ) ) . '%\'';
+                $where .= '(' . $s . ')';
+            } else {
+                $where .= $wpdb->posts . '.post_title LIKE \'' . esc_sql( like_escape( $search_term ) ) . '%\'';
             }
-
-            $where .= '(' . $s . ')';
-        } else {
-            $where .= $wpdb->posts . '.post_title LIKE \'' . esc_sql( like_escape( $search_term ) ) . '%\'';
         }
     }
     
