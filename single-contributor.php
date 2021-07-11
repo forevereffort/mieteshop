@@ -26,12 +26,11 @@
                             alt="<?php echo $post->post_title; ?>">
                     </div>
                 </div>
-
-            <div class="single-contributor-image-lead-right">
-                <div class="single-contributor-image-lead-content">
-                    <p><?php echo get_the_content(); ?></p>
+                <div class="single-contributor-image-lead-right">
+                    <div class="single-contributor-image-lead-content">
+                        <?php the_content(); ?>
+                    </div>
                 </div>
-            </div>
             </div>            
         </div>
     </div>
@@ -42,7 +41,7 @@
             <div class="single-publisher-text-caption-left"></div>
             <div class="single-publisher-text-caption-right">
                 <div class="single-publisher-text-caption-content">
-                    <p><?php echo get_field('contributor_bio_detail'); ?></p>
+                    <?php echo apply_filters('the_content', get_field('contributor_bio_detail')); ?>
                 </div>
             </div>
         </div>

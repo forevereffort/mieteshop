@@ -28,7 +28,7 @@
                 </div>
                 <div class="single-publisher-image-lead-right">
                     <div class="single-publisher-image-lead-content">
-                        <p><?php echo get_field('company_description_lead'); ?></p>
+                        <?php echo apply_filters('the_content', get_field('company_description_lead')); ?>
                     </div>
                 </div>
             </div>
@@ -38,101 +38,114 @@
 <section class="single-publisher-text-caption-section">
     <div class="content-container">
         <div class="single-publisher-text-caption-row">
-            <div class="single-publisher-text-caption-left"></div>
+            <div class="single-publisher-text-caption-left">Λεζάντα φωτογραφίας με credit</div>
             <div class="single-publisher-text-caption-right">
                 <div class="single-publisher-text-caption-content">
-                    <?php echo get_the_content(); ?>
+                    <?php the_content(); ?>
+                </div>
+                <div class="single-publisher-text-caption-download">
+                    <a href="#">Κατεβάστε τον κατάλογο (7Mb)</a>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<?php if( have_rows('company_videos') || get_field('company_related_articles') ) {  ?>
-<section class="single-product-meta-section">
-    <div class="content-container">
-        <div class="single-product-meta-tab-row">
-            <div class="single-product-meta-tab-col">
-                <div class="single-product-meta-tab-item active" data-section-id="video">Video</div>
-            </div>
-            <div class="single-product-meta-tab-col">
-                <div class="single-product-meta-tab-item" data-section-id="article">Σχετικά  Άρθρα</div>
-            </div>
-        </div>
-        <div class="single-product-meta-tab-content-row">
-            <div id="single-product-meta-tab-content--video" class="single-product-meta-tab-content-col">
-                <div class="single-product-video-wrapper" is="mieteshop-product-video-slider">
-                    <div class="swiper-container" data-slider>
-                        <div class="swiper-wrapper">
-                            <?php
-                            if( have_rows('company_videos') ) { 
-                                while( have_rows('company_videos') ) : the_row();  
-                            ?>
-                                    <div class="swiper-slide">
-                                        <div class="single-product-video-item-row">
-                                            <div class="single-product-video-item-left-col">
-                                                <?php echo get_sub_field('company_video_embed_code'); ?>    
-                                                <?php //$video_image_url = get_template_directory_uri() . '/assets/images/video.png'; 
-                                                    $video_image_url = get_sub_field('company_video_cover_image');
-                                                ?>
-                                                <div class="single-product-video-image-wrapper">
-                                                    <!--img class="lazyload" src="<?php echo $video_image_url; ?>" data-src="<?php echo $video_image_url; ?>" alt="video image"-->
-                                                    <!--div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
-                                                    <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div-->
-                                                </div>
-                                            </div>
-                                            <div class="single-product-video-item-right-col">
-                                                <div class="single-product-video-item-content">
-                                                    <h2><?php echo get_sub_field('company_video_title'); ?></h2>
-                                                    <p><?php echo get_sub_field('company_video_description'); ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            <?php
-                                endwhile;
-                            }                            
-                            ?>
-                        </div>
+<?php
+    if( have_rows('company_videos') || get_field('company_related_articles') ) {
+?>
+        <section class="single-product-meta-section">
+            <div class="content-container">
+                <div class="single-product-meta-tab-row">
+                    <div class="single-product-meta-tab-col">
+                        <div class="single-product-meta-tab-item active" data-section-id="video">Video</div>
                     </div>
-                    <div class="single-product-video-pagination-wrapper" data-pagination></div>
-                </div>
-            </div>
-            <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
-                <div class="single-product-blog-wrapper" is="mieteshop-product-blog-slider">
-                    <div class="swiper-container" data-slider>
-                        <div class="swiper-wrapper">
-                            <?php
-                                $related_articles = get_field('company_related_articles');
-                                foreach($related_articles as $article) {
-                            ?>
-                                    <div class="single-product-blog-item swiper-slide">
-                                        <div class="single-product-blog-item-inner">
-                                            <?php $blog_image_url = wp_get_attachment_url( get_post_thumbnail_id($article->ID) ); //get_template_directory_uri() . '/assets/images/blog.png'; ?>
-                                            <div class="single-product-blog-image">
-                                                <a href="<?php echo $article->guid; ?>"><img
-                                                    class="lazyload"
-                                                    src="<?php echo placeholderImage(399, 261); ?>"
-                                                    data-src="<?php echo $blog_image_url; ?>"
-                                                    alt="video image"></a>
-                                            </div>
-                                            <div class="single-product-blog-content">
-                                                <h2><?php echo '<a href="'.$article->guid.'">' .$article->post_title .'</a>'; ?></h2>
-                                                <p><?php echo $article->post_excerpt; ?></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                            <?php
-                                }
-                            ?>
-                        </div>
+                    <div class="single-product-meta-tab-col">
+                        <div class="single-product-meta-tab-item" data-section-id="article">Σχετικά  Άρθρα</div>
                     </div>
                 </div>
+                <div class="single-product-meta-tab-content-row">
+                    <div id="single-product-meta-tab-content--video" class="single-product-meta-tab-content-col">
+                        <div class="single-product-video-wrapper" is="mieteshop-product-video-slider">
+                            <div class="swiper-container" data-slider>
+                                <div class="swiper-wrapper">
+                                    <?php
+                                        if( have_rows('company_videos') ) { 
+                                            while( have_rows('company_videos') ){
+                                                the_row();
+
+                                                // get_sub_field('company_video_embed_code');
+                                                $video_image_url = get_sub_field('company_video_cover_image');
+                                    ?>
+                                                <div class="swiper-slide">
+                                                    <div class="single-product-video-item-row">
+                                                        <div class="single-product-video-item-left-col">
+                                                            <div class="single-product-video-image-wrapper">
+                                                                <img
+                                                                    class="lazyload"
+                                                                    src="<?php echo placeholderImage(606, 241); ?>"
+                                                                    data-src="<?php echo aq_resize($video_image_url['url'], 606, 241, true); ?>"
+                                                                    alt="video image">
+                                                                <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
+                                                                <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="single-product-video-item-right-col">
+                                                            <div class="single-product-video-item-content">
+                                                                <h2><?php echo get_sub_field('company_video_title'); ?></h2>
+                                                                <?php echo apply_filters('the_content', get_sub_field('company_video_description')); ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    <?php
+                                            }
+                                        }                         
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="single-product-video-pagination-wrapper" data-pagination></div>
+                        </div>
+                    </div>
+                    <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
+                        <div class="single-product-blog-wrapper" is="mieteshop-product-blog-slider">
+                            <div class="swiper-container" data-slider>
+                                <div class="swiper-wrapper">
+                                    <?php
+                                        $related_articles = get_field('company_related_articles');
+                                        foreach($related_articles as $article) {
+                                            $blog_image_url = wp_get_attachment_url( get_post_thumbnail_id($article->ID) );
+                                    ?>
+                                            <div class="single-product-blog-item swiper-slide">
+                                                <div class="single-product-blog-item-inner">
+                                                    <div class="single-product-blog-image">
+                                                        <a href="<?php echo get_permalink($article->ID); ?>">
+                                                            <img
+                                                                class="lazyload"
+                                                                src="<?php echo placeholderImage(399, 261); ?>"
+                                                                data-src="<?php echo aq_resize($blog_image_url, 399, 261, true); ?>"
+                                                                alt="video image">
+                                                        </a>
+                                                    </div>
+                                                    <div class="single-product-blog-content">
+                                                        <h2><a href="<?php echo get_permalink($article->ID); ?>"><?php echo $article->post_title; ?></a></h2>
+                                                        <?php echo apply_filters('the_content', $article->post_excerpt); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <?php
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
-<?php } ?>
-<div class="single-product-recently-section">
+        </section>
+<?php
+    }
+?>
+<section class="single-product-recently-section">
     <div class="content-container">
         <div class="single-product-recently-title">
             <h2>ΒΙΒΛΙΑ</h2>
@@ -142,59 +155,119 @@
                 $args = [
                     'post_type' => 'product',
                     'posts_per_page' => 4,
-                    'meta_query'     => array(
-                        array(
+                    'meta_query' => [
+                        [
                             'key'     => 'book_publishers',
                             'value'   => $post->ID,
                             'compare' => 'LIKE'
-                        ),
-                    ) 
+                        ],
+                    ] 
                 ];
             
-                show_books($args);
+                $loop = new WP_Query( $args );
+
+                while ( $loop->have_posts() ){
+                    $loop->the_post();
+                    global $product;
+
+                    $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
+                    $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+            ?>
+                    <div class="pcat-results-col">
+                        <div class="pcat-result-item">
+                            <div class="pcat-result-item-info">
+                                <div class="pcat-result-item-image">
+                                    <img
+                                        class="lazyload"
+                                        src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                        data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                        alt="<?php echo $product->get_name(); ?>">
+                                </div>
+                                <div class="pcat-result-item-meta-row">
+                                    <div class="pcat-result-item-meta-col">
+                                        <div class="pcat-result-item-favorite">
+                                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="pcat-result-item-meta-col">
+                                        <div class="pcat-result-item-busket">
+                                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                    if( !empty($authors) ){
+                                        echo '<div class="pcat-result-item-author-list">';
+                                        if( count($authors) > 3 ){
+                                            echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
+                                        } else {
+                                            foreach( $authors as $author ){
+                                                echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                            }
+                                        }
+                                        echo '</div>';
+                                    }
+                                ?>
+                                <div class="pcat-result-item-title"><h3><?php echo $product->get_name(); ?></h3></div>
+                            </div>
+                            <div class="pcat-result-item-footer-row">
+                                <div class="pcat-result-item-footer-col">
+                                    <div class="pcat-result-item-footer-product-price">
+                                        <?php echo $product->get_price_html(); ?>
+                                    </div>
+                                </div>
+                                <div class="pcat-result-item-footer-col">
+                                    <div class="pcat-result-item-footer-product-discount">-30%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                }
             ?>
         </div>
     </div>
-</div>
-<?php if($post->ID == 733 ) { //only show series for publisher MIET ?>
-    <section class="single-product-series-section">
+</sec>
+<section class="single-product-series-section">
     <div class="small-container">
         <div class="single-product-series-title">
             <h2>ΣΕΙΡΕΣ</h2>
         </div>
-        <?php 
-        $series = get_terms( array( 
-            'taxonomy' => 'series',
-            'hide_empty' => false,       
-        ) );
-        ?>
         <div class="single-product-series-row">
-        <?php
-        foreach($series as $series_term) {
-            ?>
-            <div class="single-product-series-item">
-                <div class="single-product-series-item-image">
-                <?php $series_image = get_field('series_image', 'series_'.$series_term->term_id); ?>
-                    <a href="<?php esc_url( get_term_link( $series_term->term_id ) ); ?>"><img class="lazyload" src="<?php echo $series_image['url']; ?>" alt="<?php echo $series_term->name; ?>" /></a>    
-                       <!--img
-                        class="lazyload"
-                        src="<?php echo placeholderImage(300, 160, '#cccccc'); ?>"
-                        data-src="<?php echo aq_resize('', 300, 160, true); ?>"
-                        alt="dump"-->
-                </div>
-                <div class="single-product-series-item-title">
-                    <h3><a href="<?php esc_url( get_term_link( $series_term->term_id ) ); ?>"><?php echo $series_term->name; ?></a></h3>
-                </div>
-                <div class="single-product-series-item-info">
-                    <p><strong><?php echo $series_term->count; ?></strong> τίτλοι</p>
-                </div>
-            </div>
             <?php
-        }    
-        ?>
+                $series = get_terms([
+                    'taxonomy' => 'series',
+                    'hide_empty' => false,       
+                ]);
+
+                foreach($series as $series_term) {
+                    $series_image = get_field('series_image', 'series_'.$series_term->term_id);
+            ?>
+                    <div class="single-product-series-col">
+                        <div class="single-product-series-item">
+                            <div class="single-product-series-item-image">
+                                <a href="<?php esc_url( get_term_link( $series_term->term_id ) ); ?>">
+                                    <img
+                                        class="lazyload"
+                                        src="<?php echo placeholderImage(300, 160); ?>"
+                                        data-src="<?php echo aq_resize($series_image['url'], 300, 160, true); ?>"
+                                        alt="<?php echo $series_term->name; ?>">
+                                </a>
+                            </div>
+                            <div class="single-product-series-item-title">
+                                <h3><a href="<?php esc_url( get_term_link( $series_term->term_id ) ); ?>"><?php echo $series_term->name; ?></a></h3>
+                            </div>
+                            <div class="single-product-series-item-info">
+                                <p><strong><?php echo $series_term->count; ?></strong> τίτλοι</p>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                }    
+            ?>
+        </div>
     </div>
 </section>
-<?php } ?>
 <section class="home-authors-section">
     <div class="small-container">
         <div class="home-authors-title">
