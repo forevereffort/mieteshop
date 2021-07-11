@@ -227,7 +227,7 @@
             ?>
         </div>
     </div>
-</sec>
+</section>
 <section class="single-product-series-section">
     <div class="small-container">
         <div class="single-product-series-title">
