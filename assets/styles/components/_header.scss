@@ -725,10 +725,6 @@
     display: none;
   }
 
-  .header-nav {
-    display: none;
-  }
-
   .header-top-left {
     display: none;
   }
@@ -761,5 +757,44 @@
 
   .header-top-mobile-menu-btn {
     display: block;
+  }
+
+  .header-nav {
+    background-color: $color-black-1;
+    border-bottom: 0;
+
+    .container {
+      padding: 0;
+    }
+  }
+
+  .header-nav-row {
+    border-bottom: 1px solid $color-gray;
+    display: block;
+    padding: 0;
+  }
+
+  .header-nav-col {
+    border-top: 1px solid $color-gray;
+
+    > a {
+      color: $color-gray;
+      padding: 14px 16px 16px;
+    }
+  }
+
+  .header-nav-col+.header-nav-col {
+    &::before {
+      display: none;
+    }
+  }
+
+  .header-nav-arrow {
+    right: 21px;
+    top: 24px;
+
+    path {
+      fill: $color-gray;
+    }
   }
 }
