@@ -155,7 +155,60 @@
 }
 
 @media(max-width: $breakpoint-mobile-start) {
-  .site-footer {
-    display: none;
+  .footer-top {
+    padding: 12px 0 19px;
+  }
+
+  .footer-top-row {
+    display: block;
+    margin: 0 auto;
+    max-width: 280px;
+  }
+
+  .footer-top-left-col {
+    padding: 0;
+  }
+
+  .footer-news-letter-form-row {
+    display: block;
+  }
+
+  .footer-news-letter-form-col {
+    input[type=submit] {
+      width: 100%;
+    }
+  }
+
+  .footer-news-letter-form-col+.footer-news-letter-form-col {
+    margin: 15px 0 0;
+  }
+
+  .footer-top-right-col {
+    margin-top: 35px;
+  }
+
+  .footer-top-social-row {
+    justify-content: space-between;
+  }
+
+  .footer-top-social-col+.footer-top-social-col {
+    margin: 0;
+  }
+
+  .footer-menu {
+    padding: 46px 0 53px;
+  }
+
+  .footer-menu-row {
+    display: block;
+    padding: 0 19px;
+  }
+
+  .footer-menu-col+.footer-menu-col {
+    margin-top: 33px;
+  }
+
+  .footer-description-row {
+    padding: 12px 0 14px;
   }
 }
