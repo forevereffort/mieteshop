@@ -139,3 +139,9 @@
 .home-blog-slider-nav--next {
   right: -120px;
 }
+
+@media(max-width: $breakpoint-mobile-start) {
+  .home-blog {
+    display: none;
+  }
+}

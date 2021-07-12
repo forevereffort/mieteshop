@@ -99,3 +99,9 @@
 .book-slider-nav--next {
   right: -50px;
 }
+
+@media(max-width: $breakpoint-mobile-start) {
+  .book-slider {
+    display: none;
+  }
+}

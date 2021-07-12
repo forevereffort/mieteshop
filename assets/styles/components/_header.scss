@@ -660,3 +660,13 @@
     line-height: 1.286;
   }
 }
+
+@media(max-width: $breakpoint-mobile-start) {
+  .pre-header {
+    display: none;
+  }
+
+  .site-header {
+    display: none;
+  }
+}

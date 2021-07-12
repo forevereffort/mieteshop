@@ -113,3 +113,10 @@
     width: 100%;
   }
 }
+
+
+@media(max-width: $breakpoint-mobile-start) {
+  .three-banner {
+    display: none;
+  }
+}

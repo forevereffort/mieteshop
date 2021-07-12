@@ -99,3 +99,9 @@
   font-weight: $font-weight-light;
   padding-top: 4px;
 }
+
+@media(max-width: $breakpoint-mobile-start) {
+  .home-book-week-section {
+    display: none;
+  }
+}
