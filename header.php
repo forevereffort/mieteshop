@@ -486,9 +486,33 @@
 								<?php echo $menu['title']; ?>
 								<?php
 									if( $menu['has_child'] ){
-										echo '<span class="header-nav-arrow">';
-										include get_template_directory() . '/assets/icons/arrow-down-icon.svg';
-										echo '</span>';
+								?>
+										<div class="header-nav-arrow-wrapper">
+											<span class="header-nav-arrow"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></span>
+										</div>
+										<?php
+											foreach( $menu['children'] as $sub_menu_wrapper ){
+												foreach( $sub_menu_wrapper['children'] as $sub_menu ){
+										?>
+													<div class="header-nav-mobile-sub">
+														<a href="<?php echo $sub_menu['url'] ?>"><?php echo $sub_menu['title']; ?></a>
+														<?php
+															if( $sub_menu['has_child'] ){
+																foreach( $sub_menu['children'] as $sub_sub_menu ){
+														?>
+																	<div class="header-nav-mobile-sub-sub">
+																		<a href="<?php echo $sub_sub_menu['url']; ?>"><?php echo $sub_sub_menu['title']; ?></a>
+																	</div>
+														<?php
+																}
+															}
+														?>
+													</div>
+										<?php
+												}
+											}
+										?>
+								<?php
 									}
 								?>
 							</a>
