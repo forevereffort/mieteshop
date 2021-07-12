@@ -82,6 +82,84 @@
                 "return_format": "object"
             },
             {
+                "key": "field_60e32fc1a9c08",
+                "label": "Επίμετρο",
+                "name": "book_contributors_epimetro",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "contributor"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            },
+            {
+                "key": "field_60e32fe4a9c09",
+                "label": "Πρόλογος",
+                "name": "book_contributors_prologos",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "contributor"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            },
+            {
+                "key": "field_60e32ff2a9c0a",
+                "label": "Σχολιασμός",
+                "name": "book_contributors_scholiasmos",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "contributor"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            },
+            {
                 "key": "field_60acb098c5d83",
                 "label": "Ανθολόγος",
                 "name": "book_contributors_anthologos",
@@ -449,84 +527,6 @@
                 "key": "field_60acb1bfe6c86",
                 "label": "Φωτογράφος",
                 "name": "book_contributors_fotografos",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "contributor"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search",
-                    "taxonomy"
-                ],
-                "elements": "",
-                "min": "",
-                "max": "",
-                "return_format": "object"
-            },
-            {
-                "key": "field_60e32fc1a9c08",
-                "label": "Επίμετρο",
-                "name": "book_contributors_epimetro",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "contributor"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search",
-                    "taxonomy"
-                ],
-                "elements": "",
-                "min": "",
-                "max": "",
-                "return_format": "object"
-            },
-            {
-                "key": "field_60e32fe4a9c09",
-                "label": "Πρόλογος",
-                "name": "book_contributors_prologos",
-                "type": "relationship",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "post_type": [
-                    "contributor"
-                ],
-                "taxonomy": "",
-                "filters": [
-                    "search",
-                    "taxonomy"
-                ],
-                "elements": "",
-                "min": "",
-                "max": "",
-                "return_format": "object"
-            },
-            {
-                "key": "field_60e32ff2a9c0a",
-                "label": "Σχολιασμός",
-                "name": "book_contributors_scholiasmos",
                 "type": "relationship",
                 "instructions": "",
                 "required": 0,
@@ -2195,7 +2195,7 @@
             },
             {
                 "key": "field_60a7794c802a5",
-                "label": "Περιέχει",
+                "label": "Biblionet Περιέχει",
                 "name": "book_contains",
                 "type": "text",
                 "instructions": "",
@@ -2931,6 +2931,32 @@
                         "height": ""
                     }
                 ]
+            },
+            {
+                "key": "field_60e6ad90763c6",
+                "label": "Επιλεγμένοι Συγγραφείς",
+                "name": "company_selected_contributors",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "contributor"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
             }
         ],
         "location": [
