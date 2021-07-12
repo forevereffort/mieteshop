@@ -109,4 +109,12 @@ jQuery(document).ready(function(){
       }
     }
   });
+
+  jQuery('#js-header-top-mobile-menu-btn').on('click', function(){
+    if( jQuery(this).hasClass('is-open') ){
+      jQuery(this).removeClass('is-open')
+    } else {
+      jQuery(this).addClass('is-open')
+    }
+  })
 })

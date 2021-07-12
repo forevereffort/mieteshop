@@ -80,6 +80,9 @@
 	<div class="header-top">
 		<div class="container">
 			<div class="header-top-row">
+				<div id="js-header-top-mobile-menu-btn" class="header-top-mobile-menu-btn">
+					<span></span>
+				</div>
 				<div class="header-top-left">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php include get_template_directory() . '/assets/icons/home-icon.svg' ?></a>
 				</div>
