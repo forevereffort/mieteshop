@@ -1,4 +1,6 @@
-jQuery(document).ready(function(){
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+
+jQuery(function(){
   // Open sub menu and keep open. Close when hovering over a different menu item
   jQuery('.js-header-nav-parent-menu').hover(
     function () {
@@ -112,11 +114,29 @@ jQuery(document).ready(function(){
 
   jQuery('#js-header-top-mobile-menu-btn').on('click', function(){
     if( jQuery(this).hasClass('is-open') ){
+      enableBodyScroll(document.querySelector('#js-header-nav .container'))
+
       jQuery(this).removeClass('is-open')
+      jQuery('#js-header-top-right').removeClass('hide');
+      jQuery('#js-header-nav').removeClass('header-nav-mobile-visible')
     } else {
+      disableBodyScroll(document.querySelector('#js-header-nav .container'))
+
       jQuery(this).addClass('is-open')
+      jQuery('#js-header-top-right').addClass('hide');
+      jQuery('#js-header-nav').addClass('header-nav-mobile-visible')
+
+      // Measure height of window
+      jQuery('#js-header-nav').innerHeight(window.innerHeight)
     }
   })
+
+  // at the mobile, when portrait and landspace is changing, calculate window height and set it to the mobile menu container
+  jQuery(window).on('resize', function(){
+    // Measure height of window
+    jQuery('#js-header-nav').innerHeight(window.innerHeight)
+  })
+
 
   jQuery('.js-header-nav-mobile-arrow-wrapper').on('click', function(){
     const parentElem = jQuery(this).parent();

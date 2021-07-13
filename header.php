@@ -89,7 +89,7 @@
 				<div class="header-top-logo">
 					<a href="<?php echo esc_url( home_url( '/' ) ); ?>">ΒΙΒΛΙΟΠΩΛΕΙΟ ΜΙΕΤ</a>
 				</div>
-				<div class="header-top-right">
+				<div id="js-header-top-right" class="header-top-right">
 					<div class="header-top-right-row">
 						<div class="header-top-right-col">
 							<div class="header-top-search-wrapper">
@@ -471,7 +471,7 @@
 			</div>
 		</div>
 	</div>
-	<nav class="header-nav">
+	<nav id="js-header-nav" class="header-nav">
 		<div class="container">
 			<?php
 				$locations = get_nav_menu_locations();

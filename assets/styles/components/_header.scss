@@ -848,6 +848,7 @@
 }
 
 .header-mobile-nav-row {
+  display: none;
   padding-top: 60px;
 }
 
@@ -893,20 +894,36 @@
   .header-nav {
     background-color: $color-black-1;
     border-bottom: 0;
+    left: 0;
+    opacity: 0;
+    padding-top: 40px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity 0.4s ease, visibility 0.4s ease-out;
+    visibility: hidden;
+    z-index: 88;
 
     .container {
+      border-top: 1px solid $color-gray;
+      height: 100%;
+      overflow-y: auto;
       padding: 0;
     }
   }
 
+  .header-nav-mobile-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
   .header-nav-row {
-    border-bottom: 1px solid $color-gray;
     display: block;
     padding: 0;
   }
 
   .header-nav-col {
-    border-top: 1px solid $color-gray;
+    border-bottom: 1px solid $color-gray;
 
     > a {
       color: $color-gray;
@@ -932,5 +949,14 @@
 
   .header-nav-desktop-arrow {
     display: none;
+  }
+
+  .header-mobile-nav-row {
+    display: block;
+  }
+
+  .header-top {
+    position: relative;
+    z-index: 99;
   }
 }
