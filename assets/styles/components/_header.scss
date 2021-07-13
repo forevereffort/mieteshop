@@ -819,6 +819,38 @@
   display: none;
 }
 
+.header-mobile-nav-col {
+  a {
+    color: $color-black;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.56px;
+    padding: 14px 16px 16px;
+    width: 100%;
+  }
+}
+
+.header-mobile-nav-col+.header-mobile-nav-col {
+  border-top: 1px solid $color-black;
+}
+
+.header-mobile-nav-col--gray {
+  a {
+    background-color: $color-gray;
+  }
+}
+
+.header-mobile-nav-col--white {
+  a {
+    background-color: $color-white;
+  }
+}
+
+.header-mobile-nav-row {
+  padding-top: 60px;
+}
+
 @media(max-width: $breakpoint-mobile-start) {
   .pre-header {
     display: none;
