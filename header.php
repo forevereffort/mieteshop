@@ -482,14 +482,15 @@
 					foreach( $header_menu_array as $menu ){
 				?>
 						<div class="header-nav-col <?php echo $menu['has_child'] ? 'header-nav-col--has-child' : ''; ?>">
-							<a href="<?php echo $menu['url'] ?>" class="<?php echo $menu['has_child'] ? 'js-header-nav-parent-menu' : 'js-header-nav-menu'; ?> <?php echo $menu['class']; ?>" data-menu-id="<?php echo $menu['ID']; ?>">
-								<?php echo $menu['title']; ?>
-								<?php
-									if( $menu['has_child'] ){
-								?>
-										<div class="header-nav-arrow-wrapper">
-											<span class="header-nav-arrow"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></span>
-										</div>
+							<a href="<?php echo $menu['url'] ?>" class="<?php echo $menu['has_child'] ? 'js-header-nav-parent-menu' : 'js-header-nav-menu'; ?> <?php echo $menu['class']; ?>" data-menu-id="<?php echo $menu['ID']; ?>"><?php echo $menu['title']; ?></a>
+							<?php
+								if( $menu['has_child'] ){
+							?>
+									<span class="header-nav-desktop-arrow"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></span>
+									<div class="js-header-nav-mobile-arrow-wrapper header-nav-mobile-arrow-wrapper">
+										<span class="header-nav-mobile-arrow"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></span>
+									</div>
+									<div class="js-header-nav-mobile-sub-wrapper header-nav-mobile-sub-wrapper">
 										<?php
 											foreach( $menu['children'] as $sub_menu_wrapper ){
 												foreach( $sub_menu_wrapper['children'] as $sub_menu ){
@@ -498,13 +499,22 @@
 														<a href="<?php echo $sub_menu['url'] ?>"><?php echo $sub_menu['title']; ?></a>
 														<?php
 															if( $sub_menu['has_child'] ){
-																foreach( $sub_menu['children'] as $sub_sub_menu ){
 														?>
-																	<div class="header-nav-mobile-sub-sub">
-																		<a href="<?php echo $sub_sub_menu['url']; ?>"><?php echo $sub_sub_menu['title']; ?></a>
-																	</div>
+																<div class="js-header-nav-mobile-sub-arrow-wrapper header-nav-mobile-sub-arrow-wrapper">
+																	<span class="header-nav-mobile-sub-arrow"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></span>
+																</div>
+																<div class="js-header-nav-mobile-sub-sub-wrapper header-nav-mobile-sub-sub-wrapper">
+																	<?php
+																		foreach( $sub_menu['children'] as $sub_sub_menu ){
+																	?>
+																			<div class="header-nav-mobile-sub-sub">
+																				<a href="<?php echo $sub_sub_menu['url']; ?>"><?php echo $sub_sub_menu['title']; ?></a>
+																			</div>
+																	<?php
+																		}
+																	?>
+																</div>
 														<?php
-																}
 															}
 														?>
 													</div>
@@ -512,10 +522,10 @@
 												}
 											}
 										?>
-								<?php
-									}
-								?>
-							</a>
+									</div>
+							<?php
+								}
+							?>
 						</div>
 				<?php
 					}

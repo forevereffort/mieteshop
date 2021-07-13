@@ -117,4 +117,28 @@ jQuery(document).ready(function(){
       jQuery(this).addClass('is-open')
     }
   })
+
+  jQuery('.js-header-nav-mobile-arrow-wrapper').on('click', function(){
+    const parentElem = jQuery(this).parent();
+
+    if( jQuery(this).hasClass('is-open') ){
+      jQuery('.js-header-nav-mobile-sub-wrapper', parentElem).slideUp();
+      jQuery(this).removeClass('is-open');
+    } else {
+      jQuery('.js-header-nav-mobile-sub-wrapper', parentElem).slideDown();
+      jQuery(this).addClass('is-open');
+    }
+  })
+
+  jQuery('.js-header-nav-mobile-sub-arrow-wrapper').on('click', function(){
+    const parentElem = jQuery(this).parent();
+
+    if( jQuery(this).hasClass('is-open') ){
+      jQuery('.js-header-nav-mobile-sub-sub-wrapper', parentElem).slideUp();
+      jQuery(this).removeClass('is-open');
+    } else {
+      jQuery('.js-header-nav-mobile-sub-sub-wrapper', parentElem).slideDown();
+      jQuery(this).addClass('is-open');
+    }
+  })
 })

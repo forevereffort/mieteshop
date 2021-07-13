@@ -160,14 +160,14 @@
     padding-right: 60px;
 
     // &.active {
-    //   .header-nav-arrow {
+    //   .header-nav-desktop-arrow {
     //     transform: rotate(180deg);
     //   }
     // }
   }
 }
 
-.header-nav-arrow {
+.header-nav-desktop-arrow {
   display: flex;
   position: absolute;
   right: 31px;
@@ -720,6 +720,105 @@
   }
 }
 
+.header-nav-mobile-sub {
+  position: relative;
+
+  > a {
+    background-color: $color-white;
+    color: $color-black;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: $font-weight-extra-bold;
+    letter-spacing: 0.56px;
+    line-height: 1.485;
+    padding: 15px 16px 14px;
+    width: 100%;
+  }
+}
+
+.header-nav-mobile-sub+.header-nav-mobile-sub {
+  border-top: 1px solid $color-black;
+}
+
+.header-nav-mobile-sub-arrow-wrapper {
+  height: 40px;
+  position: absolute;
+  right: 7px;
+  top: 3px;
+  // background: red;
+  width: 40px;
+
+  &.is-open {
+    .header-nav-mobile-sub-arrow {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.header-nav-mobile-sub-arrow {
+  display: flex;
+  height: 8px;
+  left: 14px;
+  position: absolute;
+  top: 21px;
+  transition: transform 0.2s ease-out;
+  width: 12px;
+}
+
+.header-nav-mobile-sub-sub-wrapper {
+  display: none;
+}
+
+.header-nav-mobile-sub-sub {
+  border-top: 1px solid $color-black;
+
+  > a {
+    background-color: $color-gray;
+    color: $color-black;
+    display: inline-block;
+    font-size: 16px;
+    letter-spacing: $font-weight-light;
+    line-height: 1.3125;
+    padding: 14px 16px 13px 37px;
+    width: 100%;
+  }
+}
+
+.header-nav-mobile-arrow-wrapper {    
+  display: none;
+  height: 40px;
+  position: absolute;
+  right: 7px;
+  top: 3px;
+  // background: blue;
+  width: 40px;
+
+  &.is-open {
+    .header-nav-mobile-arrow {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.header-nav-mobile-arrow {
+  display: none;
+  display: flex;
+  height: 8px;
+  left: 14px;
+  position: absolute;
+  top: 21px;
+  transition: transform 0.2s ease-out;
+  width: 12px;
+
+  path {
+    fill: $color-gray;
+  }
+}
+
+.header-nav-mobile-sub-wrapper {
+  display: none;
+}
+
 @media(max-width: $breakpoint-mobile-start) {
   .pre-header {
     display: none;
@@ -779,7 +878,9 @@
 
     > a {
       color: $color-gray;
+      display: inline-block;
       padding: 14px 16px 16px;
+      width: 100%;
     }
   }
 
@@ -789,12 +890,15 @@
     }
   }
 
-  .header-nav-arrow {
-    right: 21px;
-    top: 24px;
+  .header-sub-menu {
+    display: none;
+  }
 
-    path {
-      fill: $color-gray;
-    }
+  .header-nav-mobile-arrow-wrapper {
+    display: block;
+  }
+
+  .header-nav-desktop-arrow {
+    display: none;
   }
 }
