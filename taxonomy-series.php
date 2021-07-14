@@ -198,9 +198,9 @@
         </div>
         <?php
             $series_image_gallery = get_field('series_image_gallery', 'series_'.$current_series_taxonomy->term_id);
-            echo '<pre>';
-            print_r($series_image_gallery);
-            echo '</pre>';
+            // echo '<pre>';
+            // print_r($series_image_gallery);
+            // echo '</pre>';
         ?>
     </div>
 </section>
