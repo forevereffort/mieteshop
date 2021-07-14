@@ -46,4 +46,10 @@ jQuery(function(){
     }
 
     addPageNavigationClickOfSPProductFunc();
+
+    jQuery('#js-sp-page-list').on('change', function(){
+        const pageNumber = jQuery(this).val();
+
+        singlePublisherProductSearch(pageNumber);
+    });
 })

@@ -38,12 +38,12 @@
 <section class="single-publisher-text-caption-section">
     <div class="content-container">
         <div class="single-publisher-text-caption-row">
-            <div class="single-publisher-text-caption-left">Λεζάντα φωτογραφίας με credit</div>
+            <div class="single-publisher-text-caption-left"><span style="display: none;">Λεζάντα φωτογραφίας με credit</span></div>
             <div class="single-publisher-text-caption-right">
                 <div class="single-publisher-text-caption-content">
                     <?php the_content(); ?>
                 </div>
-                <div class="single-publisher-text-caption-download">
+                <div class="single-publisher-text-caption-download" style="display: none;">
                     <a href="#">Κατεβάστε τον κατάλογο (7Mb)</a>
                 </div>
             </div>
@@ -208,8 +208,17 @@
                                     <div class="pcat-results-footer-select">
                                         <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
                                         <div class="pcat-results-footer-select-elem">
-                                            <select>
-                                                <option value="1">1</option>
+                                            <?php
+                                                $pageCount = round($count_product_list_include_single_publisher / $productPerPage + 0.45);
+                                            ?>
+                                            <select id="js-sp-page-list">
+                                                <?php
+                                                    for($p = 1; $p <= $pageCount; $p++){
+                                                ?>
+                                                        <option value="<?php echo $p; ?>"><?php echo $p; ?></option>
+                                                <?php
+                                                    }
+                                                ?>
                                             </select>
                                             <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
                                         </div>
@@ -225,46 +234,53 @@
         </div>
     </div>
 </section>
-<section class="single-product-series-section">
-    <div class="small-container">
-        <div class="single-product-series-title">
-            <h2>ΣΕΙΡΕΣ</h2>
-        </div>
-        <div class="single-product-series-row">
-            <?php
-                $series = get_terms([
-                    'taxonomy' => 'series',
-                    'hide_empty' => false,       
-                ]);
+<?php
+    if($post->ID == 733 ) {
+        //only show series for publisher MIET
+?>
+        <section class="single-product-series-section">
+            <div class="small-container">
+                <div class="single-product-series-title">
+                    <h2>ΣΕΙΡΕΣ</h2>
+                </div>
+                <div class="single-product-series-row">
+                    <?php
+                        $series = get_terms([
+                            'taxonomy' => 'series',
+                            'hide_empty' => false,       
+                        ]);
 
-                foreach($series as $series_term) {
-                    $series_image = get_field('series_image', 'series_'.$series_term->term_id);
-            ?>
-                    <div class="single-product-series-col">
-                        <div class="single-product-series-item">
-                            <div class="single-product-series-item-image">
-                                <a href="<?php echo esc_url( get_term_link( $series_term->term_id ) ); ?>">
-                                    <img
-                                        class="lazyload"
-                                        src="<?php echo placeholderImage(300, 160); ?>"
-                                        data-src="<?php echo aq_resize($series_image['url'], 300, 160, true); ?>"
-                                        alt="<?php echo $series_term->name; ?>">
-                                </a>
+                        foreach($series as $series_term) {
+                            $series_image = get_field('series_image', 'series_'.$series_term->term_id);
+                    ?>
+                            <div class="single-product-series-col">
+                                <div class="single-product-series-item">
+                                    <div class="single-product-series-item-image">
+                                        <a href="<?php echo esc_url( get_term_link( $series_term->term_id ) ); ?>">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage(300, 160); ?>"
+                                                data-src="<?php echo aq_resize($series_image['url'], 300, 160, true); ?>"
+                                                alt="<?php echo $series_term->name; ?>">
+                                        </a>
+                                    </div>
+                                    <div class="single-product-series-item-title">
+                                        <h3><a href="<?php echo esc_url( get_term_link( $series_term->term_id ) ); ?>"><?php echo $series_term->name; ?></a></h3>
+                                    </div>
+                                    <div class="single-product-series-item-info">
+                                        <p><strong><?php echo $series_term->count; ?></strong> τίτλοι</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="single-product-series-item-title">
-                                <h3><a href="<?php echo esc_url( get_term_link( $series_term->term_id ) ); ?>"><?php echo $series_term->name; ?></a></h3>
-                            </div>
-                            <div class="single-product-series-item-info">
-                                <p><strong><?php echo $series_term->count; ?></strong> τίτλοι</p>
-                            </div>
-                        </div>
-                    </div>
-            <?php
-                }    
-            ?>
-        </div>
-    </div>
-</section>
+                    <?php
+                        }    
+                    ?>
+                </div>
+            </div>
+        </section>
+<?php
+    }
+?>
 <section class="home-authors-section">
     <div class="small-container">
         <div class="home-authors-title">
