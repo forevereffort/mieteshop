@@ -134,7 +134,11 @@ jQuery(function(){
   // at the mobile, when portrait and landspace is changing, calculate window height and set it to the mobile menu container
   jQuery(window).on('resize', function(){
     // Measure height of window
-    jQuery('#js-header-nav').innerHeight(window.innerHeight)
+    if( window.innerWidth < 768 ){
+      jQuery('#js-header-nav').innerHeight(window.innerHeight)
+    } else {
+      jQuery('#js-header-nav').removeAttr('style')
+    }
   })
 
 
