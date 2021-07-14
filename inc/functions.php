@@ -136,6 +136,7 @@ include_once 'page-functions/search-art-object-function.php';
 include_once 'page-functions/archive-publisher-function.php';
 include_once 'page-functions/archive-contributor-function.php';
 include_once 'page-functions/single-publisher-function.php';
+include_once 'page-functions/taxonomy_series_product.php';
 
 require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 
