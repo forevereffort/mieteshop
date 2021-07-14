@@ -510,6 +510,13 @@
   }
 }
 
+.pcat-results-section--border-top {
+  .general-container {
+    background-color: $color-gray;
+    border-top: 2px solid $color-black-1;
+  }
+}
+
 .pcat-filter-detail-row {
   display: flex;
   flex-wrap: wrap;
