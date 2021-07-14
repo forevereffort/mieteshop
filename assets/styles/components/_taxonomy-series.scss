@@ -42,3 +42,43 @@
     margin-top: 25px;
   }
 }
+
+.series-sampling-section {
+  background-color: $color-gray;
+  margin: 0 auto;
+  max-width: $general-container-width;
+  padding: 30px 0 100px;
+}
+
+.series-sampling-title {
+  text-align: center;
+
+  h2 {
+    color: $color-black-1;
+    font-size: 16px;
+    font-weight: $font-weight-extra-bold;
+    line-height: 1.125;
+  }
+}
+
+.series-sampling-iframe {
+  margin: 50px auto 0;
+  max-width: 820px;
+}
+
+.series-sampling-iframe-container {
+  overflow: hidden;
+  padding-top: 56.25%;
+  position: relative;
+  width: 100%;
+
+  iframe {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+}

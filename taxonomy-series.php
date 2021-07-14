@@ -191,7 +191,11 @@
 
     wp_reset_query();
 ?>
-
+<section class="series-image-gallery-section">
+    <?php
+        $series_image_gallery = get_field('series_image_gallery', 'series_'.$current_series_taxonomy->term_id);
+    ?>
+</section>
 <section class="single-product-meta-section">
     <div class="content-container">
         <div class="single-product-meta-tab-row">
@@ -245,7 +249,18 @@
         </div>
     </div>
 </section>
-
+<section class="series-sampling-section">
+    <div class="series-sampling-title">
+        <h2>Sampling</h2>
+    </div>
+    <div class="series-sampling-iframe">
+        <div class="series-sampling-iframe-container">
+            <?php
+                $series_sampling = get_field('series_sampling', 'series_'.$current_series_taxonomy->term_id);
+                echo $series_sampling;
+            ?>
+        </div>
+    </div>
+</section>
 <div id="js-ts-product-filter-load-spinner" class="load-spinner hide"></div>
-
 <?php get_footer(); ?>
