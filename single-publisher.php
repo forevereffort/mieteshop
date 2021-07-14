@@ -113,12 +113,12 @@
             </div>
             <?php
                 if( $count_product_list_include_single_publisher > 0){
-                    $productPerPage = 1;
+                    $productPerPage = 16;
                     $page = 1;
 
                     $product_list_include_single_publisher_of_selected_page = array_slice($product_list_include_single_publisher, ($page - 1) * $productPerPage, $productPerPage);
             ?>
-                    <div class="pcat-results-row">
+                    <div id="js-single-publisher-product-row" class="pcat-results-row" data-nonce="<?php echo wp_create_nonce('filter_single_publisher_product_nonce'); ?>" data-product-per-page="<?php echo $productPerPage; ?>" data-publisher-id="<?php echo $current_single_publisher_id; ?>">
                         <?php
                             foreach($product_list_include_single_publisher_of_selected_page as $product_id){
                                 $product = wc_get_product( $product_id );
@@ -183,9 +183,9 @@
                     ?>
                             <div class="pcat-results-footer-options">
                                 <div class="pcat-results-footer-options-col">
-                                    <div class="pcat-results-navigation">
+                                    <div id="js-single-publisher-product-navigation" class="pcat-results-navigation">
                                         <?php
-                                            require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
+                                            require_once dirname(__FILE__) . '/inc/zebra-pagination.php';
 
                                             $pagination = new Zebra_Pagination();
                                             $pagination->records($count_product_list_include_single_publisher);
@@ -195,9 +195,9 @@
                                             $pagination->padding(false);
                                             $pagination->css_classes([
                                                 'list' => 'pcat-results-navigation-row',
-                                                'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
-                                                'prev' => 'js-pcat-results-navigation-item pcat-results-navigation-prev',
-                                                'next' => 'js-pcat-results-navigation-item pcat-results-navigation-next',
+                                                'list_item' => 'js-sp-product-navigation-item pcat-results-navigation-item',
+                                                'prev' => 'js-sp-product-navigation-item pcat-results-navigation-prev',
+                                                'next' => 'js-sp-product-navigation-item pcat-results-navigation-next',
                                                 'anchor' => '',
                                             ]);
                                             $pagination->render();
@@ -402,5 +402,7 @@
         }
     }
 ?>
+
+<div id="js-single-publisher-product-filter-load-spinner" class="load-spinner hide"></div>
 
 <?php get_footer(); ?>
