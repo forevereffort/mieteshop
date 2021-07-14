@@ -243,7 +243,7 @@
                     <div class="single-product-series-col">
                         <div class="single-product-series-item">
                             <div class="single-product-series-item-image">
-                                <a href="<?php esc_url( get_term_link( $series_term->term_id ) ); ?>">
+                                <a href="<?php echo esc_url( get_term_link( $series_term->term_id ) ); ?>">
                                     <img
                                         class="lazyload"
                                         src="<?php echo placeholderImage(300, 160); ?>"
@@ -252,7 +252,7 @@
                                 </a>
                             </div>
                             <div class="single-product-series-item-title">
-                                <h3><a href="<?php esc_url( get_term_link( $series_term->term_id ) ); ?>"><?php echo $series_term->name; ?></a></h3>
+                                <h3><a href="<?php echo esc_url( get_term_link( $series_term->term_id ) ); ?>"><?php echo $series_term->name; ?></a></h3>
                             </div>
                             <div class="single-product-series-item-info">
                                 <p><strong><?php echo $series_term->count; ?></strong> τίτλοι</p>
