@@ -82,3 +82,22 @@
     width: 100%;
   }
 }
+
+.series-image-gallery-section{
+
+    .general-container{
+        background-color: $color-gray;
+        border-top: 2px solid $color-black-1;
+    }
+}
+
+.series-image-gallery-title{
+    text-align: center;
+
+    h2{
+        font-size: 18px;
+        line-height: 1.556;
+        letter-spacing: 1.8px;
+        color: $color-black-1;
+    }
+}

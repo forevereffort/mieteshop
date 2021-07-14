@@ -192,9 +192,17 @@
     wp_reset_query();
 ?>
 <section class="series-image-gallery-section">
-    <?php
-        $series_image_gallery = get_field('series_image_gallery', 'series_'.$current_series_taxonomy->term_id);
-    ?>
+    <div class="general-container">
+        <div class="series-image-gallery-title">
+            <h2>MAKING OF & ΣΧΕΤΙΚΑ</h2>
+        </div>
+        <?php
+            $series_image_gallery = get_field('series_image_gallery', 'series_'.$current_series_taxonomy->term_id);
+            echo '<pre>';
+            print_r($series_image_gallery);
+            echo '</pre>';
+        ?>
+    </div>
 </section>
 <section class="single-product-meta-section">
     <div class="content-container">
