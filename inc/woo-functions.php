@@ -76,7 +76,7 @@ add_action('init', function (){
     $args = [
         'labels'                     => $labels,
         'hierarchical'               => true,
-        'public'                     => false,
+        'public'                     => true,
         'show_ui'                    => true,
         'show_admin_column'          => false,
         'show_in_nav_menus'          => true,
