@@ -297,7 +297,7 @@
                                                 </div>
                                                 <div class="pcat-result-item-meta-col">
                                                     <div class="pcat-result-item-busket">
-                                                        <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                                        <a class="js-mieteshop-add-to-cart" href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
                                                     </div>
                                                 </div>
                                             </div>
