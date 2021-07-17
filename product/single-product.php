@@ -5,7 +5,6 @@
     $publishers = get_field('book_publishers', $product->ID);
     $series = get_the_terms( $product->ID, 'series' );
     $epiloges = get_the_terms( $product->ID, 'epiloges' );
-    
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
@@ -53,7 +52,7 @@
                                     foreach($epiloges as $epilogi) {
                                         if($epilogi->slug == 'nees-kyklofories'){    
                             ?>
-                                            <div class="single-product-tag active"><a href="<?php echo get_term_link($epilogi->name); ?>"><?php echo $epilogi->name; ?></a></div>
+                                            <div class="single-product-tag active"><a href="<?php echo get_term_link($epilogi->term_id); ?>"><?php echo $epilogi->name; ?></a></div>
                             <?php
                                         }    
                                     }
