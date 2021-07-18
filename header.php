@@ -240,229 +240,51 @@
 									<?php include get_template_directory() . '/assets/icons/busket-icon.svg' ?>
 								</div>
 								<div id="js-header-top-busket-popup" class="header-top-search-popup header-top-search-popup--busket">
-									<div class="header-top-search-result-group-list">
-										<div class="header-top-search-result-group header-top-search-result-group--busket">
-											<div class="header-top-search-result-group-title">
-												<h3>ΚΑΛΑΘΙ ΑΓΟΡΩΝ</h3>
+									<?php
+										// check cart is not empty
+										if( WC()->cart->get_cart_contents_count() == 0 ){
+											echo 'Empty';
+										} else {
+											$cart_list = [];
+											foreach(WC()->cart->get_cart() as $cart_item){
+												$authors = get_field('book_contributors_syggrafeas', $cart_item['data']->get_id());
+												$author_list = [];
+
+												if( !empty($authors) ){
+													if( count($authors) > 3 ){
+														$author_list = 'Συλλογικό Έργο';
+													} else {
+														foreach( $authors as $author ){
+															$author_list[] = [
+																'link' => get_permalink($author->ID),
+																'title' => $author->post_title
+															];
+														}
+													}
+												}
+
+												$image = wp_get_attachment_image_src( get_post_thumbnail_id( $cart_item['data']->get_id() ), 'full' );
+
+												$cart_list[] = [
+													'title' => $cart_item['data']->get_title(),
+													'quantity' => $cart_item['quantity'],
+													'price' =>  $cart_item['data']->get_price_html(),
+													'placeholder' => placeholderImage($image[1], $image[2]),
+													'image' => aq_resize($image[0], $image[1], $image[2], true),
+													'authors' => $author_list,
+												];
+											}
+
+											global $twig;
+
+											echo $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total()])
+									?>
+											<div class="header-top-search-button">
+												<a href="<?php echo wc_get_cart_url(); ?>">Δείτε το καλάθι σας</a>
 											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info-row">
-															<div class="header-top-search-result-item-info-left-col">
-																<div class="header-top-search-result-item-info-author">Δημήτριος Ι. Ζέπος</div>
-																<div class="header-top-search-result-item-info-title">
-																	<h4>Λαϊκή Δικαιοσύνη. Εις τας ελευθέρας περιοχάς της υπό κατοχήν Ελλάδος</h4>
-																</div>
-															</div>
-															<div class="header-top-search-result-item-info-right-col">
-																<div>
-																	<span class="header-top-search-result-item-info-count">1x</span>
-																	<span class="header-top-search-result-item-info-price">€14,50</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info-row">
-															<div class="header-top-search-result-item-info-left-col">
-																<div class="header-top-search-result-item-info-author">Ι. Θ. Κακριδής</div>
-																<div class="header-top-search-result-item-info-title">
-																	<h4>Οι αρχαίοι Έλληνες στη νεοελληνική λαϊκή παράδοση</h4>
-																</div>
-															</div>
-															<div class="header-top-search-result-item-info-right-col">
-																<div>
-																	<span class="header-top-search-result-item-info-count">2x</span>
-																	<span class="header-top-search-result-item-info-price">€9,50</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info-row">
-															<div class="header-top-search-result-item-info-left-col">
-																<div class="header-top-search-result-item-info-author">Σοφία Παλαμιώτη</div>
-																<div class="header-top-search-result-item-info-title">
-																	<h4>Λαϊκές βιβλιοθήκες. Οδηγός για την οργάνωσή τους</h4>
-																</div>
-															</div>
-															<div class="header-top-search-result-item-info-right-col">
-																<div>
-																	<span class="header-top-search-result-item-info-count">1x</span>
-																	<span class="header-top-search-result-item-info-price">€18,50</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info-row">
-															<div class="header-top-search-result-item-info-left-col">
-																<div class="header-top-search-result-item-info-author">Παναγιώτης Ζωγράφος</div>
-																<div class="header-top-search-result-item-info-title">
-																	<h4>Στοχασμός Μακρυγιάννη. Χειρ Παναγιώτη Ζωγράφου. Εικονογραφία του Εικοσιένα</h4>
-																</div>
-															</div>
-															<div class="header-top-search-result-item-info-right-col">
-																<div>
-																	<span class="header-top-search-result-item-info-count">1x</span>
-																	<span class="header-top-search-result-item-info-price">€13,50</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info-row">
-															<div class="header-top-search-result-item-info-left-col">
-																<div class="header-top-search-result-item-info-author">Χριστίνα Μαξούρη</div>
-																<div class="header-top-search-result-item-info-title">
-																	<h4>20 + 1 Λαϊκά Μεταπολεμικά Τραγούδια με Μπαρόκ Σύνολο</h4>
-																</div>
-															</div>
-															<div class="header-top-search-result-item-info-right-col">
-																<div>
-																	<span class="header-top-search-result-item-info-count">1x</span>
-																	<span class="header-top-search-result-item-info-price">€32,50</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info-row">
-															<div class="header-top-search-result-item-info-left-col">
-																<div class="header-top-search-result-item-info-author">Φρέντυ Κάραμποτ</div>
-																<div class="header-top-search-result-item-info-title">
-																	<h4>Γεύση  Έρωτα</h4>
-																</div>
-															</div>
-															<div class="header-top-search-result-item-info-right-col">
-																<div>
-																	<span class="header-top-search-result-item-info-count">1x</span>
-																	<span class="header-top-search-result-item-info-price">€14,50</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info-row">
-															<div class="header-top-search-result-item-info-left-col">
-																<div class="header-top-search-result-item-info-author">Γκαρδιάκος</div>
-																<div class="header-top-search-result-item-info-title">
-																	<h4>Ο Δοσίλογος</h4>
-																</div>
-															</div>
-															<div class="header-top-search-result-item-info-right-col">
-																<div>
-																	<span class="header-top-search-result-item-info-count">1x</span>
-																	<span class="header-top-search-result-item-info-price">€11,00</span>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="header-top-search-result-total-price">
-										<div class="header-top-search-result-total-price-row">
-											<div class="header-top-search-result-total-price-left-col">
-												<span>Σύνολο</span>
-											</div>
-											<div class="header-top-search-result-total-price-right-col">
-												<span>€123,50</span>
-											</div>
-										</div>
-									</div>
-									<div class="header-top-search-button">
-										<a href="#">Δείτε το καλάθι σας</a>
-									</div>
+									<?php
+										}
+									?>
 								</div>
 							</div>
 						</div>
