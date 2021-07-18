@@ -19,10 +19,10 @@ jQuery(function(){
                 variation_id,
             },
             beforeSend: function (response) {
-                console.log('beforeSend');
+                jQuery('body').append('<div id="js-ajax-add-to-cart-load-spinner" class="load-spinner"></div>');
             },
             complete: function (response) {
-                console.log('complete');
+                jQuery('#js-ajax-add-to-cart-load-spinner').remove();
             },
             success: function (response) {
                 jQuery('#js-header-top-cart-list').html(response.result);
