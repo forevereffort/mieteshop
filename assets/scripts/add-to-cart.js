@@ -9,6 +9,7 @@ jQuery(function(){
 
         jQuery.ajax({
             type: 'post',
+            dataType: 'json',
             url: wc_add_to_cart_params.ajax_url,
             data: {
                 action: 'woocommerce_ajax_add_to_cart',
@@ -24,7 +25,7 @@ jQuery(function(){
                 console.log('complete');
             },
             success: function (response) {
-                console.log('success');
+                jQuery('#js-header-top-cart-list').html(response.result);
             },
         });
 

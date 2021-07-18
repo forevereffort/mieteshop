@@ -138,7 +138,45 @@ function woocommerce_ajax_add_to_cart() {
             wc_add_to_cart_message(array($product_id => $quantity), true);
         }
 
-        WC_AJAX :: get_refreshed_fragments();
+        // WC_AJAX :: get_refreshed_fragments();
+
+        $cart_list = [];
+        foreach(WC()->cart->get_cart() as $cart_item){
+            $authors = get_field('book_contributors_syggrafeas', $cart_item['data']->get_id());
+            $author_list = [];
+
+            if( !empty($authors) ){
+                if( count($authors) > 3 ){
+                    $author_list = 'Συλλογικό Έργο';
+                } else {
+                    foreach( $authors as $author ){
+                        $author_list[] = [
+                            'link' => get_permalink($author->ID),
+                            'title' => $author->post_title
+                        ];
+                    }
+                }
+            }
+
+            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $cart_item['data']->get_id() ), 'full' );
+
+            $cart_list[] = [
+                'title' => $cart_item['data']->get_title(),
+                'quantity' => $cart_item['quantity'],
+                'price' =>  $cart_item['data']->get_price_html(),
+                'placeholder' => placeholderImage($image[1], $image[2]),
+                'image' => aq_resize($image[0], $image[1], $image[2], true),
+                'authors' => $author_list,
+            ];
+        }
+
+        global $twig;
+
+        $result = json_encode([
+            'result' => $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total()])
+        ]);
+
+        echo $result;
     } else {
         $data = [
             'error' => true,

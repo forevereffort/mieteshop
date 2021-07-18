@@ -243,7 +243,9 @@
 									<?php
 										// check cart is not empty
 										if( WC()->cart->get_cart_contents_count() == 0 ){
-											echo 'Empty';
+									?>
+											<div id="js-header-top-cart-list">Empty</div>
+									<?php
 										} else {
 											$cart_list = [];
 											foreach(WC()->cart->get_cart() as $cart_item){
@@ -276,9 +278,10 @@
 											}
 
 											global $twig;
-
-											echo $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total()])
 									?>
+											<div id="js-header-top-cart-list">
+													<?php echo $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total()]); ?>
+											</div>
 											<div class="header-top-search-button">
 												<a href="<?php echo wc_get_cart_url(); ?>">Δείτε το καλάθι σας</a>
 											</div>
