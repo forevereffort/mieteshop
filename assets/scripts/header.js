@@ -167,7 +167,10 @@ jQuery(function(){
   })
 
   jQuery('#js-desktop-thematic-map-btn').on('click', function(){
-    console.log('desktop');
+    jQuery(this).parent().parent().parent().addClass('hide');
+    jQuery(this).parent().parent().parent().parent().append(jQuery('#js-thematic-sub-menu-wrapper'));
+    jQuery('#js-thematic-sub-menu-wrapper').removeClass('hide');
+
     return false;
   });
 
