@@ -403,7 +403,6 @@
 										<?php
 											$link_1 = get_field('link_1', $menu['ID']);
 											$link_2 = get_field('link_2', $menu['ID']);
-											$link_3 = get_field('link_3', $menu['ID']);
 										?>
 										<div class="header-sub-menu-footer-left">
 											<div class="header-sub-menu-footer-left-col">
@@ -414,7 +413,7 @@
 											</div>
 										</div>
 										<div class="header-sub-menu-footer-right">
-											<a href="<?php echo $link_3['url']; ?>"><?php echo $link_3['title']; ?></a>
+											<a href="#" id="js-desktop-thematic-map-btn">ΑΝΑΛΥΤΙΚΟΣ ΘΕΜΑΤΙΚΟΣ ΧΑΡΤΗΣ</a>
 										</div>
 									</div>
 								</div>
@@ -427,7 +426,7 @@
 			<div class="header-mobile-nav-row">
 				<div class="header-mobile-nav-col header-mobile-nav-col--gray"><a href="#">ΝΕΕΣ ΚΥΚΛΟΦΟΡΙΕΣ</a></div>
 				<div class="header-mobile-nav-col header-mobile-nav-col--gray"><a href="#">ΣΕΙΡΕΣ ΜΙΕΤ</a></div>
-				<div class="header-mobile-nav-col header-mobile-nav-col--white"><a href="#">ΑΝΑΛΥΤΙΚΟΣ ΘΕΜΑΤΙΚΟΣ ΧΑΡΤΗΣ</a></div>
+				<div id="js-mobile-thematic-map-btn" class="header-mobile-nav-col header-mobile-nav-col--white"><a href="#">ΑΝΑΛΥΤΙΚΟΣ ΘΕΜΑΤΙΚΟΣ ΧΑΡΤΗΣ</a></div>
 			</div>
 		</div>
 	</nav>
