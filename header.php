@@ -280,10 +280,7 @@
 											global $twig;
 									?>
 											<div id="js-header-top-cart-list">
-													<?php echo $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total()]); ?>
-											</div>
-											<div class="header-top-search-button">
-												<a href="<?php echo wc_get_cart_url(); ?>">Δείτε το καλάθι σας</a>
+												<?php echo $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total(), 'cat_page_url' => wc_get_cart_url()]); ?>
 											</div>
 									<?php
 										}

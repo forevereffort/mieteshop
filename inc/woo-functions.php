@@ -173,7 +173,7 @@ function woocommerce_ajax_add_to_cart() {
         global $twig;
 
         $result = json_encode([
-            'result' => $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total()])
+            'result' => $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total(), 'cat_page_url' => wc_get_cart_url()])
         ]);
 
         echo $result;
