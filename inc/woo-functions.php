@@ -172,18 +172,16 @@ function woocommerce_ajax_add_to_cart() {
 
         global $twig;
 
-        $result = json_encode([
+        wp_send_json([
             'result' => $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total(), 'cat_page_url' => wc_get_cart_url()])
         ]);
-
-        echo $result;
     } else {
         $data = [
             'error' => true,
             'product_url' => apply_filters('woocommerce_cart_redirect_after_error', get_permalink($product_id), $product_id)
         ];
 
-        echo wp_send_json($data);
+        wp_send_json($data);
     }
 
     wp_die();

@@ -296,9 +296,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="pcat-result-item-meta-col">
-                                                    <div class="pcat-result-item-busket">
-                                                        <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
-                                                    </div>
+                                                    <?php
+                                                        if( !$product->is_purchasable() ||  !$product->is_in_stock() ){
+                                                            if( !$product->is_purchasable() ){
+                                                                echo '<span style="color:red">Not purchasable</span>';
+                                                            } elseif ( !$product->is_in_stock() ) {
+                                                                echo '<span style="color:red">Out of stock</span>';
+                                                            }
+                                                        } else {
+                                                    ?>
+                                                            <div class="pcat-result-item-busket">
+                                                                <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                                            </div>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <?php
