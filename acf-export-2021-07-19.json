@@ -947,6 +947,25 @@
                 "maxlength": ""
             },
             {
+                "key": "field_60f582347eaeb",
+                "label": "Thematic Map",
+                "name": "thematic_map",
+                "type": "page_link",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": "",
+                "taxonomy": "",
+                "allow_null": 0,
+                "allow_archives": 1,
+                "multiple": 0
+            },
+            {
                 "key": "field_60c95fb259c49",
                 "label": "Footer Settings",
                 "name": "",
