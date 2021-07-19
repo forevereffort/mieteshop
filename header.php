@@ -410,7 +410,7 @@
 											</div>
 										</div>
 										<div class="header-sub-menu-footer-right">
-											<a href="#" id="js-desktop-thematic-map-btn">ΑΝΑΛΥΤΙΚΟΣ ΘΕΜΑΤΙΚΟΣ ΧΑΡΤΗΣ</a>
+											<a href="<?php echo get_field('thematic_map_page', 'option'); ?>">ΑΝΑΛΥΤΙΚΟΣ ΘΕΜΑΤΙΚΟΣ ΧΑΡΤΗΣ</a>
 										</div>
 									</div>
 								</div>
@@ -423,80 +423,8 @@
 			<div class="header-mobile-nav-row">
 				<div class="header-mobile-nav-col header-mobile-nav-col--gray"><a href="#">ΝΕΕΣ ΚΥΚΛΟΦΟΡΙΕΣ</a></div>
 				<div class="header-mobile-nav-col header-mobile-nav-col--gray"><a href="#">ΣΕΙΡΕΣ ΜΙΕΤ</a></div>
-				<div id="js-mobile-thematic-map-btn" class="header-mobile-nav-col header-mobile-nav-col--white"><a href="#">ΑΝΑΛΥΤΙΚΟΣ ΘΕΜΑΤΙΚΟΣ ΧΑΡΤΗΣ</a></div>
+				<div class="header-mobile-nav-col header-mobile-nav-col--white"><a href="<?php echo get_field('thematic_map_page', 'option'); ?>">ΑΝΑΛΥΤΙΚΟΣ ΘΕΜΑΤΙΚΟΣ ΧΑΡΤΗΣ</a></div>
 			</div>
 		</div>
 	</nav>
 </header>
-<?php
-	$root_cat_list = get_terms([
-        'taxonomy' => 'product_cat', 
-        'hide_empty' => false, 
-		'parent' => 0,
-		'orderby' => 'name',
-		'order' => 'ASC'
-	]);
-?>
-<div id="js-thematic-sub-menu-wrapper" class="hide">
-	<div class="thematic-sub-menu-row">
-		<?php
-			foreach($root_cat_list as $root_cat){
-				$deep_2_cat_list = get_terms([
-					'taxonomy' => 'product_cat', 
-					'hide_empty' => false, 
-					'parent' => $root_cat->term_id,
-					'orderby' => 'name',
-					'order' => 'ASC'
-				]);
-		?>
-			<div class="thematic-sub-menu-col">
-				<div class="header-sub-menu-item">
-					<a href="<?php echo get_term_link($root_cat->term_id); ?>"><?php echo $root_cat->name; ?></a>
-					<?php
-						if( !empty($deep_2_cat_list) ){
-					?>
-							<div class="header-sub-sub-menu">
-								<?php
-									foreach($deep_2_cat_list as $deep_2_cat){
-										$deep_3_cat_list = get_terms([
-											'taxonomy' => 'product_cat', 
-											'hide_empty' => false, 
-											'parent' => $deep_2_cat->term_id,
-											'orderby' => 'name',
-											'order' => 'ASC'
-										]);
-								?>
-										<div class="header-sub-sub-menu-col">
-											<a href="<?php echo get_term_link($deep_2_cat->term_id); ?>"><?php echo $deep_2_cat->name; ?></a>
-											<?php
-												if( !empty($deep_3_cat_list) ){
-											?>
-													<div class="header-sub-sub-sub-menu">
-														<?php
-															foreach($deep_3_cat_list as $deep_3_cat){
-														?>
-																<div class="header-sub-sub-sub-menu-col">
-																	<a href="<?php echo get_term_link($deep_3_cat->term_id); ?>"><?php echo $deep_3_cat->name; ?></a>
-																</div>
-														<?php
-															}
-														?>
-													</div>
-											<?php
-												}
-											?>
-										</div>
-								<?php
-									}
-								?>
-							</div>
-					<?php
-						}
-					?>
-				</div>
-			</div>
-		<?php
-			}
-		?>
-	</div>
-</div>

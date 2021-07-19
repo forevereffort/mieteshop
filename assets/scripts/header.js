@@ -165,17 +165,4 @@ jQuery(function(){
       jQuery(this).addClass('is-open');
     }
   })
-
-  jQuery('#js-desktop-thematic-map-btn').on('click', function(){
-    jQuery(this).parent().parent().parent().addClass('hide');
-    jQuery(this).parent().parent().parent().parent().append(jQuery('#js-thematic-sub-menu-wrapper'));
-    jQuery('#js-thematic-sub-menu-wrapper').removeClass('hide');
-
-    return false;
-  });
-
-  jQuery('#js-mobile-thematic-map-btn').on('click', function(){
-    console.log('mobile');
-    return false;
-  });
 })
