@@ -948,8 +948,8 @@
             },
             {
                 "key": "field_60f582347eaeb",
-                "label": "Thematic Map",
-                "name": "thematic_map",
+                "label": "Thematic Map Page",
+                "name": "thematic_map_page",
                 "type": "page_link",
                 "instructions": "",
                 "required": 0,
