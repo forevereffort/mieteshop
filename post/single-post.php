@@ -34,14 +34,21 @@
     <div class="general-container">
         <div class="content-container">
             <?php
+                /*
+                //$content = $post->post_content;
+                //$content = apply_filters( 'the_content', $content );
+                //echo $content;
+                */            
                 $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
             ?>
             <div class="single-post-hero-row">
+                <?php if ( get_field('event_details') ) { ?>
                 <div class="single-post-hero-event">
                     <div class="single-post-hero-event-inner">
                         <?php echo get_field('event_details'); ?>
                     </div>
                 </div>
+                <?php } ?>
                 <div class="single-post-hero-col">
                     <div class="single-post-hero-image">
                         <img
@@ -52,7 +59,7 @@
                     </div>
                     <div class="single-post-hero-content-row">
                         <div class="single-post-hero-content">
-                            <p>Στην έκθεση παρουσιάζονται έργα που δημιουργήθηκαν με αφορμή  τα λουλούδια, από καλλιτέχνες που ανήκουν σε διαφορετικές γενιές, προέρχονται από διαφορετικούς τόπους και χρησιμοποιούν διαφορετικά εικαστικά μέσα.</p>
+                            <p><?php echo get_field('post_lead'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -60,87 +67,71 @@
         </div>
     </div>
 </section>
-<section class="single-post-description-1-section">
-    <div class="general-container">
-        <div class="content-container">
-            <div class="single-post-description-1-content">
-                <p><strong>Συμμετέχουν οι καλλιτέχνες:</strong> Caroline Luigi, Βασίλης Ζωγράφος, Ελένη Θεοφυλάκτου, Κωνσταντίνος Λαδιανός, Τέτα Μακρή, Γιώργος Μπουδαλής, Μαρία Μπουρίκα, Μαρία Ξυνοπούλου, Φένια Παγώνη, Νίκος Παπαδόπουλος, Γιούλα και Όλγα Παπαδοπούλου, Νίκος Ποδιάς, Νίκος Τριανταφύλλου.</p>
-                <p><strong>Επιμέλεια έκθεσης:</strong> Γιώργος Μπουδαλής</p>
-                <p>Η έκθεση, την πρώτη μέρα λειτουργίας της, θα είναι ανοιχτή για το κοινό από τις 18:00 έως τις 21:00.</p>
-                <p>Στην προσπάθεια περιορισμού της διάδοσης της CΟVID-19, δεν θα πραγματοποιηθούν ομιλίες. Στον χώρο έχουν ληφθεί όλα τα απαραίτητα μέτρα προστασίας για εργαζόμενους και επισκέπτες. Η χρήση μάσκας κατά την επίσκεψή σας είναι υποχρεωτική, σύμφωνα με τις οδηγίες του Υπουργείου Υγείας.</p>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="single-product-meta-section">
-    <div class="content-container">
-        <div class="single-product-meta-tab-row">
-            <div class="single-product-meta-tab-col">
-                <div class="single-product-meta-tab-item">Video</div>
-            </div>
-        </div>
-        <div class="single-product-meta-tab-content-row">
-            <div class="single-product-meta-tab-content-col">
-                <div class="single-product-video-wrapper">
-                    <div class="single-product-video-item-row">
-                        <div class="single-product-video-item-left-col">
-                            <?php $video_image_url = get_template_directory_uri() . '/assets/images/video-1.png'; ?>
-                            <div class="single-product-video-image-wrapper">
-                                <img
-                                    class="lazyload"
-                                    src="<?php echo placeholderImage(606, 241); ?>"
-                                    data-src="<?php echo $video_image_url; ?>"
-                                    alt="video image">
-                                <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
-                                <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
-                            </div>
-                        </div>
-                        <div class="single-product-video-item-right-col">
-                            <div class="single-product-video-item-content">
-                                <h2>Παρουσίαση της έκθεσης</h2>
-                                <p>Δοκιμαστικό video μέσα σε ένα blog post, το οποίο μπορεί και να έχει κάποια περιγραφή μέχρι 3-4 σειρές που να είναι σχετική με το video.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="single-post-description-1-section">
-    <div class="general-container">
-        <div class="content-container">
-            <div class="single-post-description-1-content">
-                <h2>Για την έκθεση</h2>
-                <p>«Ο πρωτόγονος άνθρωπος, δίνοντας λουλούδια στην αγαπημένη του, έκανε μια συμβολική κίνηση και πέρασε στη σφαίρα της τέχνης. Οι άνθρωποι έχουν λατρέψει τον κρίνο, έχουν διαλογιστεί με τον λωτό, έχουν πολεμήσει με το ρόδο και το χρυσάνθεμο. Η υπερβολική και αναίτια σπατάλη λουλουδιών στις δυτικές κοινωνίες προσφέρει το πιο μελαγχολικό θέαμα στο τέλος της γιορτής·  μαραμένα και πεταμένα δίπλα στα σκουπίδια. Τα αγριολούλουδα γίνονται όλο και πιο σπάνια, μας εγκαταλείπουν γι’ αυτή μας τη σκληρότητα, περιμένοντας να γίνει πιο ανθρώπινος ο άνθρωπος».  Αυτά λέει, σε ελεύθερη μεταφορά, ο Οκάκουρα Κακούζο σχετικά με τα άνθη, στο Βιβλίο τού τσαγιού που κυκλοφόρησε στην Ευρώπη στις αρχές του εικοστού αιώνα.</p>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="single-post-slider-section">
-    <div class="general-container">
-        <div class="content-container">
-            <div class="single-post-slider-title">
-                <h2>«Η υπερβολική και αναίτια σπατάλη λουλουδιών στις δυτικές κοινωνίες προσφέρει το πιο μελαγχολικό θέαμα στο τέλος της γιορτής»</h2>
-            </div>
+<?php
+
+// Check value exists.
+if( have_rows('post_extra_content') ):
+
+    // Loop through rows.
+    while ( have_rows('post_extra_content') ) : the_row();
+
+        // Case: post text field
+        if( get_row_layout() == 'post_text_section' ):
+            $text = get_sub_field('post_text');
+            if($text):
+                echo '<section class="blog-text"><div class="general-container"><div class="post-content-container">';
+                echo '<div class="post-text">';
+                echo $text;
+                echo '</div>';
+                echo '</div></div></section>';
+            endif;
+
+        // Case: post blockquote field
+        elseif( get_row_layout() == 'post_blockquote_section' ):
+            $blockquote = get_sub_field('post_blockquote');
+            if($blockquote):
+                echo '<section class="blog-text"><div class="general-container"><div class="post-content-container">';
+                echo '<div class="post-blockquote">';
+                echo $blockquote;
+                echo '</div>';
+                echo '</div></div></section>';   
+            endif;         
+
+        // Case: post video fields
+        elseif( get_row_layout() == 'post_video_section' ): 
+            $video = get_sub_field('post_video');
+            $video_text = get_sub_field('post_video_text');
+            if($video_text):
+                echo '<section><div class="general-container"><div class="post-content-container">';
+                echo '<div class="post-video">';
+                echo '<h3>Video</h3>';
+                echo '<div class="video_wrapper"><div class="col1">'.$video.'</div><div class="col2">'.$video_text.'</div></div>';
+                echo '</div>';
+                echo '</div></div></section>';
+            endif;
+
+        // Case: post gallery field
+        elseif( get_row_layout() == 'post_gallery_section' ): 
+            $images = get_sub_field('post_image_gallery');
+            //echo count($images) .'<br/>';
+            //echo '<pre>'; print_r($images); echo '</pre>';
+            if($images):    
+            ?>
+            <section><div class="general-container"><div class="content-container">
             <div class="single-post-slider-row" is="mieteshop-post-slider">
                 <div class="single-post-slider-big-wrapper">
                     <div class="swiper-container" data-big-slider>
                         <div class="swiper-wrapper">
                             <?php
-                                $slider_image_url = get_template_directory_uri() . '/assets/images/slider-1.png';
-                                for( $i = 0; $i < 20; $i++ ){
+                            foreach( $images as $image ) {
                             ?>
-                                    <div class="swiper-slide">
-                                        <img
-                                            class="lazyload"
-                                            src="<?php echo placeholderImage(1024, 585); ?>"
-                                            data-src="<?php echo $slider_image_url; ?>"
-                                            alt="video image">
-                                    </div>
+                                <div class="swiper-slide">
+                                    <!--a href="<?php //echo esc_url($image['url']); ?>"></a-->
+                                    <img class="lazyload" src="<?php echo esc_url($image['url']); ?>" data-src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                                </div>
                             <?php
-                                }
-                            ?>
+                            }
+                            ?>    
                         </div>
                     </div>
                     <div class="single-post-slider-big-nav-wrapper">
@@ -152,36 +143,32 @@
                     <div class="swiper-container" data-small-slider>
                         <div class="swiper-wrapper">
                             <?php
-                                $slider_image_sub_url = get_template_directory_uri() . '/assets/images/slider-1-sub.png';
-                                for( $i = 0; $i < 20; $i++ ){
+                            //$thumbs = get_sub_field('post_image_gallery');
+                            $i=1;
+                            foreach( $images as $image ) {
                             ?>
-                                    <div class="swiper-slide single-post-slider-small-item">
-                                        <img
-                                            class="lazyload"
-                                            src="<?php echo placeholderImage(93, 91); ?>"
-                                            data-src="<?php echo $slider_image_sub_url; ?>"
-                                            alt="video image">
-                                    </div>
+                            <div class="swiper-slide single-post-slider-small-item item-'<?php echo $i; ?>'">
+                                <img class="lazyload" src="<?php echo esc_url($image['sizes']['woocommerce_gallery_thumbnail']); ?>" data-src="<?php echo $image['sizes']['woocommerce_gallery_thumbnail']; ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                            </div>
                             <?php
-                                }
+                            $i++;
+                            }
                             ?>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<section class="single-post-description-2-section">
-    <div class="general-container">
-        <div class="content-container">
-            <div class="single-post-description-1-content">
-                <p>Στη βιολογία τα λουλούδια είναι τα αναπαραγωγικά μέρη των εξελικτικά ανώτερων φυτών· αυτά που θα δώσουν τους καρπούς και τους σπόρους, εξασφαλίζοντας τη συνέχεια του είδους.</p>
-                <p>Τα λουλούδια –και ευρύτερα το φυτικό βασίλειο– υπήρξαν πάντοτε θέμα προσφιλές στους καλλιτέχνες.  Από τον διάκοσμο στο διάδημα της “βασίλισσας” Puabi και τα κρίνα στις τοιχογραφίες της Σαντορίνης, μέχρι τους μεσαιωνικούς περίκλειστους κήπους, τις ταπετσαρίες των τοίχων, τα χαλιά, τα υφάσματα των ρούχων, τα έργα του Boticelli, των Εμπρεσιονιστών, των Προραφαηλιτών, του Van Gogh, του Henri Matisse, της Georgia O’ Keeffe, του Jeff Koons, τα άνθη είναι παρόντα.</p>
-                <p>Συμβολίζοντας τη γιορτή, τη συγγνώμη, τον αποχωρισμό, το εφήμερο, τον έρωτα, το πένθος, τη μνήμη και την ομορφιά –για την οποία αισθανόμαστε μια εγγενή συγκίνηση– τα λουλούδια καλύπτουν όλη την κλίμακα των συναισθημάτων. Δεν σταμάτησαν ποτέ να ελκύουν τους καλλιτέχνες, που τα αποδίδουν τόσο με σύγχρονα όσο και με διαχρονικά εικαστικά εργαλεία: σχέδιο, ζωγραφική, φωτογραφία, ψηφιακά μέσα κλπ.</p>
-                <p>Το θέμα παραμένει το ίδιο –όπως και ένα σωρό άλλα–, προσεγγίζεται όμως από τον καλλιτέχνη και εισπράττεται από τον φιλότεχνο με διαφορετικό τρόπο σε κάθε εποχή.</p>
-                <p>Δεν αλλάζουν τα λουλούδια, μάλλον το βλέμμα μας αλλάζει.</p>
-            </div>
-        </div>
-    </div>
-</section>
+            </div></div></section>
+            <?php
+            endif;
+        endif;
+
+    // End loop.
+    endwhile;
+
+// No value.
+else :
+    // Do something...
+endif;                
+
+?>
