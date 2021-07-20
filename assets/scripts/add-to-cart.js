@@ -25,7 +25,12 @@ jQuery(function(){
                 jQuery('#js-ajax-add-to-cart-load-spinner').remove();
             },
             success: function (response) {
-                jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash]);
+                if (response.error && response.product_url) {
+                    window.location = response.product_url;
+                    return;
+                } else {
+                    jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash]);
+                }
             },
         });
 
