@@ -28,63 +28,56 @@ function filterSinglePublisherProductFunc()
         'next' => 'js-sp-product-navigation-item pcat-results-navigation-next',
         'anchor' => '',
     ]);
+
+    $products_search_list = [];
     
     global $post;
 
-    // get all products
+    // get all products that has this single publiser
     $args = [
         'post_type' => 'product',
-        'posts_per_page' => -1
+        'posts_per_page' => $productPerPage,
+        'offset' => ($page - 1) * $productPerPage,
+        'meta_query' => [
+			[
+				'key'     => 'book_publishers',
+				'value'   => '"' . $filterPublisherId . '"',
+				'compare' => 'LIKE'
+            ],
+        ]
     ];
     
     $the_query = new WP_Query( $args );
     
-    // get product that has this single publiser
-    $product_list_include_single_publisher = [];
+    $count_product_list_include_single_publisher = $the_query->found_posts;
 
     if ( $the_query->have_posts() ) {
+        
         while ( $the_query->have_posts() ) {
             $the_query->the_post();
 
-            if( !empty($filterPublisherId) ){
-                $publishers = get_field('book_publishers', $post->ID);
+            $product = wc_get_product( $post->ID );
 
-                if( !empty($publishers) ){
-                    foreach( $publishers as $publisher ){
-                        if( $publisher->ID === $filterPublisherId ){
-                            $product_list_include_single_publisher[] = $post->ID;
-                        }
-                    }
-                }
+            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
+            $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+            $author_list = [];
+
+            foreach( $authors as $author ){
+                $author_list[] = [
+                    'url' => get_permalink($author->ID),
+                    'title' => $author->post_title
+                ];
             }
-        }
-    }
 
-    $count_product_list_include_single_publisher = count($product_list_include_single_publisher);
-    $product_list_include_single_publisher_of_selected_page = array_slice($product_list_include_single_publisher, ($page - 1) * $productPerPage, $productPerPage);
-
-    foreach($product_list_include_single_publisher_of_selected_page as $product_id){
-        $product = wc_get_product( $product_id );
-
-        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'full' );
-        $authors = get_field('book_contributors_syggrafeas', $product_id);
-        $author_list = [];
-
-        foreach( $authors as $author ){
-            $author_list[] = [
-                'url' => get_permalink($author->ID),
-                'title' => $author->post_title
+            $products_search_list[] = [
+                'url' => get_permalink($product->get_id()),
+                'placeholder' => placeholderImage($image[1], $image[2]),
+                'image_url' => aq_resize($image[0], $image[1], $image[2], true),
+                'title' => get_the_title($product->get_id()),
+                'authors' => $author_list,
+                'price' => $product->get_price_html()
             ];
         }
-
-        $products_search_list[] = [
-            'url' => get_permalink($product_id),
-            'placeholder' => placeholderImage($image[1], $image[2]),
-            'image_url' => aq_resize($image[0], $image[1], $image[2], true),
-            'title' => get_the_title($product_id),
-            'authors' => $author_list,
-            'price' => $product->get_price_html()
-        ];
     }
     
     $pagination->records($count_product_list_include_single_publisher);
