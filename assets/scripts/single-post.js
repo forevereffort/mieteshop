@@ -38,7 +38,7 @@ class MieteshopPostSlider extends window.HTMLDivElement {
       // freeMode: true,
       // watchSlidesVisibility: true,
       // watchSlidesProgress: true,
-      loop: true,
+      //loop: true,
     }
     
     this.smallSlider = new Swiper(this.$smallSlider.get(0), smallConfig)
