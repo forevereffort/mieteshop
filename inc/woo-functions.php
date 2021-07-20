@@ -186,3 +186,20 @@ function woocommerce_ajax_add_to_cart() {
 
     wp_die();
 }
+
+// woo add to cart ajax result customize
+// we have to use this ajax add to cart
+add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
+function iconic_cart_count_fragments( $fragments ) {
+    $headerBusketHtml = '';
+    $headerBusketHtml .= '<div class="header-cart-count">';
+
+    if( WC()->cart->get_cart_contents_count() > 0 ){
+        $headerBusketHtml .= '<span>' . WC()->cart->get_cart_contents_count() . '</span>';
+    }
+
+    $headerBusketHtml .= '</div>';
+
+    $fragments['div.header-cart-count'] = $headerBusketHtml;
+    return $fragments;
+}
