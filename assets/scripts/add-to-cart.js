@@ -25,7 +25,7 @@ jQuery(function(){
                 jQuery('#js-ajax-add-to-cart-load-spinner').remove();
             },
             success: function (response) {
-                jQuery('#js-header-top-cart-list').html(response.result);
+                jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash]);
             },
         });
 

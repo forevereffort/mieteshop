@@ -138,50 +138,14 @@ function woocommerce_ajax_add_to_cart() {
             wc_add_to_cart_message(array($product_id => $quantity), true);
         }
 
-        // WC_AJAX :: get_refreshed_fragments();
-
-        $cart_list = [];
-        foreach(WC()->cart->get_cart() as $cart_item){
-            $authors = get_field('book_contributors_syggrafeas', $cart_item['data']->get_id());
-            $author_list = [];
-
-            if( !empty($authors) ){
-                if( count($authors) > 3 ){
-                    $author_list = 'Συλλογικό Έργο';
-                } else {
-                    foreach( $authors as $author ){
-                        $author_list[] = [
-                            'link' => get_permalink($author->ID),
-                            'title' => $author->post_title
-                        ];
-                    }
-                }
-            }
-
-            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $cart_item['data']->get_id() ), 'full' );
-
-            $cart_list[] = [
-                'title' => $cart_item['data']->get_title(),
-                'quantity' => $cart_item['quantity'],
-                'price' =>  $cart_item['data']->get_price_html(),
-                'placeholder' => placeholderImage($image[1], $image[2]),
-                'image' => aq_resize($image[0], $image[1], $image[2], true),
-                'authors' => $author_list,
-            ];
-        }
-
-        global $twig;
-
-        wp_send_json([
-            'result' => $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total(), 'cat_page_url' => wc_get_cart_url()])
-        ]);
+        WC_AJAX :: get_refreshed_fragments();
     } else {
         $data = [
             'error' => true,
             'product_url' => apply_filters('woocommerce_cart_redirect_after_error', get_permalink($product_id), $product_id)
         ];
 
-        wp_send_json($data);
+        echo wp_send_json($data);
     }
 
     wp_die();
@@ -189,17 +153,45 @@ function woocommerce_ajax_add_to_cart() {
 
 // woo add to cart ajax result customize
 // we have to use this ajax add to cart
-add_filter( 'woocommerce_add_to_cart_fragments', 'iconic_cart_count_fragments', 10, 1 );
-function iconic_cart_count_fragments( $fragments ) {
-    $headerBusketHtml = '';
-    $headerBusketHtml .= '<div class="header-cart-count">';
+add_filter( 'woocommerce_add_to_cart_fragments', 'mieteshop_header_top_cart_fragments', 10, 1 );
+function mieteshop_header_top_cart_fragments( $fragments ) {
+    $cart_list = [];
+    foreach(WC()->cart->get_cart() as $cart_item){
+        $authors = get_field('book_contributors_syggrafeas', $cart_item['data']->get_id());
+        $author_list = [];
 
-    if( WC()->cart->get_cart_contents_count() > 0 ){
-        $headerBusketHtml .= '<span>' . WC()->cart->get_cart_contents_count() . '</span>';
+        if( !empty($authors) ){
+            if( count($authors) > 3 ){
+                $author_list = 'Συλλογικό Έργο';
+            } else {
+                foreach( $authors as $author ){
+                    $author_list[] = [
+                        'link' => get_permalink($author->ID),
+                        'title' => $author->post_title
+                    ];
+                }
+            }
+        }
+
+        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $cart_item['data']->get_id() ), 'full' );
+
+        $cart_list[] = [
+            'title' => $cart_item['data']->get_title(),
+            'quantity' => $cart_item['quantity'],
+            'price' =>  $cart_item['data']->get_price_html(),
+            'placeholder' => placeholderImage($image[1], $image[2]),
+            'image' => aq_resize($image[0], $image[1], $image[2], true),
+            'authors' => $author_list,
+        ];
     }
 
-    $headerBusketHtml .= '</div>';
+    global $twig;
 
-    $fragments['div.header-cart-count'] = $headerBusketHtml;
+    if( WC()->cart->get_cart_contents_count() == 0 ){
+        $fragments['div#js-header-top-cart-list'] = '<div id="js-header-top-cart-list">Empty</div>';
+    } else {
+        $fragments['div#js-header-top-cart-list'] = $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total(), 'cat_page_url' => wc_get_cart_url()]);
+    }
+
     return $fragments;
 }
