@@ -1642,6 +1642,25 @@
         "title": "Post Fields",
         "fields": [
             {
+                "key": "field_60f0003a26978",
+                "label": "Post Lead",
+                "name": "post_lead",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": ""
+            },
+            {
                 "key": "field_60d2050a9e4f8",
                 "label": "Event From Date",
                 "name": "event_from_date",
@@ -1660,7 +1679,7 @@
             },
             {
                 "key": "field_60d20573aedf4",
-                "label": "Event To Date (copy)",
+                "label": "Event To Date",
                 "name": "event_to_date",
                 "type": "date_picker",
                 "instructions": "",
@@ -1693,6 +1712,165 @@
                 "toolbar": "full",
                 "media_upload": 1,
                 "delay": 0
+            },
+            {
+                "key": "field_60eff34579925",
+                "label": "Post Extra Content",
+                "name": "post_extra_content",
+                "type": "flexible_content",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layouts": {
+                    "layout_60eff34d2805b": {
+                        "key": "layout_60eff34d2805b",
+                        "name": "post_text_section",
+                        "label": "Post Text Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_60eff3bc79927",
+                                "label": "Post text",
+                                "name": "post_text",
+                                "type": "wysiwyg",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "tabs": "all",
+                                "toolbar": "full",
+                                "media_upload": 1,
+                                "delay": 0
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_60eff3c579928": {
+                        "key": "layout_60eff3c579928",
+                        "name": "post_video_section",
+                        "label": "Post Video Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_60eff3d17992a",
+                                "label": "Video",
+                                "name": "post_video",
+                                "type": "oembed",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "width": "",
+                                "height": ""
+                            },
+                            {
+                                "key": "field_60f004c831c3f",
+                                "label": "Video Text",
+                                "name": "post_video_text",
+                                "type": "wysiwyg",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "tabs": "all",
+                                "toolbar": "full",
+                                "media_upload": 1,
+                                "delay": 0
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_60eff3e97992b": {
+                        "key": "layout_60eff3e97992b",
+                        "name": "post_gallery_section",
+                        "label": "Post gallery Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_60eff3f27992c",
+                                "label": "Post Image Gallery",
+                                "name": "post_image_gallery",
+                                "type": "gallery",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "return_format": "array",
+                                "preview_size": "medium",
+                                "insert": "append",
+                                "library": "all",
+                                "min": "",
+                                "max": "",
+                                "min_width": "",
+                                "min_height": "",
+                                "min_size": "",
+                                "max_width": "",
+                                "max_height": "",
+                                "max_size": "",
+                                "mime_types": ""
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_60f5a21e6366c": {
+                        "key": "layout_60f5a21e6366c",
+                        "name": "post_blockquote_section",
+                        "label": "Post blockquote Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_60f5a22b6366d",
+                                "label": "Post blockquote",
+                                "name": "post_blockquote",
+                                "type": "textarea",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "placeholder": "",
+                                "maxlength": "",
+                                "rows": "",
+                                "new_lines": ""
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    }
+                },
+                "button_label": "Add Row",
+                "min": "",
+                "max": ""
             }
         ],
         "location": [
