@@ -8,6 +8,10 @@
 .form-checkout-inner {
   margin: 0 auto;
   max-width: 600px;
+
+  .woocommerce-form-coupon-toggle {
+    margin-top: 30px;
+  }
 }
 
 .form-checkout-title {
@@ -16,5 +20,117 @@
     font-size: 32px;
     font-weight: $font-weight-extra-bold;
     line-height: 1.1875;
+  }
+}
+
+.woocommerce-billing-fields__field-wrapper,
+.woocommerce-additional-fields__field-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px -10px 0;
+
+  .form-row {
+    padding: 5px 10px;
+
+    &.notes {
+      width: 100%;
+    }
+
+    label {
+      color: $color-black-1;
+      display: block;
+      font-size: 14px;
+      font-weight: $font-weight-light;
+    }
+  }
+
+  .woocommerce-input-wrapper {
+    display: inline-block;
+    margin-top: 5px;
+    width: 100%;
+
+    input[type=text],
+    input[type=tel],
+    input[type=email],
+    select {
+      background-color: $color-white;
+      border: 1px solid $color-gray-2;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
+      color: $color-black-1;
+      display: block;
+      font-size: 14px;
+      height: 40px;
+      padding: 10px;
+      width: 100%;
+    }
+
+    textarea {
+      background-color: $color-white;
+      border: 1px solid $color-gray-2;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
+      color: $color-black-1;
+      display: block;
+      font-size: 14px;
+      height: 80px;
+      padding: 10px;
+      width: 100%;
+    }
+  }
+
+  .form-row-first {
+    width: 50%;
+  }
+
+  .form-row-last {
+    width: 50%;
+  }
+
+  .form-row-wide {
+    width: 100%;
+  }
+}
+
+.woocommerce-checkout {
+  .select2-container {
+    .select2-selection--single {
+      background-color: $color-white;
+      border: 1px solid $color-gray-2;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
+      height: 40px;
+
+      .select2-selection__rendered {
+        color: $color-black-1;
+        font-size: 14px;
+        height: 40px;
+        line-height: 1;
+        padding: 12px 10px;
+      }
+
+      .select2-selection__arrow {
+        top: 7px;
+      }
+    }
+  }
+
+  .select2-dropdown {
+    background-color: $color-white;
+    border: 1px solid $color-gray-2;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
+  }
+}
+
+.woocommerce-billing-fields,
+.woocommerce-additional-fields {
+  margin-top: 30px;
+
+  h3 {
+    color: $color-black;
+    font-size: 24px;
+    font-weight: $font-weight-bold;
+    line-height: 1.1667;
   }
 }
