@@ -12,6 +12,61 @@
   .woocommerce-form-coupon-toggle {
     margin-top: 30px;
   }
+
+  .woocommerce-info {
+    color: $color-black-1;
+    font-size: 14px;
+    font-weight: 300;
+    
+    a {
+      color: $color-black-1;
+      text-decoration: underline;
+    }
+  }
+
+  .checkout_coupon {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15px;
+  }
+
+  p {
+    color: $color-black-1;
+    font-size: 14px;
+    font-weight: 300;
+    width: 100%;
+  }
+
+  .form-row-first {
+    width: 50%;
+
+    input[type=text] {
+      background: $color-white;
+      border: 1px solid $color-gray-2;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
+      color: #4f566b;
+      font-size: 12px;
+      height: 36px;
+      padding: 0 8px;
+      width: 100px;
+    }
+  }
+
+  .form-row-last {
+    width: 50%;
+
+    button[type=submit] {
+      background-color: transparent;
+      border: 1px solid $color-black-1;
+      border-radius: 4px;
+      color: $color-black-1;
+      display: inline-block;
+      font-size: 13px;
+      font-weight: $font-weight-bold;
+      padding: 10px 15px;
+    }
+  }
 }
 
 .form-checkout-title {
