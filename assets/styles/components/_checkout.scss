@@ -28,43 +28,45 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 15px;
-  }
 
-  p {
-    color: $color-black-1;
-    font-size: 14px;
-    font-weight: 300;
-    width: 100%;
-  }
-
-  .form-row-first {
-    width: 50%;
-
-    input[type=text] {
-      background: $color-white;
-      border: 1px solid $color-gray-2;
-      border-radius: 4px;
-      box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
-      color: #4f566b;
-      font-size: 12px;
-      height: 36px;
-      padding: 0 8px;
-      width: 100px;
-    }
-  }
-
-  .form-row-last {
-    width: 50%;
-
-    button[type=submit] {
-      background-color: transparent;
-      border: 1px solid $color-black-1;
-      border-radius: 4px;
+    p {
       color: $color-black-1;
-      display: inline-block;
-      font-size: 13px;
-      font-weight: $font-weight-bold;
-      padding: 10px 15px;
+      font-size: 14px;
+      font-weight: 300;
+      width: 100%;
+    }
+  
+    .form-row-first {
+      margin-top: 15px;
+      width: 120px;
+  
+      input[type=text] {
+        background: $color-white;
+        border: 1px solid $color-gray-2;
+        border-radius: 4px;
+        box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
+        color: #4f566b;
+        font-size: 12px;
+        height: 36px;
+        padding: 0 8px;
+        width: 100px;
+      }
+    }
+  
+    .form-row-last {
+      margin: 15px 0 0 30px;
+      width: 200px;
+  
+      button[type=submit] {
+        background-color: transparent;
+        border: 1px solid $color-black-1;
+        border-radius: 4px;
+        color: $color-black-1;
+        display: inline-block;
+        font-size: 13px;
+        font-weight: $font-weight-bold;
+        padding: 10px 15px;
+      }
     }
   }
 }
@@ -187,5 +189,169 @@
     font-size: 24px;
     font-weight: $font-weight-bold;
     line-height: 1.1667;
+  }
+}
+
+#order_review_heading {
+  color: $color-black;
+  font-size: 24px;
+  font-weight: $font-weight-bold;
+  line-height: 1.1667;
+  margin-top: 30px; 
+}
+
+#order_review {
+  margin-top: 30px; 
+}
+
+.woocommerce-checkout-review-order-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th {
+    border-bottom: 0;
+    font-weight: $font-weight-bold;
+  }
+
+  td {
+    border-bottom: 0;
+    border-top: 1px solid $color-black-1;
+  }
+
+  .product-name,
+  .product-total {
+    font-size: 14px;
+    padding: 10px 0;
+    text-align: left;
+    width: 50%;
+  }
+
+  .product-quantity {
+    font-weight: $font-weight-normal;
+  }
+
+  .cart-subtotal,
+  .order-total {
+    th {
+      border-top: 1px solid $color-black-1;     
+    }
+  }
+}
+
+.woocommerce-checkout-payment {
+  margin-top: 30px;
+}
+
+.wc_payment_method {
+  label {
+    font-size: 14px;
+    font-weight: $font-weight-bold;
+  }
+}
+
+.payment_box {
+  margin-top: 15px;
+
+  p {
+    color: $color-black-1;
+    font-size: 14px;
+
+    a {
+      color: $color-black-1;
+      text-decoration: underline;
+    }
+  }
+}
+
+.woocommerce-privacy-policy-text {
+  margin-top: 15px;
+
+  p {
+    color: $color-black-1;
+    font-size: 14px;
+
+    a {
+      color: $color-black-1;
+      text-decoration: underline;
+    }
+  }
+}
+
+.wc-payment-form {
+  margin-top: 30px;
+}
+
+#place_order {
+  background-color: $color-black-1;
+  border: 0;
+  border-radius: 4px;
+  color: $color-white;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: $font-weight-bold;
+  margin-top: 30px;
+  padding: 10px 15px;
+}
+
+.woocommerce-notice {
+  color: $color-black-1;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.woocommerce-order-overview {
+  color: $color-black-1;
+  font-size: 14px;
+
+  li {
+    margin-top: 15px;
+  }
+}
+
+.woocommerce-order-details__title {
+  font-size: 24px;
+  margin-top: 30px;
+}
+
+.woocommerce-table--order-details {
+  margin-top: 30px;
+  text-align: left;
+
+  td,
+  th {
+    color: $color-black-1;
+    font-size: 14px;
+    padding: 10px 0;
+  }
+}
+
+.woocommerce-table__product-name,
+.woocommerce-table__product-table {
+  color: $color-black-1;
+  font-size: 14px;
+  padding: 10px 0;
+  text-align: left;
+  
+  a {
+    color: $color-black-1;
+    text-decoration: underline;
+  }
+}
+
+.cart-empty-section {
+  background-color: $color-gray;
+  margin: 0 auto;
+  max-width: $general-container-width;
+  padding: 70px 0;
+
+  p {
+    color: $color-black-1;
+    font-size: 14px;
+    margin-top: 10px;
+    
+    a {
+      color: $color-black-1;
+      text-decoration: underline;
+    }
   }
 }

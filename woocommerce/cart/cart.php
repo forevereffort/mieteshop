@@ -19,6 +19,9 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <section class="cart-section">
 	<div class="content-container">
+		<div class="cart-product-title">
+			<h2>Προϊόντα</h2>
+		</div>
 		<?php do_action( 'woocommerce_before_cart' ); ?>
 
 		<form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">

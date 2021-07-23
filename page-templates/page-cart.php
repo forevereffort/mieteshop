@@ -22,7 +22,6 @@
 <section class="cart-page-title">
     <div class="content-container">
         <h1>Καλάθι</h1>
-        <h2>Προϊόντα</h2>
     </div>
 </section>
 <?php the_content(); ?>

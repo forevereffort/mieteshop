@@ -35,6 +35,18 @@
   }
 }
 
+.cart-product-title {
+  margin-left: -135px;
+
+  h2 {
+    color: $color-black;
+    font-size: 24px;
+    font-weight: $font-weight-light;
+    line-height: 1.1667;
+    margin-top: 40px;
+  }
+}
+
 .cart-product-thumbnail {
   padding: 30px 0;
   width: 120px;
