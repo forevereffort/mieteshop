@@ -359,6 +359,10 @@
   width: 100%;
 }
 
+.pcat-result-item-footer-row-static {
+  position: static;
+}
+
 .pcat-result-item-footer-col+.pcat-result-item-footer-col {
   margin-left: 20px;
 }

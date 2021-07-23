@@ -24,6 +24,7 @@
   background-color: $color-gray;
   margin: 0 auto;
   max-width: $general-container-width;
+  padding: 15px 0 0;
 
   .content-container {
     padding-left: 135px;
@@ -31,6 +32,7 @@
 }
 
 .cart-product-thumbnail {
+  padding: 30px 0;
   width: 120px;
 
   img {
@@ -55,11 +57,13 @@
 }
 
 .cart-product-subtotal {
-  width: 100px;
+  padding: 30px 0 30px 20px;
+  width: 120px;
 }
 
 .cart-product-status {
-  width: 150px;
+  padding: 30px 0 30px 20px;
+  width: 170px;
 }
 
 .cart-product-status-label {
@@ -73,11 +77,12 @@
   color: $color-green;
   font-size: 12px;
   font-weight: $font-weight-normal;
-  margin-top: 15px;
+  margin-top: 18px;
 }
 
 .cart-product-quantity {
-  width: 65px;
+  padding: 30px 0 30px 30px;
+  width: 90px;
 
   .screen-reader-text {
     display: none;
@@ -93,7 +98,7 @@
 
 .cart-product-quantity-row {
   display: flex;
-  margin-top: 10px;
+  margin-top: 7px;
 
   .quantity {
     width: 24px;
@@ -122,4 +127,83 @@
 .cart-product-quantity-button {
   cursor: pointer;
   margin: 5px 0 0 14px;
+}
+
+.cart-product-author-item {
+  color: $color-black;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  line-height: 1.286;
+  text-decoration: underline;
+
+  a {
+    color: $color-black;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    line-height: 1.286;
+    text-decoration: underline;
+  }
+}
+
+.cart-product-author-item+.cart-product-author-item {
+  margin-top: 8px;
+}
+
+.cart-product-name {
+  color: $color-black;
+  font-size: 14px;
+  font-weight: $font-weight-extra-bold;
+  line-height: 1.2857;
+  margin: 10px 0;
+  
+  a {
+    color: $color-black;
+  }
+}
+
+.cart-product-info {
+  padding: 30px 0 30px 40px;
+  width: 360px;
+}
+
+.cart-product-favorite-btn {
+  color: $color-black;
+  font-size: 12px;
+  font-weight: $font-weight-normal;
+  line-height: 1.4286;
+  margin-top: 38px;
+  padding-left: 32px;
+  position: relative;
+
+  span {
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+}
+
+.cart-product-remove-btn {
+  margin-top: 17px;
+  position: relative;
+
+  span {
+    left: 4px;
+    position: absolute;
+    top: 3px;
+  }
+
+  a {
+    color: $color-black;
+    font-size: 12px;
+    font-weight: $font-weight-normal;
+    line-height: 1.4286;
+    padding-left: 32px;
+    position: relative;
+  }
+}
+
+.woocommerce-cart-form__cart-item {
+  td {
+    border-top: 2px solid $color-black;
+  }
 }

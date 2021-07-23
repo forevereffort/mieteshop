@@ -52,7 +52,7 @@ defined( 'ABSPATH' ) || exit;
 										?>
 									</td>
 
-									<td class="product-name" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
+									<td class="cart-product-info" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
 										<?php
 											if( !empty($authors) ){
 												echo '<div class="cart-product-author-list">';
@@ -66,35 +66,48 @@ defined( 'ABSPATH' ) || exit;
 												echo '</div>';
 											}
 										?>
-										<?php
-										if ( ! $product_permalink ) {
-											echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
-										} else {
-											echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
-										}
-
-										do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
-
-										// Meta data.
-										echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS: XSS ok.
-
-										// Backorder notification.
-										if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
-											echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>', $product_id ) );
-										}
-										?>
-
-										<div class="product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
+										<div class="cart-product-name">
 											<?php
-												echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+												if ( ! $product_permalink ) {
+													echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . '&nbsp;' );
+												} else {
+													echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
+												}
+
+												do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
+
+												// Meta data.
+												echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS: XSS ok.
+
+												// Backorder notification.
+												if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
+													echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>', $product_id ) );
+												}
 											?>
+										</div>
+
+										<div class="pcat-result-item-footer-row pcat-result-item-footer-row-static">
+											<div class="pcat-result-item-footer-col">
+												<div class="pcat-result-item-footer-product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
+													<?php
+														echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
+													?>
+												</div>
+											</div>
+											<div class="pcat-result-item-footer-col">
+												<div class="pcat-result-item-footer-product-discount">-30%</div>
+											</div>
+										</div>
+
+										<div class="cart-product-favorite-btn">
+											<span><?php include get_template_directory() . '/assets/icons/favorite-black-icon.svg'; ?></span>μετακίνηση στα αγαπήμενα
 										</div>
 
 										<?php
 											echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 												'woocommerce_cart_item_remove_link',
 												sprintf(
-													'<div><a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">διαγραφή</a></div>',
+													'<div class="cart-product-remove-btn"><a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s"><span>' . file_get_contents(get_template_directory() . '/assets/icons/delete-icon.svg' ) . '</span>διαγραφή</a></div>',
 													esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 													esc_html__( 'Remove this item', 'woocommerce' ),
 													esc_attr( $product_id ),
@@ -127,9 +140,7 @@ defined( 'ABSPATH' ) || exit;
 
 												echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
 											?>
-											<div class="cart-product-quantity-button">
-												<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.44086 0H6.32367V5H5.34711V1.493C3.99425 2.07272 2.87906 3.1141 2.19096 4.44027C1.50287 5.76644 1.28428 7.29563 1.57233 8.76811C1.86039 10.2406 2.63732 11.5656 3.77117 12.518C4.90503 13.4705 6.32588 13.9916 7.79242 13.993C9.34966 13.9946 10.8531 13.4099 12.0168 12.3502C13.1805 11.2906 13.9232 9.82987 14.1036 8.24599C14.2839 6.66211 13.8895 5.06559 12.9952 3.76015C12.1009 2.45471 10.7692 1.53145 9.25336 1.166V0.142C10.9323 0.491834 12.4384 1.43335 13.5095 2.80274C14.5807 4.17213 15.149 5.88272 15.1158 7.63689C15.0826 9.39107 14.4498 11.0778 13.3276 12.4036C12.2054 13.7294 10.6648 14.6104 8.97385 14.8933C7.28288 15.1762 5.54858 14.843 4.07269 13.9518C2.5968 13.0606 1.47273 11.6678 0.896057 10.0157C0.319384 8.36353 0.326605 6.55665 0.916465 4.9094C1.50632 3.26215 2.64149 1.87879 4.12445 1H1.44086V0Z" fill="black"/></svg>
-											</div>
+											<div class="cart-product-quantity-button"><?php include get_template_directory() . '/assets/icons/update-icon.svg'; ?></div>
 										</div>
 									</td>
 
