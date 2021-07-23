@@ -40,4 +40,11 @@ jQuery(function(){
     jQuery('.js-cart-product-quantity-button').on('click', function(){
         jQuery('#js-update-cart-btn').trigger('click');
     })
+
+    jQuery('#js-cart-coupon-custom-form-button').on('click', function(){
+        const couponVal = jQuery('#js-cart-coupon-custom-form-input').val();
+
+        jQuery('#coupon_code').val(couponVal);
+        jQuery('button[type=submit]', jQuery('#coupon_code').parent()).trigger('click');
+    })
 })

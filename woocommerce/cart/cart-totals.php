@@ -103,6 +103,15 @@ defined( 'ABSPATH' ) || exit;
 
 	</table>
 
+	<div class="cart-coupon-custom-form-row">
+		<div class="cart-coupon-custom-form-input-col">
+			<input id="js-cart-coupon-custom-form-input" type="text" placeholder="Κωδικός">
+		</div>
+		<div class="cart-coupon-custom-form-button-col">
+			<input id="js-cart-coupon-custom-form-button" type="button" value="εφαρμογή κουπονιού">
+		</div>
+	</div>
+
 	<div class="wc-proceed-to-checkout">
 		<?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
 	</div>

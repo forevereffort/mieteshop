@@ -225,6 +225,7 @@
 .cart-collaterals {
   display: flex;
   justify-content: flex-end;
+  margin-top: 50px;
 }
 
 .cart_totals {
@@ -291,6 +292,42 @@
     background-color: $color-black-1;
     border-radius: 4px;
     color: $color-white;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: $font-weight-bold;
+    padding: 10px 15px;
+  }
+}
+
+.cart-coupon-custom-form-row {
+  display: flex;
+  margin-top: 40px;
+}
+
+.cart-coupon-custom-form-input-col {
+  width: 270px;
+
+  input[type=text] {
+    background: $color-white;
+    border: 1px solid $color-gray-2;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
+    color: #4f566b;
+    font-size: 12px;
+    height: 36px;
+    padding: 0 8px;
+    width: 100px;
+  }
+}
+
+.cart-coupon-custom-form-button-col {
+  width: calc(100% - 270px);
+
+  input[type=button] {
+    background-color: transparent;
+    border: 1px solid $color-black-1;
+    border-radius: 4px;
+    color: $color-black-1;
     display: inline-block;
     font-size: 13px;
     font-weight: $font-weight-bold;
