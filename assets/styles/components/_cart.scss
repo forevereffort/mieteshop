@@ -1,0 +1,21 @@
+.cart-page-title {
+  background-color: $color-gray;
+  margin: 0 auto;
+  max-width: $general-container-width;
+  padding: 90px 0 0;
+
+  h1 {
+    color: $color-black;
+    font-size: 32px;
+    font-weight: $font-weight-extra-bold;
+    line-height: 1.1875;
+  }
+    
+  h2 {
+    color: $color-black;
+    font-size: 24px;
+    font-weight: $font-weight-light;
+    line-height: 1.1667;
+    margin-top: 40px;
+  }
+}
