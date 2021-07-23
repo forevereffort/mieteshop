@@ -52,6 +52,7 @@ jQuery(function(){
 
     addEventToCustomCartElement()
 
+    // at the cart page, whenever info will update, add event again
     jQuery(document.body).on('updated_cart_totals', function(){
         addEventToCustomCartElement()
     });
