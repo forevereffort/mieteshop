@@ -32,22 +32,38 @@ jQuery(function(){
     }
 
     jQuery('.js-archive-contributor-search-greek-letter-col').on('click', function(){
+        let changed = false;
+
         if( jQuery(this).hasClass('active') ){
-            jQuery(this).removeClass('active');
+            if( jQuery('.archive-contributor-search-greek-letter-row .active').length + jQuery('.archive-contributor-search-english-letter-row .active').length > 1 ){
+                jQuery(this).removeClass('active');
+                changed = true;
+            }
         } else {
+            changed = true;
             jQuery(this).addClass('active');
         }
 
-        searchArchiveContributor();
+        if( changed ){
+            searchArchiveContributor();
+        }
     })
 
     jQuery('.js-archive-contributor-search-english-letter-col').on('click', function(){
+        let changed = false;
+
         if( jQuery(this).hasClass('active') ){
-            jQuery(this).removeClass('active');
+            if( jQuery('.archive-contributor-search-greek-letter-row .active').length + jQuery('.archive-contributor-search-english-letter-row .active').length > 1 ){
+                jQuery(this).removeClass('active');
+                changed = true;
+            }
         } else {
             jQuery(this).addClass('active');
+            changed = true;
         }
 
-        searchArchiveContributor();
+        if( changed ){
+            searchArchiveContributor();
+        }
     })
 })

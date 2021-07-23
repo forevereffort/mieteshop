@@ -39,7 +39,14 @@
                         'posts_per_page' => -1,
                         'search_title_with_first_letter' => 'α',
                         'orderby' => 'title',
-                        'order' => 'ASC'
+                        'order' => 'ASC',
+                        'tax_query' => [
+                            [
+                                'taxonomy' => 'contributor_type',
+                                'field'    => 'slug',
+                                'terms'    => 'syggrafeas',
+                            ]
+                        ]
                     ];
                 
                     $loop = new WP_Query( $args );

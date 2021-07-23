@@ -37,23 +37,39 @@ jQuery(function(){
     }
 
     jQuery('.js-archive-publisher-search-greek-letter-col').on('click', function(){
+        let changed = false;
+
         if( jQuery(this).hasClass('active') ){
-            jQuery(this).removeClass('active');
+            if( jQuery('.archive-publisher-search-greek-letter-row .active').length + jQuery('.archive-publisher-search-english-letter-row .active').length > 1 ){
+                jQuery(this).removeClass('active');
+                changed = true;
+            }
         } else {
             jQuery(this).addClass('active');
+            changed = true;
         }
 
-        searchArchivePublisher();
+        if( changed ){
+            searchArchivePublisher();
+        }
     })
 
     jQuery('.js-archive-publisher-search-english-letter-col').on('click', function(){
+        let changed = false;
+
         if( jQuery(this).hasClass('active') ){
-            jQuery(this).removeClass('active');
+            if( jQuery('.archive-publisher-search-greek-letter-row .active').length + jQuery('.archive-publisher-search-english-letter-row .active').length > 1 ){
+                jQuery(this).removeClass('active');
+                changed = true;
+            }
         } else {
             jQuery(this).addClass('active');
+            changed = true;
         }
 
-        searchArchivePublisher();
+        if( changed ){
+            searchArchivePublisher();
+        }
     })
 
     jQuery('.js-archive-publisher-search-type-col').on('click', function(){
