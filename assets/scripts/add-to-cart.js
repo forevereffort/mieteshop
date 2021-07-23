@@ -36,4 +36,8 @@ jQuery(function(){
 
         return false;
     })
+
+    jQuery('.js-cart-product-quantity-button').on('click', function(){
+        jQuery('#js-update-cart-btn').trigger('click');
+    })
 })

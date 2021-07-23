@@ -107,7 +107,7 @@ defined( 'ABSPATH' ) || exit;
 											echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 												'woocommerce_cart_item_remove_link',
 												sprintf(
-													'<div class="cart-product-remove-btn"><a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s"><span>' . file_get_contents(get_template_directory() . '/assets/icons/delete-icon.svg' ) . '</span>διαγραφή</a></div>',
+													'<div class="cart-product-remove-btn product-remove"><a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s"><span>' . file_get_contents(get_template_directory() . '/assets/icons/delete-icon.svg' ) . '</span>διαγραφή</a></div>',
 													esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
 													esc_html__( 'Remove this item', 'woocommerce' ),
 													esc_attr( $product_id ),
@@ -140,7 +140,7 @@ defined( 'ABSPATH' ) || exit;
 
 												echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
 											?>
-											<div class="cart-product-quantity-button"><?php include get_template_directory() . '/assets/icons/update-icon.svg'; ?></div>
+											<div class="js-cart-product-quantity-button cart-product-quantity-button"><?php include get_template_directory() . '/assets/icons/update-icon.svg'; ?></div>
 										</div>
 									</td>
 
@@ -175,7 +175,7 @@ defined( 'ABSPATH' ) || exit;
 								</div>
 							<?php } ?>
 
-							<button type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
+							<button type="submit" id="js-update-cart-btn" class="button" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"><?php esc_html_e( 'Update cart', 'woocommerce' ); ?></button>
 
 							<?php do_action( 'woocommerce_cart_actions' ); ?>
 

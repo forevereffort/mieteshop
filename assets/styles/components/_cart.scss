@@ -29,6 +29,10 @@
   .content-container {
     padding-left: 135px;
   }
+
+  .woocommerce-notices-wrapper {
+    padding-bottom: 15px;
+  }
 }
 
 .cart-product-thumbnail {
@@ -206,4 +210,8 @@
   td {
     border-top: 2px solid $color-black;
   }
+}
+
+#js-update-cart-btn {
+  display: none;
 }
