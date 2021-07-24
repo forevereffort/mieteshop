@@ -81,12 +81,14 @@
 }
 
 .woocommerce-billing-fields__field-wrapper,
-.woocommerce-additional-fields__field-wrapper {
+.woocommerce-additional-fields__field-wrapper,
+.woocommerce-address-fields__field-wrapper {
   display: flex;
   flex-wrap: wrap;
   margin: 30px -10px 0;
 
   .form-row {
+    margin: 0;
     padding: 5px 10px;
 
     &.notes {
@@ -149,7 +151,7 @@
   }
 }
 
-.woocommerce-checkout {
+.woocommerce-page {
   .select2-container {
     .select2-selection--single {
       background-color: $color-white;

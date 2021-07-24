@@ -9,6 +9,7 @@
     if( is_user_logged_in() ){
         $endpoint = WC()->query->get_current_endpoint();  
         $endpoint_title = WC()->query->get_endpoint_title( $endpoint );
+        $endpoint_title = empty($endpoint_title) ? 'Dashboard' : $endpoint_title;
 ?>
         <section class="my-account-title-section">
             <div class="content-container">
@@ -17,7 +18,7 @@
         </section>
 <?php
     }
-    
+
     if ( have_posts() ) {
         while ( have_posts() ){
             the_post();

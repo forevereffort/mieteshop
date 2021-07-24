@@ -11,15 +11,25 @@
   margin: 0 auto;
   max-width: $general-container-width;
   padding: 60px 0 100px;
+
+  .content-container {
+    .woocommerce {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
 }
 
 .my-account-login-icon {
   padding-top: 90px;
   text-align: center;
+  width: 100%;
 }
 
 .my-account-login-inner {
   padding: 90px 0 50px;
+  width: 100%;
 
   .woocommerce-form {
     margin-top: 25px;
@@ -127,5 +137,229 @@
       color: #1f1f1f;
       text-decoration: underline;
     }
+  }
+}
+
+.woocommerce-MyAccount-navigation {
+  width: 190px;
+}
+
+.woocommerce-MyAccount-content {
+  width: 700px;
+}
+
+.woocommerce-MyAccount-navigation-link {
+  &.is-active {
+    a {
+      background-color: $color-white;
+    }
+  }
+
+  a {
+    color: $color-black;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    line-height: 1.25;
+    padding: 8px;
+    width: 100%;
+
+    &:hover {
+      background-color: $color-white;
+    }
+  }
+}
+
+.woocommerce-MyAccount-navigation-link--dashboard {
+  a {
+    background-color: $color-gray-1 !important;
+    font-weight: $font-weight-extra-bold;
+  }
+}
+
+.woocommerce-MyAccount-content {
+  p {
+    color: $color-black-1;
+    font-size: 16px;
+    line-height: 1.5;
+    
+    a {
+      color: $color-black-1;
+      text-decoration: underline;
+    }
+  }
+
+  p+p {
+    margin-top: 10px;
+  }
+}
+
+.woocommerce-MyAccount-orders,
+.woocommerce-MyAccount-paymentMethods {
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th {
+    border-bottom: 2px solid $color-black;
+    color: $color-black;
+    font-size: 18px;
+    line-height: 1.11;
+    padding: 0 0 15px;
+    text-align: left;
+  }
+
+  td {
+    color: $color-black;
+    font-size: 14px;
+    font-weight: $font-weight-light;
+    line-height: 1.429;
+    padding: 8px 0;
+    
+    a {
+      color: $color-black;
+      text-decoration: underline;
+    }
+  }
+}
+
+.woocommerce-customer-details {
+  margin-top: 30px;
+  
+  address {
+    font-size: 14px;
+    line-height: 1.429;
+    margin-top: 30px;       
+  }
+}
+
+.woocommerce-Addresses {
+  &.col2-set {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    width: 500px;
+
+    .woocommerce-Address {
+      width: 190px;
+    }
+
+    .woocommerce-Address-title {
+      h3 {
+        font-size: 16px;
+        line-height: 1.25;
+      }
+
+      a {
+        color: $color-black;
+        display: inline-block;
+        font-size: 14px;
+        margin-top: 15px;
+        text-decoration: underline;
+      }
+    }
+
+    address {
+      font-size: 14px;
+      line-height: 1.429;
+      margin-top: 30px;       
+    }
+  }
+}
+
+.woocommerce-address-fields {
+  button[type=submit] {
+    background-color: $color-black-1;
+    border: 0;
+    border-radius: 4px;
+    color: $color-white;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: $font-weight-bold;
+    margin-top: 30px;
+    padding: 10px 15px;
+  }
+}
+
+.woocommerce-payment-methods {
+  table~.button {
+    background-color: $color-black-1;
+    border: 0;
+    border-radius: 4px;
+    color: $color-white;
+    display: inline-block;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: $font-weight-bold;
+    margin-top: 30px;
+    padding: 10px 15px;
+  }
+}
+
+.woocommerce-EditAccountForm {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+
+  .form-row {
+    margin: 0;
+    padding: 5px 10px;
+
+    &.notes {
+      width: 100%;
+    }
+
+    label {
+      color: $color-black-1;
+      display: block;
+      font-size: 14px;
+      font-weight: $font-weight-light;
+    }
+  }
+
+  input[type=text],
+  input[type=tel],
+  input[type=email],
+  input[type=password] {
+    background-color: $color-white;
+    border: 1px solid $color-gray-2;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
+    color: $color-black-1;
+    display: block;
+    font-size: 14px;
+    height: 40px;
+    margin-top: 5px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .form-row-first {
+    width: 50%;
+  }
+
+  .form-row-last {
+    width: 50%;
+  }
+
+  .form-row-wide {
+    width: 100%;
+  }
+
+  button[type=submit] {
+    background-color: $color-black-1;
+    border: 0;
+    border-radius: 4px;
+    color: $color-white;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: $font-weight-bold;
+    margin-top: 30px;
+    padding: 10px 15px;
+  }
+
+  fieldset {
+    border: 0;
+    margin-top: 10px;
+    width: 100%;
   }
 }
