@@ -1,16 +1,25 @@
+.my-account-title-section {
+  background-color: $color-gray;
+  border-bottom: 2px solid $color-black-1;
+  margin: 0 auto;
+  max-width: $general-container-width;
+  padding: 70px 0 31px;
+}
+
 .my-account-section {
   background-color: $color-gray;
   margin: 0 auto;
   max-width: $general-container-width;
-  padding: 150px 0;
+  padding: 60px 0 100px;
 }
 
 .my-account-login-icon {
+  padding-top: 90px;
   text-align: center;
 }
 
 .my-account-login-inner {
-  margin-top: 100px;
+  padding: 90px 0 50px;
 
   .woocommerce-form {
     margin-top: 25px;
