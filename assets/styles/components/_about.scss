@@ -1,8 +1,15 @@
+.about-page-wrapper {
+  background-color: #dedbd4;
+  margin: 0 auto;
+  max-width: 1280px;
+  padding: 50px 0;
+}
+
 .about-hero-section {
   background-color: #dedbd4;
   margin: 0 auto;
   max-width: $general-container-width;
-  padding: 50px 0;
+  padding-bottom: 30px;
 }
 
 .about-hero-image {
@@ -13,13 +20,21 @@
   }
 }
 
-.about-hero-des-1 {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 55px;
+.about-lead-section {
+  background-color: #dedbd4;
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 20px 0;
 }
 
-.about-hero-des-1-content {
+/*
+.about-lead-des {
+  display: flex;
+  justify-content: flex-end;
+}
+*/
+
+.about-lead-des-content {
   max-width: 700px;
 
   p {
@@ -30,14 +45,22 @@
   }
 }
 
-.about-hero-des-2 {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 25px;
+.about-text-section {
+  background-color: #dedbd4;
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px 0;
 }
 
-.about-hero-des-2-content {
-  max-width: 600px;
+/*
+.about-text-des {
+  display: flex;
+  justify-content: flex-end;
+}
+*/
+
+.about-text-des-content {
+  /* max-width: 600px; */
 
   p {
     color: $color-black-1;
@@ -49,9 +72,13 @@
 
 .about-store-section {
   background-color: $color-black-1;
-  margin: 0 auto;
+  margin: 30px auto;
   max-width: $general-container-width;
   padding: 50px 0 75px;
+}
+
+.about-store-list+.about-store-list {
+  margin-top: 90px;
 }
 
 .about-store-title {
@@ -86,91 +113,43 @@
   width: calc(100% - 500px);
 }
 
-.about-store-item-store-name {
-  color: $color-white;
-  font-size: 24px;
-  font-weight: $font-weight-light;
-  line-height: 1.583;
+.about-store-item-store-location {
+  p {
+    color: $color-white;
+    font-size: 18px;
+    font-weight: $font-weight-light;
+    line-height: 1.333;
+    margin-top: 15px;
+  }
 
   strong {
-    font-weight: $font-weight-extra-bold;
-  }
-}
-
-.about-store-item-store-address {
-  color: $color-white;
-  font-size: 18px;
-  font-weight: $font-weight-light;
-  line-height: 1.333;
-  margin-top: 15px;
-}
-
-.about-store-item-store-phone-label {
-  color: $color-white;
-  font-size: 16px;
-  font-weight: $font-weight-bold;
-  line-height: 1.5;
-  margin-top: 15px;
-}
-
-.about-store-item-store-phone-list {
-  color: $color-white;
-  font-size: 16px;
-  font-weight: $font-weight-light;
-  line-height: 1.5;
-    
-  a {
-    color: $color-white;
-  }
-}
-
-.about-store-item-store-email-label {
-  color: $color-white;
-  font-size: 16px;
-  font-weight: $font-weight-bold;
-  line-height: 1.5;
-  margin-top: 15px;
-}
-
-.about-store-item-store-email-list {
-  color: $color-white;
-  font-size: 16px;
-  font-weight: $font-weight-light;
-  line-height: 1.5;
-
-  a {
-    color: $color-white;
+    font-weight: $font-weight-bold;
   }
 }
 
 .about-store-item-store-hour {
-  padding-top: 7px;
-}
+  p {
+    color: $color-white;
+    font-size: 16px;
+    font-weight: $font-weight-light;
+    line-height: 1.333;
+    margin-top: 15px;
+  }
 
-.about-store-item-store-hour-title {
-  color: $color-white;
-  font-size: 16px;
-  font-weight: $font-weight-bold;
-  line-height: 1.3125;
-}
-
-.about-store-item-store-hour-label {
-  color: $color-white;
-  font-size: 16px;
-  font-weight: $font-weight-bold;
-  line-height: 1.3125;
-  margin-top: 25px;
-}
-
-.about-store-item-store-hour-value {
-  color: $color-white;
-  font-size: 16px;
-  font-weight: $font-weight-light;
-  line-height: 1.3125;
+  strong {
+    font-weight: $font-weight-bold;
+  }
 }
 
 .about-store-item-map {
   padding-top: 12px;
+}
+
+.about-store-item-map-wrapper {
+  img {
+    border-radius: 16px;
+    width: 100%;
+  }
 }
 
 .about-store-item-map-link {
@@ -185,35 +164,27 @@
   }
 }
 
-.about-store-item-map-wrapper {
-  img {
-    border-radius: 16px;
+.about-lead-section,
+.about-text-section {
+  margin-right: 100px;
+}
+
+/* responsive styles */
+@media (max-width:768px) {
+  .about-lead-section,
+  .about-text-section,
+  .about-store-section { 
+    padding-left: 15px;
+    padding-right: 15px;
+  }  
+
+  .about-store-item-row {
+    display: block;
+  }
+
+  .about-store-item-col-1,
+  .about-store-item-col-2,
+  .about-store-item-col-3 {
     width: 100%;
-  }
-}
-
-.about-store-list+.about-store-list {
-  margin-top: 90px;
-}
-
-.about-footer-des-row {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.about-footer-des-content {
-  max-width: 600px;
-
-  p {
-    color: $color-black-1;
-    font-size: 16px;
-    font-weight: $font-weight-light;
-    line-height: 1.5;
-  }
-}
-
-.about-footer-des-section {
-  .general-container {
-    padding: 55px 0 100px;
   }
 }
