@@ -10,29 +10,104 @@ global $post;
         <h1>Σχετικά με το βιβλιοπωλείο του ΜΙΕΤ</h1>
     </div>
 </section>
+<div class="about-page-wrapper">
+<?php if ( get_post_thumbnail_id( $post->ID ) ) { ?>    
 <section class="about-hero-section">
     <?php
-        $about_image_url = get_template_directory_uri() . '/assets/images/about.png';
+        $about_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
     ?>
     <div class="about-hero-image">
         <img
             class="lazyload"
             src="<?php echo placeholderImage(1100, 500); ?>"
-            data-src="<?php echo $about_image_url; ?>"
-            alt="video image">
+            data-src="<?php echo $about_image_url[0]; ?>"
+            alt="about MIET image">
     </div>
-    <div class="about-hero-des-1">
-        <div class="about-hero-des-1-content">
-            <p>Το 1966, επί Διοικήσεως Γεωργίου Μαύρου, η Εθνική Τράπεζα της Ελλάδος (ΕΤΕ), στο πλαίσιο του εορτασμού των 125 χρόνων από την ίδρυσή της, αποφάσισε να δημιουργήσει ένα μορφωτικό-πολιτιστικό ίδρυμα με σκοπό να συμβάλει στην ανάπτυξη των γραμμάτων, των επιστημών και των καλών τεχνών. Το Μορφωτικό Ίδρυμα Εθνικής Τραπέζης συστάθηκε πράγματι με το Διάταγμα 311 της 1ης Απριλίου 1966.</p>
-        </div>
-    </div>
-    <div class="about-hero-des-2">
-        <div class="about-hero-des-2-content">
-            <p>Οι Πανεπιστημιακές Εκδόσεις Κρήτης- Ίδρυμα Τεχνολογίας Έρευνας (ΠΕΚ-ΙΤΕ) αποδίδουν ιδιαίτερη σημασία στην προστασία της ιδιωτικότητας και των δεδομένων προσωπικού χαρακτήρα των επισκεπτών/χρηστών. Επισημαίνεται ότι ως δεδομένα προσωπικού χαρακτήρα νοούνται από την οικεία νομοθεσία  (Γενικός Κανονισμός Προστασίας Δεδομένων 2016/679/ΕΕ) μόνο εκείνες οι πληροφορίες που αφορούν ένα προσδιορισμένο ή – επί τη βάσει κάποιων χαρακτηριστικών – προσδιορίσιμο φυσικό πρόσωπο (υποκείμενο των δεδομένων). Πληροφορίες που αφορούν νομικά πρόσωπα και ομάδες προσώπων ή πληροφορίες στατιστικού χαρακτήρα, από τις οποίες δεν είναι δυνατή η αναγωγή σε προσδιορισμένο ή προσδιορίσιμο φυσικό πρόσωπο, δεν εμπίπτουν σε αυτήν την κατηγορία και εξαιρούνται από το πεδίο εφαρμογής της σχετικής νομοθεσίας.</p>
-        </div>
-    </div>
-</section>
-<section class="about-store-section">
+</section>   
+<?php } ?> 
+<?php
+if( have_rows('page_content') ):
+// Loop through rows.
+while ( have_rows('page_content') ) : the_row();
+
+    // Case: post lead field
+    if( get_row_layout() == 'page_lead_section' ):
+        $lead = get_sub_field('page_lead');
+        if($lead):
+        ?>
+            <section class="about-lead-section">
+                <div class="about-lead-des"><div class="about-lead-des-content">
+                    <p><?php echo $lead; ?></p>
+                </div></div>
+            </section>
+        <?php 
+        endif;
+
+    // Case: post text field
+    elseif( get_row_layout() == 'page_text_section' ):
+        $text = get_sub_field('page_text');
+        if($text):
+            ?>
+            <section class="about-text-section">
+                <div class="about-text-des"><div class="about-text-des-content">
+                <?php echo $text; ?>
+                </div></div>
+            </section>
+            <?php
+        endif;
+
+    // Case: post contact field
+    elseif( get_row_layout() == 'page_contact_section' ):
+        if( have_rows('page_contact_details') ) :
+            ?>
+            <section class="about-store-section">
+                <div class="content-container"><div class="about-store-title"><h2>ΒΙΒΛΙΟΠΩΛΕΙΑ</h2></div>
+            <?php    
+            while( have_rows('page_contact_details') ) :
+                the_row();
+                $address = get_sub_field('page_contact_address');
+                $hours = get_sub_field('page_contact_hours');
+                $mapimg = get_sub_field('page_contact_map');
+                $maplink = get_sub_field('page_contact_map_link');
+                ?>
+                <div class="about-store-list">
+                    <div class="about-store-item">
+                        <div class="about-store-item-row">
+                            <div class="about-store-item-col-1">
+                                <div class="about-store-item-store-location">
+                                    <?php echo $address; ?>
+                                </div>
+                            </div>
+                            <div class="about-store-item-col-2">
+                                <div class="about-store-item-store-hour">
+                                    <?php echo $hours; ?>   
+                                </div>
+                            </div>    
+                            <div class="about-store-item-col-3">
+                                <div class="about-store-item-map">
+                                    <div class="about-store-item-map-wrapper">
+                                        <img class="lazyload" src="<?php echo $mapimg['url']; ?>" alt="map image">
+                                    </div>
+                                    <div class="about-store-item-map-link"><a href="<?php echo $maplink['url']; ?>" target="<?php echo $maplink['target']; ?>"><?php echo $maplink['title']; ?></a></div>
+                                </div>
+                            </div>
+                        </div>                  
+                    </div>
+                </div>    
+            <?php
+            endwhile;   
+            ?>
+            </section>
+            <?php
+        endif;            
+        
+    endif;            
+
+endwhile;
+endif;    
+?>
+
+<!--section class="about-store-section">
     <div class="content-container">
         <div class="about-store-title">
             <h2>ΒΙΒΛΙΟΠΩΛΕΙΑ</h2>
@@ -134,8 +209,8 @@ global $post;
             </div>
         </div>
     </div>
-</section>
-<section class="about-footer-des-section">
+</section-->
+<!--section class="about-footer-des-section">
     <div class="general-container">
         <div class="content-container">
             <div class="about-footer-des-row">
@@ -145,5 +220,6 @@ global $post;
             </div>
         </div>
     </div>
-</section>
+</section-->
+</div>
 <?php get_footer(); ?>
