@@ -25,10 +25,35 @@ jQuery(function(){
                 jQuery('#js-ajax-add-to-cart-load-spinner').remove();
             },
             success: function (response) {
-                jQuery('#js-header-top-cart-list').html(response.result);
+                if (response.error && response.product_url) {
+                    window.location = response.product_url;
+                    return;
+                } else {
+                    jQuery(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash]);
+                }
             },
         });
 
         return false;
     })
+
+    function addEventToCustomCartElement(){
+        jQuery('.js-cart-product-quantity-button').on('click', function(){
+            jQuery('#js-update-cart-btn').trigger('click');
+        })
+
+        jQuery('#js-cart-coupon-custom-form-button').on('click', function(){
+            const couponVal = jQuery('#js-cart-coupon-custom-form-input').val();
+    
+            jQuery('#coupon_code').val(couponVal);
+            jQuery('button[type=submit]', jQuery('#coupon_code').parent()).trigger('click');
+        })
+    }
+
+    addEventToCustomCartElement()
+
+    // at the cart page, whenever info will update, add event again
+    jQuery(document.body).on('updated_cart_totals', function(){
+        addEventToCustomCartElement()
+    });
 })

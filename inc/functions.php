@@ -143,3 +143,16 @@ require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 $loader = new \Twig\Loader\FilesystemLoader(dirname(dirname(__FILE__)) . '/twig-templates');
 global $twig;
 $twig = new \Twig\Environment($loader);
+
+$twigAddToFavoriteButtonFunction = new \Twig\TwigFunction('addToFavoriteButton', function ($product_id) {
+  global $post; 
+  $post = get_post( $product_id, OBJECT );
+  setup_postdata( $post );
+
+  $wishlist_button =  do_shortcode('[ti_wishlists_addtowishlist]');
+  
+  wp_reset_postdata();
+
+  return $wishlist_button;
+});
+$twig->addFunction($twigAddToFavoriteButtonFunction);

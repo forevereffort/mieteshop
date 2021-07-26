@@ -94,6 +94,7 @@ function filterCategoryProduct()
                 }
 
                 $products_search_list[] = [
+                    'id' => $post->ID,
                     'url' => get_permalink($post->ID),
                     'placeholder' => placeholderImage($image[1], $image[2]),
                     'image_url' => aq_resize($image[0], $image[1], $image[2], true),
@@ -168,6 +169,7 @@ function filterCategoryProduct()
             }
 
             $products_search_list[] = [
+                'id' => $product_id,
                 'url' => get_permalink($product_id),
                 'placeholder' => placeholderImage($image[1], $image[2]),
                 'image_url' => aq_resize($image[0], $image[1], $image[2], true),

@@ -224,10 +224,20 @@
 										</div>
 										<div class="header-top-search-result-menu-list">
 											<ul>
-												<li><a href="#">Ο λογαριασμός μου</a></li>
-												<li><a href="#">Ιστορικό αγορών</a></li>
-												<li><a href="#">Ρυθμίσεις</a></li>
-												<li><a href="#">Έξοδος / Log out</a></li>
+												<?php
+													if( is_user_logged_in() ){
+												?>
+														<li><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">Ο λογαριασμός μου</a></li>
+														<li><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>/orders">Ιστορικό αγορών</a></li>
+														<li><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>/edit-account/">Ρυθμίσεις</a></li>
+														<li><a href="<?php echo is_user_logged_in() ? wc_logout_url() : get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">Έξοδος / Log out</a></li>
+												<?php
+													} else {
+												?>
+														<li><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">Login</a></li>
+												<?php
+													}
+												?>
 											</ul>
 										</div>
 									</div>
