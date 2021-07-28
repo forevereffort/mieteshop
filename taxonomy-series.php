@@ -107,7 +107,7 @@
                                                 </div>
                                                 <div class="pcat-result-item-meta-col">
                                                     <div class="pcat-result-item-busket">
-                                                        <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                                    <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -132,9 +132,9 @@
                                                     <?php echo $product->get_price_html(); ?>
                                                 </div>
                                             </div>
-                                            <div class="pcat-result-item-footer-col">
+                                            <!--div class="pcat-result-item-footer-col">
                                                 <div class="pcat-result-item-footer-product-discount">-30%</div>
-                                            </div>
+                                            </div-->
                                         </div>
                                     </div>
                                 </div>
