@@ -18,10 +18,7 @@ $args = array(
 );
 $posts = new WP_Query( $args );
 if ( $posts->have_posts() ) :
-    //echo '<pre>'; var_dump($posts->posts); echo '</pre>';
-    $firstpost = $posts->posts[0];
-    //echo '<pre>'; var_dump($firstpost); echo '</pre>';
-    
+    $firstpost = $posts->posts[0];    
 ?>
 
 <section class="breadcrumb-section">
@@ -50,7 +47,7 @@ if ( $posts->have_posts() ) :
                         </div>
                     </div>
                     <?php
-                        $blog_hero_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $firstpost->ID ), 'full' ); //get_template_directory_uri() . '/assets/images/blog-hero.png';
+                        $blog_hero_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $firstpost->ID ), 'full' );
                     ?>
 
                     <div class="blog-hero-image">
@@ -75,10 +72,7 @@ if ( $posts->have_posts() ) :
                                     ?>
                                     </div>
                                 </div>
-                                <div class="blog-hero-content-date"><?php 
-                                echo get_the_date('j', $firstpost->ID); ?> <?php echo $greek_month_list[get_the_date('n', $firstpost->ID) - 1]; ?> <?php echo get_the_date('Y', $firstpost->ID);
-                                //echo get_the_date('d M Y', $firstpost->post_date); ?>
-                                </div>
+                                <div class="blog-hero-content-date"><?php echo get_the_date('j', $firstpost->ID); ?> <?php echo $greek_month_list[get_the_date('n', $firstpost->ID) - 1]; ?> <?php echo get_the_date('Y', $firstpost->ID); ?></div>
                             </div>
                             <div class="blog-hero-content-info">
                                 <h2><a href="<?php echo get_permalink($firstpost->ID); ?>"><?php echo $firstpost->post_title; ?></a></h2>
@@ -191,18 +185,7 @@ if ( $posts->have_posts() ) :
                                 ]);
                                 $pagination->render();
                             ?>
-                        </div>                        
-                        <!--div class="pcat-results-navigation">
-                            <div class="pcat-results-navigation-row">
-                                <div class="pcat-results-navigation-item active"><a href="#">1</a></div>
-                                <div class="pcat-results-navigation-item"><a href="#">2</a></div>
-                                <div class="pcat-results-navigation-item"><a href="#">3</a></div>
-                                <div class="pcat-results-navigation-item"><a href="#">4</a></div>
-                                <div class="pcat-results-navigation-item"><span>...</span></div>
-                                <div class="pcat-results-navigation-item"><a href="#">33</a></div>
-                                <div class="pcat-results-navigation-next"><?php include get_template_directory() . '/assets/icons/arrow-right-icon.svg' ?></div>
-                            </div>
-                        </div-->
+                        </div>
                     </div>
                     <div class="pcat-results-footer-options-col">
                         <div class="pcat-results-footer-select">
