@@ -313,11 +313,13 @@
         ?>
         <div class="home-book-week-row">
             <div class="home-book-week-left">
+                <a href="<?php echo get_permalink($weekbook->ID); ?>">
                 <img
                     class="lazyload"
                     src="<?php echo placeholderImage($image[1], $image[2]); ?>"
                     data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
                     alt="<?php echo $weekbook->post_title; ?>">
+                </a>    
             </div>
             <div class="home-book-week-right">
                 <?php
@@ -334,7 +336,7 @@
                     }
                 ?>
                 <div class="home-book-week-product-title">
-                    <h3><?php echo $weekbook->post_title; ?></h3>
+                    <h3><a href="<?php echo get_permalink($weekbook->ID); ?>"><?php echo $weekbook->post_title; ?></a></h3>
                 </div>
                 <div class="home-book-week-product-content">
                     <p><?php echo mb_substr(strip_tags($weekbook->post_content), 0, 600, 'UTF-8'); ?> »</p>
@@ -342,21 +344,58 @@
                 <div class="home-book-week-product-meta-row">
                     <div class="home-book-week-product-meta-col">
                         <div class="home-book-week-product-price">
+
+                        <?php 
+                        /*
+                            $regular_price = get_post_meta( $weekbook->ID, '_regular_price', true);
+                            $sale_price = get_post_meta( $weekbook->ID, '_sale_price', true);
+                            if($sale_price) {
+                                echo $regular_price;
+                                echo $sale_price;
+                            } else {
+    	                        echo $weekbook_product->get_regular_price();
+                            }
+
+                            if($sale_price) {
+                                $saving_percentage = round( 100 - ( $sale_price / $regular_price * 100 ), 1 ) . '%';
+                        */        
+                        ?>
+                                <!--div class="single-product-discount"><span><?php //echo $saving_percentage; ?></span></div-->
+                        <?php
+                            //}
+                        ?>
+
+                        
                             <?php echo $weekbook_product->get_price_html(); ?>
                         </div>
                     </div>
-                    <div class="home-book-week-product-meta-col">
+                    <!--div class="home-book-week-product-meta-col">
                         <div class="home-book-week-product-discount">-30%</div>
-                    </div>
+                    </div-->
                     <div class="home-book-week-product-meta-col">
                         <div class="home-book-week-product-favorite">
                             <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
                         </div>
                     </div>
                     <div class="home-book-week-product-meta-col">
-                        <div class="home-book-week-product-busket">
+                        <!--div class="home-book-week-product-busket">
                             <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
-                        </div>
+                        </div-->
+                        <?php
+                            if( !$weekbook_product->is_purchasable() ||  !$weekbook_product->is_in_stock() ){
+                                if( !$weekbook_product->is_purchasable() ){
+                                    echo '<span style="color:red">Μη διαθέσιμο</span>';
+                                } elseif ( !$weekbook_product->is_in_stock() ) {
+                                    echo '<span style="color:red">Εξαντλημένο</span>';
+                                }
+                            } else {
+                        ?>
+                                <div class="pcat-result-item-busket">
+                                    <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $weekbook_product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $weekbook_product->get_sku(); ?>"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                </div>
+                        <?php
+                            }
+                        ?>                        
                     </div>
                 </div>
             </div>
@@ -559,23 +598,25 @@
                                             <h3><a href="<?php echo get_permalink($blog->ID); ?>"><?php echo $blog->post_title; ?></a></h3>
                                         </div>
                                         <div class="home-blog-item-bottom-row">
+                                        <?php if(get_field('event_from_date', $blog->ID)) { ?>
                                             <div class="home-blog-item-bottom-left-col">
                                                 <div class="home-blog-item-duration-row">
                                                     <div class="home-blog-item-duration-col">
                                                         <div class="home-blog-item-duration-label">ΑΠΟ</div>
-                                                        <div class="home-blog-item-duration-date">2 ΦΕΒ 2021</div>
+                                                        <div class="home-blog-item-duration-date"><?php echo get_field('event_from_date', $blog->ID); ?></div>
                                                     </div>
                                                     <div class="home-blog-item-duration-col">
                                                         <div class="home-blog-item-duration-label">ΕΩΣ</div>
-                                                        <div class="home-blog-item-duration-date">15 ΜΑΡ 2021</div>
+                                                        <div class="home-blog-item-duration-date"><?php echo get_field('event_to_date', $blog->ID); ?></div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <?php } ?> 
                                             <div class="home-blog-item-bottom-right-col">
                                                 <div class="home-blog-item-excerpt">
-                                                    <?php echo $blog->post_excerpt; ?>
+                                                <?php echo get_field('post_lead', $blog->ID); ?>
                                                 </div>
-                                            </div>
+                                            </div> 
                                         </div>
                                     </div>
                                 </div>

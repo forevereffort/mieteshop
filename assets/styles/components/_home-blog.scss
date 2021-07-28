@@ -94,12 +94,12 @@
 }
 
 .home-blog-item-bottom-left-col {
+  padding-right: 15px;
   padding-top: 5px;
   width: 70px;
 }
 
-.home-blog-item-bottom-right-col {
-  padding-left: 15px;
+.home-blog-item-bottom-right-col {  
   width: calc(100% - 70px);
 }
 
@@ -150,4 +150,12 @@
   .home-blog-item-image {
     height: auto;
   }
+}
+
+.price ins {
+  text-decoration: none;
+}
+
+.price del {
+  margin-right: 8px;
 }

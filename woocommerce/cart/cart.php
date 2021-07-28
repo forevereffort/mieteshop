@@ -91,14 +91,26 @@ defined( 'ABSPATH' ) || exit;
 
 										<div class="pcat-result-item-footer-row pcat-result-item-footer-row-static">
 											<div class="pcat-result-item-footer-col">
-												<div class="pcat-result-item-footer-product-price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
+												<?php
+												$regular_price = $_product->get_regular_price();
+												$sale_price = $_product->get_sale_price();
+												?>
+												<div class="pcat-result-item-footer-product-price price" data-title="<?php esc_attr_e( 'Price', 'woocommerce' ); ?>">
 													<?php
+														if($sale_price > 0) {
+															echo '<del>' . wc_price($regular_price) . '</del>';	
+														}	
 														echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // PHPCS: XSS ok.
 													?>
 												</div>
 											</div>
 											<div class="pcat-result-item-footer-col">
-												<div class="pcat-result-item-footer-product-discount">-30%</div>
+												<?php  
+												if($sale_price > 0) {
+												$saving_percentage = round( 100 - ( $sale_price / $regular_price * 100 ), 1 ) . '%'; 
+												?>
+												<div class="pcat-result-item-footer-product-discount"><?php echo $saving_percentage; ?></div>
+												<?php } ?>
 											</div>
 										</div>
 

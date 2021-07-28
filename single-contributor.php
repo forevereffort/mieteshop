@@ -174,11 +174,13 @@
                         <div class="pcat-result-item">
                             <div class="pcat-result-item-info">
                                 <div class="pcat-result-item-image">
+                                    <a href="<?php echo get_permalink($product->ID); ?>">
                                     <img
                                         class="lazyload"
                                         src="<?php echo placeholderImage($image[1], $image[2]); ?>"
                                         data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
                                         alt="<?php echo $product->get_name(); ?>">
+                                    </a>    
                                 </div>
                                 <div class="pcat-result-item-meta-row">
                                     <div class="pcat-result-item-meta-col">
@@ -205,7 +207,7 @@
                                         echo '</div>';
                                     }
                                 ?>
-                                <div class="pcat-result-item-title"><h3><?php echo $product->get_name(); ?></h3></div>
+                                <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($product->ID); ?>"><?php echo $product->get_name(); ?></a></h3></div>
                             </div>
                             <div class="pcat-result-item-footer-row">
                                 <div class="pcat-result-item-footer-col">
@@ -213,9 +215,9 @@
                                         <?php echo $product->get_price_html(); ?>
                                     </div>
                                 </div>
-                                <div class="pcat-result-item-footer-col">
+                                <!--div class="pcat-result-item-footer-col">
                                     <div class="pcat-result-item-footer-product-discount">-30%</div>
-                                </div>
+                                </div-->
                             </div>
                         </div>
                     </div>
@@ -279,7 +281,7 @@
                                                 echo '</div>';
                                             }
                                         ?>
-                                        <div class="pcat-result-item-title"><h3><?php echo $relatedbook->post_title; ?></h3></div>
+                                        <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($relatedbook->ID); ?>"><?php echo $relatedbook->post_title; ?></h3></a></div>
                                     </div>
                                     <div class="pcat-result-item-footer-row">
                                         <div class="pcat-result-item-footer-col">
@@ -287,9 +289,9 @@
                                                 <?php echo $relatedbook_product->get_price_html(); ?>
                                             </div>
                                         </div>
-                                        <div class="pcat-result-item-footer-col">
+                                        <!--div class="pcat-result-item-footer-col">
                                             <div class="pcat-result-item-footer-product-discount">-30%</div>
-                                        </div>
+                                        </div-->
                                     </div>
                                 </div>
                             </div>
