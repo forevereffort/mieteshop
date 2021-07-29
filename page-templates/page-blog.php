@@ -22,7 +22,7 @@ global $post;
         <div class="content-container">
             <div class="blog-cat-filter-select-row">
                 <div class="blog-cat-filter-select">
-                    <select>
+                    <select id="js-blog-cat-filter-select">
                         <option value="0">All</option>
                         <?php
                             $terms = get_terms('category', [
@@ -185,7 +185,10 @@ global $post;
                     }
                 ?>
             </div>
-            <div class="pcat-results-footer-options">
+            <?php
+                $page_count = round($total_post_count / $posts_per_page + 0.45);
+            ?>
+            <div class="pcat-results-footer-options <?php echo $page_count < 2 ? 'hide' : ''; ?>">
                 <div class="pcat-results-footer-options-col">
                     <div id="js-blog-results-navigation" class="pcat-results-navigation">
                         <?php
@@ -212,9 +215,6 @@ global $post;
                     <div class="pcat-results-footer-select">
                         <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
                         <div class="pcat-results-footer-select-elem">
-                            <?php
-                                $page_count = round($total_post_count / $posts_per_page + 0.45);
-                            ?>
                             <select id="js-blog-page-list">
                                 <?php
                                     for($p = 1; $p <= $page_count; $p++){

@@ -53,4 +53,10 @@ jQuery(function(){
 
         blogResultSearch(page);
     });
+
+    jQuery('#js-blog-cat-filter-select').on('change', function(){
+        jQuery('#js-blog-result-row').attr('data-cat-id', jQuery(this).val());
+
+        blogResultSearch(1);
+    })
 })
