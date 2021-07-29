@@ -189,8 +189,10 @@ function mieteshop_header_top_cart_fragments( $fragments ) {
 
     if( WC()->cart->get_cart_contents_count() == 0 ){
         $fragments['div#js-header-top-cart-list'] = '<div id="js-header-top-cart-list">Empty</div>';
+        $fragments['span#js-header-top-cart-number'] = '<span id="js-header-top-cart-number" class="header-top-cart-number"></span>';
     } else {
         $fragments['div#js-header-top-cart-list'] = $twig->render('header-top-cart-list.twig', ['cart_list' => $cart_list, 'cart_total' => WC()->cart->get_cart_total(), 'cat_page_url' => wc_get_cart_url()]);
+        $fragments['span#js-header-top-cart-number'] = '<span id="js-header-top-cart-number" class="header-top-cart-number"><span>' . WC()->cart->get_cart_contents_count() . '</span></span>';
     }
 
     return $fragments;
