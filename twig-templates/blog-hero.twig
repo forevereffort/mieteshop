@@ -1,10 +1,10 @@
 <div class="blog-first-image">
-    <a href="{{ url }}">
+    <a href="{{ first_blog.url }}">
         <img
             class="lazyload"
-            src="{{ placeholder }}"
-            data-src="{{ image_url }}"
-            alt="{{ title }}">
+            src="{{ first_blog.placeholder }}"
+            data-src="{{ first_blog.image_url }}"
+            alt="{{ first_blog.title }}">
     </a>    
 </div>
 <div class="blog-first-content">
@@ -12,18 +12,18 @@
         <div class="blog-first-content-meta-row">
             <div class="blog-first-content-category-list">
                 <div class="blog-first-content-category-col">
-                    {% for term in term_list %}
+                    {% for term in first_blog.term_list %}
                         <a href="{{ term.url }}">{{ term.name }}></a>                         
                     {% endfor %}
                 </div>
             </div>
-            <div class="blog-first-content-date">{{ date }}</div>
+            <div class="blog-first-content-date">{{ first_blog.date }}</div>
         </div>
         <div class="blog-first-content-info">
-            <h2><a href="{{ url }}">{{ title }}</a></h2>
+            <h2><a href="{{ first_blog.url }}">{{ first_blog.title }}</a></h2>
         </div>
         <div class="blog-first-content-des">
-            {{ post_lead }}
+            {{ first_blog.post_lead }}
         </div>
     </div>
 </div>
