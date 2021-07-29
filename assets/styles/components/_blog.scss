@@ -1,9 +1,11 @@
-
-.blog-index .general-container {
-  background-color: $color-gray;
+.blog-cat-filter-section {
+  .general-container {
+    background-color: $color-gray;
+    padding: 30px 0;
+  }
 }
 
-.blog-hero-filter-select {
+.blog-cat-filter-select {
   position: relative;
 
   select {
@@ -19,57 +21,49 @@
   }
 }
 
-.blog-hero-filter-select-icon {
+.blog-cat-filter-select-icon {
   display: flex;
   position: absolute;
   right: 15px;
   top: 14px;
 }
 
-.blog-hero-filter-select-row {
+.blog-cat-filter-select-row {
   display: flex;
   justify-content: flex-end;
 }
 
-.blog-hero-section {
-  .general-container {
-    padding: 30px 0 0;
-  }
-}
-
-.blog-hero-image {
-  margin-top: 40px;
-
+.blog-first-image {
   img {
     box-shadow: 0 0 10px rgba($color-black, 0.5);
     width: 100%;
   }
 }
 
-.blog-hero-content {
+.blog-first-content {
   display: flex;
   justify-content: flex-end;
-  margin: -100px -130px 0 0;
+  margin: -100px -80px 0 0;
 }
 
-.blog-hero-content-inner {
+.blog-first-content-inner {
   background-color: $color-gray;
   max-width: 700px;
   padding: 13px 22px;
 }
 
-.blog-hero-content-meta-row {
+.blog-first-content-meta-row {
   display: flex;
   justify-content: space-between;
 }
 
-.blog-hero-content-category-list {
+.blog-first-content-category-list {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -5px;
 }
 
-.blog-hero-content-category-col {
+.blog-first-content-category-col {
   padding: 1px 5px;
 
   a {
@@ -86,7 +80,7 @@
   }
 }
 
-.blog-hero-content-date {
+.blog-first-content-date {
   color: $color-black-1;
   font-size: 14px;
   font-weight: $font-weight-light;
@@ -94,7 +88,7 @@
   width: 100px;
 }
 
-.blog-hero-content-info {
+.blog-first-content-info {
   margin-top: 10px;
 
   h2 a {
@@ -105,8 +99,8 @@
   }
 }
 
-.blog-hero-content-des {
-  margin-top: 10px;
+.blog-first-content-des {
+  margin-top: 16px;
   padding: 0 0 0 100px;
 
   p {
@@ -120,7 +114,7 @@
 .blog-result-row {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -60px;
+  margin: 25px -60px 0;
 }
 
 .blog-result-col {
@@ -145,16 +139,17 @@
 
 .blog-result-section {
   .general-container {
+    background-color: $color-gray;
     padding: 0 0 200px;
   }
 }
 
 @media (max-width:768px) {
-  .blog-hero-content {
+  .blog-first-content {
     margin: 10px;
   }  
 
-  .blog-hero-content-des {
+  .blog-first-content-des {
     padding: 0;
   }
 

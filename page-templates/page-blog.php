@@ -7,20 +7,8 @@ global $post;
 <?php get_header(); ?>
 
 <?php 
-$greek_month_list = ['ΙΑΝ', 'ΦΕΒ', 'ΜΆΡ', 'ΑΠΡ', 'ΜΆΙ', 'ΙΟΎΝ', 'ΙΟΎΛ', 'ΑΎΓ', 'ΣΕΠ', 'ΟΚΤ', 'ΝΟΈ', 'ΔΕΚ'];
-
-$args = array(
-    'post_type' => 'post',
-    'post_status' => 'publish',
-    'orderby' => 'date',
-    'order' => 'DESC',
-    'posts_per_page' => 1,
-);
-$posts = new WP_Query( $args );
-if ( $posts->have_posts() ) :
-    $firstpost = $posts->posts[0];    
+    $greek_month_list = ['ΙΑΝ', 'ΦΕΒ', 'ΜΆΡ', 'ΑΠΡ', 'ΜΆΙ', 'ΙΟΎΝ', 'ΙΟΎΛ', 'ΑΎΓ', 'ΣΕΠ', 'ΟΚΤ', 'ΝΟΈ', 'ΔΕΚ'];
 ?>
-
 <section class="breadcrumb-section">
     <div class="content-container">
         <div class="breadcrumb-list">
@@ -29,179 +17,200 @@ if ( $posts->have_posts() ) :
         </div>
     </div>
 </section>
-
-<div class="blog-index">
+<section class="blog-cat-filter-section">
     <div class="general-container">
-    <section class="blog-hero-section">
-        <div class="general-container">
-            <div class="content-container">
-                <div class="blog-hero-inner">
-                    <div class="blog-hero-inner">
-                        <div class="blog-hero-filter-select-row">
-                            <div class="blog-hero-filter-select">
-                                <select>
-                                    <option value="1">Χρονολογική</option>
-                                </select>
-                                <div class="blog-hero-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                        $blog_hero_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $firstpost->ID ), 'full' );
-                    ?>
+        <div class="content-container">
+            <div class="blog-cat-filter-select-row">
+                <div class="blog-cat-filter-select">
+                    <select>
+                        <option value="0">All</option>
+                        <?php
+                            $terms = get_terms('category', [
+                                'order' => 'name',
+                                'orderby' => 'ASC',
+                                'hide_empty' => false,
+                            ]);
 
-                    <div class="blog-hero-image">
-                        <a href="<?php echo get_permalink($firstpost->ID); ?>">
+                            foreach( $terms as $term ){
+                        ?>
+                                <option value="<?php echo $term->term_id; ?>"><?php echo $term->name; ?></option>
+                        <?php
+                            }
+                        ?>
+                    </select>
+                    <div class="blog-cat-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="blog-result-section">
+    <div class="general-container">
+        <?php
+            $posts_per_page = 9;
+
+            $args = [
+                'post_type' => 'post',
+                'post_status' => 'publish',
+                'posts_per_page' => $posts_per_page,
+                'order' => 'DESC',
+                'orderby' => 'date'
+            ];
+
+            $the_query = new WP_Query( $args );
+            $total_post_count = $loop->found_posts;
+
+            $first_blog = [];
+            $blog_list = [];
+
+            if ( $the_query->have_posts() ) {
+                $index = 0;
+                while ( $the_query->have_posts() ){
+                    $the_query->the_post();
+
+                    if( $index === 0 ){
+                        $first_blog = [
+                            'id' => $post->ID,
+                            'title' => $post->post_title
+                        ];
+                    } else {
+                        $blog_list[] = [
+                            'id' => $post->ID,
+                            'title' => $post->post_title
+                        ];
+                    }
+
+                    $index++;
+                }
+            }
+
+            wp_reset_query();
+        ?>
+        <div class="content-container">
+            <div class="blog-first">
+                <?php $blog_first_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $first_blog['id'] ), 'full' ); ?>
+                <div class="blog-first-image">
+                    <a href="<?php echo get_permalink($first_blog['id']); ?>">
                         <img
                             class="lazyload"
-                            src="<?php echo placeholderImage($blog_hero_image_url[1], $blog_hero_image_url[2]); ?>"
-                            data-src="<?php echo aq_resize($blog_hero_image_url[0], $blog_hero_image_url[1], $blog_hero_image_url[2], true); ?>"
-                            alt="<?php echo $firstpost->post_title; ?>">
-                        </a>    
-                    </div>
-                    <div class="blog-hero-content">
-                        <div class="blog-hero-content-inner">
-                            <div class="blog-hero-content-meta-row">
-                                <div class="blog-hero-content-category-list">
-                                    <div class="blog-hero-content-category-col">
-                                    <?php
-                                        $terms = wp_get_post_terms( $firstpost->ID, 'category' );
-                                        foreach ( $terms as $term ) {
-                                            echo '<a href="'.esc_url( get_term_link( $term->slug, 'category' ) ).'">'.$term->name .'</a> ';
-                                        }
-                                    ?>
-                                    </div>
+                            src="<?php echo placeholderImage($blog_first_image_url[1], $blog_first_image_url[2]); ?>"
+                            data-src="<?php echo aq_resize($blog_first_image_url[0], $blog_first_image_url[1], $blog_first_image_url[2], true); ?>"
+                            alt="<?php echo $first_blog['title']; ?>">
+                    </a>    
+                </div>
+                <div class="blog-first-content">
+                    <div class="blog-first-content-inner">
+                        <div class="blog-first-content-meta-row">
+                            <div class="blog-first-content-category-list">
+                                <div class="blog-first-content-category-col">
+                                <?php
+                                    $terms = wp_get_post_terms( $first_blog['id'], 'category' );
+                                    foreach ( $terms as $term ) {
+                                ?>
+                                        <a href="<?php echo esc_url(get_term_link($term->slug, 'category')); ?>"><?php echo $term->name; ?></a> 
+                                <?php
+                                    }
+                                ?>
                                 </div>
-                                <div class="blog-hero-content-date"><?php echo get_the_date('j', $firstpost->ID); ?> <?php echo $greek_month_list[get_the_date('n', $firstpost->ID) - 1]; ?> <?php echo get_the_date('Y', $firstpost->ID); ?></div>
                             </div>
-                            <div class="blog-hero-content-info">
-                                <h2><a href="<?php echo get_permalink($firstpost->ID); ?>"><?php echo $firstpost->post_title; ?></a></h2>
-                            </div>
-                            <div class="blog-hero-content-des">
-                                <?php echo get_field('post_lead', $firstpost->ID) ?>                                
-                            </div>
+                            <div class="blog-first-content-date"><?php echo get_the_date('j', $first_blog['id']); ?> <?php echo $greek_month_list[get_the_date('n', $first_blog['id']) - 1]; ?> <?php echo get_the_date('Y', $first_blog['id']); ?></div>
+                        </div>
+                        <div class="blog-first-content-info">
+                            <h2><a href="<?php echo get_permalink($first_blog['id']); ?>"><?php echo $first_blog['title']; ?></a></h2>
+                        </div>
+                        <div class="blog-first-content-des">
+                            <?php echo get_field('post_lead', $first_blog['id']) ?>                                
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="blog-result-section">
-        <div class="general-container">
-            <div class="small-container">
-                <div class="blog-result-row">
-                    <?php
-                        $args = [
-                            'post_type' => 'post',
-                            'post_status' => 'publish',
-                            'posts_per_page' => -1,
-                        ];
-                    
-                        $loop = new WP_Query( $args );
-
-                        $total_post_count = $loop->found_posts;
-                    
-                        while ( $loop->have_posts() ){
-                            $loop->the_post();
-
-                            if ($loop->current_post != 0) { //exclude first post
-                            
-                            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-                    ?>
-                            <div class="blog-result-col">
-                                <div class="home-blog-item">
-                                    <div class="home-blog-item-image">
-                                        <a href="<?php echo get_permalink($post->ID); ?>">
-                                            <img
-                                                class="lazyload"
-                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                                alt="<?php echo $post->post_title; ?>">
-                                        </a>
+        <div class="small-container">
+            <div class="blog-result-row">
+                <?php
+                    foreach( $blog_list as $blog ){
+                        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $blog['id'] ), 'full' );
+                ?>
+                        <div class="blog-result-col">
+                            <div class="home-blog-item">
+                                <div class="home-blog-item-image">
+                                    <a href="<?php echo get_permalink($blog['id']); ?>">
+                                        <img
+                                            class="lazyload"
+                                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                            alt="<?php echo $blog['title']; ?>">
+                                    </a>
+                                </div>
+                                <div class="home-blog-item-meta-row">
+                                    <div class="home-blog-item-category-list">
+                                        <?php
+                                            $category_list = get_the_category($blog['id']);
+                                            foreach( $category_list as $category ){
+                                        ?>
+                                                <div class="home-blog-item-category-col"><a href="<?php echo get_term_link($category->term_id); ?>"><?php echo $category->name; ?></a></div>
+                                        <?php
+                                            }
+                                        ?>
                                     </div>
-                                    <div class="home-blog-item-meta-row">
-                                        <div class="home-blog-item-category-list">
-                                            <?php
-                                                $category_list = get_the_category($post->ID);
-                                                foreach( $category_list as $category ){
-                                            ?>
-                                                    <div class="home-blog-item-category-col"><a href="<?php echo get_term_link($category->term_id); ?>"><?php echo $category->name; ?></a></div>
-                                            <?php
-                                                }
-                                            ?>
-                                        </div>
-                                        <div class="home-blog-item-date"><?php echo get_the_date('j', $post->ID); ?> <?php echo $greek_month_list[get_the_date('n', $post->ID) - 1]; ?> <?php echo get_the_date('Y', $post->ID); ?></div>
-                                    </div>
-                                    <div class="home-blog-item-title">
-                                        <h3><a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a></h3>
-                                    </div>
-                                    <div class="blog-item-bottom-row">
-                                        <?php if(get_field('event_from_date', $post->ID)) { ?>
-                                        <div class="blog-item-bottom-left-col">
-                                            <div class="home-blog-item-duration-row">
-                                                <div class="home-blog-item-duration-col">
-                                                    <div class="home-blog-item-duration-label">ΑΠΟ</div>
-                                                    <div class="home-blog-item-duration-date"><?php echo get_field('event_from_date', $post->ID); ?></div>
-                                                </div>
-                                                <div class="home-blog-item-duration-col">
-                                                    <div class="home-blog-item-duration-label">ΕΩΣ</div>
-                                                    <div class="home-blog-item-duration-date"><?php echo get_field('event_to_date', $post->ID); ?></div>
-                                                </div>
+                                    <div class="home-blog-item-date"><?php echo get_the_date('j', $blog['id']); ?> <?php echo $greek_month_list[get_the_date('n', $blog['id']) - 1]; ?> <?php echo get_the_date('Y', $blog['id']); ?></div>
+                                </div>
+                                <div class="home-blog-item-title">
+                                    <h3><a href="<?php echo get_permalink($blog['id']); ?>"><?php echo $blog['title']; ?></a></h3>
+                                </div>
+                                <div class="blog-item-bottom-row">
+                                    <?php if(get_field('event_from_date', $blog['id'])) { ?>
+                                    <div class="blog-item-bottom-left-col">
+                                        <div class="home-blog-item-duration-row">
+                                            <div class="home-blog-item-duration-col">
+                                                <div class="home-blog-item-duration-label">ΑΠΟ</div>
+                                                <div class="home-blog-item-duration-date"><?php echo get_field('event_from_date', $blog['id']); ?></div>
+                                            </div>
+                                            <div class="home-blog-item-duration-col">
+                                                <div class="home-blog-item-duration-label">ΕΩΣ</div>
+                                                <div class="home-blog-item-duration-date"><?php echo get_field('event_to_date', $blog['id']); ?></div>
                                             </div>
                                         </div>
-                                        <?php } ?>
-                                        <div class="blog-item-bottom-right-col">
-                                            <div class="home-blog-item-excerpt">
-                                                <?php echo get_field('post_lead', $post->ID); ?>
-                                            </div>
+                                    </div>
+                                    <?php } ?>
+                                    <div class="blog-item-bottom-right-col">
+                                        <div class="home-blog-item-excerpt">
+                                            <?php echo get_field('post_lead', $blog['id']); ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                    <?php
-                        }
-                        }    
-                        wp_reset_query();
-                    ?>
-                </div>
-                <div class="pcat-results-footer-options">
-                    <div class="pcat-results-footer-options-col">
-                        <div id="js-pcat-results-navigation" class="pcat-results-navigation">
-                            <?php
-                                require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
+                        </div>
+                <?php
+                    }
+                ?>
+            </div>
+            <div class="pcat-results-footer-options">
+                <div class="pcat-results-footer-options-col">
+                    <div id="js-pcat-results-navigation" class="pcat-results-navigation">
+                        <?php
+                            require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
 
-                                $pagination = new Zebra_Pagination();
-                                $pagination->records($total_post_count);
-                                $pagination->records_per_page(4);
-                                $pagination->selectable_pages(5);
-                                $pagination->set_page(1);
-                                $pagination->padding(false);
-                                $pagination->css_classes([
-                                    'list' => 'pcat-results-navigation-row',
-                                    'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
-                                    'prev' => 'js-pcat-results-navigation-item pcat-results-navigation-prev',
-                                    'next' => 'js-pcat-results-navigation-item pcat-results-navigation-next',
-                                    'anchor' => '',
-                                ]);
-                                $pagination->render();
-                            ?>
-                        </div>
-                    </div>
-                    <div class="pcat-results-footer-options-col">
-                        <div class="pcat-results-footer-select">
-                            <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
-                            <div class="pcat-results-footer-select-elem">
-                                <select>
-                                    <option value="1">1</option>
-                                </select>
-                                <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
-                            </div>
-                        </div>
+                            $pagination = new Zebra_Pagination();
+                            $pagination->records($total_post_count);
+                            $pagination->records_per_page($posts_per_page);
+                            $pagination->selectable_pages(5);
+                            $pagination->set_page(1);
+                            $pagination->padding(false);
+                            $pagination->css_classes([
+                                'list' => 'pcat-results-navigation-row',
+                                'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
+                                'prev' => 'js-pcat-results-navigation-item pcat-results-navigation-prev',
+                                'next' => 'js-pcat-results-navigation-item pcat-results-navigation-next',
+                                'anchor' => '',
+                            ]);
+                            $pagination->render();
+                        ?>
                     </div>
                 </div>
-                <div class="pcat-results-projection-options">
+                <div class="pcat-results-footer-options-col">
                     <div class="pcat-results-footer-select">
-                        <div class="pcat-results-footer-select-label">Προβολή</div>
+                        <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
                         <div class="pcat-results-footer-select-elem">
                             <select>
                                 <option value="1">1</option>
@@ -211,13 +220,18 @@ if ( $posts->have_posts() ) :
                     </div>
                 </div>
             </div>
+            <div class="pcat-results-projection-options">
+                <div class="pcat-results-footer-select">
+                    <div class="pcat-results-footer-select-label">Προβολή</div>
+                    <div class="pcat-results-footer-select-elem">
+                        <select>
+                            <option value="1">1</option>
+                        </select>
+                        <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
-
-<?php
-    endif;
-?>
     </div>
-</div>
-
+</section>
 <?php get_footer(); ?>
