@@ -58,7 +58,7 @@ global $post;
             ];
 
             $the_query = new WP_Query( $args );
-            $total_post_count = $loop->found_posts;
+            $total_post_count = $the_query->found_posts;
 
             $first_blog = [];
             $blog_list = [];
@@ -87,7 +87,7 @@ global $post;
             wp_reset_query();
         ?>
         <div class="content-container">
-            <div class="blog-first">
+            <div id="js-blog-first" class="blog-first">
                 <?php $blog_first_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $first_blog['id'] ), 'full' ); ?>
                 <div class="blog-first-image">
                     <a href="<?php echo get_permalink($first_blog['id']); ?>">
@@ -107,7 +107,7 @@ global $post;
                                     $terms = wp_get_post_terms( $first_blog['id'], 'category' );
                                     foreach ( $terms as $term ) {
                                 ?>
-                                        <a href="<?php echo esc_url(get_term_link($term->slug, 'category')); ?>"><?php echo $term->name; ?></a> 
+                                        <a href="<?php echo get_term_link($term->term_id); ?>"><?php echo $term->name; ?></a> 
                                 <?php
                                     }
                                 ?>
@@ -126,7 +126,7 @@ global $post;
             </div>
         </div>
         <div class="small-container">
-            <div class="blog-result-row">
+            <div id="js-blog-result-row" class="blog-result-row" data-nonce="<?php echo wp_create_nonce('filter_blog_result_nonce'); ?>" data-posts-per-page="<?php echo $posts_per_page; ?>" data-cat-id="0">
                 <?php
                     foreach( $blog_list as $blog ){
                         $image = wp_get_attachment_image_src( get_post_thumbnail_id( $blog['id'] ), 'full' );
@@ -187,7 +187,7 @@ global $post;
             </div>
             <div class="pcat-results-footer-options">
                 <div class="pcat-results-footer-options-col">
-                    <div id="js-pcat-results-navigation" class="pcat-results-navigation">
+                    <div id="js-blog-results-navigation" class="pcat-results-navigation">
                         <?php
                             require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
 
@@ -199,9 +199,9 @@ global $post;
                             $pagination->padding(false);
                             $pagination->css_classes([
                                 'list' => 'pcat-results-navigation-row',
-                                'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
-                                'prev' => 'js-pcat-results-navigation-item pcat-results-navigation-prev',
-                                'next' => 'js-pcat-results-navigation-item pcat-results-navigation-next',
+                                'list_item' => 'js-blog-result-navigation-item pcat-results-navigation-item',
+                                'prev' => 'js-blog-result-navigation-item pcat-results-navigation-prev',
+                                'next' => 'js-blog-result-navigation-item pcat-results-navigation-next',
                                 'anchor' => '',
                             ]);
                             $pagination->render();
@@ -212,8 +212,17 @@ global $post;
                     <div class="pcat-results-footer-select">
                         <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
                         <div class="pcat-results-footer-select-elem">
-                            <select>
-                                <option value="1">1</option>
+                            <?php
+                                $page_count = round($total_post_count / $posts_per_page + 0.45);
+                            ?>
+                            <select id="js-blog-page-list">
+                                <?php
+                                    for($p = 1; $p <= $page_count; $p++){
+                                ?>
+                                        <option value="<?php echo $p; ?>"><?php echo $p; ?></option>
+                                <?php
+                                    }
+                                ?>
                             </select>
                             <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
                         </div>
@@ -234,4 +243,7 @@ global $post;
         </div>
     </div>
 </section>
+
+<div id="js-blog-filter-load-spinner" class="load-spinner hide"></div>
+
 <?php get_footer(); ?>

@@ -137,6 +137,7 @@ include_once 'page-functions/archive-publisher-function.php';
 include_once 'page-functions/archive-contributor-function.php';
 include_once 'page-functions/single-publisher-function.php';
 include_once 'page-functions/taxonomy_series_product.php';
+include_once 'page-functions/blog-function.php';
 
 require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 
