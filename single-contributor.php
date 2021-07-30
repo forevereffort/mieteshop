@@ -125,7 +125,7 @@
                                                     </div>
                                                     <div class="single-product-blog-content">
                                                         <h2><a href="<?php echo get_permalink($article->ID); ?>"><?php echo $article->post_title; ?></a></h2>
-                                                        <?php echo apply_filters('the_content', $article->post_excerpt); ?>
+                                                        <?php echo get_field('post_lead', $article->ID); //apply_filters('the_content', $article->post_excerpt); ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +190,7 @@
                                     </div>
                                     <div class="pcat-result-item-meta-col">
                                         <div class="pcat-result-item-busket">
-                                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                            <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -263,9 +263,9 @@
                                                 </div>
                                             </div>
                                             <div class="pcat-result-item-meta-col">
-                                                <div class="pcat-result-item-busket">
-                                                    <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
-                                                </div>
+                                            <div class="pcat-result-item-busket">
+                                                <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $relatedbook_product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $relatedbook_product->get_sku(); ?>"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                            </div>
                                             </div>
                                         </div>
                                         <?php

@@ -528,7 +528,7 @@
                                                     </div>
                                                     <div class="single-product-blog-content">
                                                         <h2><a href="<?php echo get_permalink($article->ID); ?>"><?php echo $article->post_title; ?></a></h2>
-                                                        <?php echo apply_filters('the_content', $article->post_excerpt); ?>
+                                                        <?php echo get_field('post_lead', $article->ID); //echo apply_filters('the_content', $article->post_excerpt); ?>
                                                     </div>
                                                 </div>
                                             </div>

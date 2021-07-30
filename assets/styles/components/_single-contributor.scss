@@ -37,3 +37,68 @@
     line-height: 1.36;
   }
 }
+
+
+@media (max-width:768px) {
+  .single-contributor {
+    .single-contributor-image-lead-section .general-container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .single-contributor-image-lead-row {
+      display: block;
+    }
+
+    .single-contributor-image-lead-right {
+      width: 100%;
+    }
+
+    .single-contributor-image-lead-content p {
+      font-size: 18px;
+    }
+
+    .single-publisher-text-caption-section {
+      padding: 30px 0;
+    }
+
+    .pcat-results-row {
+      display: block;
+    }
+
+    .pcat-results-col {
+      padding: 15px;
+      width: 100%;
+    }  
+
+    .pcat-result-item-info {
+      padding: 30px 30px 5px 0;
+    }
+
+    .pcat-result-item-meta-row {
+      margin-top: 20px;
+    }
+
+    .pcat-result-item-image {
+      display: block;
+      height: auto;
+      text-align: center;
+    }
+
+    .pcat-result-item-image a img,
+    .pcat-result-item-image img {
+      margin: 0 auto;
+      width: auto;
+    }
+
+    .single-product-blog-item.swiper-slide {
+      width: 300px;
+    }
+
+    .single-contributor .single-product-blog-item.swiper-slide {
+      margin: 0 auto !important;
+      padding: 0 2px;
+    }
+
+  }  
+}
