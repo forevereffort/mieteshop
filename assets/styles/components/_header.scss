@@ -319,6 +319,23 @@
 
 .header-top-search-icon {
   cursor: pointer;
+  position: relative;
+}
+
+.header-top-cart-number {
+  span {
+    background-color: #f00;
+    border-radius: 50%;
+    color: $color-white;
+    font-size: 11px;
+    height: 18px;
+    padding-top: 1px;
+    position: absolute;
+    right: -15px;
+    text-align: center;
+    top: -15px;
+    width: 18px;
+  }
 }
 
 .header-top-search-popup {

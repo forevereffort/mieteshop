@@ -247,6 +247,15 @@
 						<div class="header-top-right-col">
 							<div class="header-top-search-wrapper">
 								<div id="js-header-top-busket-icon" class="header-top-search-icon">
+									<span id="js-header-top-cart-number" class="header-top-cart-number">
+										<?php
+											if( WC()->cart->get_cart_contents_count() > 0 ){
+										?>
+												<span><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+										<?php
+											}
+										?>
+									</span>
 									<?php include get_template_directory() . '/assets/icons/busket-icon.svg' ?>
 								</div>
 								<div id="js-header-top-busket-popup" class="header-top-search-popup header-top-search-popup--busket">
