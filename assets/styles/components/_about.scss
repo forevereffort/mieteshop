@@ -75,6 +75,20 @@
   margin: 30px auto;
   max-width: $general-container-width;
   padding: 50px 0 75px;
+
+  a { 
+    color: #fff;
+    text-decoration: underline; 
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 { 
+    color: #fff; 
+  } 
 }
 
 .about-store-list+.about-store-list {
