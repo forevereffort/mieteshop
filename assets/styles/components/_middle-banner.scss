@@ -24,6 +24,16 @@
 
 @media(max-width: $breakpoint-mobile-start) {
   .middle-banner {
-    display: none;
+    padding: 0;
+  }
+
+  .middle-banner-row {
+    display: block;
+    margin: 0 -16px;
+  }
+
+  .middle-banner-col {
+    padding: 0;
+    width: 100%;
   }
 }
