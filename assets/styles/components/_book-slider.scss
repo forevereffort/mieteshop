@@ -88,8 +88,10 @@
 }
 
 .book-slider-nav {
+  cursor: pointer;
   position: absolute;
   top: 140px;
+  z-index: 1;
 }
 
 .book-slider-nav--prev {
