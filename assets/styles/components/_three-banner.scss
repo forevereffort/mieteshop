@@ -116,7 +116,28 @@
 
 
 @media(max-width: $breakpoint-mobile-start) {
-  .three-banner {
-    display: none;
+  .three-banner-row {
+    display: block;
+    margin: 0 -16px;
+  }
+
+  .three-banner-left-col {
+    width: 100%;
+  }
+
+  .three-banner-right-col {
+    padding-left: 0;
+    width: 100%;
+  }
+
+  .three-banner-2 {
+    margin-top: 16px;
+  }
+
+  .three-banner-1-content {
+    p {
+      font-size: 20px;
+      line-height: 1.25;
+    }
   }
 }

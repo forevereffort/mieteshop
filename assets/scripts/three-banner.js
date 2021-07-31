@@ -31,7 +31,7 @@ class MieteshopThreeBanner1Slider extends window.HTMLDivElement {
       spaceBetween: 0,
       speed: 1000,
       autoplay: {
-        delay: 3000,
+        delay: 8000,
       },
       loop: true,
       navigation: {
