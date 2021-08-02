@@ -150,26 +150,13 @@ $twigAddToFavoriteButtonFunction = new \Twig\TwigFunction('addToFavoriteButton',
   $post = get_post( $product_id, OBJECT );
   setup_postdata( $post );
 
-  $wishlist_button =  do_shortcode('[ti_wishlists_addtowishlist]');
-  
-  wp_reset_postdata();
-
-  return $wishlist_button;
-});
-$twig->addFunction($twigAddToFavoriteButtonFunction);
-
-$twigAddToFavoriteButtonFunction1 = new \Twig\TwigFunction('addToFavoriteButton1', function ($product_id) {
-  global $post; 
-  $post = get_post( $product_id, OBJECT );
-  setup_postdata( $post );
-
   $wishlist_button =  do_shortcode('[yith_wcwl_add_to_wishlist]');
   
   wp_reset_postdata();
 
   return $wishlist_button;
 });
-$twig->addFunction($twigAddToFavoriteButtonFunction1);
+$twig->addFunction($twigAddToFavoriteButtonFunction);
 
 /**
  * Create a web friendly URL slug from a string.

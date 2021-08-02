@@ -290,7 +290,6 @@
                                                 </a>
                                             </div>
                                             <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?></div>
-                                            <div><?php echo do_shortcode('[ti_wishlists_addtowishlist]'); ?></div>
                                             <div class="pcat-result-item-meta-row">
                                                 <div class="pcat-result-item-meta-col">
                                                     <div class="pcat-result-item-favorite">
