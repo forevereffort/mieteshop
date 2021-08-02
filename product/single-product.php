@@ -5,13 +5,33 @@
     $publishers = get_field('book_publishers', $product->ID);
     $series = get_the_terms( $product->ID, 'series' );
     $epiloges = get_the_terms( $product->ID, 'epiloges' );
+    $title_types = get_the_terms( $product->ID, 'title_type' );
+    $product_cats = get_the_terms( $product->ID, 'product_cat' );
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
         <div class="breadcrumb-list">
-            <div class="breadcrumb-item"><a href="#">Βιβλία</a></div>
-            <div class="breadcrumb-item"><a href="#">Ανθρωπιστικές Επιστήμες</a></div>
-            <div class="breadcrumb-item"><a href="#">Ιστορία</a></div>
+            <?php
+                if( !empty($title_types) ){
+            ?>
+                    <div class="breadcrumb-item"><a href="<?php echo get_term_link($title_types[0]->term_id); ?>"><?php echo $title_types[0]->name; ?></a></div>
+            <?php
+                }
+
+                if( !empty($product_cats) ){
+                    $product_cat_parent_list = array_reverse(get_ancestors($product_cats[0]->term_id, 'product_cat'));
+
+                    foreach( $product_cat_parent_list as $parent ){
+                        $parent_object = get_term($parent);
+            ?>
+                        <div class="breadcrumb-item"><a href="<?php echo get_term_link($parent_object->term_id); ?>"><?php echo $parent_object->name; ?></a></div>
+            <?php
+                    }
+            ?>
+                    <div class="breadcrumb-item"><a href="<?php echo get_term_link($product_cats[0]->term_id); ?>"><?php echo $product_cats[0]->name; ?></a></div>
+            <?php
+                }
+            ?>
         </div>
     </div>
 </section>
@@ -565,6 +585,7 @@
                     <?php
                         while ( $related_posts->have_posts() ){
                             $related_posts->the_post();
+
                             global $product;
 
                             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
@@ -652,9 +673,9 @@
                     <?php  
                         while ( $loop->have_posts() ){
                             $loop->the_post();
-                            
-                            global $product;
 
+                            global $product;
+                            
                             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
                             $authors = get_field('book_contributors_syggrafeas', $product->get_id());
                     ?>

@@ -9,14 +9,6 @@ global $post;
 <?php 
     $greek_month_list = ['ΙΑΝ', 'ΦΕΒ', 'ΜΆΡ', 'ΑΠΡ', 'ΜΆΙ', 'ΙΟΎΝ', 'ΙΟΎΛ', 'ΑΎΓ', 'ΣΕΠ', 'ΟΚΤ', 'ΝΟΈ', 'ΔΕΚ'];
 ?>
-<section class="breadcrumb-section">
-    <div class="content-container">
-        <div class="breadcrumb-list">
-            <div class="breadcrumb-item"><a href="#">Εκδηλώσεις</a></div>
-            <div class="breadcrumb-item"><a href="#">Εκθέσεις</a></div>
-        </div>
-    </div>
-</section>
 <section class="blog-cat-filter-section">
     <div class="general-container">
         <div class="content-container">

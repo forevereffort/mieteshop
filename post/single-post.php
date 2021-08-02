@@ -1,11 +1,26 @@
 <?php
     global $post;
+
+    $post_cats = get_the_terms( $post->ID, 'category' );
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
         <div class="breadcrumb-list">
-            <div class="breadcrumb-item"><a href="#">Εκδηλώσεις</a></div>
-            <div class="breadcrumb-item"><a href="#">Εκθέσεις</a></div>
+            <?php
+                if( !empty($post_cats) ){
+                    $post_cat_parent_list = array_reverse(get_ancestors($post_cats[0]->term_id, 'category'));
+
+                    foreach( $post_cat_parent_list as $parent ){
+                        $parent_object = get_term($parent);
+            ?>
+                        <div class="breadcrumb-item"><a href="<?php echo get_term_link($parent_object->term_id); ?>"><?php echo $parent_object->name; ?></a></div>
+            <?php
+                    }
+            ?>
+                    <div class="breadcrumb-item"><a href="<?php echo get_term_link($post_cats[0]->term_id); ?>"><?php echo $post_cats[0]->name; ?></a></div>
+            <?php
+                }
+            ?>
         </div>
     </div>
 </section>
