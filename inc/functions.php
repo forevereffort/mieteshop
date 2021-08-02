@@ -158,6 +158,19 @@ $twigAddToFavoriteButtonFunction = new \Twig\TwigFunction('addToFavoriteButton',
 });
 $twig->addFunction($twigAddToFavoriteButtonFunction);
 
+$twigAddToFavoriteButtonFunction1 = new \Twig\TwigFunction('addToFavoriteButton1', function ($product_id) {
+  global $post; 
+  $post = get_post( $product_id, OBJECT );
+  setup_postdata( $post );
+
+  $wishlist_button =  do_shortcode('[yith_wcwl_add_to_wishlist]');
+  
+  wp_reset_postdata();
+
+  return $wishlist_button;
+});
+$twig->addFunction($twigAddToFavoriteButtonFunction1);
+
 /**
  * Create a web friendly URL slug from a string.
  * 
