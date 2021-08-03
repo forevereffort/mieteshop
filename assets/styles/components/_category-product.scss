@@ -1064,4 +1064,17 @@
   .pcat-result-item-image {
     height: auto;
   }
+
+  .pcat-results-footer-options-col+.pcat-results-footer-options-col {
+    margin-left: 0;
+  }
+
+  .pcat-results-footer-select{
+    justify-content: center;
+    margin-top: 25px;
+  }
+
+  .pcat-results-projection-options{
+    margin-top: 0;
+  }
 }

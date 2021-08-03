@@ -631,3 +631,20 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+@media(max-width: $breakpoint-mobile-start) {
+
+  .single-product-row{
+    display: block;
+  }
+
+  .single-product-left-col{
+    padding: 0;
+    width: 100%;
+  }
+
+  .single-product-right-col{
+    padding: 0;
+    width: 100%;
+  }
+}
