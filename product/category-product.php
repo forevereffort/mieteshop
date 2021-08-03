@@ -1,7 +1,13 @@
 <?php
     global $wp_query, $post;
+
+    // get term of current product category page
     $product_cat = $wp_query->get_queried_object();
+
+    // get parent list of term
     $product_cat_parent_list = array_reverse(get_ancestors($product_cat->term_id, 'product_cat'));
+
+    // get level of term
     $product_cat_level = count($product_cat_parent_list) + 1;
 
     $child_cat_list = get_terms([
@@ -12,6 +18,11 @@
     ]);
 
     $product_per_page = 16;
+
+    if( wp_is_mobile() ){
+        $product_per_page = 4;
+    }
+
     $current_page = 1;
 ?>
 <section class="breadcrumb-section">
@@ -413,6 +424,13 @@
                             <div class="pcat-results-footer-select-label">Προβολή</div>
                             <div class="pcat-results-footer-select-elem">
                                 <select id="js-pcat-products-per-page">
+                                    <?php
+                                        if( wp_is_mobile() ){
+                                    ?>
+                                            <option value="4">4</option>
+                                    <?php
+                                        }
+                                    ?>
                                     <option value="16">16</option>
                                     <option value="32">32</option>
                                     <option value="64">64</option>
