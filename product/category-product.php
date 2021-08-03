@@ -82,21 +82,23 @@
                             foreach ($child_cat_list as $child_cat) {
                     ?>
                                 <div class="pcat-filter-detail-col">
-                                    <div class="js-pcat-filter-detail-parent pcat-filter-detail-root" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?></div>
-                                    <?php
-                                        $child_child_cat_list = get_terms([
-                                            'taxonomy' => 'product_cat', 
-                                            'hide_empty' => false, 
-                                            // 'child_of' => $child_cat->term_id,
-                                            'parent' => $child_cat->term_id,
-                                        ]);
+                                    <div class="js-pcat-filter-detail-parent pcat-filter-detail-root" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?><div class="pcat-filter-detail-root-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div></div>
+                                    <div class="pcat-filter-detail-child-wrapper">
+                                        <?php
+                                            $child_child_cat_list = get_terms([
+                                                'taxonomy' => 'product_cat', 
+                                                'hide_empty' => false, 
+                                                // 'child_of' => $child_cat->term_id,
+                                                'parent' => $child_cat->term_id,
+                                            ]);
 
-                                        foreach ($child_child_cat_list as $child_child_cat) {
-                                    ?>
-                                            <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_child_cat->term_id; ?>"><?php echo $child_child_cat->name; ?></div>
-                                    <?php
-                                        }
-                                    ?>
+                                            foreach ($child_child_cat_list as $child_child_cat) {
+                                        ?>
+                                                <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_child_cat->term_id; ?>"><?php echo $child_child_cat->name; ?></div>
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
                                 </div>
                     <?php
                             }

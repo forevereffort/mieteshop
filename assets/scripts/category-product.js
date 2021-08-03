@@ -231,4 +231,6 @@ jQuery(function(){
         $('#js-pcat-author-list').val(null).trigger('change');
         $('#js-pcat-publisher-list').val(null).trigger('change');
     });
+
+    jQuery('#js-pcat-filter-button-inner').trigger('click');
 })

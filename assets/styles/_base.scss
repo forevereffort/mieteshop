@@ -139,6 +139,10 @@ img {
 }
 
 @media(max-width: $breakpoint-mobile-start) {
+  .content-container {
+    padding: 0 16px;
+  }
+
   .container {
     padding: 0 16px;
   }
