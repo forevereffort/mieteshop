@@ -232,5 +232,19 @@ jQuery(function(){
         $('#js-pcat-publisher-list').val(null).trigger('change');
     });
 
-    jQuery('#js-pcat-filter-button-inner').trigger('click');
+    // mobile product category click
+    jQuery('.js-pcat-filter-detail-root-icon').on('click', function(e){
+        e.preventDefault();
+        const parentElem = jQuery(this).parent().parent();
+
+        if( jQuery(this).hasClass('active') ){
+            jQuery(this).removeClass('active');
+            jQuery('.pcat-filter-detail-child-wrapper', parentElem).slideUp();
+        } else {
+            jQuery(this).addClass('active');
+            jQuery('.pcat-filter-detail-child-wrapper', parentElem).slideDown();
+        }
+
+        return false;
+    });
 })
