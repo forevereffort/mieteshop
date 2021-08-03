@@ -1,5 +1,6 @@
 jQuery(function(){
-    jQuery('.js-mieteshop-add-to-cart').on('click', function(e){
+    
+    jQuery('body').on('click', '.js-mieteshop-add-to-cart', function(e){
         e.preventDefault();
         
         const product_qty = jQuery(this).attr('data-quantity');

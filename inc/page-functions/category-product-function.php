@@ -116,7 +116,8 @@ function filterCategoryProduct()
                 'image_url' => aq_resize($image[0], $image[1], $image[2], true),
                 'title' => $post->post_title,
                 'authors' => $author_list,
-                'price' => $product->get_price_html()
+                'price' => $product->get_price_html(),
+                'sku' => $product->get_sku(),
             ];
         }
     }
