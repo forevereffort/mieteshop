@@ -5,18 +5,20 @@
 ?>
         <section class="single-product-meta-section" is="mieteshop-product-meta-section">
             <div class="content-container">
-                <div class="single-product-meta-tab-row">
-                    <div class="single-product-meta-tab-col">
-                        <div class="single-product-meta-tab-item active" data-section-id="review" data-tab>Βιβλιοκρισίες</div>
-                    </div>
-                    <div class="single-product-meta-tab-col">
-                        <div class="single-product-meta-tab-item" data-section-id="audio" data-tab>Audio</div>
-                    </div>
-                    <div class="single-product-meta-tab-col">
-                        <div class="single-product-meta-tab-item" data-section-id="video" data-tab>Video</div>
-                    </div>
-                    <div class="single-product-meta-tab-col">
-                        <div class="single-product-meta-tab-item" data-section-id="article" data-tab>Σχετικά  Άρθρα</div>
+                <div class="single-product-meta-tab-row-wrapper">
+                    <div class="single-product-meta-tab-row">
+                        <div class="single-product-meta-tab-col">
+                            <div class="single-product-meta-tab-item active" data-section-id="review" data-tab>Βιβλιοκρισίες</div>
+                        </div>
+                        <div class="single-product-meta-tab-col">
+                            <div class="single-product-meta-tab-item" data-section-id="audio" data-tab>Audio</div>
+                        </div>
+                        <div class="single-product-meta-tab-col">
+                            <div class="single-product-meta-tab-item" data-section-id="video" data-tab>Video</div>
+                        </div>
+                        <div class="single-product-meta-tab-col">
+                            <div class="single-product-meta-tab-item" data-section-id="article" data-tab>Σχετικά  Άρθρα</div>
+                        </div>
                     </div>
                 </div>
                 <div class="single-product-meta-tab-content-row">

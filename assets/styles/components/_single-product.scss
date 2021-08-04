@@ -845,4 +845,43 @@
   .single-product-download-col + .single-product-download-col {
     margin-top: 16px;
   }
+
+  .single-product-meta-section {
+    padding: 35px 0;
+  }
+
+  .single-product-meta-tab-row-wrapper {
+    height: 35px;
+    overflow-x: auto;
+  }
+
+  .single-product-meta-tab-row {
+    justify-content: space-between;
+    padding-bottom: 0;
+    width: 500px;
+  }
+
+  .single-product-meta-tab-col {
+    padding: 0;
+  }
+
+  .single-product-review__content {
+    p {
+      font-size: 24px;
+      line-height: 1.5;
+    }
+  }
+
+  .single-product-video-item-row {
+    display: block;
+  }
+
+  .single-product-video-item-left-col {
+    width: 100%;
+  }
+
+  .single-product-video-item-right-col {
+    padding: 16px 0 0;
+    width: 100%;
+  }
 }

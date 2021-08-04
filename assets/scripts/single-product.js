@@ -38,9 +38,9 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
     const config = {
       slidesPerView: 1,
       speed: 5000,
-      autoplay: {
-        delay: 8000,
-      },
+      // autoplay: {
+      //   delay: 8000,
+      // },
       loop: true,
       pagination: {
         el: this.$reviewPagination.get(0)
@@ -56,9 +56,9 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
     const config = {
       slidesPerView: 1,
       speed: 5000,
-      autoplay: {
-        delay: 8000,
-      },
+      // autoplay: {
+      //   delay: 8000,
+      // },
       loop: true,
       pagination: {
         el: this.$audioPagination.get(0)
@@ -74,9 +74,9 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
     const config = {
       slidesPerView: 1,
       speed: 5000,
-      autoplay: {
-        delay: 8000,
-      },
+      // autoplay: {
+      //   delay: 8000,
+      // },
       loop: true,
       pagination: {
         el: this.$videoPagination.get(0)
@@ -93,9 +93,9 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       slidesPerView: 'auto',
       spaceBetween: 120,
       speed: 5000,
-      autoplay: {
-        delay: 8000,
-      },
+      // autoplay: {
+      //   delay: 8000,
+      // },
       loop: true,
       observer: true,
       observeParents: true,
