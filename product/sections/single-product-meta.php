@@ -80,8 +80,8 @@
                                             while( have_rows('book_videos') ){
                                                 the_row();
 
-                                                // get_sub_field('book_video_embed_code');
-                                                $video_image_url = get_sub_field('book_video_cover_image');
+                                                // get_sub_field('contributor_video_embed_code');
+                                                $video_image_url = get_sub_field('contributor_video_cover_image');
                                     ?>
                                                 <div class="swiper-slide">
                                                     <div class="single-product-video-item-row">
@@ -98,8 +98,8 @@
                                                         </div>
                                                         <div class="single-product-video-item-right-col">
                                                             <div class="single-product-video-item-content">
-                                                                <h2><?php echo get_sub_field('book_video_title'); ?></h2>
-                                                                <?php echo apply_filters('the_content', get_sub_field('book_video_description')); ?>
+                                                                <h2><?php echo get_sub_field('contributor_video_title'); ?></h2>
+                                                                <?php echo apply_filters('the_content', get_sub_field('contributor_video_description')); ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -129,13 +129,13 @@
                                                             <img
                                                                 class="lazyload"
                                                                 src="<?php echo placeholderImage(399, 261); ?>"
-                                                                data-src="<?php echo aq_resize($blog_image_url['url'], 399, 261, true); ?>"
+                                                                data-src="<?php echo aq_resize($blog_image_url, 399, 261, true); ?>"
                                                                 alt="video image">
                                                         </a>
                                                     </div>
                                                     <div class="single-product-blog-content">
                                                         <h2><a href="<?php echo get_permalink($article->ID); ?>"><?php echo $article->post_title; ?></a></h2>
-                                                        <?php echo get_field('post_lead', $article->ID); //echo apply_filters('the_content', $article->post_excerpt); ?>
+                                                        <?php echo apply_filters('the_content', get_field('post_lead', $article->ID)); ?>
                                                     </div>
                                                 </div>
                                             </div>

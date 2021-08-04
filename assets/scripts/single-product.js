@@ -27,11 +27,12 @@ class MieteshopProductReviewSlider extends window.HTMLDivElement {
   initSlider () {
     const config = {
       slidesPerView: 1,
-      speed: 1000,
+      speed: 5000,
       observer: true,
       observeParents: true,
       autoplay: {
-        delay: 3000,
+        // delay: 8000,
+        delay: 1000,
       },
       loop: true,
       pagination: {
@@ -44,6 +45,49 @@ class MieteshopProductReviewSlider extends window.HTMLDivElement {
 }
 
 window.customElements.define('mieteshop-product-review-slider', MieteshopProductReviewSlider, { extends: 'div' })
+
+class MieteshopProductAudioSlider extends window.HTMLDivElement {
+  constructor (...args) {
+    const self = super(...args)
+    self.init()
+    return self
+  }
+
+  init () {
+    this.$ = jQuery(this)
+    this.resolveElements()
+  }
+
+  resolveElements () {
+    this.$slider = jQuery('[data-slider]', this)
+    this.$pagination = jQuery('[data-pagination]', this)
+  }
+
+  connectedCallback () {
+    this.initSlider()
+  }
+
+  initSlider () {
+    const config = {
+      slidesPerView: 1,
+      speed: 5000,
+      observer: true,
+      observeParents: true,
+      autoplay: {
+        // delay: 8000,
+        delay: 1000,
+      },
+      loop: true,
+      pagination: {
+        el: this.$pagination.get(0)
+      }
+    }
+    
+    this.slider = new Swiper(this.$slider.get(0), config)
+  }
+}
+
+window.customElements.define('mieteshop-product-audio-slider', MieteshopProductAudioSlider, { extends: 'div' })
 
 class MieteshopProductVideoSlider extends window.HTMLDivElement {
   constructor (...args) {
@@ -69,11 +113,12 @@ class MieteshopProductVideoSlider extends window.HTMLDivElement {
   initSlider () {
     const config = {
       slidesPerView: 1,
-      speed: 1000,
+      speed: 5000,
       observer: true,
       observeParents: true,
       autoplay: {
-        delay: 3000,
+        // delay: 8000,
+        delay: 1000,
       },
       loop: true,
       pagination: {
@@ -113,9 +158,10 @@ class MieteshopProductBlogSlider extends window.HTMLDivElement {
       spaceBetween: 120,
       observer: true,
       observeParents: true,
-      speed: 1000,
+      speed: 5000,
       autoplay: {
-        delay: 3000,
+        // delay: 8000,
+        delay: 1000,
       },
       loop: true
     }
@@ -126,8 +172,8 @@ class MieteshopProductBlogSlider extends window.HTMLDivElement {
 
 window.customElements.define('mieteshop-product-blog-slider', MieteshopProductBlogSlider, { extends: 'div' })
 
-jQuery(document).ready(function(){
-  jQuery('.single-product-tab-header-item').click(function(){
+jQuery(function(){
+  jQuery('.single-product-tab-header-item').on('click', function(){
     if( !jQuery(this).hasClass('active') ){
       const sectionID = jQuery(this).attr('data-section-id');
 
@@ -139,7 +185,7 @@ jQuery(document).ready(function(){
     }
   })
 
-  jQuery('.single-product-meta-tab-item').click(function(){
+  jQuery('.single-product-meta-tab-item').on('click', function(){
     if( !jQuery(this).hasClass('active') ){
       const sectionID = jQuery(this).attr('data-section-id');
 
