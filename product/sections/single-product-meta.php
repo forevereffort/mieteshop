@@ -3,26 +3,26 @@
     
     if( have_rows('book_reviews') || have_rows('book_audio_repeater') || have_rows('book_videos') || get_field('book_related_articles')  ) {
 ?>
-        <section class="single-product-meta-section">
+        <section class="single-product-meta-section" is="mieteshop-product-meta-section">
             <div class="content-container">
                 <div class="single-product-meta-tab-row">
                     <div class="single-product-meta-tab-col">
-                        <div class="single-product-meta-tab-item active" data-section-id="review">Βιβλιοκρισίες</div>
+                        <div class="single-product-meta-tab-item active" data-section-id="review" data-tab>Βιβλιοκρισίες</div>
                     </div>
                     <div class="single-product-meta-tab-col">
-                        <div class="single-product-meta-tab-item" data-section-id="audio">Audio</div>
+                        <div class="single-product-meta-tab-item" data-section-id="audio" data-tab>Audio</div>
                     </div>
                     <div class="single-product-meta-tab-col">
-                        <div class="single-product-meta-tab-item" data-section-id="video">Video</div>
+                        <div class="single-product-meta-tab-item" data-section-id="video" data-tab>Video</div>
                     </div>
                     <div class="single-product-meta-tab-col">
-                        <div class="single-product-meta-tab-item" data-section-id="article">Σχετικά  Άρθρα</div>
+                        <div class="single-product-meta-tab-item" data-section-id="article" data-tab>Σχετικά  Άρθρα</div>
                     </div>
                 </div>
                 <div class="single-product-meta-tab-content-row">
                     <div id="single-product-meta-tab-content--review" class="single-product-meta-tab-content-col">
-                        <div class="single-product-review-wrapper" is="mieteshop-product-review-slider">
-                            <div class="swiper-container" data-slider>
+                        <div class="single-product-review-wrapper">
+                            <div class="swiper-container" data-review-slider>
                                 <div class="swiper-wrapper">
                                     <?php
                                         if( have_rows('book_reviews') ){ 
@@ -43,12 +43,12 @@
                                     ?>
                                 </div>
                             </div>
-                            <div class="single-product-review-pagination-wrapper" data-pagination></div>
+                            <div class="single-product-review-pagination-wrapper" data-review-pagination></div>
                         </div>
                     </div>
                     <div id="single-product-meta-tab-content--audio" class="single-product-meta-tab-content-col hide">
-                        <div class="single-product-audio-wrapper" is="mieteshop-product-audio-slider">
-                            <div class="swiper-container" data-slider>
+                        <div class="single-product-audio-wrapper">
+                            <div class="swiper-container" data-audio-slider>
                                 <div class="swiper-wrapper">
                                     <?php
                                         if( have_rows('book_audio_repeater') ){ 
@@ -68,12 +68,12 @@
                                     ?>
                                 </div>
                             </div>
-                            <div class="single-product-audio-pagination-wrapper" data-pagination></div>
+                            <div class="single-product-audio-pagination-wrapper" data-audio-pagination></div>
                         </div>
                     </div>
                     <div id="single-product-meta-tab-content--video" class="single-product-meta-tab-content-col hide">
-                        <div class="single-product-video-wrapper" is="mieteshop-product-video-slider">
-                            <div class="swiper-container" data-slider>
+                        <div class="single-product-video-wrapper">
+                            <div class="swiper-container" data-video-slider>
                                 <div class="swiper-wrapper">
                                     <?php
                                         if( have_rows('book_videos') ) { 
@@ -110,12 +110,12 @@
                                     ?>
                                 </div>
                             </div>
-                            <div class="single-product-video-pagination-wrapper" data-pagination></div>
+                            <div class="single-product-video-pagination-wrapper" data-video-pagination></div>
                         </div>
                     </div>
                     <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
-                        <div class="single-product-blog-wrapper" is="mieteshop-product-blog-slider">
-                            <div class="swiper-container" data-slider>
+                        <div class="single-product-blog-wrapper">
+                            <div class="swiper-container" data-blog-slider>
                                 <div class="swiper-wrapper">
                                     <?php
                                         $related_articles = get_field('book_related_articles');
