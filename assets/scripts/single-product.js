@@ -90,8 +90,6 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
 
   initBlogSlider () {
     const config = {
-      slidesPerView: 'auto',
-      spaceBetween: 120,
       speed: 5000,
       // autoplay: {
       //   delay: 8000,
@@ -99,6 +97,15 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       loop: true,
       observer: true,
       observeParents: true,
+      breakpoints : {
+        320 : {
+          slidesPerView: 1,
+        },
+        768 : {
+          slidesPerView: 'auto',
+          spaceBetween: 120,
+        }
+      }
     }
     
     this.blogSlider = new Swiper(this.$blogSlider.get(0), config)
