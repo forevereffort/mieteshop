@@ -612,20 +612,6 @@
   padding-bottom: 10px;
 }
 
-.single-product-role-detail-wrapper {
-  display: flex;
-  padding: 20px 0; 
-}
-
-.single-product-role-detail { 
-  justify-content: space-between;
-  width: 50%; 
-}
-
-.single-product-comments { 
-  padding-bottom: 10px; 
-}
-
 .single-product-series-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -666,8 +652,13 @@
     }
   }
 
+  .single-product-role-detail {
+    width: 100%;
+  }
+
   .single-product-role-detail-wrapper {
     display: block;
+    padding: 16px 0;
   }
 
   .single-product-info {
@@ -676,16 +667,37 @@
 
   .single-product-subtitle {
     margin: 10px -16px 0;
+    padding: 0 16px 16px;
+
+    h2 {
+      font-size: 18px;
+      line-height: 1.33;
+    }
+  }
+
+  .single-product-tag-row {
+    padding: 10px 0 0;
   }
 
   .single-product-info-table-1-row {
-    border: 0;
+    border-bottom: 0;
+    padding: 16px;
+    margin: 0 -16px;
     display: block;
+    height: auto;
   }
 
+  .single-product-comments {
+    padding-bottom: 16px;
+  }
+  
   .single-product-info-table-2-row {
     border: 0;
-    display: block;
+    height: auto;
+  }
+
+  .single-product-favorite-button__label{
+    display: none;
   }
 
   .single-product-form-col {
@@ -704,6 +716,7 @@
     border: 0;
     padding: 0;
     width: 100%;
+    margin-top: 16px;
   }
 
   .single-product-sale-price {
@@ -718,6 +731,7 @@
     border: 0;
     padding: 0;
     width: 100%;
+    display: none;
   }
 
   .single-product-favorite-col {
@@ -725,6 +739,59 @@
   }
 
   .single-product-add-tocart-col {
-    padding: 0;
+    padding: 0 0 0 17px;
+    width: calc(100% - 40px);
+
+    a{
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+
+  .single-product-author {
+    margin-top: 15px;
+
+    a {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+
+  .single-product-title {
+    h1 {
+      font-size: 24px;
+      line-height: 1.25;
+    }
+  }
+
+  .single-product-download-section {
+    display: none;
+  }
+
+  .single-product-meta-section {
+    display: none;
+  }
+
+  .single-product-role-detail+.single-product-role-detail{
+    margin-top: 16px;
+  }
+
+  .single-product-tab-header-row{
+    margin-top: 16px;
+    border-top: 2px solid $color-black;
+    padding: 16px 16px 0;
+  }
+
+  .single-product-tab-content-row{
+    padding: 0 16px;
+  }
+
+  .single-product-detail-information-row{
+    display: block;
+  }
+
+  .single-product-detail-information-item{
+    width: 100%;
+    margin-top: 24px !important;
   }
 }
