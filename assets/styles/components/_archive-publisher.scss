@@ -46,6 +46,21 @@
   text-align: center;
 }
 
+.archive-publisher-month-image {
+  border-radius: 50%;
+  height: 180px;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 180px;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+}
+
 .archive-publisher-month-title {
   margin-top: 22px;
 
@@ -68,10 +83,13 @@
   }
 }
 
+.archive-publisher-search-greek-letter-wrapper {
+  margin-top: 68px;
+}
+
 .archive-publisher-search-greek-letter-row {
   display: flex;
   justify-content: space-between;
-  margin-top: 68px;
 }
 
 .archive-publisher-search-greek-letter-col {
@@ -183,5 +201,78 @@
 .archive-publisher-search-section {
   .general-container {
     padding: 30px 0 70px;
+  }
+}
+
+.archive-publisher-mobile-slider {
+  display: none;
+  margin-top: 50px;
+  position: relative;
+}
+
+.archive-publisher-mobile-slider-nav {
+  cursor: pointer;
+  position: absolute;
+  top: 90px;
+  z-index: 1;
+}
+
+.archive-publisher-mobile-slider-nav--prev {
+  left: 0;
+}
+
+.archive-publisher-mobile-slider-nav--next {
+  right: 0;
+}
+
+@media(max-width: $breakpoint-mobile-start) {
+  .archive-publisher-month-row {
+    display: none;
+  }
+
+  .archive-publisher-mobile-slider {
+    display: block;
+  }
+
+  .archive-publisher-month-col {
+    padding: 0;
+    width: 100%;
+  }
+
+  .archive-publisher-search-greek-letter-wrapper {
+    margin-top: 0;
+    overflow: auto;
+    padding: 10px 0;
+  }
+  
+  .archive-publisher-search-english-letter-wrapper {
+    overflow: auto;
+    padding: 10px 0;
+  }
+
+  .archive-publisher-search-english-letter-row {
+    margin: 0;
+  }
+
+  .archive-publisher-search-greek-letter-col+.archive-publisher-search-greek-letter-col {
+    margin-left: 30px;
+  }
+  
+  .archive-publisher-search-english-letter-col+.archive-publisher-search-english-letter-col {
+    margin-left: 30px;
+  }
+
+  .archive-publisher-search-result-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .archive-publisher-search-type-col {
+    float: none;
+    padding: 10px 0;
+  }
+
+  .archive-publisher-search-type-row {
+    margin: 0;
   }
 }

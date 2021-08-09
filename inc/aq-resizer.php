@@ -112,6 +112,9 @@ if(!class_exists('Aq_Resize')) {
                 $ext = $info['extension'];
                 list( $orig_w, $orig_h ) = getimagesize( $img_path );
 
+                $width = $orig_w < $width ? $orig_w : $width; 
+                $height = $orig_h < $height ? $orig_h : $height; 
+
                 // Get image size after cropping.
                 $dims = image_resize_dimensions( $orig_w, $orig_h, $width, $height, $crop );
                 $dst_w = $dims[4];
