@@ -24,7 +24,7 @@
                             global $product;
 
                             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-                                $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+                            $authors = get_field('book_contributors_syggrafeas', $product->get_id());
                     ?>
                             <div class="pcat-results-col">
                                 <div class="pcat-result-item">
@@ -91,7 +91,7 @@
                                     global $product;
 
                                     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-                                        $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+                                    $authors = get_field('book_contributors_syggrafeas', $product->get_id());
                             ?>
                                     <div class="swiper-slide">
                                         <div class="pcat-results-col">
