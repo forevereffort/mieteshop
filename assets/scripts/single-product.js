@@ -43,7 +43,8 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       // },
       loop: true,
       pagination: {
-        el: this.$reviewPagination.get(0)
+        el: this.$reviewPagination.get(0),
+        clickable: true,
       },
       observer: true,
       observeParents: true,
@@ -61,10 +62,19 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       // },
       loop: true,
       pagination: {
-        el: this.$audioPagination.get(0)
+        el: this.$audioPagination.get(0),
+        clickable: true,
       },
       observer: true,
       observeParents: true,
+      breakpoints : {
+        320 : {
+          spaceBetween: 50,
+        },
+        768 : {
+          spaceBetween: 120,
+        }
+      }
     }
     
     this.audioSlider = new Swiper(this.$audioSlider.get(0), config)
@@ -79,10 +89,19 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       // },
       loop: true,
       pagination: {
-        el: this.$videoPagination.get(0)
+        el: this.$videoPagination.get(0),
+        clickable: true,
       },
       observer: true,
       observeParents: true,
+      breakpoints : {
+        320 : {
+          spaceBetween: 50,
+        },
+        768 : {
+          spaceBetween: 120,
+        }
+      }
     }
     
     this.videoSlider = new Swiper(this.$videoSlider.get(0), config)
@@ -100,6 +119,7 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       breakpoints : {
         320 : {
           slidesPerView: 1,
+          spaceBetween: 50,
         },
         768 : {
           slidesPerView: 'auto',
