@@ -150,7 +150,7 @@ $twigAddToFavoriteButtonFunction = new \Twig\TwigFunction('addToFavoriteButton',
   $post = get_post( $product_id, OBJECT );
   setup_postdata( $post );
 
-  $wishlist_button =  do_shortcode('[ti_wishlists_addtowishlist]');
+  $wishlist_button =  do_shortcode('[yith_wcwl_add_to_wishlist]');
   
   wp_reset_postdata();
 

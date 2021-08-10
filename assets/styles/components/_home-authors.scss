@@ -58,8 +58,53 @@
   }
 }
 
+.home-authors-mobile-slider {
+  display: none;
+  margin-top: 50px;
+  position: relative;
+}
+
+.home-authors-mobile-slider-nav {
+  cursor: pointer;
+  position: absolute;
+  top: 90px;
+  z-index: 1;
+}
+
+.home-authors-mobile-slider-nav--prev {
+  left: 0;
+}
+
+.home-authors-mobile-slider-nav--next {
+  right: 0;
+}
+
 @media(max-width: $breakpoint-mobile-start) {
   .home-authors-section {
+    padding: 70px 0;
+  }
+
+  .home-authors-row {
     display: none;
+  }
+
+  .home-authors-title {
+    h2 {
+      font-size: 16px;
+      letter-spacing: 1.6px;
+      line-height: 1.25;
+    }
+  }
+
+  .home-authors-mobile-slider {
+    display: block;
+  }
+
+  .home-authors-col {
+    width: 100%;
+  }
+
+  .home-authors-image {
+    margin: 0 auto;
   }
 }

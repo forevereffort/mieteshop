@@ -3,7 +3,7 @@ import 'swiper/swiper-bundle.css'
 
 Swiper.use([Pagination, A11y, Autoplay])
 
-class MieteshopProductReviewSlider extends window.HTMLDivElement {
+class MieteshopProductMetaSection extends window.HTMLDivElement {
   constructor (...args) {
     const self = super(...args)
     self.init()
@@ -16,118 +16,152 @@ class MieteshopProductReviewSlider extends window.HTMLDivElement {
   }
 
   resolveElements () {
-    this.$slider = jQuery('[data-slider]', this)
-    this.$pagination = jQuery('[data-pagination]', this)
+    this.$tab = jQuery('[data-tab]', this)
+    this.$reviewSlider = jQuery('[data-review-slider]', this)
+    this.$reviewPagination = jQuery('[data-review-pagination]', this)
+    this.$audioSlider = jQuery('[data-audio-slider]', this)
+    this.$audioPagination = jQuery('[data-audio-pagination]', this)
+    this.$videoSlider = jQuery('[data-video-slider]', this)
+    this.$videoPagination = jQuery('[data-video-pagination]', this)
+    this.$blogSlider = jQuery('[data-blog-slider]', this)
   }
 
   connectedCallback () {
-    this.initSlider()
+    this.initReviewSlider()
+    this.initAudioSlider()
+    this.initVideoSlider()
+    this.initBlogSlider()
+    this.initTab()
   }
 
-  initSlider () {
+  initReviewSlider () {
     const config = {
       slidesPerView: 1,
-      speed: 1000,
-      observer: true,
-      observeParents: true,
-      autoplay: {
-        delay: 3000,
-      },
+      speed: 5000,
+      // autoplay: {
+      //   delay: 8000,
+      // },
       loop: true,
       pagination: {
-        el: this.$pagination.get(0)
+        el: this.$reviewPagination.get(0),
+        clickable: true,
+      },
+      observer: true,
+      observeParents: true,
+    }
+    
+    this.reviewSlider = new Swiper(this.$reviewSlider.get(0), config)
+  }
+
+  initAudioSlider () {
+    const config = {
+      slidesPerView: 1,
+      speed: 5000,
+      // autoplay: {
+      //   delay: 8000,
+      // },
+      loop: true,
+      pagination: {
+        el: this.$audioPagination.get(0),
+        clickable: true,
+      },
+      observer: true,
+      observeParents: true,
+      breakpoints : {
+        320 : {
+          spaceBetween: 50,
+        },
+        768 : {
+          spaceBetween: 120,
+        }
       }
     }
     
-    this.slider = new Swiper(this.$slider.get(0), config)
-  }
-}
-
-window.customElements.define('mieteshop-product-review-slider', MieteshopProductReviewSlider, { extends: 'div' })
-
-class MieteshopProductVideoSlider extends window.HTMLDivElement {
-  constructor (...args) {
-    const self = super(...args)
-    self.init()
-    return self
+    this.audioSlider = new Swiper(this.$audioSlider.get(0), config)
   }
 
-  init () {
-    this.$ = jQuery(this)
-    this.resolveElements()
-  }
-
-  resolveElements () {
-    this.$slider = jQuery('[data-slider]', this)
-    this.$pagination = jQuery('[data-pagination]', this)
-  }
-
-  connectedCallback () {
-    this.initSlider()
-  }
-
-  initSlider () {
+  initVideoSlider () {
     const config = {
       slidesPerView: 1,
-      speed: 1000,
-      observer: true,
-      observeParents: true,
-      autoplay: {
-        delay: 3000,
-      },
+      speed: 5000,
+      // autoplay: {
+      //   delay: 8000,
+      // },
       loop: true,
       pagination: {
-        el: this.$pagination.get(0)
+        el: this.$videoPagination.get(0),
+        clickable: true,
+      },
+      observer: true,
+      observeParents: true,
+      breakpoints : {
+        320 : {
+          spaceBetween: 50,
+        },
+        768 : {
+          spaceBetween: 120,
+        }
       }
     }
     
-    this.slider = new Swiper(this.$slider.get(0), config)
-  }
-}
-
-window.customElements.define('mieteshop-product-video-slider', MieteshopProductVideoSlider, { extends: 'div' })
-
-class MieteshopProductBlogSlider extends window.HTMLDivElement {
-  constructor (...args) {
-    const self = super(...args)
-    self.init()
-    return self
+    this.videoSlider = new Swiper(this.$videoSlider.get(0), config)
   }
 
-  init () {
-    this.$ = jQuery(this)
-    this.resolveElements()
-  }
-
-  resolveElements () {
-    this.$slider = jQuery('[data-slider]', this)
-  }
-
-  connectedCallback () {
-    this.initSlider()
-  }
-
-  initSlider () {
+  initBlogSlider () {
     const config = {
-      slidesPerView: 'auto',
-      spaceBetween: 120,
+      speed: 5000,
+      // autoplay: {
+      //   delay: 8000,
+      // },
+      loop: true,
       observer: true,
       observeParents: true,
-      speed: 1000,
-      autoplay: {
-        delay: 3000,
-      },
-      loop: true
+      breakpoints : {
+        320 : {
+          slidesPerView: 1,
+          spaceBetween: 50,
+        },
+        768 : {
+          slidesPerView: 'auto',
+          spaceBetween: 120,
+        }
+      }
     }
     
-    this.slider = new Swiper(this.$slider.get(0), config)
+    this.blogSlider = new Swiper(this.$blogSlider.get(0), config)
+  }
+
+  initTab () {
+    const that = this;
+
+    this.$tab.on('click', function(){
+      if( !jQuery(this).hasClass('active') ){
+        const sectionID = jQuery(this).attr('data-section-id');
+
+        if( sectionID === 'review' ){
+          that.reviewSlider.update();
+        } else if( sectionID === 'audio' ){
+          that.audioSlider.update();
+        } else if( sectionID === 'video' ){
+          that.videoSlider.update();
+        } else if( sectionID === 'article' ){
+          that.blogSlider.update();
+        }
+  
+        jQuery('.single-product-meta-tab-content-col').addClass('hide');
+        jQuery(`#single-product-meta-tab-content--${sectionID}`).removeClass('hide');
+  
+        jQuery('.single-product-meta-tab-item').removeClass('active');
+        jQuery(this).addClass('active');
+      }
+    })
   }
 }
 
-window.customElements.define('mieteshop-product-blog-slider', MieteshopProductBlogSlider, { extends: 'div' })
+window.customElements.define('mieteshop-product-meta-section', MieteshopProductMetaSection, { extends: 'section' })
 
-jQuery(document).ready(function(){
-  jQuery('.single-product-tab-header-item').click(function(){
+jQuery(function(){
+  jQuery('.single-product-tab-header-item').on('click', function(){
     if( !jQuery(this).hasClass('active') ){
       const sectionID = jQuery(this).attr('data-section-id');
 
@@ -135,18 +169,6 @@ jQuery(document).ready(function(){
       jQuery(`#single-product-tab-content-item--${sectionID}`).removeClass('hide');
 
       jQuery('.single-product-tab-header-item').removeClass('active');
-      jQuery(this).addClass('active');
-    }
-  })
-
-  jQuery('.single-product-meta-tab-item').click(function(){
-    if( !jQuery(this).hasClass('active') ){
-      const sectionID = jQuery(this).attr('data-section-id');
-
-      jQuery('.single-product-meta-tab-content-col').addClass('hide');
-      jQuery(`#single-product-meta-tab-content--${sectionID}`).removeClass('hide');
-
-      jQuery('.single-product-meta-tab-item').removeClass('active');
       jQuery(this).addClass('active');
     }
   })

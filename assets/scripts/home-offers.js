@@ -3,7 +3,7 @@ import 'swiper/swiper-bundle.css'
 
 Swiper.use([Navigation, A11y, Autoplay])
 
-class MieteshopBookSlider extends window.HTMLDivElement {
+class MieteshopHomeOffersMobileSlider extends window.HTMLDivElement {
   constructor (...args) {
     const self = super(...args)
     self.init()
@@ -39,7 +39,6 @@ class MieteshopBookSlider extends window.HTMLDivElement {
       breakpoints : {
         320 : {
           slidesPerView: 1,
-          slidesPerGroup: 1,
         },
         768 : {
           slidesPerView: 4,
@@ -53,4 +52,4 @@ class MieteshopBookSlider extends window.HTMLDivElement {
   }
 }
 
-window.customElements.define('mieteshop-book-slider', MieteshopBookSlider, { extends: 'section' })
+window.customElements.define('mieteshop-home-offers-mobile-slider', MieteshopHomeOffersMobileSlider, { extends: 'div' })

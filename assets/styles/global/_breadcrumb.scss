@@ -2,7 +2,7 @@
   background-color: $color-gray-1;
   margin: 0 auto;
   max-width: $general-container-width;
-  padding: 12px 0;
+  padding: 9px 0;
 }
 
 .breadcrumb-section-white {
@@ -10,14 +10,16 @@
 }
 
 .breadcrumb-list {
-  display: flex;
+  @include clearfix();
 }
 
 .breadcrumb-item {
   color: $color-black-1;
+  float: left;
   font-size: 14px;
   font-weight: $font-weight-light;
   letter-spacing: 0.4px;
+  padding: 3px 0;
   position: relative;
 
   a {
@@ -35,6 +37,6 @@
     font-weight: $font-weight-light;
     left: 15px;
     position: absolute;
-    top: 0;
+    top: 4px;
   }
 }

@@ -139,11 +139,23 @@ img {
 }
 
 @media(max-width: $breakpoint-mobile-start) {
+  .content-container {
+    padding: 0 16px;
+  }
+
   .container {
     padding: 0 16px;
   }
   
   .small-container {
+    padding: 0 16px;
+  }
+  
+  .general-container {
+    padding: 0 16px;
+  }
+  
+  .wide-container {
     padding: 0 16px;
   }
 }

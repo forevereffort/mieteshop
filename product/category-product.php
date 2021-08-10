@@ -1,7 +1,13 @@
 <?php
     global $wp_query, $post;
+
+    // get term of current product category page
     $product_cat = $wp_query->get_queried_object();
+
+    // get parent list of term
     $product_cat_parent_list = array_reverse(get_ancestors($product_cat->term_id, 'product_cat'));
+
+    // get level of term
     $product_cat_level = count($product_cat_parent_list) + 1;
 
     $child_cat_list = get_terms([
@@ -12,6 +18,11 @@
     ]);
 
     $product_per_page = 16;
+
+    if( wp_is_mobile() ){
+        $product_per_page = 4;
+    }
+
     $current_page = 1;
 ?>
 <section class="breadcrumb-section">
@@ -82,7 +93,6 @@
                             foreach ($child_cat_list as $child_cat) {
                     ?>
                                 <div class="pcat-filter-detail-col">
-                                    <div class="js-pcat-filter-detail-parent pcat-filter-detail-root" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?></div>
                                     <?php
                                         $child_child_cat_list = get_terms([
                                             'taxonomy' => 'product_cat', 
@@ -90,10 +100,28 @@
                                             // 'child_of' => $child_cat->term_id,
                                             'parent' => $child_cat->term_id,
                                         ]);
-
-                                        foreach ($child_child_cat_list as $child_child_cat) {
                                     ?>
-                                            <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_child_cat->term_id; ?>"><?php echo $child_child_cat->name; ?></div>
+                                    <div class="js-pcat-filter-detail-parent pcat-filter-detail-root" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?>
+                                        <?php
+                                            if( !empty($child_child_cat_list) ){
+                                        ?>
+                                                <div class="js-pcat-filter-detail-root-icon pcat-filter-detail-root-icon"><div class="pcat-filter-detail-root-icon-wrapper"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div></div>
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                    <?php
+                                        if( !empty($child_child_cat_list) ){
+                                    ?>
+                                            <div class="pcat-filter-detail-child-wrapper">
+                                                <?php
+                                                    foreach ($child_child_cat_list as $child_child_cat) {
+                                                ?>
+                                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_child_cat->term_id; ?>"><?php echo $child_child_cat->name; ?></div>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </div>
                                     <?php
                                         }
                                     ?>
@@ -289,7 +317,7 @@
                                                         alt="<?php echo $post->post_title; ?>">
                                                 </a>
                                             </div>
-                                            <div><?php echo do_shortcode('[ti_wishlists_addtowishlist]'); ?></div>
+                                            <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?></div>
                                             <div class="pcat-result-item-meta-row">
                                                 <div class="pcat-result-item-meta-col">
                                                     <div class="pcat-result-item-favorite">
@@ -396,6 +424,13 @@
                             <div class="pcat-results-footer-select-label">Προβολή</div>
                             <div class="pcat-results-footer-select-elem">
                                 <select id="js-pcat-products-per-page">
+                                    <?php
+                                        if( wp_is_mobile() ){
+                                    ?>
+                                            <option value="4">4</option>
+                                    <?php
+                                        }
+                                    ?>
                                     <option value="16">16</option>
                                     <option value="32">32</option>
                                     <option value="64">64</option>

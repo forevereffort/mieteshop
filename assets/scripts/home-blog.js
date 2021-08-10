@@ -27,16 +27,23 @@ class MieteshopHomeBlogSlider extends window.HTMLDivElement {
 
   initSlider () {
     const config = {
-      slidesPerView: 2,
-      spaceBetween: 120,
       speed: 1000,
       autoplay: {
-        delay: 3000,
+        delay: 8000,
       },
       loop: true,
       navigation: {
         nextEl: this.$buttonNext.get(0),
         prevEl: this.$buttonPrev.get(0)
+      },
+      breakpoints : {
+        320 : {
+          slidesPerView: 1,
+        },
+        768 : {
+          slidesPerView: 2,
+          spaceBetween: 120,
+        }
       }
     }
     
