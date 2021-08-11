@@ -107,14 +107,16 @@
                             <?php 
                                 $regular_price = get_post_meta( get_the_ID(), '_regular_price', true);
                                 $sale_price = get_post_meta( get_the_ID(), '_sale_price', true);
+                                $price_symbol = get_woocommerce_currency_symbol(get_option('woocommerce_currency'));
+
                                 if($sale_price) {
                             ?>
-                                    <div class="single-product-regular-price"><span><?php echo $regular_price; ?></span></div>
-                                    <div class="single-product-sale-price"><span><?php echo $sale_price; ?></span></div>
+                                    <div class="single-product-regular-price"><span><?php echo number_format($regular_price, 2, ',', ''); ?><?php echo  $price_symbol; ?></span></div>
+                                    <div class="single-product-sale-price"><span><?php echo number_format($sale_price, 2, ',', ''); ?><?php echo  $price_symbol; ?></span></div>
                             <?php
                                 } else {
                             ?>
-                                    <div class="single-product-sale-price"><span><?php echo $regular_price; ?></span></div>
+                                    <div class="single-product-sale-price"><span><?php echo number_format($regular_price, 2, ',', ''); ?></span></div>
                             <?php
                                 }
                             ?>
