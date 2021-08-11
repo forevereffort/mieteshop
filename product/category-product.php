@@ -206,8 +206,8 @@
                         if ( !empty($loop->posts) ) {
                             foreach( $loop->posts as $postid ) {
                                 // get author & publisher list that include in the search result
-                                $authors = get_field('book_contributors_syggrafeas', $post->ID);
-                                $publishers = get_field('book_publishers', $post->ID);
+                                $authors = get_field('book_contributors_syggrafeas', $postid);
+                                $publishers = get_field('book_publishers', $postid);
 
                                 if( !empty($authors) ){
                                     foreach($authors as $author){
