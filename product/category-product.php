@@ -188,7 +188,8 @@
                                     'terms' => $product_cat->term_id,
                                 ],
                             ],
-                            'posts_per_page' => -1
+                            'posts_per_page' => -1,
+                            'fields' => 'ids',
                         ];
                     
                         $loop = new WP_Query( $args );
@@ -202,10 +203,8 @@
                         // get publisher list that included in search result
                         $publisher_list_in_search_result = [];
                     
-                        if ( $loop->have_posts() ) {
-                            while ( $loop->have_posts() ){
-                                $loop->the_post();
-
+                        if ( !empty($loop->posts) ) {
+                            foreach( $loop->posts as $postid ) {
                                 // get author & publisher list that include in the search result
                                 $authors = get_field('book_contributors_syggrafeas', $post->ID);
                                 $publishers = get_field('book_publishers', $post->ID);
