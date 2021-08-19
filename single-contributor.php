@@ -50,7 +50,7 @@
 <?php
     if( have_rows('contributor_videos') || get_field('contributor_related_articles') ) {
 ?>
-        <section class="single-product-meta-section">
+        <section class="single-product-meta-section" is="mieteshop-product-meta-section">
             <div class="content-container">
                 <div class="single-product-meta-tab-row">
                     <div class="single-product-meta-tab-col">

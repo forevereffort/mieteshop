@@ -157,3 +157,58 @@
   border-top: 0;
   padding: 57px 0 95px;
 }
+
+@media(max-width: $breakpoint-mobile-start) {
+
+  .single-publisher-image-lead-row {
+    display: block;
+  }
+
+  .single-publisher-image-lead-left {
+    width: auto;
+  }
+
+  .single-publisher-image-lead-right {
+    padding-left: 0;
+    width: auto;
+  }
+
+  .single-publisher-image-lead-content {
+  
+    p {
+      font-size: 16px;
+    }
+
+  }
+  
+  .single-publisher-text-caption-row {
+    display: block;
+  }
+
+  .single-publisher-text-caption-right {
+    width: auto;
+  }
+
+  .single-publisher-text-caption-content {
+
+    p {
+      color: #1f1f1f;
+      font-size: 14px;
+    }
+    
+  }
+    
+  .pcat-results-top-row {
+    display: block;
+  }
+  
+  .pcat-results-title {
+    padding-bottom: 20px;
+  }
+
+  .single-product-series-col {
+    width: 49.9%;
+  }
+  
+
+}  
