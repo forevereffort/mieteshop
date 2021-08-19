@@ -91,3 +91,43 @@
 .archive-contributor-search-result-list {
   padding-top: 4px;
 }
+
+
+@media(max-width: $breakpoint-mobile-start) {
+  .archive-contributor-search-greek-letter-row {
+    flex-wrap: wrap;
+  }
+
+  .archive-contributor-search-greek-letter-col,
+ 
+  .archive-contributor-search-english-letter-col {
+    font-size: 22px;
+    padding: 0 5px;
+  }
+
+  .archive-contributor-search-english-letter-row {
+    flex-wrap: wrap;
+    margin: 40px 0 0;
+  }
+
+  .archive-contributor-search-result-row {
+    display: block;
+    margin: 80px 0 0;
+  }
+
+  .archive-contributor-search-result-left-col {
+    font-size: 20px;
+    width: 100%;
+  }
+
+  .archive-contributor-search-result-right-col {
+    padding: 20px 8px;
+    width: 100%;
+  }
+
+  .archive-contributor-search-result-col {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+}

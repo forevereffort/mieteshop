@@ -22,8 +22,7 @@
                                             while( have_rows('company_videos') ){
                                                 the_row();
 
-                                                // get_sub_field('company_video_embed_code');
-                                                $video_image_url = get_sub_field('company_video_cover_image');
+                                                //$video_image_url = get_sub_field('company_video_cover_image');
                                     ?>
                                                 <div class="swiper-slide">
                                                     <div class="single-publisher-video-item-row">

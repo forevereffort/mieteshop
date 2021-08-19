@@ -184,7 +184,7 @@
 }
 
 /* responsive styles */
-@media (max-width:768px) {
+@media(max-width: $breakpoint-mobile-start) {
   .about-lead-section,
   .about-text-section,
   .about-store-section { 
@@ -201,4 +201,11 @@
   .about-store-item-col-3 {
     width: 100%;
   }
+
+  .about-lead-section,
+  .about-text-section {
+    margin-right: 0;
+  }
+
+
 }
