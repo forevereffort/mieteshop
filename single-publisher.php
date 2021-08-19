@@ -270,42 +270,8 @@
 <?php
     }
 ?>
-<?php
-    $company_selected_contributors = get_field('company_selected_contributors', $post->ID);
 
-    if( !empty($company_selected_contributors) ){
-?>
-        <section class="home-authors-section">
-            <div class="small-container">
-                <div class="home-authors-title">
-                    <h2>ΣΥΓΓΡΑΦΕΙΣ</h2>
-                </div>
-                <div class="home-authors-row">
-                    <?php
-                        foreach ( $company_selected_contributors as $contributor ){
-                            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $contributor->ID ), 'full' );
-                    ?>
-                            <div class="home-authors-col">
-                                <div class="home-authors-image">
-                                    <img
-                                        class="lazyload"
-                                        src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                        data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                        alt="<?php echo $contributor->post_title; ?>">
-                                </div>
-                                <div class="home-authors-name">
-                                    <h3><?php echo $contributor->post_title; ?></h3>
-                                </div>
-                            </div>
-                    <?php
-                        }
-                    ?>
-                </div>
-            </div>
-        </section>
-<?php
-    }
-?>
+<?php get_template_part( 'publisher/sections/single', 'publisher-authors' ); ?>
 
 <?php
         }
