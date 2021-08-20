@@ -7,18 +7,26 @@
             <div class="content-container">
                 <div class="single-product-meta-tab-row-wrapper">
                     <div class="single-product-meta-tab-row">
+                        <?php if ( get_field('book_reviews') ) { ?>
                         <div class="single-product-meta-tab-col">
                             <div class="single-product-meta-tab-item active" data-section-id="review" data-tab>Βιβλιοκρισίες</div>
                         </div>
+                        <?php } ?>
+                        <?php if ( get_field('book_audio_repeater') ) { ?>
                         <div class="single-product-meta-tab-col">
                             <div class="single-product-meta-tab-item" data-section-id="audio" data-tab>Audio</div>
                         </div>
+                        <?php } ?>
+                        <?php if ( get_field('book_videos') ) { ?>
                         <div class="single-product-meta-tab-col">
                             <div class="single-product-meta-tab-item" data-section-id="video" data-tab>Video</div>
                         </div>
+                        <?php } ?>
+                        <?php if ( get_field('book_related_articles') ) { ?>
                         <div class="single-product-meta-tab-col">
                             <div class="single-product-meta-tab-item" data-section-id="article" data-tab>Σχετικά  Άρθρα</div>
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="single-product-meta-tab-content-row">
@@ -89,6 +97,7 @@
                                                     <div class="single-product-video-item-row">
                                                         <div class="single-product-video-item-left-col">
                                                             <div class="single-product-video-image-wrapper">
+                                                                <!--
                                                                 <img
                                                                     class="lazyload"
                                                                     src="<?php echo placeholderImage(606, 241); ?>"
@@ -96,6 +105,8 @@
                                                                     alt="video image">
                                                                 <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
                                                                 <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
+                                                                -->
+                                                                <?php echo '<div class="embed-container">'.get_sub_field('contributor_video_embed_code').'</div>'; ?>
                                                             </div>
                                                         </div>
                                                         <div class="single-product-video-item-right-col">
@@ -105,7 +116,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> 
                                     <?php
                                             }
                                         }
@@ -117,10 +128,14 @@
                     </div>
                     <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
                         <div class="single-product-blog-wrapper">
+                            <?php 
+                            $related_articles = get_field('book_related_articles');   
+                            if ( $related_articles) {
+                            ?>
                             <div class="swiper-container" data-blog-slider>
                                 <div class="swiper-wrapper">
                                     <?php
-                                        $related_articles = get_field('book_related_articles');
+                                       
                                         foreach($related_articles as $article) {
                                             $blog_image_url = wp_get_attachment_url( get_post_thumbnail_id($article->ID) );
                                     ?>
@@ -146,6 +161,9 @@
                                     ?>
                                 </div>
                             </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

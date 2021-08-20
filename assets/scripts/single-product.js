@@ -130,7 +130,7 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
     
     this.blogSlider = new Swiper(this.$blogSlider.get(0), config)
   }
-
+  
   initTab () {
     const that = this;
 

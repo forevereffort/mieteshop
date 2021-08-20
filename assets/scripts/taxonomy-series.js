@@ -1,3 +1,59 @@
+import Swiper, { Pagination, A11y, Autoplay } from 'swiper/swiper.esm'
+import 'swiper/swiper-bundle.css'
+
+Swiper.use([Pagination, A11y, Autoplay])
+
+class MieteshopSeriesMetaSection extends window.HTMLDivElement {
+  constructor (...args) {
+    const self = super(...args)
+    self.init()
+    return self
+  }
+
+  init () {
+    this.$ = jQuery(this)
+    this.resolveElements()
+  }
+
+  resolveElements () {
+    this.$videoSlider = jQuery('[data-video-slider]', this)
+    this.$videoPagination = jQuery('[data-video-pagination]', this)
+  }
+
+  connectedCallback () {
+    this.initVideoSlider()
+  }
+
+  initVideoSlider () {
+    const config = {
+      slidesPerView: 1,
+      speed: 5000,
+      // autoplay: {
+      //   delay: 8000,
+      // },
+      loop: true,
+      pagination: {
+        el: this.$videoPagination.get(0),
+        clickable: true,
+      },
+      observer: true,
+      observeParents: true,
+      breakpoints : {
+        320 : {
+          spaceBetween: 50,
+        },
+        768 : {
+          spaceBetween: 120,
+        }
+      }
+    }
+    
+    this.videoSlider = new Swiper(this.$videoSlider.get(0), config)
+  }
+}  
+  
+window.customElements.define('mieteshop-series-meta-section', MieteshopSeriesMetaSection, { extends: 'section' })
+
 jQuery(function(){
     // get products with series term and page
     function taxonomySeriesProductSearch(page){

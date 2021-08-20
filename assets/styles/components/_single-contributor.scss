@@ -191,7 +191,7 @@
 }
 
 
-@media (max-width:768px) {
+@media(max-width: $breakpoint-mobile-start) {
   .single-contributor {
     .single-contributor-image-lead-section .general-container {
       padding-left: 15px;
@@ -250,6 +250,10 @@
     .single-contributor-blog-item.swiper-slide {
       /* margin: 0 auto !important; */
       padding: 0 2px;
+    }
+
+    .single-contributor-video-item-left-col {
+      width: auto;
     }
 
   }  

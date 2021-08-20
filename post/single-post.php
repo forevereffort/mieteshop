@@ -57,13 +57,7 @@
                 $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
             ?>
             <div class="single-post-hero-row">
-                <?php if ( get_field('event_details') ) { ?>
-                <div class="single-post-hero-event">
-                    <div class="single-post-hero-event-inner">
-                        <?php echo get_field('event_details'); ?>
-                    </div>
-                </div>
-                <?php } ?>
+
                 <div class="single-post-hero-col">
                     <div class="single-post-hero-image">
                         <img
@@ -72,6 +66,15 @@
                             data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
                             alt="<?php echo $post->post_title; ?>">
                     </div>
+
+                    <?php if ( get_field('event_details') ) { ?>
+                    <div class="single-post-hero-event">
+                        <div class="single-post-hero-event-inner">
+                            <?php echo get_field('event_details'); ?>
+                        </div>
+                    </div>
+                    <?php } ?>                    
+
                     <div class="single-post-hero-content-row">
                         <div class="single-post-hero-content">
                             <p><?php echo get_field('post_lead'); ?></p>
