@@ -402,8 +402,9 @@
     font-size: 16px;
     font-weight: $font-weight-light;
     height: 22px;
+    min-width: 24px;
+    padding: 0 2px;
     text-align: center;
-    width: 24px;
   }
 
   span {
@@ -413,8 +414,9 @@
     // background-color: $color-white;
     font-weight: $font-weight-light;
     height: 22px;
+    min-width: 24px;
+    padding: 0 2px;
     text-align: center;
-    width: 24px;
   }
 }
 

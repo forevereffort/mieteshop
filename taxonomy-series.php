@@ -191,43 +191,104 @@
 
     wp_reset_query();
 ?>
+
+<?php 
+    
+    $series_gallery_images = get_field('series_image_gallery', 'series_'.$current_series_taxonomy->term_id);
+    $series_sampling = get_field('series_sampling', 'series_'.$current_series_taxonomy->term_id);
+
+    if( $series_gallery_images || have_rows('series_videos', 'series_'.$current_series_taxonomy->term_id) || $series_sampling ) {
+?>
+        <section class="series-makingof-title">
+            <div class="general-container">
+            <div class="series-image-gallery-title">
+                <h2>MAKING OF & ΣΧΕΤΙΚΑ</h2>
+            </div>
+            </div>    
+        </section>    
+<?php
+    }
+?>
+
 <section class="series-image-gallery-section">
     <div class="general-container">
-        <div class="series-image-gallery-title">
-            <h2>MAKING OF & ΣΧΕΤΙΚΑ</h2>
-        </div>
         <?php
-            $series_image_gallery = get_field('series_image_gallery', 'series_'.$current_series_taxonomy->term_id);
-            // echo '<pre>';
-            // print_r($series_image_gallery);
-            // echo '</pre>';
+            
+            if ($series_gallery_images) {     
+            ?>
+            <section><div class="general-container"><div class="content-container">
+            <div class="single-post-slider-row" is="mieteshop-post-slider">
+                <div class="single-post-slider-big-wrapper">
+                    <div class="swiper-container" data-big-slider>
+                        <div class="swiper-wrapper">
+                            <?php
+                            foreach( $series_gallery_images as $image ) {
+                            ?>
+                                <div class="swiper-slide">
+                                    <!--a href="<?php //echo esc_url($image['url']); ?>"></a-->
+                                    <img class="lazyload" src="<?php echo esc_url($image['url']); ?>" data-src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                                </div>
+                            <?php
+                            }
+                            ?>    
+                        </div>
+                    </div>
+                    <div class="single-post-slider-big-nav-wrapper">
+                        <div data-slider-button="prev" class="single-post-slider-big-nav single-post-slider-big-nav--prev"><?php include get_template_directory() . '/assets/icons/slider-prev-icon.svg'; ?></div>
+                        <div data-slider-button="next" class="single-post-slider-big-nav single-post-slider-big-nav--next"><?php include get_template_directory() . '/assets/icons/slider-next-icon.svg'; ?></div>
+                    </div>
+                </div>
+                <div class="single-post-slider-small-wrapper">
+                    <div class="swiper-container" data-small-slider>
+                        <div class="swiper-wrapper">
+                            <?php
+                            //$thumbs = get_sub_field('post_image_gallery');
+                            $i=1;
+                            foreach( $series_gallery_images as $image ) {
+                            ?>
+                            <div class="swiper-slide single-post-slider-small-item item-'<?php echo $i; ?>'">
+                                <img class="lazyload" src="<?php echo esc_url($image['sizes']['woocommerce_gallery_thumbnail']); ?>" data-src="<?php echo $image['sizes']['woocommerce_gallery_thumbnail']; ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                            </div>
+                            <?php
+                            $i++;
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div></div></section>
+            <?php
+            }        
+   
         ?>
     </div>
 </section>
-<section class="single-product-meta-section">
+
+<section class="single-product-meta-section" is="mieteshop-series-meta-section">
     <div class="content-container">
         <div class="single-product-meta-tab-row">
             <div class="single-product-meta-tab-col">
                 <div class="single-product-meta-tab-item active">Video</div>
             </div>
         </div>
-        <div class="single-product-meta-tab-content-row">
+        <div class="single-product-meta-tab-content-row"  >
             <div id="single-product-meta-tab-content--video" class="single-product-meta-tab-content-col">
-                <div class="single-product-video-wrapper" is="mieteshop-product-video-slider">
-                    <div class="swiper-container" data-slider>
+                <div class="single-product-video-wrapper" is="mieteshop-series-video-slider">
+                    <div class="swiper-container" data-video-slider>
                         <div class="swiper-wrapper">
                             <?php
                                 if( have_rows('series_videos', 'series_'.$current_series_taxonomy->term_id) ) { 
                                     while( have_rows('series_videos', 'series_'.$current_series_taxonomy->term_id) ){
                                         the_row();
-
                                         // get_sub_field('contributor_video_embed_code');
                                         $video_image_url = get_sub_field('contributor_video_cover_image');
-                            ?>
+                                        ?>
                                         <div class="swiper-slide">
                                             <div class="single-product-video-item-row">
                                                 <div class="single-product-video-item-left-col">
                                                     <div class="single-product-video-image-wrapper">
+                                                        <!--
                                                         <img
                                                             class="lazyload"
                                                             src="<?php echo placeholderImage(606, 241); ?>"
@@ -235,6 +296,8 @@
                                                             alt="video image">
                                                         <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
                                                         <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
+                                                        -->
+                                                        <?php echo '<div class="embed-container">'.get_sub_field('contributor_video_embed_code').'</div>'; ?>
                                                     </div>
                                                 </div>
                                                 <div class="single-product-video-item-right-col">
@@ -245,13 +308,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                            <?php
+                                        <?php
                                     }
                                 }                         
                             ?>
                         </div>
                     </div>
-                    <div class="single-product-video-pagination-wrapper" data-pagination></div>
+                    <div class="single-product-video-pagination-wrapper" data-video-pagination></div>
                 </div>
             </div>
         </div>
@@ -262,12 +325,13 @@
         <h2>Sampling</h2>
     </div>
     <div class="series-sampling-iframe">
-        <div class="series-sampling-iframe-container">
+        <!--div class="series-sampling-iframe-container"-->
             <?php
-                $series_sampling = get_field('series_sampling', 'series_'.$current_series_taxonomy->term_id);
-                echo $series_sampling;
+                if ($series_sampling) {
+                    echo '<div class="embed-container">'.$series_sampling.'</div>';
+                }
             ?>
-        </div>
+        <!--/div-->
     </div>
 </section>
 <div id="js-ts-product-filter-load-spinner" class="load-spinner hide"></div>

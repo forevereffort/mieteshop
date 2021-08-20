@@ -441,7 +441,7 @@
 			</div>
 			<div class="header-mobile-nav-row">
 				<div class="header-mobile-nav-col header-mobile-nav-col--gray"><a href="#">ΝΕΕΣ ΚΥΚΛΟΦΟΡΙΕΣ</a></div>
-				<div class="header-mobile-nav-col header-mobile-nav-col--gray"><a href="#">ΣΕΙΡΕΣ ΜΙΕΤ</a></div>
+				<div class="header-mobile-nav-col header-mobile-nav-col--gray"><a href="/seires-miet/">ΣΕΙΡΕΣ ΜΙΕΤ</a></div>
 				<div class="header-mobile-nav-col header-mobile-nav-col--white"><a href="<?php echo get_field('thematic_map_page', 'option'); ?>">ΑΝΑΛΥΤΙΚΟΣ ΘΕΜΑΤΙΚΟΣ ΧΑΡΤΗΣ</a></div>
 			</div>
 		</div>

@@ -151,8 +151,9 @@ global $post;
                                     <h3><a href="<?php echo get_permalink($blog['id']); ?>"><?php echo $blog['title']; ?></a></h3>
                                 </div>
                                 <div class="blog-item-bottom-row">
-                                    <?php if(get_field('event_from_date', $blog['id'])) { ?>
+                                    
                                     <div class="blog-item-bottom-left-col">
+                                        <?php if(get_field('event_from_date', $blog['id'])) { ?>
                                         <div class="home-blog-item-duration-row">
                                             <div class="home-blog-item-duration-col">
                                                 <div class="home-blog-item-duration-label">ΑΠΟ</div>
@@ -163,8 +164,9 @@ global $post;
                                                 <div class="home-blog-item-duration-date"><?php echo get_field('event_to_date', $blog['id']); ?></div>
                                             </div>
                                         </div>
+                                        <?php } ?>
                                     </div>
-                                    <?php } ?>
+                                    
                                     <div class="blog-item-bottom-right-col">
                                         <div class="home-blog-item-excerpt">
                                             <?php echo get_field('post_lead', $blog['id']); ?>
