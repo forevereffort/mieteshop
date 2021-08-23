@@ -18,6 +18,7 @@ jQuery(function(){
         const nonce = jQuery('#js-pcat-list-title').attr('data-nonce');
         const mainProductCatId = jQuery('#js-pcat-list-title').attr('data-main-product-cat-id');
         const productPerPage = jQuery('#js-pcat-products-per-page').val();
+        const productOrder = jQuery('#js-pcat-product-display-order').val();
 
         jQuery('#js-category-product-filter-load-spinner').removeClass('hide');
 
@@ -33,7 +34,8 @@ jQuery(function(){
                 filterPublisherId,
                 page,
                 mainProductCatId,
-                productPerPage
+                productPerPage,
+                productOrder
             },
             success: function (response) {
                 jQuery('#js-pcat-results-row').html(response.result);
@@ -44,6 +46,17 @@ jQuery(function(){
                 addPageNavigationClickFunc();
 
                 jQuery('#js-category-product-filter-load-spinner').addClass('hide')
+                
+                // reset page number list
+                const pageCounts = parseInt(response.pageCounts);
+                let pageHtmlInnterStr = '';
+
+                for(let i = 1; i <= pageCounts; i++){
+                    pageHtmlInnterStr += '<option value="' + i + '">' + i + '</option>'
+                }
+
+                jQuery('#js-pcat-products-page-list').html(pageHtmlInnterStr);
+                jQuery('#js-pcat-products-page-list').val(page);
 
                 // smoth go to the top of result section
                 goSearchResultTop();
@@ -67,6 +80,12 @@ jQuery(function(){
 
     jQuery('#js-pcat-products-per-page').on('change', function(){
         categoryProductSearch(1);
+    });
+
+    jQuery('#js-pcat-products-page-list').on('change', function(){
+        const pageNum = jQuery(this).val();
+
+        categoryProductSearch(pageNum);
     });
 
     function updateFilterCountLabel(){
@@ -247,4 +266,8 @@ jQuery(function(){
 
         return false;
     });
+
+    jQuery('#js-pcat-product-display-order').on('change', function(){
+        categoryProductSearch(1);
+    })
 })

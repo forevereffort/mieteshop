@@ -257,10 +257,8 @@
                 <div class="pcat-classification-filter">
                     <div class="pcat-classification-filter-label">ΤΑΞΙΝΟΜΗΣΗ</div>
                     <div class="pcat-classification-filter-select">
-                        <select>
-                            <option value="-1">Χρονολογική</option>
-                            <option value="price-low-to-high">Price low to high</option>
-                            <option value="price-high-to-low">Price high to low</option>
+                        <select id="js-pcat-product-display-order">
+                            <option value="published-date">Published Date</option>
                             <option value="alphabetical">Alphabetical</option>
                         </select>
                         <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
@@ -282,7 +280,9 @@
             ],
         ],
         'posts_per_page' => $product_per_page,
-        'offset' => ( $current_page - 1 ) * $product_per_page
+        'offset' => ( $current_page - 1 ) * $product_per_page,
+        'orderby' => 'title',
+        'order' => 'asc',
     ];
 
     $the_query = new WP_Query( $args );
@@ -407,8 +407,16 @@
                                     <div class="pcat-results-footer-select">
                                         <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
                                         <div class="pcat-results-footer-select-elem">
-                                            <select>
-                                                <option value="1">1</option>
+                                            <select id="js-pcat-products-page-list">
+                                                <?php
+                                                    $pageCounts = $pagination->get_pages();
+
+                                                    for($i = 1; $i <= $pageCounts; $i++){
+                                                ?>
+                                                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                <?php
+                                                    }
+                                                ?>
                                             </select>
                                             <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
                                         </div>

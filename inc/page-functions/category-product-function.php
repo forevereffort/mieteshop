@@ -11,6 +11,7 @@ function filterCategoryProduct()
     $result = [];
     
     $filterTermIds = $_REQUEST['filterTermIds'];
+    $productOrder = $_REQUEST['productOrder'];
     $filterAuthorId = intval($_REQUEST['filterAuthorId']);
     $filterPublisherId = intval($_REQUEST['filterPublisherId']);
     $mainProductCatId = intval($_REQUEST['mainProductCatId']);
@@ -77,6 +78,14 @@ function filterCategoryProduct()
         ];
     }
 
+    if( $productOrder === 'published-date' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'asc';
+    } else if( $productOrder === 'alphabetical' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'desc';
+    }
+
     $products_search_count = 0;
     $products_search_list = [];
     
@@ -131,6 +140,8 @@ function filterCategoryProduct()
             'count' => $products_search_count,
             'result' => $twig->render('category-product-search-result.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
+            'pageCounts' => $pagination->get_pages(),
+            'productOrder' => $productOrder,
             // 'arg' => $args
         ]);
 
