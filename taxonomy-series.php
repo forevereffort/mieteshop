@@ -9,8 +9,8 @@
 <section class="breadcrumb-section">
     <div class="content-container">
         <div class="breadcrumb-list">
-            <div class="breadcrumb-item"><a href="#">Βιβλία</a></div>
-            <div class="breadcrumb-item"><a href="#">Σειρές ΜΙΕΤ</a></div>
+            <div class="breadcrumb-item"><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Βιβλία</a></div>
+            <div class="breadcrumb-item"><a href="<?php echo get_term_link($current_series_taxonomy->term_id); ?>"><?php echo $current_series_taxonomy->name; ?></a></div>
         </div>
     </div>
 </section>
