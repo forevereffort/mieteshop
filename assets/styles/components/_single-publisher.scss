@@ -309,8 +309,6 @@
   margin-right: -130px;
 }
 
-
-
 @media(max-width: $breakpoint-mobile-start) {
   .single-publisher-image-lead-row {
     display: block;
@@ -374,4 +372,7 @@
     width: auto;
   }
 
+  .single-publisher-blog-wrapper {
+    margin: 0;
+  }
 }

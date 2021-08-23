@@ -40,7 +40,7 @@
 .archive-contributor-search-english-letter-row {
   display: flex;
   justify-content: space-between;
-  margin: 40px -40px 0;
+  margin: 0 -40px;
 }
 
 .archive-contributor-search-english-letter-col {
@@ -92,22 +92,10 @@
   padding-top: 4px;
 }
 
-
 @media(max-width: $breakpoint-mobile-start) {
-  .archive-contributor-search-greek-letter-row {
-    flex-wrap: wrap;
-  }
-
-  .archive-contributor-search-greek-letter-col,
- 
-  .archive-contributor-search-english-letter-col {
-    font-size: 22px;
-    padding: 0 5px;
-  }
-
-  .archive-contributor-search-english-letter-row {
-    flex-wrap: wrap;
-    margin: 40px 0 0;
+  .archive-contributor-search-greek-letter-col+.archive-contributor-search-greek-letter-col,
+  .archive-contributor-search-english-letter-col+.archive-contributor-search-english-letter-col {
+    margin-left: 30px;
   }
 
   .archive-contributor-search-result-row {
@@ -130,4 +118,13 @@
     line-height: 16px;
   }
 
+  .archive-contributor-search-greek-letter-wrapper,
+  .archive-contributor-search-english-letter-wrapper {
+    overflow: auto;
+    padding: 10px 0;
+  }
+
+  .archive-contributor-search-english-letter-row {
+    margin: 0;
+  }
 }

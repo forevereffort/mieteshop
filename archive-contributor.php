@@ -11,26 +11,30 @@
 <div class="archive-contributor-search-section">
     <div class="general-container">
         <div class="content-container">
-            <div class="archive-contributor-search-greek-letter-row">
-                <?php
-                    $greek_letter_list = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','o','π','ρ','σ','τ','υ','φ','χ','ψ','ω'];
-                    for($i = 0; $i < 24; $i++){
-                ?>
-                        <div class="archive-contributor-search-greek-letter-col js-archive-contributor-search-greek-letter-col <?php echo $i == 0 ? 'active' : ''; ?>"><?php echo $greek_letter_list[$i]; ?></div>
-                <?php
-                    }
-                ?>
+            <div class="archive-contributor-search-greek-letter-wrapper">
+                <div class="archive-contributor-search-greek-letter-row">
+                    <?php
+                        $greek_letter_list = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','o','π','ρ','σ','τ','υ','φ','χ','ψ','ω'];
+                        for($i = 0; $i < 24; $i++){
+                    ?>
+                            <div class="archive-contributor-search-greek-letter-col js-archive-contributor-search-greek-letter-col <?php echo $i == 0 ? 'active' : ''; ?>"><?php echo $greek_letter_list[$i]; ?></div>
+                    <?php
+                        }
+                    ?>
+                </div>
             </div>
-            <div class="archive-contributor-search-english-letter-row">
-                <?php
-                    $english_letter_list = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+            <div class="archive-contributor-search-english-letter-wrapper">
+                <div class="archive-contributor-search-english-letter-row">
+                    <?php
+                        $english_letter_list = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-                    for($i = 0; $i < 26; $i++){
-                ?>
-                        <div class="archive-contributor-search-english-letter-col js-archive-contributor-search-english-letter-col"><?php echo $english_letter_list[$i]; ?></div>
-                <?php
-                    }
-                ?>
+                        for($i = 0; $i < 26; $i++){
+                    ?>
+                            <div class="archive-contributor-search-english-letter-col js-archive-contributor-search-english-letter-col"><?php echo $english_letter_list[$i]; ?></div>
+                    <?php
+                        }
+                    ?>
+                </div>
             </div>
             <div class="archive-contributor-search-result-row">
                 <?php
