@@ -85,21 +85,14 @@ function filterCategoryProduct()
         $args['orderby'] = 'title';
         $args['order'] = 'desc';
     }
-
-    $products_search_count = 0;
-    $products_search_list = [];
     
     global $post;
     
-    // if there are no any option of filter author & publisher
-    // search will work only for tax query
-    $args['posts_per_page'] = $productPerPage;
-    $args['offset'] = ( $page - 1 ) * $productPerPage;
-    
     $the_query = new WP_Query( $args );
-
+    
     // get total search result count
     $products_search_count = $the_query->found_posts;
+    $products_search_list = [];
 
     if ( $the_query->have_posts() ) {
         while ( $the_query->have_posts() ) {
@@ -141,7 +134,7 @@ function filterCategoryProduct()
             'result' => $twig->render('category-product-search-result.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
             'pageCounts' => $pagination->get_pages(),
-            'productOrder' => $productOrder,
+            // 'productOrder' => $productOrder,
             // 'arg' => $args
         ]);
 

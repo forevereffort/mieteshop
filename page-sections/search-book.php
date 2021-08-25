@@ -2,6 +2,11 @@
     global $post;
     $searchKey = get_search_query();
     $product_per_page = 16;
+
+    if( wp_is_mobile() ){
+        $product_per_page = 4;
+    }
+
     $current_page = 1;
 
     // get all products in current search key
@@ -15,7 +20,8 @@
                 'field' => 'slug',
                 'terms' => 'book',
             ]
-        ]
+        ],
+        'fields' => 'ids',
     ];
 
     $the_query = new WP_Query( $args );
@@ -32,14 +38,12 @@
     // get product category list that included in search result
     $product_category_list_in_search_result = [];
 
-    if ( $the_query->have_posts() ) {
-        while ( $the_query->have_posts() ){
-            $the_query->the_post();
-
+    if ( !empty($the_query->posts) ) {
+        foreach( $the_query->posts as $postid ) {
             // get author & publisher & product category list that include in the search result
-            $authors = get_field('book_contributors_syggrafeas', $post->ID);
-            $publishers = get_field('book_publishers', $post->ID);
-            $prorudct_categories = get_the_terms($post->ID, 'product_cat');
+            $authors = get_field('book_contributors_syggrafeas', $postid);
+            $publishers = get_field('book_publishers', $postid);
+            $prorudct_categories = get_the_terms($postid, 'product_cat');
 
             if( !empty($authors) ){
                 foreach($authors as $author){
@@ -119,10 +123,8 @@
             <div class="pcat-classification-filter">
                 <div class="pcat-classification-filter-label pcat-classification-filter-label--black">ΤΑΞΙΝΟΜΗΣΗ</div>
                 <div class="pcat-classification-filter-select">
-                    <select>
-                        <option value="-1">Χρονολογική</option>
-                        <option value="price-low-to-high">Price low to high</option>
-                        <option value="price-high-to-low">Price high to low</option>
+                    <select id="js-search-book__display-order">
+                        <option value="published-date">Published Date</option>
                         <option value="alphabetical">Alphabetical</option>
                     </select>
                     <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
@@ -143,7 +145,9 @@
                 'field' => 'slug',
                 'terms' => 'book',
             ]
-        ]
+        ],
+        'orderby' => 'title',
+        'order' => 'asc',
     ];
 
     $the_query = new WP_Query( $args );
@@ -177,6 +181,7 @@
                                                         alt="<?php echo $post->post_title; ?>">
                                                 </a>
                                             </div>
+                                            <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?></div>
                                             <div class="pcat-result-item-meta-row">
                                                 <div class="pcat-result-item-meta-col">
                                                     <div class="pcat-result-item-favorite">
@@ -184,9 +189,25 @@
                                                     </div>
                                                 </div>
                                                 <div class="pcat-result-item-meta-col">
-                                                    <div class="pcat-result-item-busket">
-                                                        <a href="#"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
-                                                    </div>
+                                                    <?php
+                                                        
+                                                        if( !$product->is_purchasable() ||  !$product->is_in_stock() ){
+                                                            ?>
+                                                            <span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span>
+                                                            <?php
+                                                            //if( !$product->is_purchasable() ){
+                                                            //    echo '<span style="color:red">Μη διαθέσιμο</span>';
+                                                            //} elseif ( !$product->is_in_stock() ) {
+                                                            //    echo '<span style="color:red">Εξαντλημένο</span>';
+                                                            //}
+                                                        } else {                                                            
+                                                    ?>
+                                                            <div class="pcat-result-item-busket">
+                                                                <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
+                                                            </div>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </div>
                                             </div>
                                             <?php
@@ -210,9 +231,9 @@
                                                     <?php echo $product->get_price_html(); ?>
                                                 </div>
                                             </div>
-                                            <div class="pcat-result-item-footer-col">
+                                            <!-- <div class="pcat-result-item-footer-col">
                                                 <div class="pcat-result-item-footer-product-discount">-30%</div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -251,8 +272,16 @@
                                     <div class="pcat-results-footer-select">
                                         <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
                                         <div class="pcat-results-footer-select-elem">
-                                            <select>
-                                                <option value="1">1</option>
+                                            <select id="js-search-book__page-list">
+                                                <?php
+                                                    $pageCounts = $pagination->get_pages();
+
+                                                    for($i = 1; $i <= $pageCounts; $i++){
+                                                ?>
+                                                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                <?php
+                                                    }
+                                                ?>
                                             </select>
                                             <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
                                         </div>
@@ -267,6 +296,13 @@
                             <div class="pcat-results-footer-select-label">Προβολή</div>
                             <div class="pcat-results-footer-select-elem">
                                 <select id="js-search-book__per-page">
+                                    <?php
+                                        if( wp_is_mobile() ){
+                                    ?>
+                                            <option value="4">4</option>
+                                    <?php
+                                        }
+                                    ?>
                                     <option value="16">16</option>
                                     <option value="32">32</option>
                                     <option value="64">64</option>

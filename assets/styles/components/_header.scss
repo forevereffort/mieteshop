@@ -910,6 +910,7 @@
 
   .header-top-right-row {
     justify-content: space-around;
+    position: relative;
   }
 
   .header-top-right-col+.header-top-right-col {
@@ -987,5 +988,15 @@
   .header-top {
     position: relative;
     z-index: 99;
+  }
+  
+  .header-top-search-wrapper {
+    position: static;
+  }
+
+  .header-top-search-popup {
+    left: 0 !important;
+    right: 0;
+    width: auto;
   }
 }

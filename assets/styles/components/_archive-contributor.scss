@@ -37,6 +37,10 @@
   }
 }
 
+.archive-contributor-search-english-letter-wrapper {
+  margin-top: 40px;
+}
+
 .archive-contributor-search-english-letter-row {
   display: flex;
   justify-content: space-between;
@@ -120,6 +124,7 @@
 
   .archive-contributor-search-greek-letter-wrapper,
   .archive-contributor-search-english-letter-wrapper {
+    margin: 0;
     overflow: auto;
     padding: 10px 0;
   }
