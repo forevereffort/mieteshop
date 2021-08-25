@@ -110,12 +110,14 @@ function filterSearchBookFunc()
             }
 
             $products_search_list[] = [
+                'id' => $post->ID,
                 'url' => get_permalink($post->ID),
                 'placeholder' => placeholderImage($image[1], $image[2]),
                 'image_url' => aq_resize($image[0], $image[1], $image[2], true),
                 'title' => $post->post_title,
                 'authors' => $author_list,
-                'price' => $product->get_price_html()
+                'price' => $product->get_price_html(),
+                'sku' => $product->get_sku(),
             ];
         }
     }
@@ -130,7 +132,7 @@ function filterSearchBookFunc()
             'result' => $twig->render('search-book-result.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
             'pageCounts' => $pagination->get_pages(),
-            'arg' => $args
+            // 'arg' => $args
         ]);
 
         echo $result;
