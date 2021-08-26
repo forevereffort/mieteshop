@@ -2,7 +2,7 @@
     global $product;
 
     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-    $publishers = get_field('book_publishers', $product->ID);
+    $publisherIDs = get_field('book_publishers', $product->ID);
     $series = get_the_terms( $product->ID, 'series' );
     $epiloges = get_the_terms( $product->ID, 'epiloges' );
 ?>
@@ -31,10 +31,10 @@
                                     }        
                                 }
 
-                                if( $publishers ){
-                                    foreach($publishers as $publisher){
+                                if( $publisherIDs ){
+                                    foreach($publisherIDs as $publisherID){
                             ?>
-                                        <div class="single-product-tag"><a href="<?php echo get_permalink($publisher->ID); ?>"><?php echo $publisher->post_title; ?></a></div>
+                                        <div class="single-product-tag"><a href="<?php echo get_permalink($publisherID); ?>"><?php echo get_the_title($publisherID); ?></a></div>
                             <?php
                                     }	     
                                 }
@@ -52,15 +52,15 @@
                         </div>
                         <div class="single-product-author">
                             <?php
-                                $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+                                $authorIDs = get_field('book_contributors_syggrafeas', $product->get_id());
 
-                                if( $authors ){
-                                    if( count($authors) > 3){
+                                if( $authorIDs ){
+                                    if( count($authorIDs) > 3){
                                         echo 'Συλλογικό Έργο';	
                                     } else {					
-                                        foreach($authors as $author) {
+                                        foreach($authorIDs as $authorID) {
                             ?>
-                                            <a href="<?php echo get_permalink($author->ID); ?>"><?php echo $author->post_title; ?></a>
+                                            <a href="<?php echo get_permalink($authorID); ?>"><?php echo get_the_title($authorID); ?></a>
                             <?php
                                         }	
                                     }	
@@ -246,15 +246,15 @@
                                     }
                                 ?>
                                 <?php 
-                                    if( $publishers ){
+                                    if( $publisherIDs ){
                                 ?>
                                         <div class="single-product-detail-information-item">
                                             <div class="single-product-detail-information-item__label">ΕΚΔΟΤΗΣ</div>
                                             <div class="single-product-detail-information-item__value">
                                                 <?php 
-                                                    foreach($publishers as $publisher) {
+                                                    foreach($publisherIDs as $publisherID) {
                                                 ?>
-                                                        <a href="<?php echo get_permalink($publisher->ID); ?>"><?php echo $publisher->post_title; ?></a>
+                                                        <a href="<?php echo get_permalink($publisherID); ?>"><?php echo get_the_title($publisherID); ?></a>
                                                 <?php
                                                     }	                                    
                                                 ?>

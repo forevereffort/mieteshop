@@ -206,18 +206,18 @@
                         if ( !empty($loop->posts) ) {
                             foreach( $loop->posts as $postid ) {
                                 // get author & publisher list that include in the search result
-                                $authors = get_field('book_contributors_syggrafeas', $postid);
-                                $publishers = get_field('book_publishers', $postid);
+                                $authorIDs = get_field('book_contributors_syggrafeas', $postid);
+                                $publisherIDs = get_field('book_publishers', $postid);
 
-                                if( !empty($authors) ){
-                                    foreach($authors as $author){
-                                        $author_list_in_search_result[$author->ID] = $author->post_title;
+                                if( !empty($authorIDs) ){
+                                    foreach($authorIDs as $authorID){
+                                        $author_list_in_search_result[$authorID] = get_the_title($authorID);
                                     }
                                 }
 
-                                if( !empty($publishers) ){
-                                    foreach($publishers as $publisher){
-                                        $publisher_list_in_search_result[$publisher->ID] = $publisher->post_title;
+                                if( !empty($publisherIDs) ){
+                                    foreach($publisherIDs as $publisherID){
+                                        $publisher_list_in_search_result[$publisherID] = get_the_title($publisherID);
                                     }
                                 }
                             }
@@ -302,7 +302,7 @@
                                 global $product;
 
                                 $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-                                $authors = get_field('book_contributors_syggrafeas', $post->ID);
+                                $authorIDs = get_field('book_contributors_syggrafeas', $post->ID);
                         ?>
                                 <div class="pcat-results-col">
                                     <div class="pcat-result-item">
@@ -346,13 +346,13 @@
                                                 </div>
                                             </div>
                                             <?php
-                                                if( !empty($authors) ){
+                                                if( !empty($authorIDs) ){
                                                     echo '<div class="pcat-result-item-author-list">';
-                                                    if( count($authors) > 3 ){
+                                                    if( count($authorIDs) > 3 ){
                                                         echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
                                                     } else {
-                                                        foreach( $authors as $author ){
-                                                            echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                                        foreach( $authorIDs as $authorID ){
+                                                            echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($authorID) . '">' . get_the_title($authorID) . '</a></div>';
                                                         }
                                                     }
                                                     echo '</div>';

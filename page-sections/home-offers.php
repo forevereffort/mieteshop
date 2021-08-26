@@ -9,7 +9,7 @@
 
                 foreach($homepage_offers_rel as $offer){
                     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $offer->ID ), 'full' );
-                    $authors = get_field('book_contributors_syggrafeas', $offer->ID);
+                    $authorIDs = get_field('book_contributors_syggrafeas', $offer->ID);
             ?>
                     <div class="home-offers-col">
                         <div class="home-offers-image">
@@ -23,13 +23,13 @@
                         </div>
                         <div class="home-offers-info">
                             <?php
-                                if( !empty($authors) ){
+                                if( !empty($authorIDs) ){
                                     echo '<div class="home-offers-author-list">';
-                                    if( count($authors) > 3 ){
+                                    if( count($authorIDs) > 3 ){
                                         echo '<div class="home-offers-author-item">Συλλογικό Έργο</div>';
                                     } else {
-                                        foreach( $authors as $author ){
-                                            echo '<div class="home-offers-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                        foreach( $authorIDs as $authorID ){
+                                            echo '<div class="home-offers-author-item"><a href="'. get_permalink($authorID) . '">' . get_the_title($authorID) . '</a></div>';
                                         }
                                     }
                                     echo '</div>';
@@ -52,7 +52,7 @@
 
                         foreach($homepage_offers_rel as $offer){
                             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $offer->ID ), 'full' );
-                            $authors = get_field('book_contributors_syggrafeas', $offer->ID);
+                            $authorIDs = get_field('book_contributors_syggrafeas', $offer->ID);
                     ?>
                             <div class="swiper-slide">
                                 <div class="home-offers-col">
@@ -67,13 +67,13 @@
                                     </div>
                                     <div class="home-offers-info">
                                         <?php
-                                            if( !empty($authors) ){
+                                            if( !empty($authorIDs) ){
                                                 echo '<div class="home-offers-author-list">';
-                                                if( count($authors) > 3 ){
+                                                if( count($authorIDs) > 3 ){
                                                     echo '<div class="home-offers-author-item">Συλλογικό Έργο</div>';
                                                 } else {
-                                                    foreach( $authors as $author ){
-                                                        echo '<div class="home-offers-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                                    foreach( $authorIDs as $authorID ){
+                                                        echo '<div class="home-offers-author-item"><a href="'. get_permalink($authorID) . '">' . get_the_title($authorID) . '</a></div>';
                                                     }
                                                 }
                                                 echo '</div>';

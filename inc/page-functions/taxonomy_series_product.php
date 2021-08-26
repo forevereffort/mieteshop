@@ -58,13 +58,13 @@ function filterTaxonomySeriesProductFunc()
             $product = wc_get_product( $post->ID );
 
             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-            $authors = get_field('book_contributors_syggrafeas', $post->ID);
+            $authorIDs = get_field('book_contributors_syggrafeas', $post->ID);
             $author_list = [];
 
-            foreach( $authors as $author ){
+            foreach( $authorIDs as $authorID ){
                 $author_list[] = [
-                    'url' => get_permalink($author->ID),
-                    'title' => $author->post_title
+                    'url' => get_permalink($authorID),
+                    'title' => get_the_title($authorID)
                 ];
             }
 

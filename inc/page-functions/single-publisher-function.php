@@ -59,13 +59,13 @@ function filterSinglePublisherProductFunc()
             $product = wc_get_product( $post->ID );
 
             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-            $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+            $authorIDs = get_field('book_contributors_syggrafeas', $product->get_id());
             $author_list = [];
 
-            foreach( $authors as $author ){
+            foreach( $authorIDs as $authorID ){
                 $author_list[] = [
-                    'url' => get_permalink($author->ID),
-                    'title' => $author->post_title
+                    'url' => get_permalink($authorID),
+                    'title' => get_the_title($authorID)
                 ];
             }
 

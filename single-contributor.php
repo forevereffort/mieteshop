@@ -76,7 +76,7 @@
                     global $product;
 
                     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-                    $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+                    $authorIDs = get_field('book_contributors_syggrafeas', $product->get_id());
             ?>
                     <div class="pcat-results-col">
                         <div class="pcat-result-item">
@@ -103,13 +103,13 @@
                                     </div>
                                 </div>
                                 <?php
-                                    if( !empty($authors) ){
+                                    if( !empty($authorIDs) ){
                                         echo '<div class="pcat-result-item-author-list">';
-                                        if( count($authors) > 3 ){
+                                        if( count($authorIDs) > 3 ){
                                             echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
                                         } else {
-                                            foreach( $authors as $author ){
-                                                echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                            foreach( $authorIDs as $authorID ){
+                                                echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($authorID) . '">' . get_the_title($authorID) . '</a></div>';
                                             }
                                         }
                                         echo '</div>';
@@ -152,7 +152,7 @@
                         foreach($relatedbooks as $relatedbook){
                             $relatedbook_product = wc_get_product( $relatedbook->ID );    
                             $rb_image = wp_get_attachment_image_src( get_post_thumbnail_id( $relatedbook->ID ), 'full' );
-                            $rb_authors = get_field('book_contributors_syggrafeas', $relatedbook->ID);
+                            $rb_authorIDs = get_field('book_contributors_syggrafeas', $relatedbook->ID);
                     ?>
                             <div class="pcat-results-col">
                                 <div class="pcat-result-item">
@@ -177,13 +177,13 @@
                                             </div>
                                         </div>
                                         <?php
-                                            if( !empty($rb_authors) ){
+                                            if( !empty($rb_authorIDs) ){
                                                 echo '<div class="pcat-result-item-author-list">';
-                                                if( count($rb_authors) > 3 ){
+                                                if( count($rb_authorIDs) > 3 ){
                                                     echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
                                                 } else {
-                                                    foreach( $rb_authors as $rb_author ){
-                                                        echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($rb_author->ID) . '">' . $rb_author->post_title . '</a></div>';
+                                                    foreach( $rb_authorIDs as $rb_authorID ){
+                                                        echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($rb_authorID) . '">' . get_the_title($rb_authorID) . '</a></div>';
                                                     }
                                                 }
                                                 echo '</div>';

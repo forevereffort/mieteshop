@@ -268,17 +268,17 @@
 										} else {
 											$cart_list = [];
 											foreach(WC()->cart->get_cart() as $cart_item){
-												$authors = get_field('book_contributors_syggrafeas', $cart_item['data']->get_id());
+												$authorIDs = get_field('book_contributors_syggrafeas', $cart_item['data']->get_id());
 												$author_list = [];
 
-												if( !empty($authors) ){
-													if( count($authors) > 3 ){
+												if( !empty($authorIDs) ){
+													if( count($authorIDs) > 3 ){
 														$author_list = 'Συλλογικό Έργο';
 													} else {
-														foreach( $authors as $author ){
+														foreach( $authorIDs as $authorID ){
 															$author_list[] = [
-																'link' => get_permalink($author->ID),
-																'title' => $author->post_title
+																'link' => get_permalink($authorID),
+																'title' => get_the_title($authorID)
 															];
 														}
 													}

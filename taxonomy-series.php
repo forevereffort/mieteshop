@@ -87,7 +87,7 @@
 
                                 $product = wc_get_product( $post->ID );
                                 $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-                                $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+                                $authorIDs = get_field('book_contributors_syggrafeas', $product->get_id());
                         ?>
                                 <div class="pcat-results-col">
                                     <div class="pcat-result-item">
@@ -112,13 +112,13 @@
                                                 </div>
                                             </div>
                                             <?php
-                                                if( !empty($authors) ){
+                                                if( !empty($authorIDs) ){
                                                     echo '<div class="pcat-result-item-author-list">';
-                                                    if( count($authors) > 3 ){
+                                                    if( count($authorIDs) > 3 ){
                                                         echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
                                                     } else {
-                                                        foreach( $authors as $author ){
-                                                            echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                                        foreach( $authorIDs as $authorID ){
+                                                            echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($authorID) . '">' . get_the_title($authorID) . '</a></div>';
                                                         }
                                                     }
                                                     echo '</div>';

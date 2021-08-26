@@ -11,7 +11,7 @@
 
                         foreach($homepage_new_releases_rel as $release){
                             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $release->ID ), 'full' );
-                            $authors = get_field('book_contributors_syggrafeas', $release->ID);
+                            $authorIDs = get_field('book_contributors_syggrafeas', $release->ID);
                     ?>
                             <div class="swiper-slide">
                                 <div class="book-slider-item">
@@ -26,13 +26,13 @@
                                     </div>
                                     <div class="book-slider-info">
                                         <?php
-                                            if( !empty($authors) ){
+                                            if( !empty($authorIDs) ){
                                                 echo '<div class="book-slider-author-list">';
-                                                if( count($authors) > 3 ){
+                                                if( count($authorIDs) > 3 ){
                                                     echo '<div class="book-slider-author-item">Συλλογικό Έργο</div>';
                                                 } else {
-                                                    foreach( $authors as $author ){
-                                                        echo '<div class="book-slider-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                                                    foreach( $authorIDs as $authorID ){
+                                                        echo '<div class="book-slider-author-item"><a href="'. get_permalink($authorID) . '">' . get_the_title($authorID) . '</a></div>';
                                                     }
                                                 }
                                                 echo '</div>';
