@@ -74,6 +74,8 @@
 }
 
 .archive-publisher-search-title {
+  margin-bottom: 50px;
+  
   h2 {
     color: $color-black-1;
     font-size: 18px;
@@ -263,7 +265,7 @@
   }
 
   .archive-publisher-search-result-list {
-    margin: 0;
+    margin: 80px 0 0;
     padding: 0;
   }
 
@@ -273,6 +275,6 @@
   }
 
   .archive-publisher-search-type-row {
-    margin: 0;
+    margin: 80px 0 0;
   }
 }
