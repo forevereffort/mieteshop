@@ -21,7 +21,8 @@
                 'terms' => 'book',
                 'operator' => 'NOT IN',
             ]
-        ]
+        ],
+        'fields' => 'ids',
     ];
 
     $the_query = new WP_Query( $args );
@@ -38,30 +39,28 @@
     // get product category list that included in search result
     $product_category_list_in_search_result = [];
 
-    if ( $the_query->have_posts() ) {
-        while ( $the_query->have_posts() ){
-            $the_query->the_post();
-
+    if ( !empty($the_query->posts) ) {
+        foreach( $the_query->posts as $postid ) {
             // get author & publisher & product category list that include in the search result
-            $authors = get_field('book_contributors_syggrafeas', $post->ID);
-            $publishers = get_field('book_publishers', $post->ID);
-            $prorudct_categories = get_the_terms($post->ID, 'product_cat');
+            $authorIDs = get_field('book_contributors_syggrafeas', $postid);
+            $publisherIDs = get_field('book_publishers', $postid);
+            $prorudct_categories = wp_get_post_terms($postid, 'product_cat', ['fields' => 'id=>name']);
 
-            if( !empty($authors) ){
-                foreach($authors as $author){
-                    $author_list_in_search_result[$author->ID] = $author->post_title;
+            if( !empty($authorIDs) ){
+                foreach($authorIDs as $authorID){
+                    $author_list_in_search_result[$authorID] = get_the_title($authorID);
                 }
             }
 
-            if( !empty($publishers) ){
-                foreach($publishers as $publisher){
-                    $publisher_list_in_search_result[$publisher->ID] = $publisher->post_title;
+            if( !empty($publisherIDs) ){
+                foreach($publisherIDs as $publisherID){
+                    $publisher_list_in_search_result[$publisherID] = get_the_title($publisherID);
                 }
             }
 
             if( !empty($prorudct_categories) ){
-                foreach($prorudct_categories as $cat){
-                    $product_category_list_in_search_result[$cat->term_id] = $cat->name;
+                foreach($prorudct_categories as $term_id => $term_name){
+                    $product_category_list_in_search_result[$term_id] = $term_name;
                 }
             }
         }
