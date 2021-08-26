@@ -47,8 +47,10 @@ jQuery(function(){
   jQuery('#js-header-top-search-icon').click(function(){
     if( jQuery('#js-header-top-search-popup').hasClass('active') ){
       jQuery('#js-header-top-search-popup').removeClass('active');
+      jQuery(this).removeClass('active');
     } else {
       jQuery('#js-header-top-search-popup').addClass('active');
+      jQuery(this).addClass('active');
 
       // after appearing auto complete box, set focus the inputfield
       // as the popup has fade in effect for .2s, we need the time delay
@@ -62,8 +64,10 @@ jQuery(function(){
   jQuery('#js-header-top-favorite-icon').click(function(){
     if( jQuery('#js-header-top-favorite-popup').hasClass('active') ){
       jQuery('#js-header-top-favorite-popup').removeClass('active');
+      jQuery(this).removeClass('active');
     } else {
       jQuery('#js-header-top-favorite-popup').addClass('active');
+      jQuery(this).addClass('active');
     }
   })
 
@@ -71,8 +75,10 @@ jQuery(function(){
   jQuery('#js-header-top-busket-icon').click(function(){
     if( jQuery('#js-header-top-busket-popup').hasClass('active') ){
       jQuery('#js-header-top-busket-popup').removeClass('active');
+      jQuery(this).removeClass('active');
     } else {
       jQuery('#js-header-top-busket-popup').addClass('active');
+      jQuery(this).addClass('active');
     }
   })
 
@@ -80,8 +86,10 @@ jQuery(function(){
   jQuery('#js-header-top-user-icon').click(function(){
     if( jQuery('#js-header-top-user-popup').hasClass('active') ){
       jQuery('#js-header-top-user-popup').removeClass('active');
+      jQuery(this).removeClass('active');
     } else {
       jQuery('#js-header-top-user-popup').addClass('active');
+      jQuery(this).addClass('active');
     }
   })
 
@@ -90,24 +98,28 @@ jQuery(function(){
     if( jQuery('#js-header-top-search-popup').hasClass('active') ){
       if (jQuery(event.target).closest("#js-header-top-search-popup,#js-header-top-search-icon").length === 0) {
         jQuery('#js-header-top-search-popup').removeClass('active');
+        jQuery('#js-header-top-search-icon').removeClass('active');
       }
     }
 
     if( jQuery('#js-header-top-favorite-popup').hasClass('active') ){
       if (jQuery(event.target).closest("#js-header-top-favorite-popup,#js-header-top-favorite-icon").length === 0) {
         jQuery('#js-header-top-favorite-popup').removeClass('active');
+        jQuery('#js-header-top-favorite-icon').removeClass('active');
       }
     }
 
     if( jQuery('#js-header-top-busket-popup').hasClass('active') ){
       if (jQuery(event.target).closest("#js-header-top-busket-popup,#js-header-top-busket-icon").length === 0) {
         jQuery('#js-header-top-busket-popup').removeClass('active');
+        jQuery('#js-header-top-busket-icon').removeClass('active');
       }
     }
 
     if( jQuery('#js-header-top-user-popup').hasClass('active') ){
       if (jQuery(event.target).closest("#js-header-top-user-popup,#js-header-top-user-icon").length === 0) {
         jQuery('#js-header-top-user-popup').removeClass('active');
+        jQuery('#js-header-top-user-icon').removeClass('active');
       }
     }
   });
