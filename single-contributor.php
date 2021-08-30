@@ -14,4 +14,6 @@
     }
 ?>
 
+<div id="js-single-contributor-product-filter-load-spinner" class="load-spinner hide"></div>
+
 <?php get_footer(); ?>

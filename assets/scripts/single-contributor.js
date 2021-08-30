@@ -104,3 +104,60 @@ class MieteshopContributorMetaSection extends window.HTMLDivElement {
 }
 
 window.customElements.define('mieteshop-contributor-meta-section', MieteshopContributorMetaSection, { extends: 'section' })
+
+jQuery(function(){
+
+  // get products with publisher and page
+  function singleContributorProductSearch(page){
+      const filterContributorId = jQuery('#js-single-contributor-product-row').attr('data-contributor-id');
+      const nonce = jQuery('#js-single-contributor-product-row').attr('data-nonce');
+      const productPerPage = jQuery('#js-single-contributor-product-row').attr('data-product-per-page');
+
+      jQuery('#js-single-contributor-product-filter-load-spinner').removeClass('hide');
+
+      jQuery.ajax({
+          type: 'get',
+          dataType: 'json',
+          url: window.MieteshopData.ajaxurl,
+          data: {
+              action: 'filter_single_contributor_product',
+              nonce,
+              filterContributorId,
+              page,
+              productPerPage
+          },
+          success: function (response) {
+              jQuery('#js-single-contributor-product-row').html(response.result);
+              jQuery('#js-single-contributor-product-navigation').html(response.navigation);
+
+              // add page navigation click event into new added nav html
+              addPageNavigationClickOfSCProductFunc();
+
+              jQuery('#js-single-contributor-product-filter-load-spinner').addClass('hide')
+          }
+      })
+  }
+  
+  // page navigation click
+  function addPageNavigationClickOfSCProductFunc(){
+      jQuery('.js-sc-product-navigation-item a').on('click', function(){
+
+          // check this is current page
+          if( !jQuery(this).parent().hasClass('active') ){
+              const page = jQuery(this).attr('data-page');
+
+              singleContributorProductSearch(page)
+          }
+
+          return false;
+      })
+  }
+
+  addPageNavigationClickOfSCProductFunc();
+
+  jQuery('#js-sc-page-list').on('change', function(){
+      const pageNumber = jQuery(this).val();
+
+      singleContributorProductSearch(pageNumber);
+  });
+})
