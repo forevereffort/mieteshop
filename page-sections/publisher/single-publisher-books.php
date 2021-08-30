@@ -2,6 +2,11 @@
     global $post;
 
     $productPerPage = 16;
+
+    if( wp_is_mobile() ){
+        $productPerPage = 4;
+    }
+
     $page = 1;
     // get book that this single publiser was included
     $current_single_publisher_id = $post->ID;
@@ -120,7 +125,7 @@
                                 <div class="pcat-results-footer-options-col">
                                     <div id="js-single-publisher-product-navigation" class="pcat-results-navigation">
                                         <?php
-                                            require_once dirname(__FILE__) . '/inc/zebra-pagination.php';
+                                            require_once dirname(dirname(dirname(__FILE__))) . '/inc/zebra-pagination.php';
 
                                             $pagination = new Zebra_Pagination();
                                             $pagination->records($count_product_list_include_single_publisher);
