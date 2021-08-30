@@ -137,5 +137,6 @@ include_once 'page-functions/search-art-object-function.php';
 include_once 'page-functions/archive-publisher-function.php';
 include_once 'page-functions/archive-contributor-function.php';
 include_once 'page-functions/single-publisher-function.php';
+include_once 'page-functions/single-contributor-function.php';
 include_once 'page-functions/taxonomy_series_product.php';
 include_once 'page-functions/blog-function.php';

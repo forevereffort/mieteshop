@@ -23,7 +23,7 @@
                     'meta_query' => [
                         [
                             'key'     => 'book_contributors_syggrafeas',
-                            'value'   => $post->ID,
+                            'value'   => '"' . $post->ID . '"',
                             'compare' => 'LIKE'
                         ],
                     ]                    
