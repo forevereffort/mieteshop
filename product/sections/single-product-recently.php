@@ -37,6 +37,7 @@
                                                     alt="<?php echo $product->get_name(); ?>">
                                             </a>
                                         </div>
+                                        <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $product->get_id() . '"]'); ?></div>
                                         <div class="pcat-result-item-meta-row">
                                             <div class="pcat-result-item-meta-col">
                                                 <div class="pcat-result-item-favorite">
@@ -106,6 +107,7 @@
                                                                 alt="<?php echo $product->get_name(); ?>">
                                                         </a>
                                                     </div>
+                                                    <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $product->get_id() . '"]'); ?></div>
                                                     <div class="pcat-result-item-meta-row">
                                                         <div class="pcat-result-item-meta-col">
                                                             <div class="pcat-result-item-favorite">

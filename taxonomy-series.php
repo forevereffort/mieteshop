@@ -99,6 +99,7 @@
                                                     data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
                                                     alt="<?php echo $product->get_name(); ?>">
                                             </div>
+                                            <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $product->get_id() . '"]'); ?></div>
                                             <div class="pcat-result-item-meta-row">
                                                 <div class="pcat-result-item-meta-col">
                                                     <div class="pcat-result-item-favorite">
@@ -172,8 +173,16 @@
                                     <div class="pcat-results-footer-select">
                                         <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
                                         <div class="pcat-results-footer-select-elem">
-                                            <select>
-                                                <option value="1">1</option>
+                                            <select id="js-ts-products-page-list">
+                                                <?php
+                                                    $pageCounts = $pagination->get_pages();
+
+                                                    for($i = 1; $i <= $pageCounts; $i++){
+                                                ?>
+                                                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                                <?php
+                                                    }
+                                                ?>
                                             </select>
                                             <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
                                         </div>

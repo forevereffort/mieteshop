@@ -70,6 +70,7 @@ function filterSinglePublisherProductFunc()
             }
 
             $products_search_list[] = [
+                'id' => $post->ID,
                 'url' => get_permalink($product->get_id()),
                 'placeholder' => placeholderImage($image[1], $image[2]),
                 'image_url' => aq_resize($image[0], $image[1], $image[2], true),
