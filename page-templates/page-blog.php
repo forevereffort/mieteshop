@@ -182,7 +182,7 @@ global $post;
 
             wp_reset_query();
         ?>
-        <div>
+        <div class="small-container">
             <?php
                 $page_count = round($total_post_count / $posts_per_page + 0.45);
             ?>
