@@ -18,6 +18,8 @@
                 'terms' => $current_series_taxonomy->term_id
             ],
         ],
+        'orderby' => 'title',
+        'order' => 'asc',
     ];
 
     $the_query = new WP_Query( $args );
@@ -25,7 +27,7 @@
     if ( $the_query->have_posts() ) {
         $products_search_count = $the_query->found_posts;
 ?>
-        <section class="pcat-results-section pcat-results-section--border-top">
+        <section id="js-tax-series-books" class="pcat-results-section pcat-results-section--border-top">
             <div class="general-container">
                 <div class="content-container">
                     <div class="pcat-results-top-title">
@@ -41,8 +43,9 @@
                             <div class="pcat-classification-filter">
                                 <div class="pcat-classification-filter-label pcat-classification-filter-label--black">ΤΑΞΙΝΟΜΗΣΗ</div>
                                 <div class="pcat-classification-filter-select">
-                                    <select>
-                                        <option value="1">Χρονολογική</option>
+                                    <select id="js-ts-product-display-order">
+                                        <option value="published-date">Published Date</option>
+                                        <option value="alphabetical">Alphabetical</option>
                                     </select>
                                     <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                                 </div>

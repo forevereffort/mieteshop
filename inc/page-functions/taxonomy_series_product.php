@@ -13,6 +13,7 @@ function filterTaxonomySeriesProductFunc()
     $seriesTermId = intval($_REQUEST['seriesTermId']);
     $page = intval($_REQUEST['page']);
     $productPerPage = intval($_REQUEST['productPerPage']);
+    $productOrder = $_REQUEST['productOrder'];
 
     require_once dirname(dirname(__FILE__)) . '/zebra-pagination.php';
 
@@ -44,6 +45,14 @@ function filterTaxonomySeriesProductFunc()
             ],
         ],
     ];
+
+    if( $productOrder === 'published-date' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'asc';
+    } else if( $productOrder === 'alphabetical' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'desc';
+    }
     
     $the_query = new WP_Query( $args );
 
