@@ -27,10 +27,10 @@ class MieteshopSeriesMetaSection extends window.HTMLDivElement {
   initVideoSlider () {
     const config = {
       slidesPerView: 1,
-      speed: 5000,
-      // autoplay: {
-      //   delay: 8000,
-      // },
+      speed: 1500,
+      autoplay: {
+        delay: 3000,
+      },
       loop: true,
       pagination: {
         el: this.$videoPagination.get(0),

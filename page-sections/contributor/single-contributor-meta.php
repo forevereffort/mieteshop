@@ -34,7 +34,6 @@
                                                                 alt="video image">
                                                             <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
                                                             <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
-                                                            <?php //echo '<div class="embed-container">'.get_sub_field('contributor_video_embed_code').'</div>'; ?>
                                                         </div>
                                                         <div class="single-contributor-video-hidden"><?php echo get_sub_field('contributor_video_embed_code'); ?></div>
                                                     </div>

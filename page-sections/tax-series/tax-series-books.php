@@ -4,6 +4,11 @@
     $current_series_taxonomy = get_queried_object();
 
     $productPerPage = 16;
+
+    if( wp_is_mobile() ){
+        $productPerPage = 4;
+    }
+    
     $page = 1;
 
     // get all products that has selected series taxonomy

@@ -17,14 +17,13 @@
                                 if( have_rows('series_videos', 'series_'.$current_series_taxonomy->term_id) ) { 
                                     while( have_rows('series_videos', 'series_'.$current_series_taxonomy->term_id) ){
                                         the_row();
-                                        // get_sub_field('contributor_video_embed_code');
+                                        
                                         $video_image_url = get_sub_field('contributor_video_cover_image');
-                                        ?>
+                            ?>
                                         <div class="swiper-slide">
                                             <div class="single-product-video-item-row">
                                                 <div class="single-product-video-item-left-col">
-                                                    <div class="single-product-video-image-wrapper">
-                                                        <!--
+                                                    <div class="js-sc-video-image-wrapper single-product-video-image-wrapper">
                                                         <img
                                                             class="lazyload"
                                                             src="<?php echo placeholderImage(606, 241); ?>"
@@ -32,9 +31,8 @@
                                                             alt="video image">
                                                         <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
                                                         <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
-                                                        -->
-                                                        <?php echo '<div class="embed-container">'.get_sub_field('contributor_video_embed_code').'</div>'; ?>
                                                     </div>
+                                                    <div class="single-contributor-video-hidden"><?php echo get_sub_field('contributor_video_embed_code'); ?></div>
                                                 </div>
                                                 <div class="single-product-video-item-right-col">
                                                     <div class="single-product-video-item-content">
@@ -56,3 +54,10 @@
         </div>
     </div>
 </section>
+<div id="js-sc-video-popup" class="single-contributor-video-popup hide">
+    <div id="js-sc-video-popup__close-btn" class="single-contributor-video-popup__close-btn"></div>
+    <div class="single-contributor-video-popup__video">
+        <div id="js-sc-video-popup__video-wrapper">
+        </div>
+    </div>
+</div>
