@@ -95,7 +95,7 @@
                                                 <div class="swiper-slide">
                                                     <div class="single-product-video-item-row">
                                                         <div class="single-product-video-item-left-col">
-                                                            <div class="single-product-video-image-wrapper">
+                                                            <div class="js-sc-video-image-wrapper single-product-video-image-wrapper">
                                                                 <img
                                                                     class="lazyload"
                                                                     src="<?php echo placeholderImage(606, 241); ?>"
