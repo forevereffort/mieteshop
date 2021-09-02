@@ -142,7 +142,13 @@ jQuery(function(){
         // add page navigation click event into new added nav html
         addPageNavigationClickOfSCProductFunc();
 
+        jQuery('#js-sc-page-list').val(page);
+
         jQuery('#js-single-contributor-product-filter-load-spinner').addClass('hide')
+
+        jQuery('html, body').animate({
+          scrollTop: jQuery('#js-single-contributor-books').offset().top
+        }, 500);
       }
     })
   }

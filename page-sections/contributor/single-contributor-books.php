@@ -9,7 +9,7 @@
 
     $page = 1;
 ?>
-<section class="single-product-recently-section single-product-recently-section--border-bottom">
+<section id="js-single-contributor-books" class="single-product-recently-section single-product-recently-section--border-bottom">
     <div class="content-container">
         <div class="single-product-recently-title">
             <h2>ΒΙΒΛΙΑ ΤΟΥ ΣΥΓΓΡΑΦΕΑ</h2>

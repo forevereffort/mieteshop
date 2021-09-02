@@ -145,6 +145,8 @@ jQuery(function(){
         // add page navigation click event into new added nav html
         addPageNavigationClickOfSPProductFunc();
 
+        jQuery('#js-sp-page-list').val(page);
+
         jQuery('#js-single-publisher-product-filter-load-spinner').addClass('hide')
 
         jQuery('html, body').animate({
