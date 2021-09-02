@@ -11,6 +11,11 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
   }
 
   init () {
+    this.reviewSlider = null;
+    this.audioSlider = null;
+    this.videoSlider = null;
+    this.blogSlider = null;
+
     this.$ = jQuery(this)
     this.resolveElements()
   }
@@ -28,19 +33,19 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
 
   connectedCallback () {
     this.initReviewSlider()
-    this.initAudioSlider()
-    this.initVideoSlider()
-    this.initBlogSlider()
+    // this.initAudioSlider()
+    // this.initVideoSlider()
+    // this.initBlogSlider()
     this.initTab()
   }
 
   initReviewSlider () {
     const config = {
       slidesPerView: 1,
-      speed: 5000,
-      // autoplay: {
-      //   delay: 8000,
-      // },
+      speed: 1500,
+      autoplay: {
+        delay: 3000,
+      },
       loop: true,
       pagination: {
         el: this.$reviewPagination.get(0),
@@ -48,6 +53,7 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       },
       observer: true,
       observeParents: true,
+      spaceBetween: 50,
     }
     
     this.reviewSlider = new Swiper(this.$reviewSlider.get(0), config)
@@ -56,10 +62,10 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
   initAudioSlider () {
     const config = {
       slidesPerView: 1,
-      speed: 5000,
-      // autoplay: {
-      //   delay: 8000,
-      // },
+      speed: 1500,
+      autoplay: {
+        delay: 3000,
+      },
       loop: true,
       pagination: {
         el: this.$audioPagination.get(0),
@@ -83,10 +89,10 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
   initVideoSlider () {
     const config = {
       slidesPerView: 1,
-      speed: 5000,
-      // autoplay: {
-      //   delay: 8000,
-      // },
+      speed: 1500,
+      autoplay: {
+        delay: 3000,
+      },
       loop: true,
       pagination: {
         el: this.$videoPagination.get(0),
@@ -109,10 +115,10 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
 
   initBlogSlider () {
     const config = {
-      speed: 5000,
-      // autoplay: {
-      //   delay: 8000,
-      // },
+      speed: 1500,
+      autoplay: {
+        delay: 3000,
+      },
       loop: true,
       observer: true,
       observeParents: true,
@@ -130,6 +136,30 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
     
     this.blogSlider = new Swiper(this.$blogSlider.get(0), config)
   }
+
+  destoryReviewSlider(){
+    if( this.reviewSlider ){
+      this.reviewSlider.destroy(true, true);
+    }
+  }
+  
+  destoryAudioSlider(){
+    if( this.audioSlider ){
+      this.audioSlider.destroy(true, true);
+    }
+  }
+
+  destoryVideoSlider(){
+    if( this.videoSlider ){
+      this.videoSlider.destroy(true, true);
+    }
+  }
+
+  destoryBlogSlider(){
+    if( this.blogSlider ){
+      this.blogSlider.destroy(true, true);
+    }
+  }
   
   initTab () {
     const that = this;
@@ -139,13 +169,25 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
         const sectionID = jQuery(this).attr('data-section-id');
 
         if( sectionID === 'review' ){
-          that.reviewSlider.update();
+          that.initReviewSlider()
+          that.destoryAudioSlider()
+          that.destoryVideoSlider()
+          that.destoryBlogSlider()
         } else if( sectionID === 'audio' ){
-          that.audioSlider.update();
+          that.initAudioSlider()
+          that.destoryReviewSlider()
+          that.destoryVideoSlider()
+          that.destoryBlogSlider()
         } else if( sectionID === 'video' ){
-          that.videoSlider.update();
+          that.initVideoSlider()
+          that.destoryReviewSlider()
+          that.destoryAudioSlider()
+          that.destoryBlogSlider()
         } else if( sectionID === 'article' ){
-          that.blogSlider.update();
+          that.initBlogSlider()
+          that.destoryReviewSlider()
+          that.destoryAudioSlider()
+          that.destoryVideoSlider()
         }
   
         jQuery('.single-product-meta-tab-content-col').addClass('hide');

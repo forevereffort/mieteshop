@@ -1,8 +1,8 @@
 <?php
     get_template_part( 'product/sections/single', 'product-breadcrumb' );
     get_template_part( 'product/sections/single', 'product-sections' );
-    get_template_part( 'product/sections/single', 'product-download' );
-    get_template_part( 'product/sections/single', 'product-meta' );
-    get_template_part( 'product/sections/single', 'product-realted' );
-    get_template_part( 'product/sections/single', 'product-recently' );
+    // get_template_part( 'product/sections/single', 'product-download' );
+    // get_template_part( 'product/sections/single', 'product-meta' );
+    // get_template_part( 'product/sections/single', 'product-realted' );
+    // get_template_part( 'product/sections/single', 'product-recently' );
 ?>
