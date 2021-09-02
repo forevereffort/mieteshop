@@ -25,6 +25,7 @@
                                                 data-src="<?php echo aq_resize($rb_image[0], $rb_image[1], $rb_image[2], true); ?>"
                                                 alt="<?php echo $relatedbook->name; ?>">
                                         </div>
+                                        <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $relatedbook->ID . '"]'); ?></div>
                                         <div class="pcat-result-item-meta-row">
                                             <div class="pcat-result-item-meta-col">
                                                 <div class="pcat-result-item-favorite">

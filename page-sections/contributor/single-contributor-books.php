@@ -44,7 +44,7 @@
                         <div class="pcat-result-item">
                             <div class="pcat-result-item-info">
                                 <div class="pcat-result-item-image">
-                                    <a href="<?php echo get_permalink($product->ID); ?>">
+                                    <a href="<?php echo get_permalink($product->get_id()); ?>">
                                     <img
                                         class="lazyload"
                                         src="<?php echo placeholderImage($image[1], $image[2]); ?>"
@@ -52,6 +52,7 @@
                                         alt="<?php echo $product->get_name(); ?>">
                                     </a>    
                                 </div>
+                                <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $product->get_id() . '"]'); ?></div>
                                 <div class="pcat-result-item-meta-row">
                                     <div class="pcat-result-item-meta-col">
                                         <div class="pcat-result-item-favorite">
