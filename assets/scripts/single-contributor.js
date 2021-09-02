@@ -68,7 +68,6 @@ class MieteshopContributorMetaSection extends window.HTMLDivElement {
         320 : {
           slidesPerView: 1,
           spaceBetween: 50,
-          slidesPerView: 1,
         },
         768 : {
           slidesPerView: 'auto',
@@ -81,11 +80,11 @@ class MieteshopContributorMetaSection extends window.HTMLDivElement {
   }
 
   destoryVideoSlider(){
-    this.videoSlider.destroy();
+    this.videoSlider.destroy(true, true);
   }
-
+  
   destoryBlogSlider(){
-    this.blogSlider.destroy();
+    this.blogSlider.destroy(true, true);
   }
 
   initTab () {

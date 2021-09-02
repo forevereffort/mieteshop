@@ -22,7 +22,9 @@
 				'value'   => '"' . $current_single_publisher_id . '"',
 				'compare' => 'LIKE'
             ],
-        ]
+        ],
+        'orderby' => 'title',
+        'order' => 'asc',
     ];
 
     $the_query = new WP_Query( $args );
@@ -30,7 +32,7 @@
     if ( $the_query->have_posts() ) {
         $count_product_list_include_single_publisher = $the_query->found_posts;
 ?>
-        <section class="pcat-results-section">
+        <section id="js-single-publisher-book-list-section" class="pcat-results-section">
             <div class="general-container">
                 <div class="content-container">
                     <div class="pcat-results-top-title">
@@ -46,8 +48,9 @@
                             <div class="pcat-classification-filter">
                                 <div class="pcat-classification-filter-label pcat-classification-filter-label--black">ΤΑΞΙΝΟΜΗΣΗ</div>
                                 <div class="pcat-classification-filter-select">
-                                    <select>
-                                        <option value="1">Χρονολογική</option>
+                                    <select id="js-sp-product-display-order">
+                                        <option value="published-date">Published Date</option>
+                                        <option value="alphabetical">Alphabetical</option>
                                     </select>
                                     <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                                 </div>

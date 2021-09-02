@@ -195,6 +195,7 @@
 
 .single-publisher-video-item-row {
   display: flex;
+  height: 100%;
 }
 
 .single-publisher-video-item-left-col {
@@ -227,7 +228,16 @@
 }
 
 .single-publisher-video-image-wrapper {
+  cursor: pointer;
+  height: 100%;
   position: relative;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
 }
 
 .single-publisher-video-play-icon {
@@ -307,6 +317,12 @@
 
 .single-publisher-blog-wrapper {
   margin-right: -130px;
+}
+
+.single-publisher-video-wrapper {
+  .swiper-slide {
+    height: auto;
+  }
 }
 
 @media(max-width: $breakpoint-mobile-start) {
