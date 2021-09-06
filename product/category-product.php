@@ -258,8 +258,8 @@
                     <div class="pcat-classification-filter-label">ΤΑΞΙΝΟΜΗΣΗ</div>
                     <div class="pcat-classification-filter-select">
                         <select id="js-pcat-product-display-order">
-                            <option value="published-date">Published Date</option>
                             <option value="alphabetical">Alphabetical</option>
+                            <option value="published-date">Published Date</option>
                         </select>
                         <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                     </div>

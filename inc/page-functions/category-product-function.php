@@ -78,12 +78,13 @@ function filterCategoryProduct()
         ];
     }
 
-    if( $productOrder === 'published-date' ){
+    if( $productOrder === 'alphabetical' ){
         $args['orderby'] = 'title';
         $args['order'] = 'asc';
-    } else if( $productOrder === 'alphabetical' ){
-        $args['orderby'] = 'title';
-        $args['order'] = 'desc';
+    } else if( $productOrder === 'published-date' ){
+        $args['meta_key'] = 'book_first_published_date';
+        $args['orderby'] = 'meta_value';
+        $args['order'] = 'asc';
     }
     
     global $post;

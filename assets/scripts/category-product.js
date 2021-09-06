@@ -68,14 +68,18 @@ jQuery(function(){
         placeholder: "Συγγραφείς",
         allowClear: true
     }).on('change', function(){
-        categoryProductSearch(1);
+        if( !jQuery('#js-pcat-author-list-wrapper').hasClass('hide') ){
+            categoryProductSearch(1);
+        }
     });
 
     $('#js-pcat-publisher-list').select2({
         placeholder: "Εκδότες",
         allowClear: true
     }).on('change', function(){
-        categoryProductSearch(1);
+        if( !jQuery('#js-pcat-publisher-list-wrapper').hasClass('hide') ){
+            categoryProductSearch(1);
+        }
     });
 
     jQuery('#js-pcat-products-per-page').on('change', function(){
