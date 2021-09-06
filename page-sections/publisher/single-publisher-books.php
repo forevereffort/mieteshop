@@ -71,52 +71,13 @@
                     </div>
                     <?php
                         if( $count_product_list_include_single_publisher > $productPerPage ){
-                    ?>
-                            <div class="pcat-results-footer-options">
-                                <div class="pcat-results-footer-options-col">
-                                    <div id="js-single-publisher-product-navigation" class="pcat-results-navigation">
-                                        <?php
-                                            require_once dirname(dirname(dirname(__FILE__))) . '/inc/zebra-pagination.php';
-
-                                            $pagination = new Zebra_Pagination();
-                                            $pagination->records($count_product_list_include_single_publisher);
-                                            $pagination->records_per_page($productPerPage);
-                                            $pagination->selectable_pages(5);
-                                            $pagination->set_page(1);
-                                            $pagination->padding(false);
-                                            $pagination->css_classes([
-                                                'list' => 'pcat-results-navigation-row',
-                                                'list_item' => 'js-sp-product-navigation-item pcat-results-navigation-item',
-                                                'prev' => 'js-sp-product-navigation-item pcat-results-navigation-prev',
-                                                'next' => 'js-sp-product-navigation-item pcat-results-navigation-next',
-                                                'anchor' => '',
-                                            ]);
-                                            $pagination->render();
-                                        ?>
-                                    </div>
-                                </div>
-                                <div class="pcat-results-footer-options-col">
-                                    <div class="pcat-results-footer-select">
-                                        <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
-                                        <div class="pcat-results-footer-select-elem">
-                                            <?php
-                                                $pageCount = round($count_product_list_include_single_publisher / $productPerPage + 0.45);
-                                            ?>
-                                            <select id="js-sp-page-list">
-                                                <?php
-                                                    for($p = 1; $p <= $pageCount; $p++){
-                                                ?>
-                                                        <option value="<?php echo $p; ?>"><?php echo $p; ?></option>
-                                                <?php
-                                                    }
-                                                ?>
-                                            </select>
-                                            <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    <?php
+                            get_template_part('product/page-nav/page-nav', 'navigation', [ 
+                                'navWrapperDomId' => "js-single-publisher-product-navigation",
+                                'navDomClass' => "js-sp-product-navigation-item",
+                                'gotoDomId' => "js-sp-page-list",
+                                'total' => $count_product_list_include_single_publisher,
+                                'perPage' => $productPerPage
+                            ]);
                         }
                     ?>
                 </div>

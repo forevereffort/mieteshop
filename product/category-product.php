@@ -309,54 +309,17 @@
                     </div>
                     <?php
                         if( $total_product_count > $product_per_page ){
-                    ?>
-                            <div class="pcat-results-footer-options">
-                                <div class="pcat-results-footer-options-col">
-                                    <div id="js-pcat-results-navigation" class="pcat-results-navigation">
-                                        <?php
-                                            require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
-
-                                            $pagination = new Zebra_Pagination();
-                                            $pagination->records($total_product_count);
-                                            $pagination->records_per_page($product_per_page);
-                                            $pagination->selectable_pages(5);
-                                            $pagination->set_page(1);
-                                            $pagination->padding(false);
-                                            $pagination->css_classes([
-                                                'list' => 'pcat-results-navigation-row',
-                                                'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
-                                                'prev' => 'js-pcat-results-navigation-item pcat-results-navigation-prev',
-                                                'next' => 'js-pcat-results-navigation-item pcat-results-navigation-next',
-                                                'anchor' => '',
-                                            ]);
-                                            $pagination->render();
-                                        ?>
-                                    </div>
-                                </div>
-                                <div class="pcat-results-footer-options-col">
-                                    <div class="pcat-results-footer-select">
-                                        <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
-                                        <div class="pcat-results-footer-select-elem">
-                                            <select id="js-pcat-products-page-list">
-                                                <?php
-                                                    $pageCounts = $pagination->get_pages();
-
-                                                    for($i = 1; $i <= $pageCounts; $i++){
-                                                ?>
-                                                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                                <?php
-                                                    }
-                                                ?>
-                                            </select>
-                                            <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    <?php
+                            get_template_part('product/page-nav/page-nav', 'navigation', [ 
+                                'navWrapperDomId' => "js-pcat-results-navigation",
+                                'navDomClass' => "js-pcat-results-navigation-item",
+                                'gotoDomId' => "js-pcat-products-page-list",
+                                'total' => $total_product_count,
+                                'perPage' => $product_per_page
+                            ]);
                         }
+
+                        get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-pcat-products-per-page" ]);
                     ?>
-                    <?php get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-pcat-products-per-page" ]); ?>
                 </div>
             </div>
         </section>

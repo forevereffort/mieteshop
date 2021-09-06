@@ -47,52 +47,13 @@
         </div>
         <?php
             if( $count_product_list_include_single_contributor > $productPerPage ){
-        ?>
-                <div class="pcat-results-footer-options">
-                    <div class="pcat-results-footer-options-col">
-                        <div id="js-single-contributor-product-navigation" class="pcat-results-navigation">
-                            <?php
-                                require_once dirname(dirname(dirname(__FILE__))) . '/inc/zebra-pagination.php';
-
-                                $pagination = new Zebra_Pagination();
-                                $pagination->records($count_product_list_include_single_contributor);
-                                $pagination->records_per_page($productPerPage);
-                                $pagination->selectable_pages(5);
-                                $pagination->set_page(1);
-                                $pagination->padding(false);
-                                $pagination->css_classes([
-                                    'list' => 'pcat-results-navigation-row',
-                                    'list_item' => 'js-sc-product-navigation-item pcat-results-navigation-item',
-                                    'prev' => 'js-sc-product-navigation-item pcat-results-navigation-prev',
-                                    'next' => 'js-sc-product-navigation-item pcat-results-navigation-next',
-                                    'anchor' => '',
-                                ]);
-                                $pagination->render();
-                            ?>
-                        </div>
-                    </div>
-                    <div class="pcat-results-footer-options-col">
-                        <div class="pcat-results-footer-select">
-                            <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
-                            <div class="pcat-results-footer-select-elem">
-                                <?php
-                                    $pageCount = round($count_product_list_include_single_contributor / $productPerPage + 0.45);
-                                ?>
-                                <select id="js-sc-page-list">
-                                    <?php
-                                        for($p = 1; $p <= $pageCount; $p++){
-                                    ?>
-                                            <option value="<?php echo $p; ?>"><?php echo $p; ?></option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
-                                <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        <?php
+                get_template_part('product/page-nav/page-nav', 'navigation', [ 
+                    'navWrapperDomId' => "js-single-contributor-product-navigation",
+                    'navDomClass' => "js-sc-product-navigation-item",
+                    'gotoDomId' => "js-sc-page-list",
+                    'total' => $count_product_list_include_single_contributor,
+                    'perPage' => $productPerPage
+                ]);
             }
         ?>
     </div>
