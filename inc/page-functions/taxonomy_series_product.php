@@ -95,7 +95,7 @@ function filterTaxonomySeriesProductFunc()
         global $twig;
 
         $result = json_encode([
-            'result' => $twig->render('taxonomy-series-product-result.twig', ['products' => $products_search_list]),
+            'result' => $twig->render('loop/loop-product-card.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
         ]);
 

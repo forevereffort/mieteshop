@@ -25,11 +25,12 @@
         ],
         'orderby' => 'title',
         'order' => 'asc',
+        'fields' => 'ids'
     ];
 
     $the_query = new WP_Query( $args );
 
-    if ( $the_query->have_posts() ) {
+    if ( !empty($the_query->posts) ) {
         $products_search_count = $the_query->found_posts;
 ?>
         <section id="js-tax-series-books" class="pcat-results-section pcat-results-section--border-top">
@@ -59,62 +60,10 @@
                     </div>
                     <div id="js-taxonomy-series-product-row" class="pcat-results-row" data-nonce="<?php echo wp_create_nonce('filter_taxonomy_series_product_nonce'); ?>" data-product-per-page="<?php echo $productPerPage; ?>" data-series-term-id="<?php echo $current_series_taxonomy->term_id; ?>">
                         <?php
-                            while ( $the_query->have_posts() ) {
-                                $the_query->the_post();
-
-                                $product = wc_get_product( $post->ID );
-                                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-                                $authorIDs = get_field('book_contributors_syggrafeas', $product->get_id());
+                            foreach( $the_query->posts as $postid ) {
                         ?>
                                 <div class="pcat-results-col">
-                                    <div class="pcat-result-item">
-                                        <div class="pcat-result-item-info">
-                                            <div class="pcat-result-item-image">
-                                                <img
-                                                    class="lazyload"
-                                                    src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                                    data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                                    alt="<?php echo $product->get_name(); ?>">
-                                            </div>
-                                            <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $product->get_id() . '"]'); ?></div>
-                                            <div class="pcat-result-item-meta-row">
-                                                <div class="pcat-result-item-meta-col">
-                                                    <div class="pcat-result-item-favorite">
-                                                        <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
-                                                    </div>
-                                                </div>
-                                                <div class="pcat-result-item-meta-col">
-                                                    <div class="pcat-result-item-busket">
-                                                    <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php
-                                                if( !empty($authorIDs) ){
-                                                    echo '<div class="pcat-result-item-author-list">';
-                                                    if( count($authorIDs) > 3 ){
-                                                        echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
-                                                    } else {
-                                                        foreach( $authorIDs as $authorID ){
-                                                            echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($authorID) . '">' . get_the_title($authorID) . '</a></div>';
-                                                        }
-                                                    }
-                                                    echo '</div>';
-                                                }
-                                            ?>
-                                            <div class="pcat-result-item-title"><h3><?php echo $product->get_name(); ?></h3></div>
-                                        </div>
-                                        <div class="pcat-result-item-footer-row">
-                                            <div class="pcat-result-item-footer-col">
-                                                <div class="pcat-result-item-footer-product-price">
-                                                    <?php echo $product->get_price_html(); ?>
-                                                </div>
-                                            </div>
-                                            <!--div class="pcat-result-item-footer-col">
-                                                <div class="pcat-result-item-footer-product-discount">-30%</div>
-                                            </div-->
-                                        </div>
-                                    </div>
+                                    <?php get_template_part('product/loop/loop', 'product-card', [ 'postId' => $postid ]); ?>
                                 </div>
                         <?php
                             }
@@ -174,6 +123,4 @@
         </section>
 <?php
     }
-
-    wp_reset_query();
 ?>

@@ -87,7 +87,7 @@ function filterSingleContributorProductFunc()
         global $twig;
 
         $result = json_encode([
-            'result' => $twig->render('single-contributor-product-result.twig', ['products' => $products_search_list]),
+            'result' => $twig->render('loop/loop-product-card.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
         ]);
 

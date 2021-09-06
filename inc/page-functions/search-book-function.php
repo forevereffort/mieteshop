@@ -129,7 +129,7 @@ function filterSearchBookFunc()
 
         $result = json_encode([
             'count' => $products_search_count,
-            'result' => $twig->render('search-book-result.twig', ['products' => $products_search_list]),
+            'result' => $twig->render('loop/loop-product-card.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
             'pageCounts' => $pagination->get_pages(),
             // 'arg' => $args
