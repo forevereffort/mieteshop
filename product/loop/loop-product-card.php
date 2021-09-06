@@ -1,6 +1,8 @@
 <?php
     /**
      * Product card of list
+     * Template args
+     * postID : post ID
      */
     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $args['postId'] ), 'full' );
     $authorIDs = get_field('book_contributors_syggrafeas', $args['postId']);

@@ -227,19 +227,7 @@ global $post;
                     </div>
                 </div>
             </div>
-            <div class="pcat-results-projection-options">
-                <div class="pcat-results-footer-select">
-                    <div class="pcat-results-footer-select-label">Προβολή</div>
-                    <div class="pcat-results-footer-select-elem">
-                        <select id="js-blog-per-page">
-                            <option value="9">9</option>
-                            <option value="15">15</option>
-                            <option value="21">21</option>
-                        </select>
-                        <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
-                    </div>
-                </div>
-            </div>
+            <?php get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-blog-per-page" ]); ?>
         </div>
     </div>
 </section>
