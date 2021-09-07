@@ -204,11 +204,11 @@
                                     }
                                 ?>
                                 <?php
-                                    if( get_field('book_first_publish_date') ){
+                                    if( get_field('book_first_published_date') ){
                                 ?>
                                         <div class="single-product-detail-information-item">
                                             <div class="single-product-detail-information-item__label">ΠΡΩΤΗ ΕΚΔΟΣΗ</div>
-                                            <div class="single-product-detail-information-item__value"><?php echo get_field('book_first_publish_date'); ?></div>
+                                            <div class="single-product-detail-information-item__value"><?php echo get_field('book_first_published_date'); ?></div>
                                         </div>
                                 <?php
                                     }
@@ -224,11 +224,11 @@
                                     }
                                 ?>
                                 <?php
-                                    if( get_field('book_current_publish_date') ){
+                                    if( get_field('book_current_published_date') ){
                                 ?>
                                         <div class="single-product-detail-information-item">
                                             <div class="single-product-detail-information-item__label">ΤΡΕΧΟΥΣΑ ΕΚΔΟΣΗ</div>
-                                            <div class="single-product-detail-information-item__value"><?php echo get_field('book_current_publish_date'); ?></div>
+                                            <div class="single-product-detail-information-item__value"><?php echo get_field('book_current_published_date'); ?></div>
                                         </div>
                                 <?php
                                     }
