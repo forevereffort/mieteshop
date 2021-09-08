@@ -165,7 +165,7 @@
                         <div id="single-product-tab-content-item--detail-information" class="single-product-tab-content-item hide">
                             <div class="single-product-detail-information-row">
                                 <?php
-                                    if( get_field('book_setisbn') ){
+                                    if( get_field('book_isbn') ){
                                 ?>
                                         <div class="single-product-detail-information-item">
                                             <div class="single-product-detail-information-item__label">ISBN</div>
