@@ -2441,10 +2441,10 @@
             },
             {
                 "key": "field_60a6054de29bb",
-                "label": "Πρώτη Έκδοση",
+                "label": "Πρώτη Έκδοση από Biblionet",
                 "name": "book_first_publish_date",
                 "type": "text",
-                "instructions": "",
+                "instructions": "ΔΕΝ ΣΥΜΠΛΗΡΩΝΕΤΕ ΕΔΩ. ΔΕΙΤΕ ΤΟ ΠΕΔΙΟ \"Πρώτη Έκδοση\" ΠΑΡΑΚΑΤΩ",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -2460,10 +2460,10 @@
             },
             {
                 "key": "field_60a67622eaea0",
-                "label": "Τρέχουσα Έκδοση",
+                "label": "Τρέχουσα Έκδοση από Biblionet",
                 "name": "book_current_publish_date",
                 "type": "text",
-                "instructions": "",
+                "instructions": "ΔΕΝ ΣΥΜΠΛΗΡΩΝΕΤΕ ΕΔΩ. ΔΕΙΤΕ ΤΟ ΠΕΔΙΟ \"Τρέχουσα Έκδοση\" ΠΑΡΑΚΑΤΩ",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -2615,7 +2615,7 @@
                     "94": "βοσνιακά",
                     "95": "εσθονικά"
                 },
-                "default_value": false,
+                "default_value": 37,
                 "allow_null": 0,
                 "multiple": 0,
                 "ui": 0,
@@ -2701,7 +2701,7 @@
                     "95": "εσθονικά"
                 },
                 "default_value": false,
-                "allow_null": 0,
+                "allow_null": 1,
                 "multiple": 0,
                 "ui": 0,
                 "return_format": "array",
