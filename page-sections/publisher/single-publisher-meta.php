@@ -22,39 +22,12 @@
                                             while( have_rows('company_videos') ){
                                                 the_row();
 
-                                                //$video_image_url = get_sub_field('company_video_cover_image');
+                                                $video_image_url = get_sub_field('company_video_cover_image');
                                     ?>
                                                 <div class="swiper-slide">
                                                     <div class="single-publisher-video-item-row">
                                                         <div class="single-publisher-video-item-left-col">
-                                                            <div class="single-publisher-video-image-wrapper">
-                                                                <?php 
-                                                                /*
-                                                                // Load value.
-                                                                $iframe = get_field('company_video_embed_code');
-
-                                                                // Use preg_match to find iframe src.
-                                                                preg_match('/src="(.+?)"/', $iframe, $matches);
-                                                                $src = $matches[1];
-
-                                                                // Add extra parameters to src and replcae HTML.
-                                                                $params = array(
-                                                                    'controls'  => 0,
-                                                                    'hd'        => 1,
-                                                                    'autohide'  => 1
-                                                                );
-                                                                $new_src = add_query_arg($params, $src);
-                                                                $iframe = str_replace($src, $new_src, $iframe);
-
-                                                                // Add extra attributes to iframe HTML.
-                                                                $attributes = 'frameborder="0"';
-                                                                $iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $iframe);
-
-                                                                // Display customized HTML.
-                                                                echo $iframe;
-                                                                */
-                                                                echo '<div class="embed-container">'.get_sub_field('company_video_embed_code').'</div>'; ?>
-                                                                <!--
+                                                            <div class="js-sc-video-image-wrapper single-publisher-video-image-wrapper">
                                                                 <img
                                                                     class="lazyload"
                                                                     src="<?php echo placeholderImage(606, 241); ?>"
@@ -62,8 +35,8 @@
                                                                     alt="video image">
                                                                 <div class="single-publisher-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
                                                                 <div class="single-publisher-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
-                                                                -->
                                                             </div>
+                                                            <div class="single-contributor-video-hidden"><?php echo get_sub_field('company_video_embed_code'); ?></div>
                                                         </div>
                                                         <div class="single-publisher-video-item-right-col">
                                                             <div class="single-publisher-video-item-content">
@@ -122,3 +95,10 @@
 <?php
     }
 ?>
+<div id="js-sc-video-popup" class="single-contributor-video-popup hide">
+    <div id="js-sc-video-popup__close-btn" class="single-contributor-video-popup__close-btn"></div>
+    <div class="single-contributor-video-popup__video">
+        <div id="js-sc-video-popup__video-wrapper">
+        </div>
+    </div>
+</div>

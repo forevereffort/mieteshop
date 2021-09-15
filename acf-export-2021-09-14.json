@@ -27,7 +27,7 @@
                 "elements": "",
                 "min": "",
                 "max": "",
-                "return_format": "object"
+                "return_format": "id"
             },
             {
                 "key": "field_60ac9fdde95d5",
@@ -597,7 +597,7 @@
                 "elements": "",
                 "min": "",
                 "max": "",
-                "return_format": "object"
+                "return_format": "id"
             }
         ],
         "location": [
@@ -986,6 +986,25 @@
                 "key": "field_60c95fc459c4a",
                 "label": "Footer Description",
                 "name": "footer_description",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_61025be64eaf6",
+                "label": "Header Our Bookstores Url",
+                "name": "header_our_bookstores_url",
                 "type": "text",
                 "instructions": "",
                 "required": 0,
@@ -1638,6 +1657,214 @@
         "description": ""
     },
     {
+        "key": "group_610253dd276a6",
+        "title": "Page About and Contact Fields",
+        "fields": [
+            {
+                "key": "field_610253faef341",
+                "label": "Page content",
+                "name": "page_content",
+                "type": "flexible_content",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "layouts": {
+                    "layout_6102540ea0604": {
+                        "key": "layout_6102540ea0604",
+                        "name": "page_lead_section",
+                        "label": "Page Lead Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_61025567b458f",
+                                "label": "Page lead",
+                                "name": "page_lead",
+                                "type": "wysiwyg",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "tabs": "all",
+                                "toolbar": "full",
+                                "media_upload": 1,
+                                "delay": 0
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_610255ba093e4": {
+                        "key": "layout_610255ba093e4",
+                        "name": "page_text_section",
+                        "label": "Page Text Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_610255c7093e5",
+                                "label": "Page text",
+                                "name": "page_text",
+                                "type": "wysiwyg",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "default_value": "",
+                                "tabs": "all",
+                                "toolbar": "full",
+                                "media_upload": 1,
+                                "delay": 0
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    },
+                    "layout_610255fc7847b": {
+                        "key": "layout_610255fc7847b",
+                        "name": "page_contact_section",
+                        "label": "Page Contact Section",
+                        "display": "block",
+                        "sub_fields": [
+                            {
+                                "key": "field_610256037847c",
+                                "label": "Page Contact Details",
+                                "name": "page_contact_details",
+                                "type": "repeater",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "collapsed": "",
+                                "min": 0,
+                                "max": 0,
+                                "layout": "table",
+                                "button_label": "",
+                                "sub_fields": [
+                                    {
+                                        "key": "field_6102563f7847d",
+                                        "label": "Page Contact Address",
+                                        "name": "page_contact_address",
+                                        "type": "wysiwyg",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "default_value": "",
+                                        "tabs": "all",
+                                        "toolbar": "full",
+                                        "media_upload": 1,
+                                        "delay": 0
+                                    },
+                                    {
+                                        "key": "field_610256547847e",
+                                        "label": "Page Contact Hours",
+                                        "name": "page_contact_hours",
+                                        "type": "wysiwyg",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "default_value": "",
+                                        "tabs": "all",
+                                        "toolbar": "full",
+                                        "media_upload": 1,
+                                        "delay": 0
+                                    },
+                                    {
+                                        "key": "field_610256617847f",
+                                        "label": "Page Contact Map",
+                                        "name": "page_contact_map",
+                                        "type": "image",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "return_format": "array",
+                                        "preview_size": "medium",
+                                        "library": "all",
+                                        "min_width": "",
+                                        "min_height": "",
+                                        "min_size": "",
+                                        "max_width": "",
+                                        "max_height": "",
+                                        "max_size": "",
+                                        "mime_types": ""
+                                    },
+                                    {
+                                        "key": "field_6102566f78480",
+                                        "label": "Page Contact Map Link",
+                                        "name": "page_contact_map_link",
+                                        "type": "link",
+                                        "instructions": "",
+                                        "required": 0,
+                                        "conditional_logic": 0,
+                                        "wrapper": {
+                                            "width": "",
+                                            "class": "",
+                                            "id": ""
+                                        },
+                                        "return_format": "array"
+                                    }
+                                ]
+                            }
+                        ],
+                        "min": "",
+                        "max": ""
+                    }
+                },
+                "button_label": "Add Row",
+                "min": "",
+                "max": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "page_template",
+                    "operator": "==",
+                    "value": "page-templates\/page-about.php"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    },
+    {
         "key": "group_60ffab9ebf926",
         "title": "Page with Table of Contents",
         "fields": [
@@ -1878,6 +2105,30 @@
                                 "toolbar": "full",
                                 "media_upload": 1,
                                 "delay": 0
+                            },
+                            {
+                                "key": "field_61306affa809f",
+                                "label": "Video Cover Image",
+                                "name": "video_cover_image",
+                                "type": "image",
+                                "instructions": "",
+                                "required": 0,
+                                "conditional_logic": 0,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "return_format": "array",
+                                "preview_size": "medium",
+                                "library": "all",
+                                "min_width": "",
+                                "min_height": "",
+                                "min_size": "",
+                                "max_width": "",
+                                "max_height": "",
+                                "max_size": "",
+                                "mime_types": ""
                             }
                         ],
                         "min": "",
@@ -2190,10 +2441,10 @@
             },
             {
                 "key": "field_60a6054de29bb",
-                "label": "Πρώτη Έκδοση",
+                "label": "Πρώτη Έκδοση από Biblionet",
                 "name": "book_first_publish_date",
                 "type": "text",
-                "instructions": "",
+                "instructions": "ΔΕΝ ΣΥΜΠΛΗΡΩΝΕΤΕ ΕΔΩ. ΔΕΙΤΕ ΤΟ ΠΕΔΙΟ \"Πρώτη Έκδοση\" ΠΑΡΑΚΑΤΩ",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -2209,10 +2460,10 @@
             },
             {
                 "key": "field_60a67622eaea0",
-                "label": "Τρέχουσα Έκδοση",
+                "label": "Τρέχουσα Έκδοση από Biblionet",
                 "name": "book_current_publish_date",
                 "type": "text",
-                "instructions": "",
+                "instructions": "ΔΕΝ ΣΥΜΠΛΗΡΩΝΕΤΕ ΕΔΩ. ΔΕΙΤΕ ΤΟ ΠΕΔΙΟ \"Τρέχουσα Έκδοση\" ΠΑΡΑΚΑΤΩ",
                 "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
@@ -2364,7 +2615,7 @@
                     "94": "βοσνιακά",
                     "95": "εσθονικά"
                 },
-                "default_value": false,
+                "default_value": 37,
                 "allow_null": 0,
                 "multiple": 0,
                 "ui": 0,
@@ -2450,7 +2701,7 @@
                     "95": "εσθονικά"
                 },
                 "default_value": false,
-                "allow_null": 0,
+                "allow_null": 1,
                 "multiple": 0,
                 "ui": 0,
                 "return_format": "array",
@@ -2650,6 +2901,40 @@
                 "prepend": "",
                 "append": "",
                 "maxlength": ""
+            },
+            {
+                "key": "field_6131d349e926f",
+                "label": "Πρώτη Έκδοση",
+                "name": "book_first_published_date",
+                "type": "date_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "d\/m\/Y",
+                "return_format": "d\/m\/Y",
+                "first_day": 1
+            },
+            {
+                "key": "field_6131d391e9270",
+                "label": "Τρέχουσα Έκδοση",
+                "name": "book_current_published_date",
+                "type": "date_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "display_format": "d\/m\/Y",
+                "return_format": "d\/m\/Y",
+                "first_day": 1
             }
         ],
         "location": [

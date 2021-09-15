@@ -109,6 +109,7 @@ function filterBlogResultFunc()
             'hero' => $twig->render('blog-hero.twig', ['first_blog' => $first_blog]),
             'result' => $twig->render('blog-result.twig', ['blog_list' => $blog_list]),
             'navigation' => $pagination->render(true),
+            'pageCounts' => $pagination->get_pages(),
         ]);
 
         echo $result;

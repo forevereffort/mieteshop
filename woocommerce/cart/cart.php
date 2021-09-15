@@ -39,7 +39,7 @@ defined( 'ABSPATH' ) || exit;
 							if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 								$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 
-								$authors = get_field('book_contributors_syggrafeas', $product_id);
+								$authorIDs = get_field('book_contributors_syggrafeas', $product_id);
 					?>
 								<tr class="woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 
@@ -57,13 +57,13 @@ defined( 'ABSPATH' ) || exit;
 
 									<td class="cart-product-info" data-title="<?php esc_attr_e( 'Product', 'woocommerce' ); ?>">
 										<?php
-											if( !empty($authors) ){
+											if( !empty($authorIDs) ){
 												echo '<div class="cart-product-author-list">';
-												if( count($authors) > 3 ){
+												if( count($authorIDs) > 3 ){
 													echo '<div class="cart-product-author-item">Συλλογικό Έργο</div>';
 												} else {
-													foreach( $authors as $author ){
-														echo '<div class="cart-product-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+													foreach( $authorIDs as $authorID ){
+														echo '<div class="cart-product-author-item"><a href="'. get_permalink($authorID) . '">' . get_the_title($authorID) . '</a></div>';
 													}
 												}
 												echo '</div>';

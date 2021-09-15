@@ -13,6 +13,7 @@ function filterSinglePublisherProductFunc()
     $filterPublisherId = intval($_REQUEST['filterPublisherId']);
     $page = intval($_REQUEST['page']);
     $productPerPage = intval($_REQUEST['productPerPage']);
+    $productOrder = $_REQUEST['productOrder'];
 
     require_once dirname(dirname(__FILE__)) . '/zebra-pagination.php';
 
@@ -46,6 +47,15 @@ function filterSinglePublisherProductFunc()
             ],
         ]
     ];
+
+    if( $productOrder === 'alphabetical' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'asc';
+    } else if( $productOrder === 'published-date' ){
+        $args['meta_key'] = 'book_current_published_date';
+        $args['orderby'] = 'meta_value';
+        $args['order'] = 'asc';
+    }
     
     $the_query = new WP_Query( $args );
     
@@ -59,17 +69,18 @@ function filterSinglePublisherProductFunc()
             $product = wc_get_product( $post->ID );
 
             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-            $authors = get_field('book_contributors_syggrafeas', $product->get_id());
+            $authorIDs = get_field('book_contributors_syggrafeas', $product->get_id());
             $author_list = [];
 
-            foreach( $authors as $author ){
+            foreach( $authorIDs as $authorID ){
                 $author_list[] = [
-                    'url' => get_permalink($author->ID),
-                    'title' => $author->post_title
+                    'url' => get_permalink($authorID),
+                    'title' => get_the_title($authorID)
                 ];
             }
 
             $products_search_list[] = [
+                'id' => $post->ID,
                 'url' => get_permalink($product->get_id()),
                 'placeholder' => placeholderImage($image[1], $image[2]),
                 'image_url' => aq_resize($image[0], $image[1], $image[2], true),
@@ -86,7 +97,7 @@ function filterSinglePublisherProductFunc()
         global $twig;
 
         $result = json_encode([
-            'result' => $twig->render('single-publisher-product-result.twig', ['products' => $products_search_list]),
+            'result' => $twig->render('loop/loop-product-card.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
         ]);
 

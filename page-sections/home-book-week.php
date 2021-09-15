@@ -6,7 +6,7 @@
         <?php
             $weekbook = get_field('book_of_the_week');
             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $weekbook->ID ), 'full' );
-            $authors = get_field('book_contributors_syggrafeas', $weekbook->ID);
+            $authorIDs = get_field('book_contributors_syggrafeas', $weekbook->ID);
             $weekbook_product = wc_get_product( $weekbook->ID );
         ?>
         <div class="home-book-week-row">
@@ -21,13 +21,13 @@
             </div>
             <div class="home-book-week-right">
                 <?php
-                    if( !empty($authors) ){
+                    if( !empty($authorIDs) ){
                         echo '<div class="home-book-week-author-list">';
-                        if( count($authors) > 3 ){
+                        if( count($authorIDs) > 3 ){
                             echo '<div class="home-book-week-author-item">Συλλογικό Έργο</div>';
                         } else {
-                            foreach( $authors as $author ){
-                                echo '<div class="home-book-week-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
+                            foreach( $authorIDs as $authorID ){
+                                echo '<div class="home-book-week-author-item"><a href="'. get_permalink($authorID) . '">' . get_the_title($authorID) . '</a></div>';
                             }
                         }
                         echo '</div>';
@@ -39,6 +39,7 @@
                 <div class="home-book-week-product-content">
                     <p><?php echo mb_substr(strip_tags($weekbook->post_content), 0, 600, 'UTF-8'); ?> »</p>
                 </div>
+                <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $weekbook->ID . '"]'); ?></div>
                 <div class="home-book-week-product-meta-row">
                     <div class="home-book-week-product-meta-col">
                         <div class="home-book-week-product-price">

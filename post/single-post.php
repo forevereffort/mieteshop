@@ -119,13 +119,38 @@ if( have_rows('post_extra_content') ):
         elseif( get_row_layout() == 'post_video_section' ): 
             $video = get_sub_field('post_video');
             $video_text = get_sub_field('post_video_text');
+
+            $video_image_url = get_sub_field('video_cover_image');
+
             if($video_text):
-                echo '<section><div class="general-container"><div class="post-content-container">';
-                echo '<div class="post-video">';
-                echo '<h3>Video</h3>';
-                echo '<div class="video_wrapper"><div class="col1">'.$video.'</div><div class="col2">'.$video_text.'</div></div>';
-                echo '</div>';
-                echo '</div></div></section>';
+?>
+                <section>
+                    <div class="general-container">
+                        <div class="post-content-container">
+                            <div class="post-video">
+                                <h3>Video</h3>
+                                <div class="video_wrapper">
+                                    <div class="col1">
+                                        <div class="js-sc-video-image-wrapper single-product-video-image-wrapper">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage(606, 241); ?>"
+                                                data-src="<?php echo aq_resize($video_image_url['url'], 606, 241, true); ?>"
+                                                alt="video image">
+                                            <div class="single-product-video-play-icon"><?php include get_template_directory() . '/assets/icons/video-play-icon.svg' ?></div>
+                                            <div class="single-product-video-resize-icon"><?php include get_template_directory() . '/assets/icons/resize-icon.svg' ?></div>
+                                        </div>
+                                        <div class="single-contributor-video-hidden"><?php echo $video; ?></div>
+                                    </div>
+                                    <div class="col2">
+                                        <div><?php echo $video_text; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+<?php
             endif;
 
         // Case: post gallery field
@@ -190,3 +215,10 @@ else :
 endif;                
 
 ?>
+<div id="js-sc-video-popup" class="single-contributor-video-popup hide">
+    <div id="js-sc-video-popup__close-btn" class="single-contributor-video-popup__close-btn"></div>
+    <div class="single-contributor-video-popup__video">
+        <div id="js-sc-video-popup__video-wrapper">
+        </div>
+    </div>
+</div>

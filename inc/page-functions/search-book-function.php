@@ -16,6 +16,7 @@ function filterSearchBookFunc()
     $filterPublisherId = intval($_REQUEST['filterPublisherId']);
     $page = intval($_REQUEST['page']);
     $productPerPage = intval($_REQUEST['productPerPage']);
+    $productOrder = $_REQUEST['productOrder'];
 
     require_once dirname(dirname(__FILE__)) . '/zebra-pagination.php';
 
@@ -32,11 +33,11 @@ function filterSearchBookFunc()
         'anchor' => '',
     ]);
 
-    // default tax query is for the current category page cat id
     $args = [
         'post_type' => 'product',
         'search_prod_title' => $searchKey,
-        'posts_per_page' => -1,
+        'posts_per_page' => $productPerPage,
+        'offset' => ( $page - 1 ) * $productPerPage,
         'tax_query' => [
             [
                 'taxonomy' => 'title_type',
@@ -57,120 +58,67 @@ function filterSearchBookFunc()
         ];
     }
 
-    $products_search_count = 0;
-    $products_search_list = [];
+    $args['meta_query'] = [];
+
+    if( !empty($filterAuthorId) ){
+        $args['meta_query'][] = [
+            'key'     => 'book_contributors_syggrafeas',
+            'value'   => '"' . $filterAuthorId . '"',
+            'compare' => 'LIKE'
+        ];
+    }
+
+    if( !empty($filterPublisherId) ){
+        $args['meta_query'][] = [
+            'key'     => 'book_publishers',
+            'value'   => '"' . $filterPublisherId . '"',
+            'compare' => 'LIKE'
+        ];
+    }
+
+    if( $productOrder === 'alphabetical' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'asc';
+    } else if( $productOrder === 'published-date' ){
+        $args['meta_key'] = 'book_current_published_date';
+        $args['orderby'] = 'meta_value';
+        $args['order'] = 'asc';
+    }
     
     global $post;
     
-    if( empty($filterAuthorId) && empty($filterPublisherId) ){
-        // if there are no any option of filter author & publisher
-        // search will work only for tax query
-        $args['posts_per_page'] = $productPerPage;
-        $args['offset'] = ( $page - 1 ) * $productPerPage;
-        
-        $the_query = new WP_Query( $args );
+    $the_query = new WP_Query( $args );
+    
+    // get total search result count
+    $products_search_count = $the_query->found_posts;
+    $products_search_list = [];
 
-        // get total search result count
-        $products_search_count = $the_query->found_posts;
+    if ( $the_query->have_posts() ) {
+        while ( $the_query->have_posts() ) {
+            $the_query->the_post();
 
-        if ( $the_query->have_posts() ) {
-            while ( $the_query->have_posts() ) {
-                $the_query->the_post();
+            global $product;
 
-                global $product;
-
-                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-                $authors = get_field('book_contributors_syggrafeas', $post->ID);
-                $author_list = [];
-
-                foreach( $authors as $author ){
-                    $author_list[] = [
-                        'url' => get_permalink($author->ID),
-                        'title' => $author->post_title
-                    ];
-                }
-
-                $products_search_list[] = [
-                    'url' => get_permalink($post->ID),
-                    'placeholder' => placeholderImage($image[1], $image[2]),
-                    'image_url' => aq_resize($image[0], $image[1], $image[2], true),
-                    'title' => $post->post_title,
-                    'authors' => $author_list,
-                    'price' => $product->get_price_html()
-                ];
-            }
-        }
-    } else {
-        // filter author and publisher
-        $the_query = new WP_Query( $args );
-        $products_all_list = [];
-
-        if ( $the_query->have_posts() ) {
-            while ( $the_query->have_posts() ) {
-                $the_query->the_post();
-
-                // check author & publisher with filter value in the searched result by category
-                $filter_author_status = empty($filterAuthorId) ? true : false;
-                $filter_publisher_status = empty($filterPublisherId) ? true : false;
-
-                if( !empty($filterAuthorId) ){
-                    $authors = get_field('book_contributors_syggrafeas', $post->ID);
-
-                    if( !empty($authors) ){
-                        foreach( $authors as $author ){
-                            if( $author->ID === $filterAuthorId ){
-                                $filter_author_status = true;
-                            }
-                        }
-                    }
-                }
-
-                if( !empty($filterPublisherId) ){
-                    $publishers = get_field('book_publishers', $post->ID);
-
-                    if( !empty($publishers) ){
-                        foreach( $publishers as $publisher ){
-                            if( $publisher->ID === $filterPublisherId ){
-                                $filter_publisher_status = true;
-                            }
-                        }
-                    }
-                }
-
-                // check passed with filter author & publisher
-                if( $filter_author_status && $filter_publisher_status ){
-                    $products_all_list[] = $post->ID;
-                }
-            }
-        }
-
-        // get all search result that is filtered by term, author, publisher
-        $products_search_count = count($products_all_list);
-
-        // get page nav info
-        $products_id_list_of_selected_page = array_slice($products_all_list, ($page - 1) * $productPerPage, $productPerPage);
-
-        foreach($products_id_list_of_selected_page as $product_id){
-            $product = wc_get_product( $product_id );
-
-            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'full' );
-            $authors = get_field('book_contributors_syggrafeas', $product_id);
+            $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+            $authorIDs = get_field('book_contributors_syggrafeas', $post->ID);
             $author_list = [];
 
-            foreach( $authors as $author ){
+            foreach( $authorIDs as $authorID ){
                 $author_list[] = [
-                    'url' => get_permalink($author->ID),
-                    'title' => $author->post_title
+                    'url' => get_permalink($authorID),
+                    'title' => get_the_title($authorID)
                 ];
             }
 
             $products_search_list[] = [
-                'url' => get_permalink($product_id),
+                'id' => $post->ID,
+                'url' => get_permalink($post->ID),
                 'placeholder' => placeholderImage($image[1], $image[2]),
                 'image_url' => aq_resize($image[0], $image[1], $image[2], true),
-                'title' => get_the_title($product_id),
+                'title' => $post->post_title,
                 'authors' => $author_list,
-                'price' => $product->get_price_html()
+                'price' => $product->get_price_html(),
+                'sku' => $product->get_sku(),
             ];
         }
     }
@@ -182,8 +130,9 @@ function filterSearchBookFunc()
 
         $result = json_encode([
             'count' => $products_search_count,
-            'result' => $twig->render('search-book-result.twig', ['products' => $products_search_list]),
+            'result' => $twig->render('loop/loop-product-card.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
+            'pageCounts' => $pagination->get_pages(),
             // 'arg' => $args
         ]);
 

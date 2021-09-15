@@ -76,6 +76,7 @@
 
 .single-contributor-video-item-row {
   display: flex;
+  height: 100%;
 }
 
 .single-contributor-video-item-left-col {
@@ -108,7 +109,16 @@
 }
 
 .single-contributor-video-image-wrapper {
+  cursor: pointer;
+  height: 100%;
   position: relative;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
 }
 
 .single-contributor-video-play-icon {
@@ -190,6 +200,85 @@
   margin-right: -130px;
 }
 
+.single-contributor-video-wrapper {
+  .swiper-slide {
+    height: auto;
+  }
+}
+
+.single-contributor-video-hidden {
+  display: none;
+}
+
+.single-contributor-video-popup {
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999999;
+}
+
+.single-contributor-video-popup__video {
+  background-color: #000;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 79.72972973%;
+}
+
+#js-sc-video-popup__video-wrapper {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+
+  iframe {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.single-contributor-video-popup__close-btn {
+  cursor: pointer;
+  height: 35px;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  width: 35px;
+
+  &:hover {
+    &::after,
+    &::before {
+      width: 35px;
+    }
+  }
+
+  &::after,
+  &::before {
+    background: $color-white;
+    content: '';
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transition: width 0.2s ease-out;
+    width: 30px;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
 
 @media(max-width: $breakpoint-mobile-start) {
   .single-contributor {
@@ -243,15 +332,6 @@
       width: auto;
     }
 
-    .single-contributor-blog-item.swiper-slide {
-      width: 300px !important;
-    }
-
-    .single-contributor-blog-item.swiper-slide {
-      /* margin: 0 auto !important; */
-      padding: 0 2px;
-    }
-
     .single-contributor-video-item-left-col {
       width: auto;
     }
@@ -266,5 +346,24 @@
     padding-left: 0;
     padding-top: 30px;
     width: auto;
+  }
+
+  .single-contributor-image-lead-left {
+    width: 100%;
+  }
+
+  .single-contributor-image-lead-image {
+    height: 230px;
+    width: 230px;
+  }
+
+  .single-contributor-blog-wrapper {
+    margin-right: 0;
+  }
+
+  .single-contributor-blog-item {
+    &.swiper-slide {
+      width: 100%;
+    }
   }
 }

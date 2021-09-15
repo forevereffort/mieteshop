@@ -469,6 +469,7 @@
 
 .single-product-video-item-row {
   display: flex;
+  height: 100%;
 }
 
 .single-product-video-item-left-col {
@@ -501,7 +502,16 @@
 }
 
 .single-product-video-image-wrapper {
+  cursor: pointer;
+  height: 100%;
   position: relative;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
 }
 
 .single-product-video-play-icon {
@@ -682,6 +692,12 @@
 
 .product-list-mobile-slider-nav--next {
   right: 0;
+}
+
+.single-product-video-wrapper {
+  .swiper-slide {
+    height: auto;
+  }
 }
 
 @media(max-width: $breakpoint-mobile-start) {

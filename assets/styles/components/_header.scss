@@ -320,6 +320,30 @@
 .header-top-search-icon {
   cursor: pointer;
   position: relative;
+  z-index: 100;
+
+  &::before {
+    border-bottom: 18px solid $color-white;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    content: '';
+    display: none;
+    height: 0;
+    left: -5px;
+    opacity: 0;
+    position: absolute;
+    top: 31px;
+    transition: visibility 0.2s linear, opacity 0.2s linear;
+    visibility: hidden;
+    width: 0;
+  }
+
+  &.active {
+    &::before {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 .header-top-cart-number {
@@ -910,6 +934,7 @@
 
   .header-top-right-row {
     justify-content: space-around;
+    position: relative;
   }
 
   .header-top-right-col+.header-top-right-col {
@@ -987,5 +1012,25 @@
   .header-top {
     position: relative;
     z-index: 99;
+  }
+  
+  .header-top-search-wrapper {
+    position: static;
+  }
+
+  .header-top-search-popup {
+    left: 0 !important;
+    right: 0;
+    width: auto;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .header-top-search-icon {
+    &::before {
+      display: block;
+    }
   }
 }

@@ -1,9 +1,9 @@
 jQuery(function(){
     // get blogs
     function blogResultSearch(page){
-        const catId = jQuery('#js-blog-result-row').attr('data-cat-id');
         const nonce = jQuery('#js-blog-result-row').attr('data-nonce');
-        const postsPerPage = jQuery('#js-blog-result-row').attr('data-posts-per-page');
+        const catId = jQuery('#js-blog-cat-filter-select').val();
+        const postsPerPage = jQuery('#js-blog-per-page').val();
 
         jQuery('#js-blog-filter-load-spinner').removeClass('hide');
 
@@ -22,9 +22,27 @@ jQuery(function(){
                 jQuery('#js-blog-first').html(response.hero);
                 jQuery('#js-blog-result-row').html(response.result);
                 jQuery('#js-blog-results-navigation').html(response.navigation);
+                
+                // reset page number list
+                const pageCounts = parseInt(response.pageCounts);
 
-                // add page navigation click event into new added nav html
-                addPageNavigationClickOfBlogResultFunc();
+                if( pageCounts === 0 ){
+                    jQuery('#js-blog-list-page-navigation').addClass('hide');
+                } else {
+                    jQuery('#js-blog-list-page-navigation').removeClass('hide');
+
+                    // add page navigation click event into new added nav html
+                    addPageNavigationClickOfBlogResultFunc();
+
+                    let pageHtmlInnterStr = '';
+
+                    for(let i = 1; i <= pageCounts; i++){
+                        pageHtmlInnterStr += '<option value="' + i + '">' + i + '</option>'
+                    }
+
+                    jQuery('#js-blog-page-list').html(pageHtmlInnterStr);
+                    jQuery('#js-blog-page-list').val(page);
+                }
 
                 jQuery('#js-blog-filter-load-spinner').addClass('hide')
             }
@@ -49,14 +67,17 @@ jQuery(function(){
     addPageNavigationClickOfBlogResultFunc();
 
     jQuery('#js-blog-page-list').on('change', function(){
+        console.log(123)
         const page = jQuery(this).val();
 
         blogResultSearch(page);
     });
 
     jQuery('#js-blog-cat-filter-select').on('change', function(){
-        jQuery('#js-blog-result-row').attr('data-cat-id', jQuery(this).val());
-
+        blogResultSearch(1);
+    })
+    
+    jQuery('#js-blog-per-page').on('change', function(){
         blogResultSearch(1);
     })
 })

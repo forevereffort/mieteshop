@@ -24,17 +24,17 @@ class MieteshopPublisherMetaSection extends window.HTMLDivElement {
 
   connectedCallback () {
     this.initVideoSlider()
-    this.initBlogSlider()
+    // this.initBlogSlider()
     this.initTab()
   }
 
   initVideoSlider () {
     const config = {
       slidesPerView: 1,
-      speed: 5000,
-      // autoplay: {
-      //   delay: 8000,
-      // },
+      speed: 1500,
+      autoplay: {
+        delay: 3000,
+      },
       loop: true,
       pagination: {
         el: this.$videoPagination.get(0),
@@ -57,10 +57,10 @@ class MieteshopPublisherMetaSection extends window.HTMLDivElement {
 
   initBlogSlider () {
     const config = {
-      speed: 5000,
-      // autoplay: {
-      //   delay: 8000,
-      // },
+      speed: 1500,
+      autoplay: {
+        delay: 3000,
+      },
       loop: true,
       observer: true,
       observeParents: true,
@@ -79,6 +79,14 @@ class MieteshopPublisherMetaSection extends window.HTMLDivElement {
     this.blogSlider = new Swiper(this.$blogSlider.get(0), config)
   }
 
+  destoryVideoSlider(){
+    this.videoSlider.destroy(true, true);
+  }
+  
+  destoryBlogSlider(){
+    this.blogSlider.destroy(true, true);
+  }
+
   initTab () {
     const that = this;
     
@@ -87,9 +95,11 @@ class MieteshopPublisherMetaSection extends window.HTMLDivElement {
         const sectionID = jQuery(this).attr('data-section-id');
 
         if( sectionID === 'video' ){
-          that.videoSlider.update();
+          that.initVideoSlider()
+          that.destoryBlogSlider()
         } else if( sectionID === 'article' ){
-          that.blogSlider.update();
+          that.initBlogSlider()
+          that.destoryVideoSlider()
         }
   
         jQuery('.single-publisher-meta-tab-content-col').addClass('hide');
@@ -107,58 +117,70 @@ window.customElements.define('mieteshop-publisher-meta-section', MieteshopPublis
 
 jQuery(function(){
 
-    // get products with publisher and page
-    function singlePublisherProductSearch(page){
-        const filterPublisherId = jQuery('#js-single-publisher-product-row').attr('data-publisher-id');
-        const nonce = jQuery('#js-single-publisher-product-row').attr('data-nonce');
-        const productPerPage = jQuery('#js-single-publisher-product-row').attr('data-product-per-page');
+  // get products with publisher and page
+  function singlePublisherProductSearch(page){
+    const filterPublisherId = jQuery('#js-single-publisher-product-row').attr('data-publisher-id');
+    const nonce = jQuery('#js-single-publisher-product-row').attr('data-nonce');
+    const productPerPage = jQuery('#js-single-publisher-product-row').attr('data-product-per-page');
+    const productOrder = jQuery('#js-sp-product-display-order').val();
 
-        jQuery('#js-single-publisher-product-filter-load-spinner').removeClass('hide');
+    jQuery('#js-single-publisher-product-filter-load-spinner').removeClass('hide');
 
-        jQuery.ajax({
-            type: 'get',
-            dataType: 'json',
-            url: window.MieteshopData.ajaxurl,
-            data: {
-                action: 'filter_single_publisher_product',
-                nonce,
-                filterPublisherId,
-                page,
-                productPerPage
-            },
-            success: function (response) {
-                jQuery('#js-single-publisher-product-row').html(response.result);
-                jQuery('#js-single-publisher-product-navigation').html(response.navigation);
+    jQuery.ajax({
+      type: 'get',
+      dataType: 'json',
+      url: window.MieteshopData.ajaxurl,
+      data: {
+        action: 'filter_single_publisher_product',
+        nonce,
+        filterPublisherId,
+        page,
+        productPerPage,
+        productOrder
+      },
+      success: function (response) {
+        jQuery('#js-single-publisher-product-row').html(response.result);
+        jQuery('#js-single-publisher-product-navigation').html(response.navigation);
 
-                // add page navigation click event into new added nav html
-                addPageNavigationClickOfSPProductFunc();
+        // add page navigation click event into new added nav html
+        addPageNavigationClickOfSPProductFunc();
 
-                jQuery('#js-single-publisher-product-filter-load-spinner').addClass('hide')
-            }
-        })
-    }
-    
-    // page navigation click
-    function addPageNavigationClickOfSPProductFunc(){
-        jQuery('.js-sp-product-navigation-item a').on('click', function(){
+        jQuery('#js-sp-page-list').val(page);
 
-            // check this is current page
-            if( !jQuery(this).parent().hasClass('active') ){
-                const page = jQuery(this).attr('data-page');
+        jQuery('#js-single-publisher-product-filter-load-spinner').addClass('hide')
 
-                singlePublisherProductSearch(page)
-            }
+        jQuery('html, body').animate({
+          scrollTop: jQuery('#js-single-publisher-book-list-section').offset().top
+        }, 500);
+      }
+    })
+  }
+  
+  // page navigation click
+  function addPageNavigationClickOfSPProductFunc(){
+    jQuery('.js-sp-product-navigation-item a').on('click', function(){
 
-            return false;
-        })
-    }
+      // check this is current page
+      if( !jQuery(this).parent().hasClass('active') ){
+        const page = jQuery(this).attr('data-page');
 
-    addPageNavigationClickOfSPProductFunc();
+        singlePublisherProductSearch(page)
+      }
 
-    jQuery('#js-sp-page-list').on('change', function(){
-        const pageNumber = jQuery(this).val();
+      return false;
+    })
+  }
 
-        singlePublisherProductSearch(pageNumber);
-    });
+  addPageNavigationClickOfSPProductFunc();
+
+  jQuery('#js-sp-page-list').on('change', function(){
+    const pageNumber = jQuery(this).val();
+
+    singlePublisherProductSearch(pageNumber);
+  });
+
+  jQuery('#js-sp-product-display-order').on('change', function(){
+    singlePublisherProductSearch(1);
+  })
 })
 

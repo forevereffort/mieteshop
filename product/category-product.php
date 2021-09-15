@@ -206,18 +206,18 @@
                         if ( !empty($loop->posts) ) {
                             foreach( $loop->posts as $postid ) {
                                 // get author & publisher list that include in the search result
-                                $authors = get_field('book_contributors_syggrafeas', $postid);
-                                $publishers = get_field('book_publishers', $postid);
+                                $authorIDs = get_field('book_contributors_syggrafeas', $postid);
+                                $publisherIDs = get_field('book_publishers', $postid);
 
-                                if( !empty($authors) ){
-                                    foreach($authors as $author){
-                                        $author_list_in_search_result[$author->ID] = $author->post_title;
+                                if( !empty($authorIDs) ){
+                                    foreach($authorIDs as $authorID){
+                                        $author_list_in_search_result[$authorID] = get_the_title($authorID);
                                     }
                                 }
 
-                                if( !empty($publishers) ){
-                                    foreach($publishers as $publisher){
-                                        $publisher_list_in_search_result[$publisher->ID] = $publisher->post_title;
+                                if( !empty($publisherIDs) ){
+                                    foreach($publisherIDs as $publisherID){
+                                        $publisher_list_in_search_result[$publisherID] = get_the_title($publisherID);
                                     }
                                 }
                             }
@@ -257,11 +257,9 @@
                 <div class="pcat-classification-filter">
                     <div class="pcat-classification-filter-label">ΤΑΞΙΝΟΜΗΣΗ</div>
                     <div class="pcat-classification-filter-select">
-                        <select>
-                            <option value="-1">Χρονολογική</option>
-                            <option value="price-low-to-high">Price low to high</option>
-                            <option value="price-high-to-low">Price high to low</option>
+                        <select id="js-pcat-product-display-order">
                             <option value="alphabetical">Alphabetical</option>
+                            <option value="published-date">Published Date</option>
                         </select>
                         <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                     </div>
@@ -282,12 +280,15 @@
             ],
         ],
         'posts_per_page' => $product_per_page,
-        'offset' => ( $current_page - 1 ) * $product_per_page
+        'offset' => ( $current_page - 1 ) * $product_per_page,
+        'orderby' => 'title',
+        'order' => 'asc',
+        'fields' => 'ids'
     ];
 
     $the_query = new WP_Query( $args );
 
-    if ( $the_query->have_posts() ) {
+    if ( !empty($the_query->posts) ) {
 ?>
         <section id="js-pcat-results-section" class="pcat-results-section">
             <div class="general-container">
@@ -297,147 +298,28 @@
                     </div>
                     <div id="js-pcat-results-row" class="pcat-results-row">
                         <?php
-                            while ( $the_query->have_posts() ){
-                                $the_query->the_post();
-                                global $product;
-
-                                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-                                $authors = get_field('book_contributors_syggrafeas', $post->ID);
+                            foreach( $the_query->posts as $postid ) {
                         ?>
                                 <div class="pcat-results-col">
-                                    <div class="pcat-result-item">
-                                        <div class="pcat-result-item-info">
-                                            <div class="pcat-result-item-image">
-                                                <a href="<?php echo get_permalink($post->ID); ?>">
-                                                    <img
-                                                        class="lazyload"
-                                                        src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                                        data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                                        alt="<?php echo $post->post_title; ?>">
-                                                </a>
-                                            </div>
-                                            <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist]'); ?></div>
-                                            <div class="pcat-result-item-meta-row">
-                                                <div class="pcat-result-item-meta-col">
-                                                    <div class="pcat-result-item-favorite">
-                                                        <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
-                                                    </div>
-                                                </div>
-                                                <div class="pcat-result-item-meta-col">
-                                                    <?php
-                                                        
-                                                        if( !$product->is_purchasable() ||  !$product->is_in_stock() ){
-                                                            ?>
-                                                            <span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span>
-                                                            <?php
-                                                            //if( !$product->is_purchasable() ){
-                                                            //    echo '<span style="color:red">Μη διαθέσιμο</span>';
-                                                            //} elseif ( !$product->is_in_stock() ) {
-                                                            //    echo '<span style="color:red">Εξαντλημένο</span>';
-                                                            //}
-                                                        } else {                                                            
-                                                    ?>
-                                                            <div class="pcat-result-item-busket">
-                                                                <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>"><span><?php include get_template_directory() . '/assets/icons/busket-small-icon.svg' ?></span></a>
-                                                            </div>
-                                                    <?php
-                                                        }
-                                                    ?>
-                                                </div>
-                                            </div>
-                                            <?php
-                                                if( !empty($authors) ){
-                                                    echo '<div class="pcat-result-item-author-list">';
-                                                    if( count($authors) > 3 ){
-                                                        echo '<div class="pcat-result-item-author-item">Συλλογικό Έργο</div>';
-                                                    } else {
-                                                        foreach( $authors as $author ){
-                                                            echo '<div class="pcat-result-item-author-item"><a href="'. get_permalink($author->ID) . '">' . $author->post_title . '</a></div>';
-                                                        }
-                                                    }
-                                                    echo '</div>';
-                                                }
-                                            ?>
-                                            <div class="pcat-result-item-title"><h3><a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a></h3></div>
-                                        </div>
-                                        <div class="pcat-result-item-footer-row">
-                                            <div class="pcat-result-item-footer-col">
-                                                <div class="pcat-result-item-footer-product-price">
-                                                    <?php echo $product->get_price_html(); ?>
-                                                </div>
-                                            </div>
-                                            <!--div class="pcat-result-item-footer-col">
-                                                <div class="pcat-result-item-footer-product-discount">-30%</div>
-                                            </div-->
-                                        </div>
-                                    </div>
+                                    <?php get_template_part('product/loop/loop', 'product-card', [ 'postId' => $postid ]); ?>
                                 </div>
                         <?php
                             }
-                            wp_reset_query();
                         ?>
                     </div>
                     <?php
                         if( $total_product_count > $product_per_page ){
-                    ?>
-                            <div class="pcat-results-footer-options">
-                                <div class="pcat-results-footer-options-col">
-                                    <div id="js-pcat-results-navigation" class="pcat-results-navigation">
-                                        <?php
-                                            require_once dirname(dirname(__FILE__)) . '/inc/zebra-pagination.php';
-
-                                            $pagination = new Zebra_Pagination();
-                                            $pagination->records($total_product_count);
-                                            $pagination->records_per_page($product_per_page);
-                                            $pagination->selectable_pages(5);
-                                            $pagination->set_page(1);
-                                            $pagination->padding(false);
-                                            $pagination->css_classes([
-                                                'list' => 'pcat-results-navigation-row',
-                                                'list_item' => 'js-pcat-results-navigation-item pcat-results-navigation-item',
-                                                'prev' => 'js-pcat-results-navigation-item pcat-results-navigation-prev',
-                                                'next' => 'js-pcat-results-navigation-item pcat-results-navigation-next',
-                                                'anchor' => '',
-                                            ]);
-                                            $pagination->render();
-                                        ?>
-                                    </div>
-                                </div>
-                                <div class="pcat-results-footer-options-col">
-                                    <div class="pcat-results-footer-select">
-                                        <div class="pcat-results-footer-select-label">Mετάβαση στη σελίδα</div>
-                                        <div class="pcat-results-footer-select-elem">
-                                            <select>
-                                                <option value="1">1</option>
-                                            </select>
-                                            <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    <?php
+                            get_template_part('product/page-nav/page-nav', 'navigation', [ 
+                                'navWrapperDomId' => "js-pcat-results-navigation",
+                                'navDomClass' => "js-pcat-results-navigation-item",
+                                'gotoDomId' => "js-pcat-products-page-list",
+                                'total' => $total_product_count,
+                                'perPage' => $product_per_page
+                            ]);
                         }
+
+                        get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-pcat-products-per-page" ]);
                     ?>
-                    <div class="pcat-results-projection-options">
-                        <div class="pcat-results-footer-select">
-                            <div class="pcat-results-footer-select-label">Προβολή</div>
-                            <div class="pcat-results-footer-select-elem">
-                                <select id="js-pcat-products-per-page">
-                                    <?php
-                                        if( wp_is_mobile() ){
-                                    ?>
-                                            <option value="4">4</option>
-                                    <?php
-                                        }
-                                    ?>
-                                    <option value="16">16</option>
-                                    <option value="32">32</option>
-                                    <option value="64">64</option>
-                                </select>
-                                <div class="pcat-results-footer-select-elem-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

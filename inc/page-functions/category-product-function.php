@@ -11,6 +11,7 @@ function filterCategoryProduct()
     $result = [];
     
     $filterTermIds = $_REQUEST['filterTermIds'];
+    $productOrder = $_REQUEST['productOrder'];
     $filterAuthorId = intval($_REQUEST['filterAuthorId']);
     $filterPublisherId = intval($_REQUEST['filterPublisherId']);
     $mainProductCatId = intval($_REQUEST['mainProductCatId']);
@@ -77,20 +78,22 @@ function filterCategoryProduct()
         ];
     }
 
-    $products_search_count = 0;
-    $products_search_list = [];
+    if( $productOrder === 'alphabetical' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'asc';
+    } else if( $productOrder === 'published-date' ){
+        $args['meta_key'] = 'book_current_published_date';
+        $args['orderby'] = 'meta_value';
+        $args['order'] = 'asc';
+    }
     
     global $post;
     
-    // if there are no any option of filter author & publisher
-    // search will work only for tax query
-    $args['posts_per_page'] = $productPerPage;
-    $args['offset'] = ( $page - 1 ) * $productPerPage;
-    
     $the_query = new WP_Query( $args );
-
+    
     // get total search result count
     $products_search_count = $the_query->found_posts;
+    $products_search_list = [];
 
     if ( $the_query->have_posts() ) {
         while ( $the_query->have_posts() ) {
@@ -99,13 +102,13 @@ function filterCategoryProduct()
             global $product;
 
             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-            $authors = get_field('book_contributors_syggrafeas', $post->ID);
+            $authorIDs = get_field('book_contributors_syggrafeas', $post->ID);
             $author_list = [];
 
-            foreach( $authors as $author ){
+            foreach( $authorIDs as $authorID ){
                 $author_list[] = [
-                    'url' => get_permalink($author->ID),
-                    'title' => $author->post_title
+                    'url' => get_permalink($authorID),
+                    'title' => get_the_title($authorID)
                 ];
             }
 
@@ -129,8 +132,10 @@ function filterCategoryProduct()
 
         $result = json_encode([
             'count' => $products_search_count,
-            'result' => $twig->render('category-product-search-result.twig', ['products' => $products_search_list]),
+            'result' => $twig->render('loop/loop-product-card.twig', ['products' => $products_search_list]),
             'navigation' => $pagination->render(true),
+            'pageCounts' => $pagination->get_pages(),
+            // 'productOrder' => $productOrder,
             // 'arg' => $args
         ]);
 

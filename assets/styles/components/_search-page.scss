@@ -115,3 +115,57 @@
     padding: 60px 0 70px;
   }
 }
+
+@media(max-width: $breakpoint-mobile-start) {
+  .search-page-title-section {
+    padding: 24px 0;
+  }
+
+  .search-page-filter-section {
+    padding: 16px;
+  }
+
+  .search-page-filter-list {
+    display: block;
+  }
+
+  .search-page-filter-options-section {
+    padding: 16px;
+  }
+
+  .search-page-extra-filter-row {
+    display: block;
+  }
+
+  .pcat-author-publisher-row {
+    display: block;
+  }
+
+  .pcat-author-publisher-col+.pcat-author-publisher-col {
+    margin: 10px 0 0;
+  }
+
+  .pcat-author-publisher-col {
+    margin-top: 10px;
+  }
+
+  .search-page-extra-filter-right {
+    margin-top: 25px;
+  }
+
+  .search-page-filter-item+.search-page-filter-item {
+    margin-top: 10px;
+  }
+
+  .search-result-category-item {
+    a {
+      font-size: 16px;
+    }
+
+    span+span {
+      &::before {
+        font-size: 16px;
+      }
+    }
+  }
+}
