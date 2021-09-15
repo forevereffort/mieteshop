@@ -1,5 +1,5 @@
 <?php
-    global $post, $wpdb;;
+    global $post, $wpdb;
 
     get_header();
 ?>
