@@ -45,13 +45,13 @@
                         'orderby' => 'title',
                         'order' => 'ASC',
                         'fields' => 'ids',
-                        // 'tax_query' => [
-                        //     [
-                        //         'taxonomy' => 'contributor_type',
-                        //         'field'    => 'slug',
-                        //         'terms'    => 'syggrafeas',
-                        //     ]
-                        // ],
+                        'tax_query' => [
+                            [
+                                'taxonomy' => 'contributor_type',
+                                'field'    => 'slug',
+                                'terms'    => 'syggrafeas',
+                            ]
+                        ],
                     ];
                 
                     $the_query = new WP_Query( $args );
@@ -62,14 +62,14 @@
                         <?php
                             foreach( $the_query->posts as $contruibutor_id ) {
                                 // check that the contributor is connected with published books
-                                $sql = "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key LIKE 'book_contributors_%' AND meta_value LIKE '%\"{$contruibutor_id}\"%' LIMIT 1";
-                                $product_id = $wpdb->get_var($sql);
+                                // $sql = "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key LIKE 'book_contributors_%' AND meta_value LIKE '%\"{$contruibutor_id}\"%' LIMIT 1";
+                                // $product_id = $wpdb->get_var($sql);
 
-                                if( !empty($product_id) ){
+                                // if( !empty($product_id) ){
                         ?>
                                     <div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contruibutor_id); ?>"><?php echo get_the_title($contruibutor_id); ?></a></div>
                         <?php
-                                }
+                                // }
                             }
 
                             wp_reset_query();
