@@ -20,11 +20,10 @@
                     alt="<?php echo $post_title; ?>">
             </a>
         </div>
-        <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $args['postId'] . '"]'); ?></div>
         <div class="pcat-result-item-meta-row">
             <div class="pcat-result-item-meta-col">
                 <div class="pcat-result-item-favorite">
-                    <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
+                    <?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $args['postId'] . '"]'); ?>
                 </div>
             </div>
             <div class="pcat-result-item-meta-col">

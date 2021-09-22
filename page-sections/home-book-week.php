@@ -39,7 +39,6 @@
                 <div class="home-book-week-product-content">
                     <p><?php echo mb_substr(strip_tags($weekbook->post_content), 0, 600, 'UTF-8'); ?> »</p>
                 </div>
-                <div><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $weekbook->ID . '"]'); ?></div>
                 <div class="home-book-week-product-meta-row">
                     <div class="home-book-week-product-meta-col">
                         <div class="home-book-week-product-price">
@@ -73,7 +72,7 @@
                     </div-->
                     <div class="home-book-week-product-meta-col">
                         <div class="home-book-week-product-favorite">
-                            <a href="#"><span><?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?></span></a>
+                            <?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $weekbook->ID . '"]'); ?>
                         </div>
                     </div>
                     <div class="home-book-week-product-meta-col">
