@@ -40,6 +40,9 @@ jQuery(function(){
                 changed = true;
             }
         } else {
+            //next 2 lines added by Daphne to remove active class to allow only one letter at a time to be clicked
+            jQuery('.archive-contributor-search-greek-letter-col').removeClass('active'); 
+            jQuery('.archive-contributor-search-english-letter-col').removeClass('active');
             changed = true;
             jQuery(this).addClass('active');
         }
@@ -58,6 +61,9 @@ jQuery(function(){
                 changed = true;
             }
         } else {
+            //next 2 lines added by Daphne to remove active class to allow only one letter at a time to be clicked
+            jQuery('.archive-contributor-search-greek-letter-col').removeClass('active');
+            jQuery('.archive-contributor-search-english-letter-col').removeClass('active');
             jQuery(this).addClass('active');
             changed = true;
         }
