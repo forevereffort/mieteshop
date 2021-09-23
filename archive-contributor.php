@@ -45,35 +45,54 @@
                         'orderby' => 'title',
                         'order' => 'ASC',
                         'fields' => 'ids',
-                        'tax_query' => [
-                            [
-                                'taxonomy' => 'contributor_type',
-                                'field'    => 'slug',
-                                'terms'    => 'syggrafeas',
-                            ]
-                        ],
+                        'meta_key' => 'book_contributors_syggrafeas',
+                        'meta_value' => array(''),
+                        'meta_compare' => 'NOT IN'
                     ];
                 
-                    $the_query = new WP_Query( $args );
+                    $qryContributors = new WP_Query( $args );
                 ?>
-                <div class="archive-contributor-search-result-left-col"><span id="js-archive-contributor-search-result-count"><?php echo $the_query->found_posts; ?></span> Συγγραφείς</div>
+                <div class="archive-contributor-search-result-left-col">
+                    <?php //echo $qryContributors->found_posts .' <br/>'; ?>
+                    <span id="js-archive-contributor-search-result-count"></span> Συγγραφείς
+                </div>
                 <div class="archive-contributor-search-result-right-col">
                     <div id="js-archive-contributor-search-result-list" class="archive-contributor-search-result-list" data-nonce="<?php echo wp_create_nonce('filter_search_archive_contributor_nonce'); ?>">
                         <?php
-                            foreach( $the_query->posts as $contruibutor_id ) {
-                                // check that the contributor is connected with published books
-                                // $sql = "SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key LIKE 'book_contributors_%' AND meta_value LIKE '%\"{$contruibutor_id}\"%' LIMIT 1";
-                                // $product_id = $wpdb->get_var($sql);
+                        $contrCount=0;                        
+                        foreach( $qryContributors->posts as $contributor_id ) {
+                            $ContributorBooks = get_field('book_contributors_syggrafeas', $contributor_id);
+                            ?>
+                            <?php 
+                            // check that the contributor is connected with published books
+                            foreach($ContributorBooks as $ContributorBook) {
+                                $atLeastOnePublished = false;
+                                if($ContributorBook->post_status == 'publish') {
+                                    $atLeastOnePublished = true;
+                                    break;
+                                }
+                            }   
+                            
+                            if($atLeastOnePublished == true) { //display only contributors who have at least one published book
+                                ?>  
+                                <div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contributor_id); ?>"><?php echo get_the_title($contributor_id); ?></a></div>                                  
+                                <?php
+                                $contrCount++;
+                            } //else { 
+                                ?>
+                                <!--div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contributor_id); ?>" style="color:red;"><?php echo get_the_title($contributor_id); ?></a></div-->                                                                  
+                                <?php
+                            //}
 
-                                // if( !empty($product_id) ){
-                        ?>
-                                    <div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contruibutor_id); ?>"><?php echo get_the_title($contruibutor_id); ?></a></div>
-                        <?php
-                                // }
-                            }
+                        }
 
-                            wp_reset_query();
+                        wp_reset_query();
                         ?>
+                        <div>
+                            <script>
+                                jQuery('#js-archive-contributor-search-result-count').text("<?php echo $contrCount; ?>");
+                            </script>    
+                        </div>
                     </div>
                 </div>
             </div>

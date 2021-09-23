@@ -98,3 +98,30 @@ function filterSingleContributorProductFunc()
 
     die();
 }
+
+
+/* added by Daphne to hook into save_post and update the contributor taxonomy */
+/*
+function update_contributor_taxonomy( $post_id, $post ){
+    global $post; 
+
+    // bail out if this is an autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }    
+
+    //The "save_post" action is only called when we actually changed something in the post page form. 
+    //If we just press the update button, without changing anything, the "save_post" action is not called.
+    if ( $post->post_type == 'product' ) {
+        $authorIDs = get_field( 'book_contributors_syggrafeas', $post->ID );
+        if ( $authorIDs ) {
+            //for each author update the specific contributor taxonomy to Συγγραφέας
+            foreach($authorIDs as $authorID) {
+                wp_set_object_terms( $authorID->ID, array(31), 'contributor_type', true ); //31 is the term id for Συγγραφέας
+            }
+        }
+    }
+}
+add_action( 'save_post', 'update_contributor_taxonomy', 30, 2 );
+*/
+

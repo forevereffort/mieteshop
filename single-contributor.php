@@ -9,6 +9,7 @@
             get_template_part( 'page-sections/contributor/single', 'contributor-info' );
             get_template_part( 'page-sections/contributor/single', 'contributor-meta' );
             get_template_part( 'page-sections/contributor/single', 'contributor-books' );
+            get_template_part( 'page-sections/contributor/single', 'contributor-participated-in' );
             get_template_part( 'page-sections/contributor/single', 'contributor-related-books' );
         }
     }
