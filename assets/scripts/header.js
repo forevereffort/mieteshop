@@ -61,7 +61,7 @@ jQuery(function(){
   })
 
   // header top favorite icon click
-  jQuery('#js-header-top-favorite-icon').click(function(){
+  jQuery('body').on('click', '#js-header-top-favorite-icon', function(){
     if( jQuery('#js-header-top-favorite-popup').hasClass('active') ){
       jQuery('#js-header-top-favorite-popup').removeClass('active');
       jQuery(this).removeClass('active');

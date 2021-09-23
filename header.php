@@ -111,105 +111,11 @@
 						</div>
 						<div class="header-top-right-col">
 							<div class="header-top-search-wrapper">
-								<div id="js-header-top-favorite-icon" class="header-top-search-icon">
-									<?php include get_template_directory() . '/assets/icons/favorite-icon.svg' ?>
-								</div>
-								<div id="js-header-top-favorite-popup" class="header-top-search-popup header-top-search-popup--favorite">
-									<div class="header-top-search-result-group-list">
-										<div class="header-top-search-result-group header-top-search-result-group--favorite">
-											<div class="header-top-search-result-group-title">
-												<h3>ΑΓΑΠΗΜΕΝΑ</h3>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Δημήτριος Ι. Ζέπος</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Λαϊκή Δικαιοσύνη. Εις τας ελευθέρας περιοχάς της υπό κατοχήν Ελλάδος</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Ι. Θ. Κακριδής</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Οι αρχαίοι Έλληνες στη νεοελληνική λαϊκή παράδοση</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Σοφία Παλαμιώτη</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Λαϊκές βιβλιοθήκες. Οδηγός για την οργάνωσή τους</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="header-top-search-result-item">
-												<div class="header-top-search-result-item-row">
-													<div class="header-top-search-result-item-left-col">
-														<div class="header-top-search-result-item-image">
-															<img
-																class="lazyload"
-																src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-																data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-																alt="product-image">
-														</div>
-													</div>
-													<div class="header-top-search-result-item-right-col">
-														<div class="header-top-search-result-item-info">
-															<div class="header-top-search-result-item-info-author">Παναγιώτης Ζωγράφος</div>
-															<div class="header-top-search-result-item-info-title">
-																<h4>Στοχασμός Μακρυγιάννη. Χειρ Παναγιώτη Ζωγράφου. Εικονογραφία του Εικοσιένα</h4>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="header-top-search-button">
-										<a href="#">όλα τα αποτελέσματα</a>
-									</div>
-								</div>
+								<?php
+									if ( is_active_sidebar( 'widget-area-only-for-header-wishlist-items' ) ){
+										dynamic_sidebar( 'widget-area-only-for-header-wishlist-items' );
+									}
+								?>
 							</div>
 						</div>
 						<div class="header-top-right-col">
