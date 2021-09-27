@@ -2,9 +2,9 @@
     global $product;
 
     $image = wp_get_attachment_image_src( get_post_thumbnail_id( $product->get_id() ), 'full' );
-    $publisherIDs = get_field('book_publishers', $product->ID);
-    $series = get_the_terms( $product->ID, 'series' );
-    $epiloges = get_the_terms( $product->ID, 'epiloges' );
+    $publisherIDs = get_field('book_publishers', $product->get_id());
+    $series = get_the_terms( $product->get_id(), 'series' );
+    $epiloges = get_the_terms( $product->get_id(), 'epiloges' );
 ?>
 <section class="single-product-section">
     <div class="general-container">
@@ -144,7 +144,7 @@
                             </div>
                             <div class="single-product-favorite-col">
                                 <div class="single-product-favorite-button">
-                                    <div class="single-product-favorite-button__icon"><?php include get_template_directory() . '/assets/icons/favorite-white-icon.svg' ?></div>
+                                    <div class="single-product-favorite-button__icon"><?php echo do_shortcode('[yith_wcwl_add_to_wishlist product_id="' . $product->get_id() . '" is_single="yes"]'); ?></div>
                                     <div class="single-product-favorite-button__label">Προσθήκη στα αγαπημένα</div>
                                 </div>
                             </div>

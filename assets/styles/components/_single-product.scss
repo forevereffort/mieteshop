@@ -246,6 +246,20 @@
   border-radius: 50%;
   height: 40px;
   width: 40px;
+
+  .yith-wcwl-add-to-wishlist {
+    margin-top: 0;
+
+    .feedback {
+      display: inline-block;
+      margin: 9px 0 0 8px;
+      
+      .yith-wcwl-icon {
+        font-size: 23px;
+        margin: 0;
+      }
+    }
+  }
 }
 
 .single-product-favorite-button__label {

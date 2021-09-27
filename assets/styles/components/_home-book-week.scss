@@ -91,6 +91,12 @@
   padding-top: 4px;
 }
 
+.home-book-week-product-favorite {
+  .yith-wcwl-add-to-wishlist {
+    margin-top: 0;
+  }
+}
+
 @media(max-width: $breakpoint-mobile-start) {
   .home-book-week-row {
     display: block;

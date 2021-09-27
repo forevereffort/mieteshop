@@ -47,6 +47,12 @@ global $product;
 		data-title="<?php echo esc_attr( apply_filters( 'yith_wcwl_add_to_wishlist_title', $label ) ); ?>"
 		rel="nofollow"
 	>
-        <?php include get_template_directory() . '/assets/icons/favorite-small-icon.svg' ?>
+        <?php 
+			if( esc_attr( $is_single ) === 'yes' ){
+				include get_template_directory() . '/assets/icons/favorite-white-icon.svg';
+			} else {
+				include get_template_directory() . '/assets/icons/favorite-small-icon.svg';
+			}
+		?>
 	</a>
 </div>
