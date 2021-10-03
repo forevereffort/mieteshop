@@ -109,7 +109,7 @@
             },
             {
                 "key": "field_60acb10c25533",
-                "label": "Εισήγηση",
+                "label": "Εισαγωγή",
                 "name": "book_contributors_eisigisi",
                 "type": "relationship",
                 "instructions": "",
@@ -910,7 +910,7 @@
             },
             {
                 "key": "field_614b3ff0eedfd",
-                "label": "Εισήγηση:",
+                "label": "Εισαγωγή:",
                 "name": "book_contributors_eisigisi",
                 "type": "relationship",
                 "instructions": "",
