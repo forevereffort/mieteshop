@@ -213,12 +213,12 @@ jQuery(function(){
     });
 
     // filter detail box hidden/show
-    jQuery('#js-pcat-filter-button-inner').on('click', function(){
-        if( jQuery(this).hasClass('active') ){
-            jQuery(this).removeClass('active')
+    jQuery('#js-pcat-filter-row-wrapper').on('click', function(){
+        if( jQuery('#js-pcat-filter-button-inner').hasClass('active') ){
+            jQuery('#js-pcat-filter-button-inner').removeClass('active')
             jQuery('#js-pcat-filter-detail-row').slideUp();
         } else {
-            jQuery(this).addClass('active')
+            jQuery('#js-pcat-filter-button-inner').addClass('active')
             jQuery('#js-pcat-filter-detail-row').slideDown();
         }
     })
