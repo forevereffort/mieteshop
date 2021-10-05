@@ -228,7 +228,12 @@
                                 ?>
                                         <div class="single-product-detail-information-item">
                                             <div class="single-product-detail-information-item__label">ΤΡΕΧΟΥΣΑ ΕΚΔΟΣΗ</div>
-                                            <div class="single-product-detail-information-item__value"><?php echo get_field('book_current_published_date'); ?></div>
+                                            <div class="single-product-detail-information-item__value"><?php echo get_field('book_current_published_date'); ?>
+                                            <?php 
+                                                if(get_field('book_current_published_date_details')) {
+                                                    echo ', ' .get_field('book_current_published_date_details'); 
+                                                }    
+                                            ?></div>
                                         </div>
                                 <?php
                                     }

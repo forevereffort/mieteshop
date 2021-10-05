@@ -189,6 +189,7 @@
                                 ],
                             ],
                             'posts_per_page' => -1,
+                            'post_status' => 'publish',
                             'fields' => 'ids',
                         ];
                     
@@ -272,6 +273,7 @@
     // get products of selected category by page
     $args = [
         'post_type' => 'product',
+        'post_status' => 'publish',        
         'tax_query' => [
             [
                 'taxonomy' => 'product_cat',
