@@ -118,6 +118,41 @@ add_action('init', function (){
     ];
 
     register_taxonomy('epiloges', ['product'], $args);
+
+    $labels = [
+        'name'                       => _x('Εκδότες', 'Εκδότης General Name', 'flynt'),
+        'singular_name'              => _x('Εκδότης', 'Εκδότης Singular Name', 'flynt'),
+        'menu_name'                  => __('Εκδότης', 'flynt'),
+        'all_items'                  => __('All Εκδότης', 'flynt'),
+        'parent_item'                => __('Parent Εκδότης', 'flynt'),
+        'parent_item_colon'          => __('Parent Εκδότης:', 'flynt'),
+        'new_item_name'              => __('New Εκδότης Name', 'flynt'),
+        'add_new_item'               => __('Add New Εκδότης', 'flynt'),
+        'edit_item'                  => __('Edit Εκδότης', 'flynt'),
+        'update_item'                => __('Update Εκδότης', 'flynt'),
+        'view_item'                  => __('View Εκδότης', 'flynt'),
+        'separate_items_with_commas' => __('Separate Εκδότης with commas', 'flynt'),
+        'add_or_remove_items'        => __('Add or remove Εκδότης', 'flynt'),
+        'choose_from_most_used'      => __('Choose from the most used', 'flynt'),
+        'popular_items'              => __('Popular Εκδότης', 'flynt'),
+        'search_items'               => __('Search Εκδότης', 'flynt'),
+        'not_found'                  => __('Not Found', 'flynt'),
+        'no_terms'                   => __('No Τύπος', 'flynt'),
+        'items_list'                 => __('Εκδότης list', 'flynt'),
+        'items_list_navigation'      => __('Τύπος list navigation', 'flynt'),
+    ];
+    $args = [
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+    ];
+
+    register_taxonomy('ekdotes', ['product'], $args);    
+
 });
 
 
