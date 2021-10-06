@@ -39,13 +39,20 @@ function filterSinglePublisherProductFunc()
         'post_type' => 'product',
         'posts_per_page' => $productPerPage,
         'offset' => ($page - 1) * $productPerPage,
-        'meta_query' => [
-			[
-				'key'     => 'book_publishers',
-				'value'   => '"' . $filterPublisherId . '"',
-				'compare' => 'LIKE'
-            ],
-        ]
+        //'meta_query' => [
+		//	[
+		//		'key'     => 'book_publishers',
+		//		'value'   => '"' . $filterPublisherId . '"',
+		//		'compare' => 'LIKE'
+        //    ],
+        //]
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'ekdotes',
+                'field' => 'id',
+                'terms' => $filterPublisherId,
+            )
+        ),        
     ];
 
     if( $productOrder === 'alphabetical' ){

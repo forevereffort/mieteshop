@@ -43,6 +43,7 @@ function filterCategoryProduct()
                 'terms' => $mainProductCatId
             ],
         ],
+        'post_status' => 'publish',
         'posts_per_page' => $productPerPage,
         'offset' => ( $page - 1 ) * $productPerPage,
     ];
