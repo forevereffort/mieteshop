@@ -5,6 +5,8 @@
     $publisherIDs = get_field('book_publishers', $product->ID);
     $series = get_the_terms( $product->ID, 'series' );
     $epiloges = get_the_terms( $product->ID, 'epiloges' );
+    $publishersTaxonomy = get_the_terms( $product->ID, 'ekdotes' );
+
 ?>
 <section class="single-product-section">
     <div class="general-container">
@@ -30,14 +32,23 @@
                             <?php
                                     }        
                                 }
-
-                                if( $publisherIDs ){
-                                    foreach($publisherIDs as $publisherID){
+                            
+                            if( $publishersTaxonomy ) {
+                                foreach ( $publishersTaxonomy as $publisher_term ){
                             ?>
-                                        <div class="single-product-tag"><a href="<?php echo get_permalink($publisherID); ?>"><?php echo get_the_title($publisherID); ?></a></div>
+                                <div class="single-product-tag"><a href="<?php echo get_term_link($publisher_term->term_id); ?>"><?php echo $publisher_term->name; ?></a></div>
                             <?php
-                                    }	     
                                 }
+                            }
+
+                            
+                                //if( $publisherIDs ){
+                                //    foreach($publisherIDs as $publisherID){
+                            ?>
+                                    <!--<div class="single-product-tag"><a href="<?php //echo get_permalink($publisherID); ?>"><?php //echo get_the_title($publisherID); ?></a></div>-->
+                            <?php
+                                //    }	     
+                                //}
 
                                 if( $epiloges ){ 
                                     foreach($epiloges as $epilogi) {
@@ -105,8 +116,8 @@
                             <div class="single-product-form-value"><span><?php echo get_field('book_cover_type'); ?></span></div>
                             <div class="single-product-price-col"><span>ΤΙΜΗ</span></div>
                             <?php 
-                                $regular_price = get_post_meta( get_the_ID(), '_regular_price', true);
-                                $sale_price = get_post_meta( get_the_ID(), '_sale_price', true);
+                                $regular_price = (float) get_post_meta( get_the_ID(), '_regular_price', true);
+                                $sale_price = (float) get_post_meta( get_the_ID(), '_sale_price', true);
                                 $price_symbol = get_woocommerce_currency_symbol(get_option('woocommerce_currency'));
 
                                 if($sale_price) {
@@ -116,7 +127,7 @@
                             <?php
                                 } else {
                             ?>
-                                    <div class="single-product-sale-price"><span><?php echo number_format($regular_price, 2, ',', ''); ?></span></div>
+                                    <div class="single-product-sale-price"><span><?php echo number_format($regular_price, 2, ',', ''); ?><?php echo  $price_symbol; ?></span></div>
                             <?php
                                 }
                             ?>
@@ -257,11 +268,19 @@
                                             <div class="single-product-detail-information-item__label">ΕΚΔΟΤΗΣ</div>
                                             <div class="single-product-detail-information-item__value">
                                                 <?php 
-                                                    foreach($publisherIDs as $publisherID) {
+                                                if( $publishersTaxonomy ) {
+                                                    foreach ( $publishersTaxonomy as $publisher_term ){
                                                 ?>
-                                                        <a href="<?php echo get_permalink($publisherID); ?>"><?php echo get_the_title($publisherID); ?></a>
+                                                    <a href="<?php echo get_term_link($publisher_term->term_id); ?>"><?php echo $publisher_term->name; ?></a><br/>
                                                 <?php
-                                                    }	                                    
+                                                    }
+                                                }
+
+                                                    //foreach($publisherIDs as $publisherID) {
+                                                ?>
+                                                    <!--<a href="<?php //echo get_permalink($publisherID); ?>"><?php //echo get_the_title($publisherID); ?></a>-->
+                                                <?php
+                                                    //}	                                    
                                                 ?>
                                             </div>
                                         </div>
