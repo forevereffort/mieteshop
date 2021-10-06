@@ -72,21 +72,25 @@
     if( $product_cat_level < 3 && !empty($child_cat_list) ){
 ?>
         <section class="pcat-filter-section">
-            <div class="content-container">
-                <div class="pcat-filter-row">
-                    <div class="pcat-filter-label">
-                        <div class="pcat-filter-label-icon"><?php include get_template_directory() . '/assets/icons/filter-icon.svg'; ?></div>
-                        <div class="pcat-filter-label-text">ΦΙΛΤΡΑ</div>
-                    </div>
-                    <div class="pcat-filter-button">
-                        <div id="js-pcat-filter-button-inner" class="pcat-filter-button-inner">
-                            <div class="pcat-filter-button-label">Επιλέξτε θεματικά φίλτρα</div>
-                            <div class="pcat-filter-button-icon">
-                                <div class="pcat-filter-button-icon-inner"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+            <div id="js-pcat-filter-row-wrapper" class="pcat-filter-row-wrapper">
+                <div class="content-container">
+                    <div class="pcat-filter-row">
+                        <div class="pcat-filter-label">
+                            <div class="pcat-filter-label-icon"><?php include get_template_directory() . '/assets/icons/filter-icon.svg'; ?></div>
+                            <div class="pcat-filter-label-text">ΦΙΛΤΡΑ</div>
+                        </div>
+                        <div class="pcat-filter-button">
+                            <div id="js-pcat-filter-button-inner" class="pcat-filter-button-inner">
+                                <div class="pcat-filter-button-label">Επιλέξτε θεματικά φίλτρα</div>
+                                <div class="pcat-filter-button-icon">
+                                    <div class="pcat-filter-button-icon-inner"><?php include get_template_directory() . '/assets/icons/arrow-down-icon.svg'; ?></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="content-container">
                 <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" data-filter-term-list="" style="display: none;">
                     <?php
                         if( $product_cat_level === 1 ){

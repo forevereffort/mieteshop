@@ -186,4 +186,9 @@ jQuery(function(){
     jQuery('#js-sc-video-popup').addClass('hide');
     jQuery('#js-sc-video-popup__video-wrapper').html('');
   })
+
+  jQuery('#js-sc-video-popup').on('click', function(){
+    jQuery('#js-sc-video-popup').addClass('hide');
+    jQuery('#js-sc-video-popup__video-wrapper').html('');
+  })
 })

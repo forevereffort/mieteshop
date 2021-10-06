@@ -52,6 +52,10 @@
   background-color: $color-white;
   margin: 0 auto;
   max-width: $general-container-width;
+}
+
+.pcat-filter-row-wrapper {
+  cursor: pointer;
   padding: 29px 0 28px;
 }
 
@@ -534,7 +538,7 @@
 }
 
 .pcat-filter-detail-col {
-  padding: 35px 8px 15px;
+  padding: 7px 8px 43px;
   width: 20%;
 }
 
@@ -1082,5 +1086,9 @@
 
   .pcat-results-projection-options {
     padding-top: 0;
+  }
+
+  .pcat-filter-row-wrapper {
+    padding: 0;
   }
 }
