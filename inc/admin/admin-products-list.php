@@ -1,4 +1,46 @@
 <?php
+
+/* Add product publisher taxonomy filter */
+function product_publisher_filter() {
+	
+	global $typenow;
+	
+	$post_type	= 'product';	// My Custom Post Type
+	$taxonomy	= 'ekdotes';		// My Custom Taxonomy
+	
+	if( $post_type == $typenow ) {
+		
+		$selected		= isset( $_GET[ $taxonomy ] ) ? $_GET[ $taxonomy ] : '';
+		$info_taxonomy	= get_taxonomy( $taxonomy );
+		
+		wp_dropdown_categories( array(
+			'show_option_all'	=> esc_html__( "Φιλτράρισμα με {$info_taxonomy->label}" ),
+			'taxonomy'			=> $taxonomy,
+			'name'				=> $taxonomy,
+			'orderby'			=> 'name',
+			'selected'			=> $selected,
+			'value_field'		=> 'slug',
+			'show_count'		=> true,
+			'hide_empty'		=> true,
+		) );
+		
+	}
+	
+}
+add_action( 'restrict_manage_posts', 'product_publisher_filter' );
+
+	
+/* Remove Yoast SEO Filters */
+function custom_remove_yoast_seo_admin_filters() {
+    global $wpseo_meta_columns;
+    if ($wpseo_meta_columns) {
+        remove_action('restrict_manage_posts', array($wpseo_meta_columns, 'posts_filter_dropdown'));
+        remove_action('restrict_manage_posts', array($wpseo_meta_columns, 'posts_filter_dropdown_readability'));
+    }
+}
+add_action('admin_init', 'custom_remove_yoast_seo_admin_filters', 20);
+
+/*
 if (is_admin()){
 
     //this hook will create a new filter on the admin area for the specified post type
@@ -44,3 +86,4 @@ if (is_admin()){
     }
     add_filter('pre_get_posts', 'adminProductFilterbyPublisherResult');
 }
+*/
