@@ -68,10 +68,14 @@
                                     if( count($authorIDs) > 3){
                                         echo 'Συλλογικό Έργο';	
                                     } else {					
+                                        $authorAA = 1;
                                         foreach($authorIDs as $authorID) {
                             ?>
                                             <a href="<?php echo get_permalink($authorID); ?>"><?php echo get_the_title($authorID); ?></a>
                             <?php
+                                            //add a comma after each author when authors more than 1 and don't add on last author
+                                            if(count($authorIDs) > 1 && count($authorIDs) != $authorAA ) { echo ', '; } 
+                                            $authorAA++;
                                         }	
                                     }	
                                 } else {
@@ -249,7 +253,7 @@
                                     }
                                 ?>
                                 <?php
-                                    if( get_field('book_original_language') ){
+                                    if( get_field('book_original_language') && (get_field('book_original_language') != get_field('book_language')) ){
                                 ?>
                                         <div class="single-product-detail-information-item">
                                             <div class="single-product-detail-information-item__label">ΓΛΩΣΣΑ ΠΡΩΤΟΤΥΠΟΥ</div>
