@@ -127,7 +127,6 @@ include_once 'woo-functions.php';
 include_once 'aq-resizer.php';
 include_once 'helper.php';
 
-include_once 'custom-post-types/publisher.php';
 include_once 'custom-post-types/contributor.php';
 
 include_once 'page-functions/category-product-function.php';
