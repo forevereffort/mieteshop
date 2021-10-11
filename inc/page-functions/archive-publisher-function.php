@@ -86,15 +86,15 @@ function filterSearchArchivePublisherFunc()
         'order' => 'ASC'
     ];
 
-    // if( !empty($publisherTypeList) ){
-    //     $args['tax_query'] = [
-    //         [
-    //             'taxonomy' => 'publisher_type',
-    //             'field' => 'term_id',
-    //             'terms' => $publisherTypeList
-    //         ]
-    //     ];
-    // }
+    if( !empty($publisherTypeList) ){
+        $args['meta_query'] = [
+            [
+                'key' => 'publisher_type_field',
+                'value' => $publisherTypeList,
+                'compare' => 'IN'
+            ]
+        ];
+    }
 
     $publisher_term_list = get_terms( $args );
 
@@ -105,6 +105,7 @@ function filterSearchArchivePublisherFunc()
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         $result = json_encode([
             'result' => $html,
+            'args' => $args
         ]);
 
         echo $result;
