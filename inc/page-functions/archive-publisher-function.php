@@ -40,8 +40,23 @@ function terms_clauses_title_filter_with_first_letter( $clauses, $taxonomies, $a
         return $clauses;
     }
 
-    $clauses['where'] .= ' AND ' . $wpdb->prepare( "t.name LIKE %s", $wpdb->esc_like( $args['search_title_with_first_letter'] ) . '%' );
+    if( is_array($args['search_title_with_first_letter']) ){
 
+        $s = '';
+
+        foreach($args['search_title_with_first_letter'] as $item){
+            if( !empty($s) ){
+                $s .= ' OR ';
+            }
+
+            $s .= $wpdb->prepare( "t.name LIKE %s", $wpdb->esc_like( $item ) . '%' );
+        }
+
+        $clauses['where'] .= ' AND (' . $s . ')';
+    } else {
+        $clauses['where'] .= ' AND ' . $wpdb->prepare( "t.name LIKE %s", $wpdb->esc_like( $args['search_title_with_first_letter'] ) . '%' );
+    }
+    
     return $clauses;
 }
 
@@ -63,34 +78,29 @@ function filterSearchArchivePublisherFunc()
     $html = '';
 
     $args = [
-        'post_type' => 'publisher',
+        'taxonomy' => 'ekdotes', 
         'posts_per_page' => -1,
         'search_title_with_first_letter' => $firstLetters,
+        'hide_empty' => true, 
         'orderby' => 'title',
         'order' => 'ASC'
     ];
 
-    if( !empty($publisherTypeList) ){
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'publisher_type',
-                'field' => 'term_id',
-                'terms' => $publisherTypeList
-            ]
-        ];
+    // if( !empty($publisherTypeList) ){
+    //     $args['tax_query'] = [
+    //         [
+    //             'taxonomy' => 'publisher_type',
+    //             'field' => 'term_id',
+    //             'terms' => $publisherTypeList
+    //         ]
+    //     ];
+    // }
+
+    $publisher_term_list = get_terms( $args );
+
+    foreach($publisher_term_list as $term){
+        $html .= '<div class="archive-publisher-search-result-col"><a href="' . get_term_link($term->term_id) .'">' . $term->name .'</a></div>';
     }
-
-    global $post;
-
-    $loop = new WP_Query( $args );
-
-    while ( $loop->have_posts() ){
-        $loop->the_post();
-
-        $html .= '<div class="archive-publisher-search-result-col"><a href="' . get_permalink($post->ID) .'">' . $post->post_title .'</a></div>';
-    }
-
-    wp_reset_query();
     
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         $result = json_encode([
