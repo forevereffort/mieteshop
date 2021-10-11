@@ -219,10 +219,10 @@
                                     }
                                 }
 
-                                $get_terms = get_the_terms( $postid, 'ekdotes' );
+                                $publisher_terms = get_the_terms( $postid, 'ekdotes' );
 
-                                if( !empty($get_terms) ){
-                                    foreach( $get_terms as $term ) { 
+                                if( !empty($publisher_terms) ){
+                                    foreach( $publisher_terms as $term ) { 
                                         $publisher_terms_in_search_result[$term->term_id] = $term->name; 
                                     }
                                 }

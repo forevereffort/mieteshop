@@ -31,6 +31,22 @@ function title_filter_with_first_letter( $where, $wp_query ){
 
 add_filter( 'posts_where', 'title_filter_with_first_letter', 10, 2 );
 
+
+// add get_terms arg to search only in title with first letter
+function terms_clauses_title_filter_with_first_letter( $clauses, $taxonomies, $args ){
+    global $wpdb;
+
+    if( empty( $args['search_title_with_first_letter'] ) ){
+        return $clauses;
+    }
+
+    $clauses['where'] .= ' AND ' . $wpdb->prepare( "t.name LIKE %s", $wpdb->esc_like( $args['search_title_with_first_letter'] ) . '%' );
+
+    return $clauses;
+}
+
+add_filter( 'terms_clauses', 'terms_clauses_title_filter_with_first_letter', 10, 3 );
+
 add_action('wp_ajax_filter_search_archive_publisher', 'filterSearchArchivePublisherFunc');
 add_action('wp_ajax_nopriv_filter_search_archive_publisher', 'filterSearchArchivePublisherFunc');
 

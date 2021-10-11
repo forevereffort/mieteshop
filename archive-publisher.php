@@ -133,6 +133,19 @@
             </div>
             <div id="js-archive-publisher-search-result-list" class="archive-publisher-search-result-list" data-nonce="<?php echo wp_create_nonce('filter_search_archive_publisher_nonce'); ?>">
                 <?php
+                    $child_child_cat_list = get_terms([
+                        'taxonomy' => 'ekdotes', 
+                        'posts_per_page' => -1,
+                        'search_title_with_first_letter' => 'α',
+                        'hide_empty' => true, 
+                        'orderby' => 'title',
+                        'order' => 'ASC'
+                    ]);
+
+                    echo '<pre>';
+                    print_r($child_child_cat_list);
+                    echo '</pre>';
+
                     $args = [
                         'post_type' => 'publisher',
                         'posts_per_page' => -1,
