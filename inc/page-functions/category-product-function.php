@@ -70,12 +70,9 @@ function filterCategoryProduct()
     }
 
     if( !empty($filterPublisherId) ){
-        $args['meta_query'] = [
-			[
-				'key'     => 'book_publishers',
-				'value'   => '"' . $filterPublisherId . '"',
-				'compare' => 'LIKE'
-            ],
+        $args['tax_query'][] = [
+            'taxonomy'     => 'ekdotes',
+            'terms'   => $filterPublisherId,
         ];
     }
 
@@ -137,7 +134,7 @@ function filterCategoryProduct()
             'navigation' => $pagination->render(true),
             'pageCounts' => $pagination->get_pages(),
             // 'productOrder' => $productOrder,
-            // 'arg' => $args
+            'arg' => $args
         ]);
 
         echo $result;

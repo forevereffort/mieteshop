@@ -205,14 +205,13 @@
                         // get author list that included in search result
                         $author_list_in_search_result = [];
 
-                        // get publisher list that included in search result
-                        $publisher_list_in_search_result = [];
+                        // get publisher terms that included in search result
+                        $publisher_terms_in_search_result = [];
                     
                         if ( !empty($loop->posts) ) {
                             foreach( $loop->posts as $postid ) {
                                 // get author & publisher list that include in the search result
                                 $authorIDs = get_field('book_contributors_syggrafeas', $postid);
-                                $publisherIDs = get_field('book_publishers', $postid);
 
                                 if( !empty($authorIDs) ){
                                     foreach($authorIDs as $authorID){
@@ -220,16 +219,18 @@
                                     }
                                 }
 
-                                if( !empty($publisherIDs) ){
-                                    foreach($publisherIDs as $publisherID){
-                                        $publisher_list_in_search_result[$publisherID] = get_the_title($publisherID);
+                                $get_terms = get_the_terms( $postid, 'ekdotes' );
+
+                                if( !empty($get_terms) ){
+                                    foreach( $get_terms as $term ) { 
+                                        $publisher_terms_in_search_result[$term->term_id] = $term->name; 
                                     }
                                 }
                             }
 
                             // sort array by value
                             asort($author_list_in_search_result);
-                            asort($publisher_list_in_search_result);
+                            asort($publisher_terms_in_search_result);
                         }
                     ?>
                     <div id="js-pcat-author-list-wrapper" class="pcat-author-publisher-select">
@@ -248,7 +249,7 @@
                         <select id="js-pcat-publisher-list" style="width:100%;">
                             <option></option>
                             <?php
-                                foreach($publisher_list_in_search_result as $publisher_id => $publisher_title){
+                                foreach($publisher_terms_in_search_result as $publisher_id => $publisher_title){
                             ?>
                                     <option value="<?php echo $publisher_id; ?>"><?php echo $publisher_title; ?></option>
                             <?php
