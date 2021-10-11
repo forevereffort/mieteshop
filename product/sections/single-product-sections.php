@@ -339,6 +339,16 @@
                                     }
                                 ?>
                                 <?php
+                                    if( get_field('book_multivolume_title') ){
+                                ?>
+                                        <div class="single-product-detail-information-item">
+                                            <div class="single-product-detail-information-item__label">ΤΙΤΛΟΣ ΤΟΜΩΝ</div>
+                                            <div class="single-product-detail-information-item__value"><?php echo get_field('book_multivolume_title'); ?></div>
+                                        </div>
+                                <?php
+                                    }
+                                ?>                                
+                                <?php
                                     if( get_field('book_eudoxus_code') ){
                                 ?>
                                         <div class="single-product-detail-information-item">
