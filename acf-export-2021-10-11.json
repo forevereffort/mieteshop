@@ -603,9 +603,9 @@
         "location": [
             [
                 {
-                    "param": "post_type",
+                    "param": "post_format",
                     "operator": "==",
-                    "value": "product"
+                    "value": "audio"
                 }
             ]
         ],
@@ -3504,6 +3504,25 @@
                 "display_format": "d\/m\/Y",
                 "return_format": "d\/m\/Y",
                 "first_day": 1
+            },
+            {
+                "key": "field_615bff0974ec3",
+                "label": "Πληροφορίες Τρέχουσας Έκδοσης",
+                "name": "book_first_published_date_details",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
             }
         ],
         "location": [
@@ -4083,6 +4102,270 @@
                     "param": "post_type",
                     "operator": "==",
                     "value": "publisher"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    },
+    {
+        "key": "group_615c1db34f2fe",
+        "title": "Publisher Taxonomy Fields",
+        "fields": [
+            {
+                "key": "field_615c217332fc6",
+                "label": "Τύπος Εκδότη",
+                "name": "publisher_type_field",
+                "type": "select",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "Αποκλειστική διάθεση": "Αποκλειστική διάθεση",
+                    "Εκδοτικοί Οίκοι": "Εκδοτικοί Οίκοι",
+                    "Ιδρύματα": "Ιδρύματα",
+                    "Μουσεία": "Μουσεία",
+                    "Πανεπιστήμια": "Πανεπιστήμια"
+                },
+                "default_value": false,
+                "allow_null": 1,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
+            },
+            {
+                "key": "field_615d4905db604",
+                "label": "Εικόνα Εκδότη",
+                "name": "ekdotes_image",
+                "type": "image",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "return_format": "array",
+                "preview_size": "medium",
+                "library": "all",
+                "min_width": "",
+                "min_height": "",
+                "min_size": "",
+                "max_width": "",
+                "max_height": "",
+                "max_size": "",
+                "mime_types": ""
+            },
+            {
+                "key": "field_615c1df1efb74",
+                "label": "Εκδότης Biblionet ID",
+                "name": "publisher_company_biblionet_id",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_615c1e00efb75",
+                "label": "Συνοπτική Περιγραφή Εκδότη",
+                "name": "publisher_company_description_lead",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "maxlength": "",
+                "rows": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_615c1e04efb76",
+                "label": "Σχετικά Άρθρα Εκδότη",
+                "name": "publisher_company_related_articles",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "post"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            },
+            {
+                "key": "field_615c1e09efb77",
+                "label": "Video Εκδότη",
+                "name": "publisher_company_videos",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "",
+                "min": 0,
+                "max": 0,
+                "layout": "table",
+                "button_label": "",
+                "sub_fields": [
+                    {
+                        "key": "field_615c1e09efb78",
+                        "label": "Τίτλος video",
+                        "name": "publisher_company_video_title",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": ""
+                    },
+                    {
+                        "key": "field_615c1e09efb79",
+                        "label": "Περιγραφή video",
+                        "name": "publisher_company_video_description",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "maxlength": "",
+                        "rows": "",
+                        "new_lines": ""
+                    },
+                    {
+                        "key": "field_615c1e09efb7a",
+                        "label": "Φωτογραφία video",
+                        "name": "publisher_company_video_cover_image",
+                        "type": "image",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "array",
+                        "preview_size": "medium",
+                        "library": "all",
+                        "min_width": "",
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": "",
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": ""
+                    },
+                    {
+                        "key": "field_615c1e09efb7b",
+                        "label": "Ενσωμάτωση video",
+                        "name": "publisher_company_video_embed_code",
+                        "type": "oembed",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "width": "",
+                        "height": ""
+                    }
+                ]
+            },
+            {
+                "key": "field_615c1e0defb7c",
+                "label": "Επιλεγμένοι Συγγραφείς Εκδότη",
+                "name": "publisher_company_selected_contributors",
+                "type": "relationship",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "contributor"
+                ],
+                "taxonomy": "",
+                "filters": [
+                    "search",
+                    "taxonomy"
+                ],
+                "elements": "",
+                "min": "",
+                "max": "",
+                "return_format": "object"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "taxonomy",
+                    "operator": "==",
+                    "value": "ekdotes"
                 }
             ]
         ],

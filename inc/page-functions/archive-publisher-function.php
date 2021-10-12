@@ -31,6 +31,37 @@ function title_filter_with_first_letter( $where, $wp_query ){
 
 add_filter( 'posts_where', 'title_filter_with_first_letter', 10, 2 );
 
+
+// add get_terms arg to search only in title with first letter
+function terms_clauses_title_filter_with_first_letter( $clauses, $taxonomies, $args ){
+    global $wpdb;
+
+    if( empty( $args['search_title_with_first_letter'] ) ){
+        return $clauses;
+    }
+
+    if( is_array($args['search_title_with_first_letter']) ){
+
+        $s = '';
+
+        foreach($args['search_title_with_first_letter'] as $item){
+            if( !empty($s) ){
+                $s .= ' OR ';
+            }
+
+            $s .= $wpdb->prepare( "t.name LIKE %s", $wpdb->esc_like( $item ) . '%' );
+        }
+
+        $clauses['where'] .= ' AND (' . $s . ')';
+    } else {
+        $clauses['where'] .= ' AND ' . $wpdb->prepare( "t.name LIKE %s", $wpdb->esc_like( $args['search_title_with_first_letter'] ) . '%' );
+    }
+    
+    return $clauses;
+}
+
+add_filter( 'terms_clauses', 'terms_clauses_title_filter_with_first_letter', 10, 3 );
+
 add_action('wp_ajax_filter_search_archive_publisher', 'filterSearchArchivePublisherFunc');
 add_action('wp_ajax_nopriv_filter_search_archive_publisher', 'filterSearchArchivePublisherFunc');
 
@@ -47,38 +78,34 @@ function filterSearchArchivePublisherFunc()
     $html = '';
 
     $args = [
-        'post_type' => 'publisher',
+        'taxonomy' => 'ekdotes', 
         'posts_per_page' => -1,
         'search_title_with_first_letter' => $firstLetters,
+        'hide_empty' => true, 
         'orderby' => 'title',
         'order' => 'ASC'
     ];
 
     if( !empty($publisherTypeList) ){
-        $args['tax_query'] = [
+        $args['meta_query'] = [
             [
-                'taxonomy' => 'publisher_type',
-                'field' => 'term_id',
-                'terms' => $publisherTypeList
+                'key' => 'publisher_type_field',
+                'value' => $publisherTypeList,
+                'compare' => 'IN'
             ]
         ];
     }
 
-    global $post;
+    $publisher_term_list = get_terms( $args );
 
-    $loop = new WP_Query( $args );
-
-    while ( $loop->have_posts() ){
-        $loop->the_post();
-
-        $html .= '<div class="archive-publisher-search-result-col"><a href="' . get_permalink($post->ID) .'">' . $post->post_title .'</a></div>';
+    foreach($publisher_term_list as $term){
+        $html .= '<div class="archive-publisher-search-result-col"><a href="' . get_term_link($term->term_id) .'">' . $term->name .'</a></div>';
     }
-
-    wp_reset_query();
     
     if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         $result = json_encode([
             'result' => $html,
+            'args' => $args
         ]);
 
         echo $result;

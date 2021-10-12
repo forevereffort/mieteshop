@@ -1,8 +1,10 @@
 <?php
-    global $post;
-
-    get_header();
+/**
+ * Template Name: Publisher List Page
+ */
+global $post;
 ?>
+<?php get_header(); ?>
 <section class="archive-publisher-title">
     <div class="general-container">
         <div class="content-container">
@@ -117,15 +119,12 @@
             </div>
             <div class="archive-publisher-search-type-row">
                 <?php
-                    $taxonomies = get_terms([
-                        'taxonomy' => 'publisher_type',
-                        'hide_empty' => false
-                    ]);
+                    $publisherTypeList = ['Αποκλειστική διάθεση', 'Εκδοτικοί Οίκοι', 'Ιδρύματα', 'Μουσεία', 'Πανεπιστήμια'];
 
-                    foreach($taxonomies as $term){
+                    foreach($publisherTypeList as $publisherType){
                 ?>
                         <div class="archive-publisher-search-type-col">
-                            <label><?php echo $term->name; ?><input type="checkbox" class="js-archive-publisher-search-type-col" value="<?php echo $term->term_id; ?>"><span></span></label>
+                            <label><?php echo $publisherType; ?><input type="checkbox" class="js-archive-publisher-search-type-col" value="<?php echo $publisherType; ?>"><span></span></label>
                         </div>
                 <?php
                     }
