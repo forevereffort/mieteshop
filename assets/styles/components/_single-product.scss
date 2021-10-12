@@ -57,6 +57,7 @@
   margin-top: 38px;
 
   a {
+    /*border-bottom: 1px solid #999;*/
     color: $color-black-1;
     font-size: 24px;
     font-weight: $font-weight-light;
@@ -660,7 +661,8 @@
 }
 
 .single-product-comments {
-  padding-bottom: 10px;
+  font-size: 14px;
+  padding: 20px 0 10px;
 }
 
 .single-product-series-wrapper {

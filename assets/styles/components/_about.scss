@@ -2,7 +2,7 @@
   background-color: #dedbd4;
   margin: 0 auto;
   max-width: 1280px;
-  padding: 50px 0;
+  padding: 50px 0 0;
 }
 
 .about-hero-section {
@@ -73,6 +73,7 @@
 .about-store-section {
   background-color: $color-black-1;
   margin: 30px auto;
+  margin-bottom: 0;
   max-width: $general-container-width;
   padding: 50px 0 75px;
 
