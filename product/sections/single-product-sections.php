@@ -111,9 +111,11 @@
                                 }
                             ?>
                         </div>
+                        <?php if(get_field('book_comments')) { ?>
                         <div class="single-product-comments">
                             <?php echo get_field('book_comments'); ?>
                         </div>   
+                        <?php } ?>
                         <div class="single-product-info-table-1-row">
                             <div class="single-product-form-col"><span>ΜΟΡΦΗ</span></div>
                             <div class="single-product-form-value"><span><?php echo get_field('book_cover_type'); ?></span></div>
@@ -122,32 +124,41 @@
                                 $regular_price = (float) get_post_meta( get_the_ID(), '_regular_price', true);
                                 $sale_price = (float) get_post_meta( get_the_ID(), '_sale_price', true);
                                 $price_symbol = get_woocommerce_currency_symbol(get_option('woocommerce_currency'));
+                                $availability = $product->get_availability();
+                                $stock_status = isset( $availability['class'] ) ? $availability['class'] : false;
 
-                                if($sale_price) {
+                                if($sale_price > 0) {
                             ?>
                                     <div class="single-product-regular-price"><span><?php echo number_format($regular_price, 2, ',', ''); ?><?php echo  $price_symbol; ?></span></div>
                                     <div class="single-product-sale-price"><span><?php echo number_format($sale_price, 2, ',', ''); ?><?php echo  $price_symbol; ?></span></div>
                             <?php
-                                } else {
+                                } elseif($regular_price > 0) {
                             ?>
+                                    <div class="single-product-regular-price"></div>
                                     <div class="single-product-sale-price"><span><?php echo number_format($regular_price, 2, ',', ''); ?><?php echo  $price_symbol; ?></span></div>
                             <?php
+                                } else { 
+                            ?>        
+                                    <div class="single-product-regular-price"></div>
+                                    <div class="single-product-sale-price"></div>
+                            <?php             
                                 }
+
                             ?>
                             
                             <?php
-                                if($sale_price) {
+                                if($sale_price > 0) {
                                     $saving_percentage = round( 100 - ( $sale_price / $regular_price * 100 ), 1 ) . '%';
                             ?>
                                     <div class="single-product-discount"><span><?php echo $saving_percentage; ?></span></div>
                             <?php
-                                }
+                                } else { ?> <div class="single-product-discount"></div> <?php }
                             ?>
                             <div class="single-product-availability">
                                 <span>
-                                    <?php 
-                                        $availability = $product->get_availability();
-                                        echo $availability['availability']; 
+                                    <?php                                         
+                                        //echo $availability['availability'] .' - ' .$availability['class'] .'<br/>';
+                                        if ($stock_status == 'out-of-stock') { echo 'εξαντλημένο'; } else { echo 'άμεσα διαθέσιμο'; } 
                                     ?>
                                 </span>
                             </div>
@@ -164,7 +175,9 @@
                             </div>
                             <div class="single-product-add-tocart-col">
                                 <!--a href="#">Προσθήκη στο καλάθι</a-->
+                                <?php if($sale_price > 0 || $regular_price > 0 ) { ?>
                                 <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>">Προσθήκη στο καλάθι</a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

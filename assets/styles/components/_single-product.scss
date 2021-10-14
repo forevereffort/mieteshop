@@ -142,15 +142,18 @@
   font-weight: $font-weight-light;
   letter-spacing: 1.2px;
   padding-top: 17px;
-  width: 75px;
+  text-align: left;
+  width: 12%;
 }
 
 .single-product-form-value {
-  border-right: 2px solid $color-black;
+  border-right: 1px solid $color-black;
   font-size: 16px;
   font-weight: $font-weight-light;
+  padding-left: 10px;
   padding-top: 13px;
-  width: 128px;
+  text-align: left;
+  width: 22%;
 }
 
 .single-product-price-col {
@@ -160,26 +163,32 @@
   font-weight: $font-weight-light;
   letter-spacing: 1.2px;
   padding-top: 18px;
-  width: 60px;
+  text-align: center;
+  width: 12%;
 }
 
 .single-product-regular-price {
   color: rgba($color-black, 0.6);
   font-size: 16px;
   font-weight: $font-weight-light;
+  padding-left: 10px;
   padding-top: 13px;
   text-decoration: line-through;
+  width: 10%;
 }
 
 .single-product-sale-price {
   color: $color-black;
   font-size: 24px;
   font-weight: $font-weight-bold;
+  padding-left: 10px;
   padding-top: 7px;
+  width: 18%;
 }
 
 .single-product-discount {
   padding-top: 8px;
+  width: 8%;
 
   span {
     background-color: $color-black-1;
@@ -197,6 +206,8 @@
   font-size: 11px;
   font-weight: $font-weight-medium;
   padding-top: 15px;
+  width: 15%;
+  text-align: right;
 }
 
 .single-product-info-table-2-row {
@@ -332,7 +343,7 @@
 }
 
 .single-product-detail-information-item {
-  width: 50%;
+  width: 48%;
 }
 
 .single-product-detail-information-item+.single-product-detail-information-item+.single-product-detail-information-item {
