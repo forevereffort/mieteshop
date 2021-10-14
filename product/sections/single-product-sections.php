@@ -175,9 +175,13 @@
                             </div>
                             <div class="single-product-add-tocart-col">
                                 <!--a href="#">Προσθήκη στο καλάθι</a-->
-                                <?php if($sale_price > 0 || $regular_price > 0 ) { ?>
-                                <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>">Προσθήκη στο καλάθι</a>
-                                <?php } ?>
+                                <?php if( ($sale_price > 0 || $regular_price > 0) && $stock_status != 'out-of-stock') { ?>
+                                    <a class="js-mieteshop-add-to-cart" href="#" data-quantity="1" data-product_id="<?php echo $product->get_id(); ?>" data-variation_id="0" data-product_sku="<?php echo $product->get_sku(); ?>">Προσθήκη στο καλάθι</a>
+                                <?php } else { ?>
+                                    <span>Προσθήκη στο καλάθι</span>
+                                <?php 
+                                }    
+                                ?>   
                             </div>
                         </div>
                     </div>

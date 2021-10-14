@@ -12,9 +12,9 @@
     
     if ( !empty($related_posts->posts) ) {
 ?>
-        <section class="single-product-realted-section">
+        <section class="single-product-related-section">
             <div class="content-container">
-                <div class="single-product-realted-title">
+                <div class="single-product-related-title">
                     <h2>ΣΧΕΤΙΚΟΙ ΤΙΤΛΟΙ</h2>
                 </div>
                 <div class="pcat-results-row product-list-desktop-slider">
