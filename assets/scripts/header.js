@@ -2,46 +2,61 @@ import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 jQuery(function(){
   // Open sub menu and keep open. Close when hovering over a different menu item
-  jQuery('.js-header-nav-parent-menu').hover(
-    function () {
-      var menuID = jQuery(this).attr('data-menu-id');
-      // jQuery(this).addClass('active');
+  // jQuery('.js-header-nav-parent-menu').hover(
+  //   function () {
+  //     var menuID = jQuery(this).attr('data-menu-id');
+  //     // jQuery(this).addClass('active');
 
-      setTimeout(function () {
-        jQuery('.header-sub-menu.active').removeClass('active')
-        jQuery(`#header-sub-menu-${menuID}`).addClass('active');
-      }, 200)
-    }
-  )
+  //     setTimeout(function () {
+  //       jQuery('.header-sub-menu.active').removeClass('active')
+  //       jQuery(`#header-sub-menu-${menuID}`).addClass('active');
+  //     }, 200)
+  //   }
+  // )
 
-  jQuery('.header-sub-menu').hover(
-    function () {
-      var $this = jQuery(this);
+  // jQuery('.header-sub-menu').hover(
+  //   function () {
+  //     var $this = jQuery(this);
 
-      setTimeout(function () {
-        jQuery('.header-sub-menu.active').removeClass('active')
-        jQuery($this).addClass('active');
-      }, 200)
-    }
-  )
+  //     setTimeout(function () {
+  //       jQuery('.header-sub-menu.active').removeClass('active')
+  //       jQuery($this).addClass('active');
+  //     }, 200)
+  //   }
+  // )
 
-  jQuery('.js-header-nav-menu').hover(
-    function () {
+  // jQuery('.js-header-nav-menu').hover(
+  //   function () {
 
-      setTimeout(function () {
-        // jQuery('.js-header-nav-parent-menu.active').removeClass('active')
-        jQuery('.header-sub-menu.active').removeClass('active')
-      }, 200)
-    }
-  )
+  //     setTimeout(function () {
+  //       // jQuery('.js-header-nav-parent-menu.active').removeClass('active')
+  //       jQuery('.header-sub-menu.active').removeClass('active')
+  //     }, 200)
+  //   }
+  // )
 
   // Close sub menu when not hovering header menu element
-  jQuery('.header-nav').hover(function () {}, function () {
-    setTimeout(function () {
-      // jQuery('.js-header-nav-parent-menu.active').removeClass('active')
-      jQuery('.header-sub-menu.active').removeClass('active')
-    }, 200)
-  })
+  // jQuery('.header-nav').hover(function () {}, function () {
+  //   setTimeout(function () {
+  //     // jQuery('.js-header-nav-parent-menu.active').removeClass('active')
+  //     jQuery('.header-sub-menu.active').removeClass('active')
+  //   }, 200)
+  // })
+
+  jQuery('.js-header-nav-parent-menu').on('click', 
+    function () {
+      var menuID = jQuery(this).attr('data-menu-id');
+      
+      if( jQuery(`#header-sub-menu-${menuID}`).hasClass('active') ){
+        jQuery(`#header-sub-menu-${menuID}`).removeClass('active');
+      } else {
+        jQuery('.header-sub-menu.active').removeClass('active');
+        jQuery(`#header-sub-menu-${menuID}`).addClass('active');
+      }
+
+      return false;
+    }
+  )
 
   // header top search icon click
   jQuery('#js-header-top-search-icon').click(function(){
