@@ -132,6 +132,9 @@ jQuery(function(){
         const termID = jQuery(this).attr('data-term-id')
         const $parentElem = jQuery(this).parent();
 
+        // this is for blackbar tag list. so about the root category item, the tag will be uppercase
+        const uppercaseCss = jQuery(this).hasClass('pcat-filter-detail-root') ? 'pcat-extra-thematic-filter-item--root' : '';
+
         if( jQuery(this).hasClass('active') ){
             jQuery('.pcat-filter-detail-child', $parentElem).removeClass('disable');
             jQuery(this).removeClass('active')
@@ -144,7 +147,7 @@ jQuery(function(){
 
             const $newElem = jQuery(`
                 <div id="js-pcat-extra-thematic-filter-col-${termID}" class="pcat-extra-thematic-filter-col">
-                    <div class="pcat-extra-thematic-filter-item">${labelName}<span data-term-id="${termID}"></span></div>
+                    <div class="pcat-extra-thematic-filter-item ${uppercaseCss}">${labelName}<span data-term-id="${termID}"></span></div>
                 </div>
             `);
 
