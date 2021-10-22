@@ -7,7 +7,10 @@
      * gotoDomId : goto dom id for javascript working
      * total : total
      * perPage : perPage
+     * currentPage : currentPage
      */
+
+     $currentPage = isset($args['currentPage']) ? intval($args['currentPage']) : 1; 
 ?>
 <div class="pcat-results-footer-options">
     <div class="pcat-results-footer-options-col">
@@ -19,7 +22,7 @@
                 $pagination->records($args['total']);
                 $pagination->records_per_page($args['perPage']);
                 $pagination->selectable_pages(5);
-                $pagination->set_page(1);
+                $pagination->set_page($currentPage);
                 $pagination->padding(false);
                 $pagination->css_classes([
                     'list' => 'pcat-results-navigation-row',
@@ -42,7 +45,7 @@
 
                         for($i = 1; $i <= $pageCounts; $i++){
                     ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <option value="<?php echo $i; ?>" <?php echo $i === $currentPage ? 'selected' : '' ?>><?php echo $i; ?></option>
                     <?php
                         }
                     ?>
