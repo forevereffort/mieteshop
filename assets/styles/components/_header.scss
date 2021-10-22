@@ -145,6 +145,13 @@
 .header-nav-col {
   position: relative;
 
+  &.open{
+
+    .header-nav-desktop-arrow{
+      transform: rotate(180deg);
+    }
+  }
+
   > a {
     color: $color-black;
     display: inline-block;

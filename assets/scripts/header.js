@@ -49,9 +49,11 @@ jQuery(function(){
       
       if( jQuery(`#header-sub-menu-${menuID}`).hasClass('active') ){
         jQuery(`#header-sub-menu-${menuID}`).removeClass('active');
+        jQuery(this).parent().removeClass('open');
       } else {
         jQuery('.header-sub-menu.active').removeClass('active');
         jQuery(`#header-sub-menu-${menuID}`).addClass('active');
+        jQuery(this).parent().addClass('open');
       }
 
       return false;
