@@ -12,7 +12,8 @@
     // get all products in current search key
     $args = [
         'post_type' => 'product',
-        'search_prod_title' => $searchKey,
+        // 'search_prod_title' => $searchKey,
+        'search_prod_title_sub_title' => $searchKey,
         'posts_per_page' => -1,
         'tax_query' => [
             [
@@ -23,6 +24,9 @@
             ]
         ],
         'fields' => 'ids',
+        // Need to add this so query_posts joins the postmeta table in the query. 
+        // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
+        'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
     ];
 
     $the_query = new WP_Query( $args );
@@ -137,7 +141,8 @@
 <?php
     $args = [
         'post_type' => 'product',
-        'search_prod_title' => $searchKey,
+        // 'search_prod_title' => $searchKey,
+        'search_prod_title_sub_title' => $searchKey,
         'posts_per_page' => $product_per_page,
         'offset' => ( $current_page - 1 ) * $product_per_page,
         'tax_query' => [
@@ -150,7 +155,10 @@
         ],
         'orderby' => 'title',
         'order' => 'asc',
-        'fields' => 'ids'
+        'fields' => 'ids',
+        // Need to add this so query_posts joins the postmeta table in the query. 
+        // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
+        'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
     ];
 
     $the_query = new WP_Query( $args );
