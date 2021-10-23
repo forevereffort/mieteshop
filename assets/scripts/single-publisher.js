@@ -124,6 +124,12 @@ jQuery(function(){
     const productPerPage = jQuery('#js-single-publisher-product-row').attr('data-product-per-page');
     const productOrder = jQuery('#js-sp-product-display-order').val();
 
+    const nextURL = `?page=${page}&productOrder=${productOrder}`
+    const nextState = { additionalInformation: 'Updated the URL with JS' }
+
+    // This will create a new entry in the browser's history, without reloading
+    window.history.pushState(nextState, null, nextURL)
+
     jQuery('#js-single-publisher-product-filter-load-spinner').removeClass('hide');
 
     jQuery.ajax({

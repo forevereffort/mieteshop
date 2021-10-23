@@ -8,7 +8,8 @@
         $productPerPage = 4;
     }
 
-    $page = 1;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $productOrder = isset($_GET['productOrder']) ? $_GET['productOrder'] : 'alphabetical';
     // get book that this single publisher was included
     //$current_single_publisher_id = $post->ID;
 
@@ -31,10 +32,17 @@
                 'terms' => $current_ekdotes_taxonomy->term_id,
             )
         ),     
-        'orderby' => 'title',
-        'order' => 'asc',
         'fields' => 'ids'
     ];
+
+    if( $productOrder === 'alphabetical' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'asc';
+    } else if( $productOrder === 'published-date' ){
+        $args['meta_key'] = 'book_current_published_date';
+        $args['orderby'] = 'meta_value';
+        $args['order'] = 'asc';
+    }
 
     $the_query = new WP_Query( $args );
 
@@ -58,8 +66,8 @@
                                 <div class="pcat-classification-filter-label pcat-classification-filter-label--black">ΤΑΞΙΝΟΜΗΣΗ</div>
                                 <div class="pcat-classification-filter-select">
                                     <select id="js-sp-product-display-order">
-                                        <option value="alphabetical">Αλφαβητικά</option>
-                                        <option value="published-date">Ημερ/νια Έκδοσης</option>
+                                        <option value="alphabetical" <?php echo $productOrder === 'alphabetical' ? 'selected' : '' ?>>Αλφαβητικά</option>
+                                        <option value="published-date" <?php echo $productOrder === 'published-date' ? 'selected' : '' ?>>Ημερ/νια Έκδοσης</option>
                                     </select>
                                     <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                                 </div>
@@ -84,7 +92,8 @@
                                 'navDomClass' => "js-sp-product-navigation-item",
                                 'gotoDomId' => "js-sp-page-list",
                                 'total' => $count_product_list_include_single_publisher,
-                                'perPage' => $productPerPage
+                                'perPage' => $productPerPage,
+                                'currentPage' => $page,
                             ]);
                         }
                     ?>
