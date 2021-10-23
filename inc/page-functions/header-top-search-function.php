@@ -80,7 +80,8 @@ function headerTopSearchFuc()
         'post_type' => 'publisher',
         'posts_per_page' => 4,
         // 's' => $searchKey
-        'search_prod_title' => $searchKey
+        'search_prod_title' => $searchKey,
+        'post_status' => 'publish'
     ]);
 
     $publisher_list = [];
@@ -104,7 +105,8 @@ function headerTopSearchFuc()
         'post_type' => 'contributor',
         'posts_per_page' => 4,
         // 's' => $searchKey
-        'search_prod_title' => $searchKey
+        'search_prod_title' => $searchKey,
+        'post_status' => 'publish'
     ]);
 
     $contributor_list = [];
@@ -137,6 +139,7 @@ function headerTopSearchFuc()
                 'terms' => 'book',
             ]
         ],
+        'post_status' => 'publish',
         // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
         'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
@@ -189,6 +192,7 @@ function headerTopSearchFuc()
                 'operator' => 'NOT IN',
             ]
         ],
+        'post_status' => 'publish',
         // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
         'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]

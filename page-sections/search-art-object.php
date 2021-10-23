@@ -24,6 +24,7 @@
             ]
         ],
         'fields' => 'ids',
+        'post_status' => 'publish',
         // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
         'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
@@ -156,6 +157,7 @@
         'orderby' => 'title',
         'order' => 'asc',
         'fields' => 'ids',
+        'post_status' => 'publish',
         // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
         'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]

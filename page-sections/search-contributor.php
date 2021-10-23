@@ -6,7 +6,8 @@
         'post_type' => 'contributor',
         'posts_per_page' => -1,
         // 's' => $searchKey
-        'search_prod_title' => $searchKey
+        'search_prod_title' => $searchKey,
+        'post_status' => 'publish',
     ]);
 ?>
 <section class="search-result-category-section">
