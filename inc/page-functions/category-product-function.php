@@ -119,6 +119,7 @@ function filterCategoryProduct()
                 'authors' => $author_list,
                 'price' => $product->get_price_html(),
                 'sku' => $product->get_sku(),
+                'covertype' => get_field('book_cover_type', $product->ID),
             ];
         }
     }

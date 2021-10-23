@@ -69,8 +69,8 @@
                 <?php echo $product->get_price_html(); ?>
             </div>
         </div>
-        <!--div class="pcat-result-item-footer-col">
-            <div class="pcat-result-item-footer-product-discount">-30%</div>
-        </div-->
+        <div class="pcat-result-item-footer-col">
+           <div class="pcat-result-item-book-cover-type"><?php echo get_field('book_cover_type'); ?></div>
+        </div>    
     </div>
 </div>
