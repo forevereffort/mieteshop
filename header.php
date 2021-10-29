@@ -37,6 +37,8 @@
 	}
 
 	wp_head();
+
+	$our_bookstores_url = get_field('header_our_bookstores_url', 'option');
 ?>
 </head>
 
@@ -55,7 +57,7 @@
 				<div class="pre-header-item"><a href="tel:+2103221335"><span class="pre-header-item-icon pre-header-item-icon--phone"><?php include get_template_directory() . '/assets/icons/phone-icon.svg' ?></span>210 3221335</a></div>
 			</div>
 			<div class="pre-header-col">
-				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--store"><?php include get_template_directory() . '/assets/icons/store-icon.svg' ?></span>Τα βιβλιοπωλεία μας</div>
+				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--store"><?php include get_template_directory() . '/assets/icons/store-icon.svg' ?><a href="<?php echo $our_bookstores_url; ?>"></span>Τα βιβλιοπωλεία μας</a></div>
 			</div>
 			<div class="pre-header-col">
 				<div class="pre-header-social-row">
