@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="pcat-result-item-footer-col">
-           <div class="pcat-result-item-book-cover-type"><?php echo get_field('book_cover_type'); ?></div>
+           <div class="pcat-result-item-book-cover-type"><?php echo get_field('book_cover_type', $product->get_id()); ?></div>
         </div>    
     </div>
 </div>

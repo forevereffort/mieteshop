@@ -62,28 +62,28 @@
                         $contrCount=0;                        
                         foreach( $qryContributors->posts as $contributor_id ) {
                             $ContributorBooks = get_field('book_contributors_syggrafeas', $contributor_id);
-                            ?>
-                            <?php 
+                            //echo $ContributorBooks->post_title .'<br/>';
+
                             // check that the contributor is connected with published books
-                            foreach($ContributorBooks as $ContributorBook) {
-                                $atLeastOnePublished = false;
+                            $atLeastOnePublished = false;
+                            foreach($ContributorBooks as $ContributorBook) {                                
                                 if($ContributorBook->post_status == 'publish') {
                                     $atLeastOnePublished = true;
+                                    //echo '<strong>'.$ContributorBook->post_title .'</strong><br/>';
                                     break;
                                 }
                             }   
                             
-                            if($atLeastOnePublished == true) { //display only contributors who have at least one published book
+                            if($atLeastOnePublished === true) { //display only contributors who have at least one published book
                                 ?>  
-                                <div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contributor_id); ?>"><?php echo get_the_title($contributor_id); ?></a></div>                                  
+                                <div class="archive-contributor-search-result-col"><?php echo $contrCount .'. '; ?><a href="<?php echo get_permalink($contributor_id); ?>"><?php echo get_the_title($contributor_id); ?></a></div>                                  
                                 <?php
                                 $contrCount++;
-                            } //else { 
+                            //} else { 
                                 ?>
-                                <!--div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contributor_id); ?>" style="color:red;"><?php echo get_the_title($contributor_id); ?></a></div-->                                                                  
+                                <!--<div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contributor_id); ?>" style="color:red;"><?php echo get_the_title($contributor_id); ?></a></div>-->
                                 <?php
-                            //}
-
+                            }
                         }
 
                         wp_reset_query();

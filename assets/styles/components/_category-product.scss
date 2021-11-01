@@ -362,7 +362,6 @@
   align-items: center;
   bottom: -34px;
   display: flex;
-  justify-content: space-between;
   left: 0;
   position: absolute;
   width: 100%;
@@ -370,10 +369,6 @@
 
 .pcat-result-item-footer-row-static {
   position: static;
-}
-
-.pcat-result-item-footer-col+.pcat-result-item-footer-col {
-  margin-left: 20px;
 }
 
 .pcat-result-item-footer-product-price {
