@@ -76,7 +76,7 @@
                             
                             if($atLeastOnePublished === true) { //display only contributors who have at least one published book
                                 ?>  
-                                <div class="archive-contributor-search-result-col"><?php echo $contrCount .'. '; ?><a href="<?php echo get_permalink($contributor_id); ?>"><?php echo get_the_title($contributor_id); ?></a></div>                                  
+                                <div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contributor_id); ?>"><?php echo get_the_title($contributor_id); ?></a></div>                                  
                                 <?php
                                 $contrCount++;
                             //} else { 

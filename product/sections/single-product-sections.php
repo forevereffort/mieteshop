@@ -73,8 +73,8 @@
                             ?>
                                             <a href="<?php echo get_permalink($authorID); ?>"><?php echo get_the_title($authorID); ?></a>
                             <?php
-                                            //add a comma after each author when authors more than 1 and don't add on last author
-                                            if(count($authorIDs) > 1 && count($authorIDs) != $authorAA ) { echo ', '; } 
+                                            //add a / after each author when authors more than 1 and don't add on last author
+                                            if(count($authorIDs) > 1 && count($authorIDs) != $authorAA ) { echo ' / '; } 
                                             $authorAA++;
                                         }	
                                     }	
@@ -94,7 +94,9 @@
                                 $contributorFields = acf_get_fields(3523);
                                 foreach($contributorFields as $contributorField) {
                                     $contributors = get_field($contributorField['name']);
+                                    //echo '<pre>'; var_dump($contributors); echo '</pre>';
                                     if($contributors){
+                                        if ($contributorField['name'] != 'book_contributors_syggrafeas') {
                             ?>
                                         <div class="single-product-role-detail">
                                             <div class="single-product-role-detail__role"><?php echo $contributorField['label']; ?></div>
@@ -107,6 +109,7 @@
                                             ?>
                                         </div>
                             <?php
+                                        }
                                     }                    
                                 }
                             ?>
@@ -205,10 +208,12 @@
                                 <?php
                                     }
                                 ?>
+                                <?php if ($product->get_width() && $product->get_height() ) { ?>
                                 <div class="single-product-detail-information-item">
                                     <div class="single-product-detail-information-item__label">ΔΙΑΣΤΑΣΕΙΣ</div>
                                     <div class="single-product-detail-information-item__value"><?php echo $product->get_width() .' x ' .$product->get_height(); ?> εκ.</div>
                                 </div>
+                                <?php } ?>
                                 <?php
                                     if( get_field('book_setisbn') ){
                                 ?>
@@ -369,7 +374,7 @@
                                     if( get_field('book_eudoxus_code') ){
                                 ?>
                                         <div class="single-product-detail-information-item">
-                                            <div class="single-product-detail-information-item__label">ΚΩΔΙΚΟΣ ΣΤΟ ΕΥΔΟΞΟ</div>
+                                            <div class="single-product-detail-information-item__label">ΚΩΔΙΚΟΣ ΣΤΟΝ ΕΥΔΟΞΟ</div>
                                             <div class="single-product-detail-information-item__value"><?php echo get_field('book_eudoxus_code'); ?></div>
                                         </div>
                                 <?php
