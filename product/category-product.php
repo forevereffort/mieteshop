@@ -17,11 +17,11 @@
         'parent' => $product_cat->term_id,
     ]);
 
-    $filterTermIds = isset($_GET['filterTermIds']) ? $_GET['filterTermIds'] : '';
-    $filterTermIds = array_map('intval', explode(',', $filterTermIds));
+    $filterTermIdsStr = isset($_GET['filterTermIds']) ? $_GET['filterTermIds'] : '';
+    $filterTermIds = $filterTermIdsStr === '' ? [] : array_map('intval', explode(',', $filterTermIdsStr));
     $selectedCatList = [];
-    $filterAuthorId = isset($_GET['filterAuthorId']) ? $_GET['filterAuthorId'] : 1;
-    $filterPublisherId = isset($_GET['filterPublisherId']) ? $_GET['filterPublisherId'] : 1;
+    $filterAuthorId = isset($_GET['filterAuthorId']) ? intval($_GET['filterAuthorId']) : null;
+    $filterPublisherId = isset($_GET['filterPublisherId']) ? intval($_GET['filterPublisherId']) : null;
     $mainProductCatId = isset($_GET['mainProductCatId']) ? $_GET['mainProductCatId'] : 1;
 
     $product_per_page = 16;
@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="content-container">
-                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" data-filter-term-list="" style="display: none;">
+                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" data-filter-term-list="<?php echo $filterTermIdsStr; ?>" style="display: none;">
                     <?php
                         if( $product_cat_level === 1 ){
                             foreach ($child_cat_list as $child_cat) {
@@ -216,12 +216,12 @@
                     <div class="pcat-author-publisher-choice-row">
                         <div class="pcat-author-publisher-choice-col">
                             <div class="pcat-author-publisher-choice-item">
-                                <label>Συγγραφέα<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="author" checked><span></span></label>
+                                <label>Συγγραφέα<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="author" <?php echo empty($filterAuthorId) && !empty($filterPublisherId) ? '' : 'checked'; ?>><span></span></label>
                             </div>
                         </div>
                         <div class="pcat-author-publisher-choice-col">
                             <div class="pcat-author-publisher-choice-item">
-                                <label>Εκδότη<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="publisher"><span></span></label>
+                                <label>Εκδότη<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="publisher" <?php echo empty($filterPublisherId) ? '' : 'checked'; ?>><span></span></label>
                             </div>
                         </div>
                     </div>
@@ -242,6 +242,33 @@
                             'post_status' => 'publish',
                             'fields' => 'ids',
                         ];
+
+                        if( !empty($filterTermIds) ){
+                            $args['tax_query'] = [
+                                [
+                                    'taxonomy' => 'product_cat',
+                                    'field' => 'term_id',
+                                    'terms' => $filterTermIds
+                                ],
+                            ];
+                        }
+
+                        if( !empty($filterAuthorId) ){
+                            $args['meta_query'] = [
+                                [
+                                    'key'     => 'book_contributors_syggrafeas',
+                                    'value'   => '"' . $filterAuthorId . '"',
+                                    'compare' => 'LIKE'
+                                ],
+                            ];
+                        }
+                    
+                        if( !empty($filterPublisherId) ){
+                            $args['tax_query'][] = [
+                                'taxonomy'     => 'ekdotes',
+                                'terms'   => $filterPublisherId,
+                            ];
+                        }
                     
                         $loop = new WP_Query( $args );
 
@@ -279,25 +306,25 @@
                             asort($publisher_terms_in_search_result);
                         }
                     ?>
-                    <div id="js-pcat-author-list-wrapper" class="pcat-author-publisher-select">
+                    <div id="js-pcat-author-list-wrapper" class="pcat-author-publisher-select <?php echo empty($filterAuthorId) && !empty($filterPublisherId) ? 'hide' : ''; ?>">
                         <select id="js-pcat-author-list" style="width:100%;">
                             <option></option>
                             <?php
                                 foreach($author_list_in_search_result as $author_id => $author_title){
                             ?>
-                                    <option value="<?php echo $author_id; ?>"><?php echo $author_title; ?></option>
+                                    <option value="<?php echo $author_id; ?>" <?php echo $author_id === $filterAuthorId ? 'selected' : ''; ?>><?php echo $author_title; ?></option>
                             <?php
                                 }
                             ?>
                         </select>
                     </div>
-                    <div id="js-pcat-publisher-list-wrapper" class="pcat-author-publisher-select hide">
+                    <div id="js-pcat-publisher-list-wrapper" class="pcat-author-publisher-select <?php echo empty($filterPublisherId) ? 'hide' : ''; ?>">
                         <select id="js-pcat-publisher-list" style="width:100%;">
                             <option></option>
                             <?php
                                 foreach($publisher_terms_in_search_result as $publisher_id => $publisher_title){
                             ?>
-                                    <option value="<?php echo $publisher_id; ?>"><?php echo $publisher_title; ?></option>
+                                    <option value="<?php echo $publisher_id; ?>" <?php echo $publisher_id === $filterPublisherId ? 'selected' : ''; ?>><?php echo $publisher_title; ?></option>
                             <?php
                                 }
                             ?>
@@ -337,6 +364,16 @@
         'fields' => 'ids'
     ];
 
+    if( !empty($filterTermIds) ){
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'product_cat',
+                'field' => 'term_id',
+                'terms' => $filterTermIds
+            ],
+        ];
+    }
+
     if( $productOrder === 'alphabetical' ){
         $args['orderby'] = 'title';
         $args['order'] = 'asc';
@@ -344,6 +381,23 @@
         $args['meta_key'] = 'book_current_published_date';
         $args['orderby'] = 'meta_value';
         $args['order'] = 'asc';
+    }
+
+    if( !empty($filterAuthorId) ){
+        $args['meta_query'] = [
+			[
+				'key'     => 'book_contributors_syggrafeas',
+				'value'   => '"' . $filterAuthorId . '"',
+				'compare' => 'LIKE'
+            ],
+        ];
+    }
+
+    if( !empty($filterPublisherId) ){
+        $args['tax_query'][] = [
+            'taxonomy'     => 'ekdotes',
+            'terms'   => $filterPublisherId,
+        ];
     }
 
     $the_query = new WP_Query( $args );
