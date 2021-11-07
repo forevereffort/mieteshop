@@ -20,6 +20,12 @@ jQuery(function(){
         const productPerPage = jQuery('#js-pcat-products-per-page').val();
         const productOrder = jQuery('#js-pcat-product-display-order').val();
 
+        const nextURL = `?filterTermIds=${filterTermIds}&filterAuthorId=${filterAuthorId}&filterPublisherId=${filterPublisherId}&mainProductCatId=${mainProductCatId}&page=${page}&productPerPage=${productPerPage}&productOrder=${productOrder}`
+        const nextState = { additionalInformation: 'Updated the URL with JS' }
+
+        // This will create a new entry in the browser's history, without reloading
+        window.history.pushState(nextState, null, nextURL)
+
         jQuery('#js-category-product-filter-load-spinner').removeClass('hide');
 
         jQuery.ajax({

@@ -17,13 +17,20 @@
         'parent' => $product_cat->term_id,
     ]);
 
+    $filterTermIds = isset($_GET['filterTermIds']) ? $_GET['filterTermIds'] : 1;
+    $filterAuthorId = isset($_GET['filterAuthorId']) ? $_GET['filterAuthorId'] : 1;
+    $filterPublisherId = isset($_GET['filterPublisherId']) ? $_GET['filterPublisherId'] : 1;
+    $mainProductCatId = isset($_GET['mainProductCatId']) ? $_GET['mainProductCatId'] : 1;
+
     $product_per_page = 16;
 
     if( wp_is_mobile() ){
         $product_per_page = 4;
     }
 
-    $current_page = 1;
+    $product_per_page = isset($_GET['productPerPage']) ? $_GET['productPerPage'] : $product_per_page;
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $productOrder = isset($_GET['productOrder']) ? $_GET['productOrder'] : 'alphabetical';
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
@@ -288,10 +295,17 @@
         ],
         'posts_per_page' => $product_per_page,
         'offset' => ( $current_page - 1 ) * $product_per_page,
-        'orderby' => 'title',
-        'order' => 'asc',
         'fields' => 'ids'
     ];
+
+    if( $productOrder === 'alphabetical' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'asc';
+    } else if( $productOrder === 'published-date' ){
+        $args['meta_key'] = 'book_current_published_date';
+        $args['orderby'] = 'meta_value';
+        $args['order'] = 'asc';
+    }
 
     $the_query = new WP_Query( $args );
 
@@ -321,11 +335,15 @@
                                 'navDomClass' => "js-pcat-results-navigation-item",
                                 'gotoDomId' => "js-pcat-products-page-list",
                                 'total' => $total_product_count,
-                                'perPage' => $product_per_page
+                                'perPage' => $product_per_page,
+                                'currentPage' => $current_page,
                             ]);
                         }
 
-                        get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-pcat-products-per-page" ]);
+                        get_template_part('product/page-nav/page-nav', 'per-page', [ 
+                            'selectDomId' => "js-pcat-products-per-page",
+                            'perPage' => $product_per_page,
+                        ]);
                     ?>
                 </div>
             </div>
