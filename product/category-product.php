@@ -17,7 +17,9 @@
         'parent' => $product_cat->term_id,
     ]);
 
-    $filterTermIds = isset($_GET['filterTermIds']) ? $_GET['filterTermIds'] : 1;
+    $filterTermIds = isset($_GET['filterTermIds']) ? $_GET['filterTermIds'] : '';
+    $filterTermIds = array_map('intval', explode(',', $filterTermIds));
+    $selectedCatList = [];
     $filterAuthorId = isset($_GET['filterAuthorId']) ? $_GET['filterAuthorId'] : 1;
     $filterPublisherId = isset($_GET['filterPublisherId']) ? $_GET['filterPublisherId'] : 1;
     $mainProductCatId = isset($_GET['mainProductCatId']) ? $_GET['mainProductCatId'] : 1;
@@ -102,6 +104,17 @@
                     <?php
                         if( $product_cat_level === 1 ){
                             foreach ($child_cat_list as $child_cat) {
+                                $child_cat_class = '';
+                                $child_child_cat_class_disable = '';
+                                                        
+                                if( in_array($child_cat->term_id, $filterTermIds) ){
+                                    $child_cat_class = 'active';
+                                    $child_child_cat_class_disable = 'disable';
+                                    $selectedCatList[] = [
+                                        'root_class' => 'pcat-extra-thematic-filter-item--root',
+                                        'cat' => $child_cat
+                                    ];
+                                }
                     ?>
                                 <div class="pcat-filter-detail-col">
                                     <?php
@@ -112,7 +125,7 @@
                                             'parent' => $child_cat->term_id,
                                         ]);
                                     ?>
-                                    <div class="js-pcat-filter-detail-parent pcat-filter-detail-root" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?>
+                                    <div class="js-pcat-filter-detail-parent pcat-filter-detail-root <?php echo $child_cat_class; ?>" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?>
                                         <?php
                                             if( !empty($child_child_cat_list) ){
                                         ?>
@@ -127,8 +140,17 @@
                                             <div class="pcat-filter-detail-child-wrapper">
                                                 <?php
                                                     foreach ($child_child_cat_list as $child_child_cat) {
+                                                        $child_child_cat_class_active = '';
+                                                        
+                                                        if( in_array($child_child_cat->term_id, $filterTermIds) ){
+                                                            $child_child_cat_class_active = ' active';
+                                                            $selectedCatList[] = [
+                                                                'root_class' => '',
+                                                                'cat' => $child_child_cat
+                                                            ];
+                                                        }
                                                 ?>
-                                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_child_cat->term_id; ?>"><?php echo $child_child_cat->name; ?></div>
+                                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child <?php echo $child_child_cat_class_disable; ?> <?php echo $child_child_cat_class_active; ?>" data-term-id="<?php echo $child_child_cat->term_id; ?>"><?php echo $child_child_cat->name; ?></div>
                                                 <?php
                                                     }
                                                 ?>
@@ -143,10 +165,18 @@
                     ?>
                             <div class="pcat-filter-detail-col">
                                 <?php
-
                                     foreach ($child_cat_list as $child_cat) {
+                                        $child_cat_class = '';
+                                                                
+                                        if( in_array($child_cat->term_id, $filterTermIds) ){
+                                            $child_cat_class = 'active';
+                                            $selectedCatList[] = [
+                                                'root_class' => 'pcat-extra-thematic-filter-item--root',
+                                                'cat' => $child_cat
+                                            ];
+                                        }
                                 ?>
-                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?></div>
+                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child <?php echo $child_cat_class; ?>" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?></div>
                                 <?php
                                     }
                                 ?>
@@ -162,9 +192,18 @@
 ?>
 <div class="pcat-extra-filter-section">
     <div class="content-container">
-        <div id="js-pcat-extra-thematic-filter" class="pcat-extra-thematic-filter hide">
-            <div id="js-pcat-extra-thematic-filter-title" class="pcat-extra-thematic-filter-title">ΘΕΜΑΤΙΚΑ ΦΙΛΤΡΑ (<span>5</span>)</div>
+        <div id="js-pcat-extra-thematic-filter" class="pcat-extra-thematic-filter <?php echo empty($selectedCatList) ? 'hide' : ''; ?>">
+            <div id="js-pcat-extra-thematic-filter-title" class="pcat-extra-thematic-filter-title">ΘΕΜΑΤΙΚΑ ΦΙΛΤΡΑ (<span><?php echo count($selectedCatList); ?></span>)</div>
             <div id="js-pcat-extra-thematic-filter-row" class="pcat-extra-thematic-filter-row">
+                <?php
+                    foreach($selectedCatList as $item){
+                ?>
+                        <div id="js-pcat-extra-thematic-filter-col-<?php echo $item['cat']->term_id; ?>" class="pcat-extra-thematic-filter-col">
+                            <div class="pcat-extra-thematic-filter-item <?php echo $item['root_class']; ?>"><?php echo $item['cat']->name; ?><span data-term-id="<?php echo $item['cat']->term_id; ?>"></span></div>
+                        </div>
+                <?php
+                    }
+                ?>
             </div>
             <div class="pcat-extra-thematic-filter-link">
                 <a id="js-pcat-extra-thematic-filter-link-clear" href="#">καθαρισμός φίλτρων</a>
