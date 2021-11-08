@@ -32,4 +32,13 @@ jQuery(function(){
             }
         })
     });
+
+    // when enter is pressed on header top search input, redirect to search page
+    jQuery("#js-header-top-search-form-text").on('keyup', function (e) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            if( headerTopSearchInputElem.value.trim().length > 3 ){
+                window.location.href = window.MieteshopData.siteurl + '?s=' + headerTopSearchInputElem.value.trim();
+            }
+        }
+    });
 })

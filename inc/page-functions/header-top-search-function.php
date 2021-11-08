@@ -171,6 +171,7 @@ function headerTopSearchFuc()
                 'placeholder' => placeholderImage($image[1], $image[2]),
                 'imageurl' => aq_resize($image[0], $image[1], $image[2], true),
                 'authors' => $author_list,
+                'book_cover_type' => get_field('book_cover_type', $post->ID),
             ];
         }
     }
@@ -224,6 +225,7 @@ function headerTopSearchFuc()
                 'placeholder' => placeholderImage($image[1], $image[2]),
                 'imageurl' => aq_resize($image[0], $image[1], $image[2], true),
                 'authors' => $author_list,
+                'book_cover_type' => get_field('book_cover_type', $post->ID),
             ];
         }
     }

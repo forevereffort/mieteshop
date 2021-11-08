@@ -100,9 +100,7 @@
 								</div>
 								<div id="js-header-top-search-popup" class="header-top-search-popup">
 									<div id="js-header-top-search-form" class="header-top-search-form">
-										<form action="">
-											<input type="text" id="js-header-top-search-form-text" placeholder="λαϊκό" data-nonce="<?php echo wp_create_nonce('header_top_search_nonce'); ?>">
-										</form>
+										<input type="text" id="js-header-top-search-form-text" placeholder="λαϊκό" data-nonce="<?php echo wp_create_nonce('header_top_search_nonce'); ?>">
 									</div>
 									<?php
 										$image = wp_get_attachment_image_src( get_post_thumbnail_id( 3401 ), 'full' );

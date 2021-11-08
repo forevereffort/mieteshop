@@ -17,13 +17,22 @@
         'parent' => $product_cat->term_id,
     ]);
 
+    $filterTermIdsStr = isset($_GET['filterTermIds']) ? $_GET['filterTermIds'] : '';
+    $filterTermIds = $filterTermIdsStr === '' ? [] : array_map('intval', explode(',', $filterTermIdsStr));
+    $selectedCatList = [];
+    $filterAuthorId = isset($_GET['filterAuthorId']) ? intval($_GET['filterAuthorId']) : null;
+    $filterPublisherId = isset($_GET['filterPublisherId']) ? intval($_GET['filterPublisherId']) : null;
+    $mainProductCatId = isset($_GET['mainProductCatId']) ? $_GET['mainProductCatId'] : 1;
+
     $product_per_page = 16;
 
     if( wp_is_mobile() ){
         $product_per_page = 4;
     }
 
-    $current_page = 1;
+    $product_per_page = isset($_GET['productPerPage']) ? $_GET['productPerPage'] : $product_per_page;
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $productOrder = isset($_GET['productOrder']) ? $_GET['productOrder'] : 'alphabetical';
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
@@ -91,10 +100,21 @@
                 </div>
             </div>
             <div class="content-container">
-                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" data-filter-term-list="" style="display: none;">
+                <div id="js-pcat-filter-detail-row" class="pcat-filter-detail-row" data-filter-term-list="<?php echo $filterTermIdsStr; ?>" style="display: none;">
                     <?php
                         if( $product_cat_level === 1 ){
                             foreach ($child_cat_list as $child_cat) {
+                                $child_cat_class = '';
+                                $child_child_cat_class_disable = '';
+                                                        
+                                if( in_array($child_cat->term_id, $filterTermIds) ){
+                                    $child_cat_class = 'active';
+                                    $child_child_cat_class_disable = 'disable';
+                                    $selectedCatList[] = [
+                                        'root_class' => 'pcat-extra-thematic-filter-item--root',
+                                        'cat' => $child_cat
+                                    ];
+                                }
                     ?>
                                 <div class="pcat-filter-detail-col">
                                     <?php
@@ -105,7 +125,7 @@
                                             'parent' => $child_cat->term_id,
                                         ]);
                                     ?>
-                                    <div class="js-pcat-filter-detail-parent pcat-filter-detail-root" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?>
+                                    <div class="js-pcat-filter-detail-parent pcat-filter-detail-root <?php echo $child_cat_class; ?>" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?>
                                         <?php
                                             if( !empty($child_child_cat_list) ){
                                         ?>
@@ -120,8 +140,17 @@
                                             <div class="pcat-filter-detail-child-wrapper">
                                                 <?php
                                                     foreach ($child_child_cat_list as $child_child_cat) {
+                                                        $child_child_cat_class_active = '';
+                                                        
+                                                        if( in_array($child_child_cat->term_id, $filterTermIds) ){
+                                                            $child_child_cat_class_active = ' active';
+                                                            $selectedCatList[] = [
+                                                                'root_class' => '',
+                                                                'cat' => $child_child_cat
+                                                            ];
+                                                        }
                                                 ?>
-                                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_child_cat->term_id; ?>"><?php echo $child_child_cat->name; ?></div>
+                                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child <?php echo $child_child_cat_class_disable; ?> <?php echo $child_child_cat_class_active; ?>" data-term-id="<?php echo $child_child_cat->term_id; ?>"><?php echo $child_child_cat->name; ?></div>
                                                 <?php
                                                     }
                                                 ?>
@@ -136,10 +165,18 @@
                     ?>
                             <div class="pcat-filter-detail-col">
                                 <?php
-
                                     foreach ($child_cat_list as $child_cat) {
+                                        $child_cat_class = '';
+                                                                
+                                        if( in_array($child_cat->term_id, $filterTermIds) ){
+                                            $child_cat_class = 'active';
+                                            $selectedCatList[] = [
+                                                'root_class' => 'pcat-extra-thematic-filter-item--root',
+                                                'cat' => $child_cat
+                                            ];
+                                        }
                                 ?>
-                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?></div>
+                                        <div class="js-pcat-filter-detail-child pcat-filter-detail-child <?php echo $child_cat_class; ?>" data-term-id="<?php echo $child_cat->term_id; ?>"><?php echo $child_cat->name; ?></div>
                                 <?php
                                     }
                                 ?>
@@ -155,9 +192,18 @@
 ?>
 <div class="pcat-extra-filter-section">
     <div class="content-container">
-        <div id="js-pcat-extra-thematic-filter" class="pcat-extra-thematic-filter hide">
-            <div id="js-pcat-extra-thematic-filter-title" class="pcat-extra-thematic-filter-title">ΘΕΜΑΤΙΚΑ ΦΙΛΤΡΑ (<span>5</span>)</div>
+        <div id="js-pcat-extra-thematic-filter" class="pcat-extra-thematic-filter <?php echo empty($selectedCatList) ? 'hide' : ''; ?>">
+            <div id="js-pcat-extra-thematic-filter-title" class="pcat-extra-thematic-filter-title">ΘΕΜΑΤΙΚΑ ΦΙΛΤΡΑ (<span><?php echo count($selectedCatList); ?></span>)</div>
             <div id="js-pcat-extra-thematic-filter-row" class="pcat-extra-thematic-filter-row">
+                <?php
+                    foreach($selectedCatList as $item){
+                ?>
+                        <div id="js-pcat-extra-thematic-filter-col-<?php echo $item['cat']->term_id; ?>" class="pcat-extra-thematic-filter-col">
+                            <div class="pcat-extra-thematic-filter-item <?php echo $item['root_class']; ?>"><?php echo $item['cat']->name; ?><span data-term-id="<?php echo $item['cat']->term_id; ?>"></span></div>
+                        </div>
+                <?php
+                    }
+                ?>
             </div>
             <div class="pcat-extra-thematic-filter-link">
                 <a id="js-pcat-extra-thematic-filter-link-clear" href="#">καθαρισμός φίλτρων</a>
@@ -170,12 +216,12 @@
                     <div class="pcat-author-publisher-choice-row">
                         <div class="pcat-author-publisher-choice-col">
                             <div class="pcat-author-publisher-choice-item">
-                                <label>Συγγραφέα<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="author" checked><span></span></label>
+                                <label>Συγγραφέα<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="author" <?php echo empty($filterAuthorId) && !empty($filterPublisherId) ? '' : 'checked'; ?>><span></span></label>
                             </div>
                         </div>
                         <div class="pcat-author-publisher-choice-col">
                             <div class="pcat-author-publisher-choice-item">
-                                <label>Εκδότη<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="publisher"><span></span></label>
+                                <label>Εκδότη<input type="radio" name="radio-pcat-author-publisher-choice-item" class="js-pcat-author-publisher-choice-item" value="publisher" <?php echo empty($filterPublisherId) ? '' : 'checked'; ?>><span></span></label>
                             </div>
                         </div>
                     </div>
@@ -196,6 +242,33 @@
                             'post_status' => 'publish',
                             'fields' => 'ids',
                         ];
+
+                        if( !empty($filterTermIds) ){
+                            $args['tax_query'] = [
+                                [
+                                    'taxonomy' => 'product_cat',
+                                    'field' => 'term_id',
+                                    'terms' => $filterTermIds
+                                ],
+                            ];
+                        }
+
+                        if( !empty($filterAuthorId) ){
+                            $args['meta_query'] = [
+                                [
+                                    'key'     => 'book_contributors_syggrafeas',
+                                    'value'   => '"' . $filterAuthorId . '"',
+                                    'compare' => 'LIKE'
+                                ],
+                            ];
+                        }
+                    
+                        if( !empty($filterPublisherId) ){
+                            $args['tax_query'][] = [
+                                'taxonomy'     => 'ekdotes',
+                                'terms'   => $filterPublisherId,
+                            ];
+                        }
                     
                         $loop = new WP_Query( $args );
 
@@ -233,25 +306,25 @@
                             asort($publisher_terms_in_search_result);
                         }
                     ?>
-                    <div id="js-pcat-author-list-wrapper" class="pcat-author-publisher-select">
+                    <div id="js-pcat-author-list-wrapper" class="pcat-author-publisher-select <?php echo empty($filterAuthorId) && !empty($filterPublisherId) ? 'hide' : ''; ?>">
                         <select id="js-pcat-author-list" style="width:100%;">
                             <option></option>
                             <?php
                                 foreach($author_list_in_search_result as $author_id => $author_title){
                             ?>
-                                    <option value="<?php echo $author_id; ?>"><?php echo $author_title; ?></option>
+                                    <option value="<?php echo $author_id; ?>" <?php echo $author_id === $filterAuthorId ? 'selected' : ''; ?>><?php echo $author_title; ?></option>
                             <?php
                                 }
                             ?>
                         </select>
                     </div>
-                    <div id="js-pcat-publisher-list-wrapper" class="pcat-author-publisher-select hide">
+                    <div id="js-pcat-publisher-list-wrapper" class="pcat-author-publisher-select <?php echo empty($filterPublisherId) ? 'hide' : ''; ?>">
                         <select id="js-pcat-publisher-list" style="width:100%;">
                             <option></option>
                             <?php
                                 foreach($publisher_terms_in_search_result as $publisher_id => $publisher_title){
                             ?>
-                                    <option value="<?php echo $publisher_id; ?>"><?php echo $publisher_title; ?></option>
+                                    <option value="<?php echo $publisher_id; ?>" <?php echo $publisher_id === $filterPublisherId ? 'selected' : ''; ?>><?php echo $publisher_title; ?></option>
                             <?php
                                 }
                             ?>
@@ -288,10 +361,44 @@
         ],
         'posts_per_page' => $product_per_page,
         'offset' => ( $current_page - 1 ) * $product_per_page,
-        'orderby' => 'title',
-        'order' => 'asc',
         'fields' => 'ids'
     ];
+
+    if( !empty($filterTermIds) ){
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'product_cat',
+                'field' => 'term_id',
+                'terms' => $filterTermIds
+            ],
+        ];
+    }
+
+    if( $productOrder === 'alphabetical' ){
+        $args['orderby'] = 'title';
+        $args['order'] = 'asc';
+    } else if( $productOrder === 'published-date' ){
+        $args['meta_key'] = 'book_current_published_date';
+        $args['orderby'] = 'meta_value';
+        $args['order'] = 'asc';
+    }
+
+    if( !empty($filterAuthorId) ){
+        $args['meta_query'] = [
+			[
+				'key'     => 'book_contributors_syggrafeas',
+				'value'   => '"' . $filterAuthorId . '"',
+				'compare' => 'LIKE'
+            ],
+        ];
+    }
+
+    if( !empty($filterPublisherId) ){
+        $args['tax_query'][] = [
+            'taxonomy'     => 'ekdotes',
+            'terms'   => $filterPublisherId,
+        ];
+    }
 
     $the_query = new WP_Query( $args );
 
@@ -321,11 +428,15 @@
                                 'navDomClass' => "js-pcat-results-navigation-item",
                                 'gotoDomId' => "js-pcat-products-page-list",
                                 'total' => $total_product_count,
-                                'perPage' => $product_per_page
+                                'perPage' => $product_per_page,
+                                'currentPage' => $current_page,
                             ]);
                         }
 
-                        get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-pcat-products-per-page" ]);
+                        get_template_part('product/page-nav/page-nav', 'per-page', [ 
+                            'selectDomId' => "js-pcat-products-per-page",
+                            'perPage' => $product_per_page,
+                        ]);
                     ?>
                 </div>
             </div>

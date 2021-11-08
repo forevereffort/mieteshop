@@ -1142,6 +1142,44 @@
         "title": "Contributor Fields",
         "fields": [
             {
+                "key": "field_618394a2e0a07",
+                "label": "Όνομα",
+                "name": "contributor_first_name",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
+                "key": "field_618394b8e0a08",
+                "label": "Επίθετο",
+                "name": "contributor_last_name",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
                 "key": "field_60d58ccacd3e1",
                 "label": "Βιογραφικό",
                 "name": "contributor_bio_detail",
