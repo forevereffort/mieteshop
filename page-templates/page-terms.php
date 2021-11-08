@@ -13,7 +13,7 @@ global $post;
 <?php if( have_rows('page_toc_content_field') ) { ?>
 <section class="terms-cat-section">
     <div class="content-container">
-        <div class="terms-cat-title">Μετάβαση σε:</div>
+        <div class="terms-cat-title">Περιεχόμενα:</div>
         <div class="terms-cat-row">            
         <div class="terms-cat-item">
             <?php while( have_rows('page_toc_content_field') ) { the_row(); ?>
