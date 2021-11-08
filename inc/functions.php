@@ -54,6 +54,7 @@ add_action('wp_enqueue_scripts', function () {
   $data = [
     'ajaxurl' => admin_url('admin-ajax.php'),
     'templateDirectoryUri' => get_template_directory_uri(),
+    'siteurl' => get_site_url()
   ];
   wp_localize_script('mieteshop-assets', 'MieteshopData', $data);
 
