@@ -41,13 +41,21 @@
                     $args = [
                         'post_type' => 'contributor',
                         'posts_per_page' => -1,
-                        'search_title_with_first_letter' => 'α',
                         'orderby' => 'title',
                         'order' => 'ASC',
                         'fields' => 'ids',
-                        'meta_key' => 'book_contributors_syggrafeas',
-                        'meta_value' => array(''),
-                        'meta_compare' => 'NOT IN'
+                        'meta_query' => [
+                            [
+                                'key'     => 'book_contributors_syggrafeas',
+                                'value'   => array(''),
+                                'compare' => 'NOT IN',
+                            ],
+                            [
+                                'key' => 'contributor_last_name',
+                                'value'   => '^α',
+                                'compare' => 'REGEXP',
+                            ],
+                        ]
                     ];
                 
                     $qryContributors = new WP_Query( $args );
@@ -76,13 +84,9 @@
                             
                             if($atLeastOnePublished === true) { //display only contributors who have at least one published book
                                 ?>  
-                                <div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contributor_id); ?>"><?php echo get_the_title($contributor_id); ?></a></div>                                  
+                                <div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contributor_id); ?>"><?php echo get_field('contributor_last_name', $contributor_id); ?> <?php echo get_field('contributor_first_name', $contributor_id); ?></a></div>                                  
                                 <?php
                                 $contrCount++;
-                            //} else { 
-                                ?>
-                                <!--<div class="archive-contributor-search-result-col"><a href="<?php echo get_permalink($contributor_id); ?>" style="color:red;"><?php echo get_the_title($contributor_id); ?></a></div>-->
-                                <?php
                             }
                         }
 

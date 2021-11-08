@@ -16,13 +16,21 @@ function filterSearchArchiveContributorFunc()
     $args = [
         'post_type' => 'contributor',
         'posts_per_page' => -1,
-        'search_title_with_first_letter' => $firstLetters,
         'orderby' => 'title',
         'order' => 'ASC',
-        //'fields' => 'ids',
-        'meta_key' => 'book_contributors_syggrafeas',
-        'meta_value' => array(''),
-        'meta_compare' => 'NOT IN'
+        'fields' => 'ids',
+        'meta_query' => [
+            [
+                'key'     => 'book_contributors_syggrafeas',
+                'value'   => array(''),
+                'compare' => 'NOT IN',
+            ],
+            [
+                'key' => 'contributor_last_name',
+                'value'   => '^' . $firstLetters[0],
+                'compare' => 'REGEXP',
+            ],
+        ]
     ];
 
     global $post;
@@ -30,11 +38,9 @@ function filterSearchArchiveContributorFunc()
     $loop = new WP_Query( $args );
 
     $contrCount=0;
-    while ( $loop->have_posts() ){
-    //foreach( $loop->posts as $contributor_id ) {    
-        $loop->the_post();
 
-        $ContributorBooks = get_field('book_contributors_syggrafeas', $post->ID);
+    foreach( $loop->posts as $contributor_id ) {    
+        $ContributorBooks = get_field('book_contributors_syggrafeas', $contributor_id);
 
         // check that the contributor is connected with published books
         foreach($ContributorBooks as $ContributorBook) {
@@ -46,7 +52,7 @@ function filterSearchArchiveContributorFunc()
         }   
         
         if($atLeastOnePublished == true) { //display only contributors who have at least one published book
-            $html .= '<div class="archive-contributor-search-result-col"><a href="' . get_permalink($post->ID) .'">' . $post->post_title .'</a></div>';
+            $html .= '<div class="archive-contributor-search-result-col"><a href="' . get_permalink($contributor_id) .'">' . get_field('contributor_last_name', $contributor_id) . ' ' . get_field('contributor_first_name', $contributor_id) .'</a></div>';
             $contrCount++;
         }
 
