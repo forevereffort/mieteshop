@@ -1,12 +1,31 @@
 <?php
     global $product;
+
+    $product_cats = get_the_terms( $product->ID, 'product_cat' );
+    $product_terms_ids = [];
+
+    foreach($product_cats as $cat){
+        $product_terms_ids[] = $cat->term_id;
+    }
     
     $args = [
        'post_type' => 'product',
        'posts_per_page' => 16,
-       'orderby' => 'rand',
-       'fields' => 'ids'
+       'fields' => 'ids',
+        'meta_key' => 'book_current_publish_date',
+        'orderby' => 'meta_value',
+        'order' => 'DESC'
     ];
+
+    if( !empty($product_terms_ids) ){
+        $args['tax_query'] = [
+            [
+                'taxonomy' => 'product_cat',
+                'field' => 'term_id',
+                'terms' => $product_terms_ids
+            ],
+        ];
+    }
 
     $related_posts = new WP_Query( $args );
     
