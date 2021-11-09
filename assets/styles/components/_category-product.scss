@@ -152,7 +152,7 @@
 
 .pcat-author-publisher-select {
   position: relative;
-  width: 400px;
+  width: 265px;
 
   .select2-container--default {
     .select2-selection--single {
@@ -227,6 +227,10 @@
     min-width: 264px;
     padding: 9px 10px;
   }
+}
+
+.pcat-author-publisher-select--large {
+  width: 400px;
 }
 
 .pcat-classification-filter-label {

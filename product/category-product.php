@@ -306,7 +306,7 @@
                             asort($publisher_terms_in_search_result);
                         }
                     ?>
-                    <div id="js-pcat-author-list-wrapper" class="pcat-author-publisher-select <?php echo empty($filterAuthorId) && !empty($filterPublisherId) ? 'hide' : ''; ?>">
+                    <div id="js-pcat-author-list-wrapper" class="pcat-author-publisher-select pcat-author-publisher-select--large <?php echo empty($filterAuthorId) && !empty($filterPublisherId) ? 'hide' : ''; ?>">
                         <select id="js-pcat-author-list" style="width:100%;">
                             <option></option>
                             <?php
@@ -318,7 +318,7 @@
                             ?>
                         </select>
                     </div>
-                    <div id="js-pcat-publisher-list-wrapper" class="pcat-author-publisher-select <?php echo empty($filterPublisherId) ? 'hide' : ''; ?>">
+                    <div id="js-pcat-publisher-list-wrapper" class="pcat-author-publisher-select pcat-author-publisher-select--large <?php echo empty($filterPublisherId) ? 'hide' : ''; ?>">
                         <select id="js-pcat-publisher-list" style="width:100%;">
                             <option></option>
                             <?php
