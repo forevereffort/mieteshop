@@ -41,20 +41,23 @@
                     $args = [
                         'post_type' => 'contributor',
                         'posts_per_page' => -1,
-                        'orderby' => 'title',
-                        'order' => 'ASC',
                         'fields' => 'ids',
+                        'meta_key' => 'contributor_first_name',
                         'meta_query' => [
                             [
                                 'key'     => 'book_contributors_syggrafeas',
                                 'value'   => array(''),
                                 'compare' => 'NOT IN',
                             ],
-                            [
+                            'contributor_last_name_clause' => [
                                 'key' => 'contributor_last_name',
                                 'value'   => '^α',
                                 'compare' => 'REGEXP',
                             ],
+                        ],
+                        'orderby' => [
+                            'contributor_last_name_clause' => 'ASC',
+                            'meta_value' => 'ASC',
                         ]
                     ];
                 
