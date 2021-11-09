@@ -337,8 +337,8 @@
                     <div class="pcat-classification-filter-label">ΤΑΞΙΝΟΜΗΣΗ</div>
                     <div class="pcat-classification-filter-select">
                         <select id="js-pcat-product-display-order">
-                            <option value="published-date">Ημερ/νια Έκδοσης</option>
-                            <option value="alphabetical">Αλφαβητικά</option>
+                            <option value="published-date" <?php echo $productOrder === 'published-date' ? 'selected' : '' ?>>Ημερ/νια Έκδοσης</option>
+                            <option value="alphabetical" <?php echo $productOrder === 'alphabetical' ? 'selected' : '' ?>>Αλφαβητικά</option>
                         </select>
                         <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                     </div>

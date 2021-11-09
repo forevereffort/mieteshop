@@ -9,7 +9,7 @@
     }
 
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $productOrder = isset($_GET['productOrder']) ? $_GET['productOrder'] : 'alphabetical';
+    $productOrder = isset($_GET['productOrder']) ? $_GET['productOrder'] : 'published-date';
     // get book that this single publisher was included
     //$current_single_publisher_id = $post->ID;
 
@@ -66,8 +66,8 @@
                                 <div class="pcat-classification-filter-label pcat-classification-filter-label--black">ΤΑΞΙΝΟΜΗΣΗ</div>
                                 <div class="pcat-classification-filter-select">
                                     <select id="js-sp-product-display-order">
-                                        <option value="alphabetical" <?php echo $productOrder === 'alphabetical' ? 'selected' : '' ?>>Αλφαβητικά</option>
                                         <option value="published-date" <?php echo $productOrder === 'published-date' ? 'selected' : '' ?>>Ημερ/νια Έκδοσης</option>
+                                        <option value="alphabetical" <?php echo $productOrder === 'alphabetical' ? 'selected' : '' ?>>Αλφαβητικά</option>
                                     </select>
                                     <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                                 </div>
