@@ -32,7 +32,7 @@
 
     $product_per_page = isset($_GET['productPerPage']) ? $_GET['productPerPage'] : $product_per_page;
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $productOrder = isset($_GET['productOrder']) ? $_GET['productOrder'] : 'alphabetical';
+    $productOrder = isset($_GET['productOrder']) ? $_GET['productOrder'] : 'published-date';
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
@@ -337,8 +337,8 @@
                     <div class="pcat-classification-filter-label">ΤΑΞΙΝΟΜΗΣΗ</div>
                     <div class="pcat-classification-filter-select">
                         <select id="js-pcat-product-display-order">
-                            <option value="alphabetical">Αλφαβητικά</option>
                             <option value="published-date">Ημερ/νια Έκδοσης</option>
+                            <option value="alphabetical">Αλφαβητικά</option>
                         </select>
                         <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                     </div>
