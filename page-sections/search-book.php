@@ -129,8 +129,8 @@
                 <div class="pcat-classification-filter-label pcat-classification-filter-label--black">ΤΑΞΙΝΟΜΗΣΗ</div>
                 <div class="pcat-classification-filter-select">
                     <select id="js-search-book__display-order">
-                        <option value="alphabetical">Alphabetical</option>
                         <option value="published-date">Published Date</option>
+                        <option value="alphabetical">Alphabetical</option>
                     </select>
                     <div class="pcat-classification-filter-select-icon"><?php include get_template_directory() . '/assets/icons/arrow-down-white-icon.svg'; ?></div>
                 </div>
@@ -152,8 +152,9 @@
                 'terms' => 'book',
             ]
         ],
-        'orderby' => 'title',
-        'order' => 'asc',
+        'meta_key' => 'book_first_published_date',
+        'orderby' => 'meta_value',
+        'order' => 'desc',
         'fields' => 'ids',
         'post_status' => 'publish',
         // Need to add this so query_posts joins the postmeta table in the query. 

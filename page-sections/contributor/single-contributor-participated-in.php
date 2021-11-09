@@ -57,8 +57,9 @@
                 'post_type' => 'product',
                 'posts_per_page' => $productPerPage,
                 'offset' => ($page - 1) * $productPerPage,
-                'orderby' => 'title',
-                'order' => 'asc',
+                'meta_key' => 'book_first_published_date',
+                'orderby' => 'meta_value',
+                'order' => 'desc',
                 'fields' => 'ids',
                 'meta_query' => $meta_query_arrays
             ];

@@ -12,7 +12,8 @@
        'post_type' => 'product',
        'posts_per_page' => 16,
        'fields' => 'ids',
-        'meta_key' => 'book_current_published_date',
+        // 'meta_key' => 'book_current_published_date',
+        'meta_key' => 'book_first_published_date',
         'orderby' => 'meta_value',
         'order' => 'DESC'
     ];

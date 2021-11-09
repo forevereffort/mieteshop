@@ -27,8 +27,9 @@
                             'compare' => 'LIKE'
                         ],
                     ],
-                    'orderby' => 'title',
-                    'order' => 'asc',
+                    'meta_key' => 'book_first_published_date',
+                    'orderby' => 'meta_value',
+                    'order' => 'desc',
                     'fields' => 'ids'
                 ];
 
