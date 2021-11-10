@@ -12,7 +12,7 @@ global $post;
         </div>
     </div>
 </section>
-<section class="archive-publisher-month-section">
+<section class="archive-publisher-month-section" style="display: none;">
     <div class="content-container">
         <div class="archive-publisher-month-title">
             <h2>ΟΙ ΦΟΡΕΙΣ ΤΟΥ ΜΗΝΑ</h2>
