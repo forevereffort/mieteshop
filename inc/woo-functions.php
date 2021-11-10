@@ -232,3 +232,10 @@ function mieteshop_header_top_cart_fragments( $fragments ) {
 
     return $fragments;
 }
+
+
+// change Return to shop url to homepage                
+add_filter( 'woocommerce_return_to_shop_redirect', 'st_woocommerce_shop_url' );
+function st_woocommerce_shop_url(){
+    return site_url();
+}
