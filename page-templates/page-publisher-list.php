@@ -92,7 +92,7 @@ global $post;
             <div class="archive-publisher-search-title">
                 <h2>ΕΥΡΕΤΗΡΙΟ ΕΚΔΟΤΩΝ</h2>
             </div>
-            <div class="archive-publisher-search-greek-letter-wrapper">
+            <div class="archive-publisher-search-greek-letter-wrapper" style="display: none;">
                 <div class="archive-publisher-search-greek-letter-row">
                     <?php
                         $greek_letter_list = ['α','β','γ','δ','ε','ζ','η','θ','ι','κ','λ','μ','ν','ξ','o','π','ρ','σ','τ','υ','φ','χ','ψ','ω'];
@@ -104,7 +104,7 @@ global $post;
                     ?>
                 </div>
             </div>
-            <div class="archive-publisher-search-english-letter-wrapper">
+            <div class="archive-publisher-search-english-letter-wrapper" style="display: none;">
                 <div class="archive-publisher-search-english-letter-row">
                     <?php
                         $english_letter_list = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
@@ -117,7 +117,7 @@ global $post;
                     ?>
                 </div>
             </div>
-            <div class="archive-publisher-search-type-row">
+            <div class="archive-publisher-search-type-row" style="display: none;">
                 <?php
                     $publisherTypeList = ['Αποκλειστική διάθεση', 'Εκδοτικοί Οίκοι', 'Ιδρύματα', 'Μουσεία', 'Πανεπιστήμια'];
 
@@ -132,10 +132,17 @@ global $post;
             </div>
             <div id="js-archive-publisher-search-result-list" class="archive-publisher-search-result-list" data-nonce="<?php echo wp_create_nonce('filter_search_archive_publisher_nonce'); ?>">
                 <?php
+                    // $publisher_term_list = get_terms([
+                    //     'taxonomy' => 'ekdotes', 
+                    //     'search_title_with_first_letter' => 'α',
+                    //     'hide_empty' => true, 
+                    //     'orderby' => 'title',
+                    //     'order' => 'ASC'
+                    // ]);
+
                     $publisher_term_list = get_terms([
                         'taxonomy' => 'ekdotes', 
-                        'posts_per_page' => -1,
-                        'search_title_with_first_letter' => 'α',
+                        'number' => 28,
                         'hide_empty' => true, 
                         'orderby' => 'title',
                         'order' => 'ASC'
