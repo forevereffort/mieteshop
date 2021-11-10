@@ -35,7 +35,7 @@ global $post;
 
     if ( !empty($the_query->posts) ) {
 ?>
-        <section id="js-pcat-results-section" class="pcat-results-section">
+        <section id="js-offers-results-section" class="pcat-results-section" data-nonce="<?php echo wp_create_nonce('filter_offers_product_nonce'); ?>">
             <div class="general-container">
                 <div class="content-container">
                     <div class="pcat-results-top-row">
@@ -48,7 +48,7 @@ global $post;
                             <div class="pcat-classification-filter">
                                 <div class="pcat-classification-filter-label pcat-classification-filter-label--black">ΤΑΞΙΝΟΜΗΣΗ</div>
                                 <div class="pcat-classification-filter-select">
-                                    <select id="js-sp-product-display-order">
+                                    <select id="js-offers-product-display-order">
                                         <option value="published-date" <?php echo $productOrder === 'published-date' ? 'selected' : '' ?>>Published Date</option>
                                         <option value="alphabetical" <?php echo $productOrder === 'alphabetical' ? 'selected' : '' ?>>Alphabetical</option>
                                     </select>
@@ -57,7 +57,7 @@ global $post;
                             </div>
                         </div>
                     </div>
-                    <div id="js-pcat-results-row" class="pcat-results-row">
+                    <div id="js-offers-results-row" class="pcat-results-row">
                         <?php
                             foreach( $the_query->posts as $postid ) {
                         ?>
@@ -71,9 +71,9 @@ global $post;
                     <?php
                         if( $total_product_count > $product_per_page ){
                             get_template_part('product/page-nav/page-nav', 'navigation', [ 
-                                'navWrapperDomId' => "js-pcat-results-navigation",
-                                'navDomClass' => "js-pcat-results-navigation-item",
-                                'gotoDomId' => "js-pcat-products-page-list",
+                                'navWrapperDomId' => "js-offers-results-navigation",
+                                'navDomClass' => "js-offers-results-navigation-item",
+                                'gotoDomId' => "js-offers-products-page-list",
                                 'total' => $total_product_count,
                                 'perPage' => $product_per_page,
                                 'currentPage' => $current_page,
@@ -81,7 +81,7 @@ global $post;
                         }
 
                         get_template_part('product/page-nav/page-nav', 'per-page', [ 
-                            'selectDomId' => "js-pcat-products-per-page",
+                            'selectDomId' => "js-offers-products-per-page",
                             'perPage' => $product_per_page,
                         ]);
                     ?>
@@ -92,6 +92,6 @@ global $post;
     }
 ?>
 
-<div id="js-category-product-filter-load-spinner" class="load-spinner hide"></div>
+<div id="js-offers-product-filter-load-spinner" class="load-spinner hide"></div>
 
 <?php get_footer(); ?>
