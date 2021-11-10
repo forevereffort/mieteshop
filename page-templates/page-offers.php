@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Offers
+ * Template Name: Offers Page
  */
 global $post;
 ?>
@@ -15,7 +15,7 @@ global $post;
     }
 
     $product_per_page = isset($_GET['productPerPage']) ? $_GET['productPerPage'] : $product_per_page;
-    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $current_page = isset($_GET['current_page']) ? $_GET['current_page'] : 1;
     $productOrder = isset($_GET['productOrder']) ? $_GET['productOrder'] : 'published-date';
 
     $args = [
@@ -27,6 +27,13 @@ global $post;
         'meta_key' => 'book_first_published_date',
         'orderby' => 'meta_value',
         'order' => 'desc',
+        'tax_query' => [
+            [
+                'taxonomy' => 'epiloges',
+                'field'    => 'slug',
+                'terms'    => 'prosfores',
+            ],
+        ],
     ];
 
     $the_query = new WP_Query( $args );

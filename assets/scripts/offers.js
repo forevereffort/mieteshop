@@ -1,7 +1,7 @@
 jQuery(function(){
 
     function goOffersResultTop(){
-        $('html, body').animate({
+        jQuery('html, body').animate({
             scrollTop: jQuery('#js-offers-results-section').offset().top
         }, 1000)
     }
@@ -12,7 +12,7 @@ jQuery(function(){
         const productPerPage = jQuery('#js-offers-products-per-page').val();
         const productOrder = jQuery('#js-offers-product-display-order').val();
 
-        const nextURL = `?page=${page}&productPerPage=${productPerPage}&productOrder=${productOrder}`
+        const nextURL = `?current_page=${page}&productPerPage=${productPerPage}&productOrder=${productOrder}`
         const nextState = { additionalInformation: 'Updated the URL with JS' }
 
         // This will create a new entry in the browser's history, without reloading

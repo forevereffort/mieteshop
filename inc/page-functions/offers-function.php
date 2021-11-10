@@ -35,6 +35,13 @@ function filterOffersProduct()
         'post_status' => 'publish',
         'posts_per_page' => $productPerPage,
         'offset' => ( $page - 1 ) * $productPerPage,
+        'tax_query' => [
+            [
+                'taxonomy' => 'epiloges',
+                'field'    => 'slug',
+                'terms'    => 'prosfores',
+            ],
+        ],
     ];
 
     if( $productOrder === 'alphabetical' ){
