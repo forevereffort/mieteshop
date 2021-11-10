@@ -24,7 +24,7 @@ global $post;
         'posts_per_page' => $product_per_page,
         'offset' => ( $current_page - 1 ) * $product_per_page,
         'fields' => 'ids',
-        'meta_key' => 'book_current_published_date',
+        'meta_key' => 'book_first_published_date',
         'orderby' => 'meta_value',
         'order' => 'desc',
     ];

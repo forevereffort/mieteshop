@@ -80,7 +80,7 @@ function filterCategoryProduct()
         $args['orderby'] = 'title';
         $args['order'] = 'asc';
     } else if( $productOrder === 'published-date' ){
-        $args['meta_key'] = 'book_current_published_date';
+        $args['meta_key'] = 'book_first_published_date';
         $args['orderby'] = 'meta_value';
         $args['order'] = 'desc';
     }
