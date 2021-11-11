@@ -920,6 +920,14 @@
 }
 
 @media(max-width: $breakpoint-mobile-start) {
+  .site-header {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+
   .pre-header {
     display: none;
   }

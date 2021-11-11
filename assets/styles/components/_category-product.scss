@@ -318,6 +318,7 @@
   align-items: flex-end;
   display: flex;
   height: 300px;
+  justify-content: center;
 
   img,
   a img {
@@ -400,6 +401,7 @@
 
 .pcat-results-navigation-row {
   display: flex;
+  justify-content: center;
 }
 
 .pcat-results-navigation-item {
