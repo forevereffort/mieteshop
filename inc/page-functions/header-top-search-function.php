@@ -17,7 +17,7 @@ function title_sub_title_filter( $where, $wp_query ){
     if ( $search_term = $wp_query->get( 'search_prod_title_sub_title' ) ) {
         // remove  AND ( ( wp_postmeta.meta_key = '' AND wp_postmeta.meta_value = '' ) )
         // this Need to add this so query_posts joins the postmeta table in the query.
-        $where = str_replace("( {$wpdb->postmeta}.meta_key = '' AND {$wpdb->postmeta}.meta_value = '' )", "1", $where);
+        // $where = str_replace("( {$wpdb->postmeta}.meta_key = '' AND {$wpdb->postmeta}.meta_value = '' )", "1", $where);
 
         $where .= " AND ( {$wpdb->posts}.post_title LIKE '%" . esc_sql( like_escape( $search_term ) ) . "%' OR ({$wpdb->postmeta}.meta_key LIKE 'book_subtitle' AND {$wpdb->postmeta}.meta_value LIKE '%" . esc_sql( like_escape( $search_term ) ) . "%') )";
     }
@@ -141,8 +141,12 @@ function headerTopSearchFuc()
         ],
         'post_status' => 'publish',
         // Need to add this so query_posts joins the postmeta table in the query. 
+        'meta_key' => 'book_first_published_date',
+        'orderby' => 'meta_value',
+        'order' => 'desc',
+        // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
-        'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
+        // 'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
     ]);
 
     $product_book_list = [];
@@ -195,8 +199,12 @@ function headerTopSearchFuc()
         ],
         'post_status' => 'publish',
         // Need to add this so query_posts joins the postmeta table in the query. 
+        'meta_key' => 'book_first_published_date',
+        'orderby' => 'meta_value',
+        'order' => 'desc',
+        // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
-        'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
+        // 'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
     ]);
 
     $product_art_object_list = [];

@@ -89,7 +89,7 @@ global $post;
 <div class="archive-publisher-search-section">
     <div class="general-container">
         <div class="content-container">
-            <div class="archive-publisher-search-title">
+            <div class="archive-publisher-search-title" style="display: none;">
                 <h2>ΕΥΡΕΤΗΡΙΟ ΕΚΔΟΤΩΝ</h2>
             </div>
             <div class="archive-publisher-search-greek-letter-wrapper" style="display: none;">

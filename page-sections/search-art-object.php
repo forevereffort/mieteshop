@@ -26,8 +26,12 @@
         'fields' => 'ids',
         'post_status' => 'publish',
         // Need to add this so query_posts joins the postmeta table in the query. 
+        'meta_key' => 'book_first_published_date',
+        'orderby' => 'meta_value',
+        'order' => 'desc',
+        // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
-        'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
+        // 'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
     ];
 
     $the_query = new WP_Query( $args );
@@ -154,13 +158,15 @@
                 'operator' => 'NOT IN',
             ]
         ],
-        'orderby' => 'title',
-        'order' => 'asc',
         'fields' => 'ids',
         'post_status' => 'publish',
         // Need to add this so query_posts joins the postmeta table in the query. 
+        'meta_key' => 'book_first_published_date',
+        'orderby' => 'meta_value',
+        'order' => 'desc',
+        // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
-        'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
+        // 'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
     ];
 
     $the_query = new WP_Query( $args );
