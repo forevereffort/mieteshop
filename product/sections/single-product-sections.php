@@ -208,6 +208,16 @@
                                 <?php
                                     }
                                 ?>
+                                <?php
+                                    if( get_field('book_issn') ){
+                                ?>
+                                        <div class="single-product-detail-information-item">
+                                            <div class="single-product-detail-information-item__label">ISSN</div>
+                                            <div class="single-product-detail-information-item__value"><?php echo get_field('book_issn'); ?></div>
+                                        </div>
+                                <?php
+                                    }
+                                ?>
                                 <?php if ($product->get_width() && $product->get_height() ) { ?>
                                 <div class="single-product-detail-information-item">
                                     <div class="single-product-detail-information-item__label">ΔΙΑΣΤΑΣΕΙΣ</div>

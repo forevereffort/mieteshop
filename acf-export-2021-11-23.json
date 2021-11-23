@@ -2938,6 +2938,25 @@
                 "maxlength": ""
             },
             {
+                "key": "field_619cd19aa8221",
+                "label": "ISSN",
+                "name": "book_issn",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "default_value": "",
+                "placeholder": "",
+                "prepend": "",
+                "append": "",
+                "maxlength": ""
+            },
+            {
                 "key": "field_60a64dc58bc16",
                 "label": "Biblionet WriterID",
                 "name": "book_biblionet_writerid",
@@ -3385,7 +3404,7 @@
                 "placeholder": "",
                 "maxlength": "",
                 "rows": "",
-                "new_lines": ""
+                "new_lines": "br"
             },
             {
                 "key": "field_60a7640209a53",
