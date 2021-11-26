@@ -803,8 +803,9 @@
   }
 
   .single-product-info-table-1-row {
+    align-items: center;
     border-bottom: 0;
-    display: block;
+    flex-wrap: wrap;
     height: auto;
     margin: 0 -16px;
     padding: 16px;
@@ -839,6 +840,7 @@
     border: 0;
     margin-top: 16px;
     padding: 0;
+    text-align: left;
     width: 100%;
   }
 
@@ -847,7 +849,10 @@
   }
 
   .single-product-availability {
+    margin-top: 20px;
     padding: 0;
+    text-align: left;
+    width: 100%;
   }
 
   .single-product-share-col {
@@ -1014,5 +1019,14 @@
       height: 300px;
       justify-content: center;
     }
+  }
+
+  .single-product-regular-price {
+    padding: 0;
+  }
+
+  .single-product-discount {
+    padding: 0;
+    width: auto;
   }
 }
