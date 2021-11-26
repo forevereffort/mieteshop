@@ -18,3 +18,21 @@
   padding: 0 8px;
   width: 25%;
 }
+
+@media(max-width: 1200px) {
+  .thematic-sub-menu-col {
+    width: 33.33333%;
+  }
+}
+
+@media(max-width: 1000px) {
+  .thematic-sub-menu-col {
+    width: 50%;
+  }
+}
+
+@media(max-width: 1000px) {
+  .thematic-sub-menu-col {
+    width: 100%;
+  }
+}
