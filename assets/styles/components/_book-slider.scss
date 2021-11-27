@@ -142,3 +142,9 @@
     width: 100%;
   }
 }
+
+@media(max-width: 1000px) {
+  .book-slider-image {
+    height: auto;
+  }
+}
