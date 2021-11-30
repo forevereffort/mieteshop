@@ -56,7 +56,9 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       spaceBetween: 50,
     }
     
-    this.reviewSlider = new Swiper(this.$reviewSlider.get(0), config)
+    if( this.$reviewSlider.get(0) ){
+      this.reviewSlider = new Swiper(this.$reviewSlider.get(0), config)
+    }
   }
 
   initAudioSlider () {
@@ -82,8 +84,10 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
         }
       }
     }
-    
-    this.audioSlider = new Swiper(this.$audioSlider.get(0), config)
+
+    if( this.$audioSlider.get(0) ){
+      this.audioSlider = new Swiper(this.$audioSlider.get(0), config)
+    }
   }
 
   initVideoSlider () {
@@ -110,7 +114,9 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       }
     }
     
-    this.videoSlider = new Swiper(this.$videoSlider.get(0), config)
+    if( this.$videoSlider.get(0) ){
+      this.videoSlider = new Swiper(this.$videoSlider.get(0), config)
+    }
   }
 
   initBlogSlider () {
@@ -134,7 +140,9 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
       }
     }
     
-    this.blogSlider = new Swiper(this.$blogSlider.get(0), config)
+    if( this.$blogSlider.get(0) ){
+      this.blogSlider = new Swiper(this.$blogSlider.get(0), config)
+    }
   }
 
   destoryReviewSlider(){
