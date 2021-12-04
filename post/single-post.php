@@ -29,16 +29,19 @@
         <div class="content-container">
             <div class="single-post-title-row">
                 <div class="single-post-title-left-col">
-                    <h1>Για λουλούδια θα μιλάμε τώρα;</h1>
+                    <h1><?php echo $post->post_title; ?></h1>
                 </div>
                 <div class="single-post-title-right-col">
                     <div class="single-post-title-category-row">
-                        <div class="single-post-title-category-item">
-                            <a href="#">ΕΚΔΗΛΩΣΕΙΣ</a>
-                        </div>
-                        <div class="single-post-title-category-item">
-                            <a href="#">EΚΘΕΣΕΙΣ</a>
-                        </div>
+                        <?php
+                            foreach($post_cats as $post_cat){
+                        ?>
+                                <div class="single-post-title-category-item">
+                                    <a href="<?php echo get_term_link($post_cat->term_id); ?>"><?php echo $post_cat->name; ?></a>
+                                </div>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
             </div>

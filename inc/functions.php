@@ -25,6 +25,11 @@ add_action( 'wp_footer', function () {
   wp_dequeue_script( 'wp-embed' );
 });
 
+// remove post wisying editor
+add_action( 'init', function() {
+  remove_post_type_support( 'post', 'editor' );
+}, 99);
+
 // add custom theme css & js
 add_filter('script_loader_tag', function ($tag, $handle){
   foreach (['async', 'defer'] as $attr) {
