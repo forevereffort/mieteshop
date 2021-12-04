@@ -15,7 +15,7 @@ global $post;
             <div class="blog-cat-filter-select-row">
                 <div class="blog-cat-filter-select">
                     <select id="js-blog-cat-filter-select">
-                        <option value="0">All</option>
+                        <option value="0">Όλα</option>
                         <?php
                             $terms = get_terms('category', [
                                 'order' => 'name',
