@@ -6,6 +6,7 @@
 <section class="breadcrumb-section">
     <div class="content-container">
         <div class="breadcrumb-list">
+            <div class="breadcrumb-item"><a href="/blog">Νέα</a></div>
             <?php
                 if( !empty($post_cats) ){
                     $post_cat_parent_list = array_reverse(get_ancestors($post_cats[0]->term_id, 'category'));
