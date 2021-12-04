@@ -52,7 +52,9 @@ class MieteshopPublisherMetaSection extends window.HTMLDivElement {
       }
     }
     
-    this.videoSlider = new Swiper(this.$videoSlider.get(0), config)
+    if( this.$videoSlider.get(0) ){
+      this.videoSlider = new Swiper(this.$videoSlider.get(0), config)
+    }
   }
 
   initBlogSlider () {
@@ -76,15 +78,21 @@ class MieteshopPublisherMetaSection extends window.HTMLDivElement {
       }
     }
     
-    this.blogSlider = new Swiper(this.$blogSlider.get(0), config)
+    if( this.$blogSlider.get(0) ){
+      this.blogSlider = new Swiper(this.$blogSlider.get(0), config)
+    }
   }
 
   destoryVideoSlider(){
-    this.videoSlider.destroy(true, true);
+    if( this.videoSlider ){
+      this.videoSlider.destroy(true, true);
+    }
   }
   
   destoryBlogSlider(){
-    this.blogSlider.destroy(true, true);
+    if( this.blogSlider ){
+      this.blogSlider.destroy(true, true);
+    }
   }
 
   initTab () {
