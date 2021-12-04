@@ -6,19 +6,58 @@
     $series = get_the_terms( $product->get_id(), 'series' );
     $epiloges = get_the_terms( $product->get_id(), 'epiloges' );
     $publishersTaxonomy = get_the_terms( $product->get_id(), 'ekdotes' );
+
+    $productGalleryIds = $product->get_gallery_image_ids();
 ?>
 <section class="single-product-section">
     <div class="general-container">
         <div class="content-container">
             <div class="single-product-row">
                 <div class="single-product-left-col">
-                    <div class="single-product-image">
-                        <img
-                            class="lazyload"
-                            src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                            data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                            alt="<?php echo $product->get_name(); ?>">
-                    </div>
+                    <?php
+                        if( empty($productGalleryIds) ){
+                    ?>
+                            <div class="single-product-image">
+                                <img
+                                    class="lazyload"
+                                    src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                    data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                    alt="<?php echo $product->get_name(); ?>">
+                            </div>
+                    <?php
+                        } else {
+                    ?>
+                            <div class="single-product-gallery-slider" is="mieteshop-product-gallery-slider">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <img
+                                                class="lazyload"
+                                                src="<?php echo placeholderImage($image[1], $image[2]); ?>"
+                                                data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
+                                                alt="<?php echo $product->get_name(); ?>">
+                                        </div>
+                                        <?php
+                                            foreach($productGalleryIds as $galleryId){
+                                                $galleryImage = wp_get_attachment_image_src( $galleryId, 'full' );
+                                        ?>
+                                                <div class="swiper-slide">
+                                                    <img
+                                                        class="lazyload"
+                                                        src="<?php echo placeholderImage($galleryImage[1], $galleryImage[2]); ?>"
+                                                        data-src="<?php echo aq_resize($galleryImage[0], $galleryImage[1], $galleryImage[2], true); ?>"
+                                                        alt="<?php echo $product->get_name(); ?>">
+                                                </div>
+                                        <?php
+                                            }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="single-product-gallery-slider__pagination"></div>
+                            </div>
+                    <?php
+                        }
+                    ?>
                 </div>
                 <div class="single-product-right-col">
                     <div class="single-product-info">

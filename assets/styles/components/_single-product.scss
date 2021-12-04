@@ -25,6 +25,18 @@
   }
 }
 
+.single-product-gallery-slider__pagination {
+  text-align: center;
+
+  .swiper-pagination-bullet {
+    margin: 0 3px;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: $color-black-1;
+  }
+}
+
 .single-product-tag-row {
   @include clearfix();
   margin: 0 -4px;

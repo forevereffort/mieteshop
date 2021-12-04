@@ -210,6 +210,45 @@ class MieteshopProductMetaSection extends window.HTMLDivElement {
 
 window.customElements.define('mieteshop-product-meta-section', MieteshopProductMetaSection, { extends: 'section' })
 
+class MieteshopProductGallerySlider extends window.HTMLDivElement {
+  constructor (...args) {
+    const self = super(...args)
+    self.init()
+    return self
+  }
+
+  init () {
+    this.$ = jQuery('.swiper-container', this)
+    this.resolveElements()
+  }
+
+  resolveElements () {
+    this.$pagination = jQuery('.single-product-gallery-slider__pagination', this)
+  }
+
+  connectedCallback () {
+    this.initSlider()
+  }
+
+  initSlider () {
+    const config = {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      // autoplay: {
+      //   delay: 300,
+      // },
+      loop: true,
+      pagination: {
+        el: this.$pagination.get(0)
+      }
+    }
+
+    this.slider = new Swiper(this.$.get(0), config)
+  }
+}
+
+window.customElements.define('mieteshop-product-gallery-slider', MieteshopProductGallerySlider, { extends: 'div' })
+
 jQuery(function(){
   jQuery('.single-product-tab-header-item').on('click', function(){
     if( !jQuery(this).hasClass('active') ){
