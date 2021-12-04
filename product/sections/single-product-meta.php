@@ -1,28 +1,28 @@
 <?php
     global $product;
     
-    if( have_rows('book_reviews') || have_rows('book_audio_repeater') || have_rows('book_videos') || get_field('book_related_articles')  ) {
+    if( have_rows('book_reviews') || have_rows('book_audio_repeater') || have_rows('book_videos') || have_rows('book_related_articles')  ) {
 ?>
         <section class="single-product-meta-section" is="mieteshop-product-meta-section">
             <div class="content-container">
                 <div class="single-product-meta-tab-row-wrapper">
                     <div class="single-product-meta-tab-row">
-                        <?php if ( get_field('book_reviews') ) { ?>
+                        <?php if ( have_rows('book_reviews') ) { ?>
                         <div class="single-product-meta-tab-col">
                             <div class="single-product-meta-tab-item active" data-section-id="review" data-tab>Βιβλιοκρισίες</div>
                         </div>
                         <?php } ?>
-                        <?php if ( get_field('book_audio_repeater') ) { ?>
+                        <?php if ( have_rows('book_audio_repeater') ) { ?>
                         <div class="single-product-meta-tab-col">
                             <div class="single-product-meta-tab-item" data-section-id="audio" data-tab>Audio</div>
                         </div>
                         <?php } ?>
-                        <?php if ( get_field('book_videos') ) { ?>
+                        <?php if ( have_rows('book_videos') ) { ?>
                         <div class="single-product-meta-tab-col">
                             <div class="single-product-meta-tab-item" data-section-id="video" data-tab>Video</div>
                         </div>
                         <?php } ?>
-                        <?php if ( get_field('book_related_articles') ) { ?>
+                        <?php if ( have_rows('book_related_articles') ) { ?>
                         <div class="single-product-meta-tab-col">
                             <div class="single-product-meta-tab-item" data-section-id="article" data-tab>Σχετικά  Άρθρα</div>
                         </div>
@@ -209,38 +209,68 @@
                     ?>
                     <?php 
                         $related_articles = get_field('book_related_articles');   
-                        if ( $related_articles) {
+                        if ( !empty($related_articles) ) {
+                            $is_articles_slider = count(get_field('book_related_articles')) > 2 ? true : false;
                     ?>
                             <div id="single-product-meta-tab-content--article" class="single-product-meta-tab-content-col hide">
                                 <div class="single-product-blog-wrapper">
-                                    <div class="swiper-container" data-blog-slider>
-                                        <div class="swiper-wrapper">
-                                            <?php
-                                                foreach($related_articles as $article) {
-                                                    $blog_image_url = wp_get_attachment_url( get_post_thumbnail_id($article->ID) );
-                                            ?>
-                                                    <div class="single-product-blog-item swiper-slide">
-                                                        <div class="single-product-blog-item-inner">
-                                                            <div class="single-product-blog-image">
-                                                                <a href="<?php echo get_permalink($article->ID); ?>">
-                                                                    <img
-                                                                        class="lazyload"
-                                                                        src="<?php echo placeholderImage(399, 261); ?>"
-                                                                        data-src="<?php echo aq_resize($blog_image_url, 399, 261, true); ?>"
-                                                                        alt="video image">
-                                                                </a>
+                                    <?php
+                                        if( $is_articles_slider ){
+                                    ?>
+                                            <div class="swiper-container" data-blog-slider>
+                                                <div class="swiper-wrapper">
+                                                    <?php
+                                                        foreach($related_articles as $article) {
+                                                            $blog_image_url = wp_get_attachment_url( get_post_thumbnail_id($article->ID) );
+                                                    ?>
+                                                            <div class="single-product-blog-item swiper-slide">
+                                                                <div class="single-product-blog-item-inner">
+                                                                    <div class="single-product-blog-image">
+                                                                        <a href="<?php echo get_permalink($article->ID); ?>">
+                                                                            <img
+                                                                                class="lazyload"
+                                                                                src="<?php echo placeholderImage(399, 261); ?>"
+                                                                                data-src="<?php echo aq_resize($blog_image_url, 399, 261, true); ?>"
+                                                                                alt="video image">
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="single-product-blog-content">
+                                                                        <h2><a href="<?php echo get_permalink($article->ID); ?>"><?php echo $article->post_title; ?></a></h2>
+                                                                        <?php echo apply_filters('the_content', get_field('post_lead', $article->ID)); ?>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="single-product-blog-content">
-                                                                <h2><a href="<?php echo get_permalink($article->ID); ?>"><?php echo $article->post_title; ?></a></h2>
-                                                                <?php echo apply_filters('the_content', get_field('post_lead', $article->ID)); ?>
-                                                            </div>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                                </div>
+                                            </div>
+                                    <?php
+                                        } else {
+                                            foreach($related_articles as $article) {
+                                                $blog_image_url = wp_get_attachment_url( get_post_thumbnail_id($article->ID) );
+                                    ?>
+                                                <div class="single-product-blog-item">
+                                                    <div class="single-product-blog-item-inner">
+                                                        <div class="single-product-blog-image">
+                                                            <a href="<?php echo get_permalink($article->ID); ?>">
+                                                                <img
+                                                                    class="lazyload"
+                                                                    src="<?php echo placeholderImage(399, 261); ?>"
+                                                                    data-src="<?php echo aq_resize($blog_image_url, 399, 261, true); ?>"
+                                                                    alt="video image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="single-product-blog-content">
+                                                            <h2><a href="<?php echo get_permalink($article->ID); ?>"><?php echo $article->post_title; ?></a></h2>
+                                                            <?php echo apply_filters('the_content', get_field('post_lead', $article->ID)); ?>
                                                         </div>
                                                     </div>
-                                            <?php
-                                                }
-                                            ?>
-                                        </div>
-                                    </div>
+                                                </div>
+                                    <?php
+                                            }
+                                        }
+                                    ?>
                                 </div>
                             </div>
                     <?php
