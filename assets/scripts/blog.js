@@ -68,7 +68,6 @@ jQuery(function(){
     addPageNavigationClickOfBlogResultFunc();
 
     jQuery('#js-blog-page-list').on('change', function(){
-        console.log(123)
         const page = jQuery(this).val();
 
         blogResultSearch(page);
