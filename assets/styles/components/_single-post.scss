@@ -297,6 +297,7 @@
 
   .single-post-title-right-col {
     padding-top: 20px;
+    width: 100%;
   }
 
   .single-post-hero-event {
@@ -360,4 +361,18 @@
     right: -20px;
   }
 
+  .single-post-title-left-col {
+    padding-right: 0;
+    width: 100%;
+  }
+
+  .single-post-title-category-row {
+    justify-content: flex-start;
+  }
+
+  .single-post-hero-section {
+    .general-container {
+      padding: 0;
+    }
+  }
 }
