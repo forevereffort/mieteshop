@@ -227,7 +227,7 @@ global $post;
                     </div>
                 </div>
             </div>
-            <?php get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-blog-per-page" ]); ?>
+            <?php //get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-blog-per-page" ]); ?>
         </div>
     </div>
 </section>

@@ -3,7 +3,8 @@ jQuery(function(){
     function blogResultSearch(page){
         const nonce = jQuery('#js-blog-result-row').attr('data-nonce');
         const catId = jQuery('#js-blog-cat-filter-select').val();
-        const postsPerPage = jQuery('#js-blog-per-page').val();
+        // const postsPerPage = jQuery('#js-blog-per-page').val();
+        const postsPerPage = 9;
 
         jQuery('#js-blog-filter-load-spinner').removeClass('hide');
 
