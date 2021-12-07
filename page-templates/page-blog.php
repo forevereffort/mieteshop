@@ -6,9 +6,6 @@ global $post;
 ?>
 <?php get_header(); ?>
 
-<?php 
-    $greek_month_list = ['ΙΑΝ', 'ΦΕΒ', 'ΜΆΡ', 'ΑΠΡ', 'ΜΆΙ', 'ΙΟΎΝ', 'ΙΟΎΛ', 'ΑΎΓ', 'ΣΕΠ', 'ΟΚΤ', 'ΝΟΈ', 'ΔΕΚ'];
-?>
 <section class="blog-cat-filter-section">
     <div class="general-container">
         <div class="content-container">
