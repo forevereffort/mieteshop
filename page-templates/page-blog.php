@@ -76,103 +76,13 @@ global $post;
                 }
         ?>
                 <div class="content-container">
-                    <div id="js-blog-first" class="blog-first">
-                        <?php $blog_first_image_url = wp_get_attachment_image_src( get_post_thumbnail_id( $first_blog['id'] ), 'full' ); ?>
-                        <div class="blog-first-image">
-                            <a href="<?php echo get_permalink($first_blog['id']); ?>">
-                                <img
-                                    class="lazyload"
-                                    src="<?php echo placeholderImage($blog_first_image_url[1], $blog_first_image_url[2]); ?>"
-                                    data-src="<?php echo aq_resize($blog_first_image_url[0], $blog_first_image_url[1], $blog_first_image_url[2], true); ?>"
-                                    alt="<?php echo $first_blog['title']; ?>">
-                            </a>    
-                        </div>
-                        <div class="blog-first-content">
-                            <div class="blog-first-content-inner">
-                                <div class="blog-first-content-meta-row">
-                                    <div class="blog-first-content-category-list">
-                                        <div class="blog-first-content-category-col">
-                                        <?php
-                                            $terms = wp_get_post_terms( $first_blog['id'], 'category' );
-                                            foreach ( $terms as $term ) {
-                                        ?>
-                                                <a href="<?php echo get_term_link($term->term_id); ?>"><?php echo $term->name; ?></a> 
-                                        <?php
-                                            }
-                                        ?>
-                                        </div>
-                                    </div>
-                                    <div class="blog-first-content-date"><?php echo get_the_date('j', $first_blog['id']); ?> <?php echo $greek_month_list[get_the_date('n', $first_blog['id']) - 1]; ?> <?php echo get_the_date('Y', $first_blog['id']); ?></div>
-                                </div>
-                                <div class="blog-first-content-info">
-                                    <h2><a href="<?php echo get_permalink($first_blog['id']); ?>"><?php echo $first_blog['title']; ?></a></h2>
-                                </div>
-                                <div class="blog-first-content-des">
-                                    <?php echo get_field('post_lead', $first_blog['id']) ?>                                
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php get_template_part('post/loop/loop', 'first-post-card', [ 'postId' => $first_blog['id'] ]); ?>
                 </div>
                 <div class="small-container">
                     <div id="js-blog-result-row" class="blog-result-row" data-nonce="<?php echo wp_create_nonce('filter_blog_result_nonce'); ?>">
                         <?php
                             foreach( $blog_list as $blog ){
-                                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $blog['id'] ), 'full' );
-                        ?>
-                                <div class="blog-result-col">
-                                    <div class="home-blog-item">
-                                        <div class="home-blog-item-image">
-                                            <a href="<?php echo get_permalink($blog['id']); ?>">
-                                                <img
-                                                    class="lazyload"
-                                                    src="<?php echo placeholderImage($image[1], $image[2]); ?>"
-                                                    data-src="<?php echo aq_resize($image[0], $image[1], $image[2], true); ?>"
-                                                    alt="<?php echo $blog['title']; ?>">
-                                            </a>
-                                        </div>
-                                        <div class="home-blog-item-meta-row">
-                                            <div class="home-blog-item-category-list">
-                                                <?php
-                                                    $category_list = get_the_category($blog['id']);
-                                                    foreach( $category_list as $category ){
-                                                ?>
-                                                        <div class="home-blog-item-category-col"><a href="<?php echo get_term_link($category->term_id); ?>"><?php echo $category->name; ?></a></div>
-                                                <?php
-                                                    }
-                                                ?>
-                                            </div>
-                                            <div class="home-blog-item-date"><?php echo get_the_date('j', $blog['id']); ?> <?php echo $greek_month_list[get_the_date('n', $blog['id']) - 1]; ?> <?php echo get_the_date('Y', $blog['id']); ?></div>
-                                        </div>
-                                        <div class="home-blog-item-title">
-                                            <h3><a href="<?php echo get_permalink($blog['id']); ?>"><?php echo $blog['title']; ?></a></h3>
-                                        </div>
-                                        <div class="blog-item-bottom-row">
-                                            
-                                            <div class="blog-item-bottom-left-col">
-                                                <?php if(get_field('event_from_date', $blog['id'])) { ?>
-                                                <div class="home-blog-item-duration-row">
-                                                    <div class="home-blog-item-duration-col">
-                                                        <div class="home-blog-item-duration-label">ΑΠΟ</div>
-                                                        <div class="home-blog-item-duration-date"><?php echo get_field('event_from_date', $blog['id']); ?></div>
-                                                    </div>
-                                                    <div class="home-blog-item-duration-col">
-                                                        <div class="home-blog-item-duration-label">ΕΩΣ</div>
-                                                        <div class="home-blog-item-duration-date"><?php echo get_field('event_to_date', $blog['id']); ?></div>
-                                                    </div>
-                                                </div>
-                                                <?php } ?>
-                                            </div>
-                                            
-                                            <div class="blog-item-bottom-right-col">
-                                                <div class="home-blog-item-excerpt">
-                                                    <?php echo get_field('post_lead', $blog['id']); ?>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        <?php
+                                get_template_part('post/loop/loop', 'post-card', [ 'postId' => $blog['id'] ]);
                             }
                         ?>
                     </div>
