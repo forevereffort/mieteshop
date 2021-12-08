@@ -12,7 +12,7 @@
 <section id="js-single-contributor-books" class="single-product-recently-section single-product-recently-section--border-bottom">
     <div class="content-container">
         <div class="single-product-recently-title">
-            <h2>ΒΙΒΛΙΑ ΠΟΥ ΕΧΕΙ ΣΥΜΜΕΤΑΣΧΕΙ ΣΑΝ ΣΥΝΤΕΛΕΣΤΗΣ</h2>
+            <h2>ΒΙΒΛΙΑ ΣΤΑ ΟΠΟΙΑ ΕΧΕΙ ΣΥΜΜΕΤΑΣΧΕΙ ΩΣ ΣΥΝΤΕΛΕΣΤΗΣ</h2>
         </div>
         <div id="js-single-contributor-product-row" class="pcat-results-row" data-nonce="<?php echo wp_create_nonce('filter_single_contributor_product_nonce'); ?>" data-product-per-page="<?php echo $productPerPage; ?>" data-contributor-id="<?php echo $post->ID; ?>">
             <?php

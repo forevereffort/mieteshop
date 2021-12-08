@@ -48,13 +48,13 @@
 	<div class="general-container">
 		<div class="pre-header-row">
 			<div class="pre-header-col">
-				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--bus"><?php include get_template_directory() . '/assets/icons/bus-icon.svg' ?></span>Δωρεάν μεταφορικά από €40</div>
+				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--bus"><?php include get_template_directory() . '/assets/icons/bus-icon.svg' ?></span>Δωρεάν μεταφορικά από €30</div>
 			</div>
 			<div class="pre-header-col">
 				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--calendar"><?php include get_template_directory() . '/assets/icons/calendar-icon.svg' ?></span>Αποστολή εντός 3 ημερών</div>
 			</div>
 			<div class="pre-header-col">
-				<div class="pre-header-item"><a href="tel:+2103221335"><span class="pre-header-item-icon pre-header-item-icon--phone"><?php include get_template_directory() . '/assets/icons/phone-icon.svg' ?></span>210 3221335</a></div>
+				<div class="pre-header-item"><a href="tel:2103614143"><span class="pre-header-item-icon pre-header-item-icon--phone"><?php include get_template_directory() . '/assets/icons/phone-icon.svg' ?></span>210 3614143</a></div>
 			</div>
 			<div class="pre-header-col">
 				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--store"><?php include get_template_directory() . '/assets/icons/store-icon.svg' ?><a href="<?php echo $our_bookstores_url; ?>"></span>Τα βιβλιοπωλεία μας</a></div>
@@ -62,16 +62,16 @@
 			<div class="pre-header-col">
 				<div class="pre-header-social-row">
 					<div class="pre-header-social-col">
-						<a href="<?php echo get_field('youtube_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--youtube"><?php include get_template_directory() . '/assets/icons/youtube-icon.svg' ?></div></a>
+						<a href="<?php echo get_field('youtube_url', 'option'); ?>" target="_blank"><div class="pre-header-social-icon pre-header-social-icon--youtube"><?php include get_template_directory() . '/assets/icons/youtube-icon.svg' ?></div></a>
 					</div>
 					<div class="pre-header-social-col">
-						<a href="<?php echo get_field('sound_cloude_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--sound-cloude"><?php include get_template_directory() . '/assets/icons/sound-cloude-icon.svg' ?></div></a>
+						<a href="<?php echo get_field('sound_cloude_url', 'option'); ?>" target="_blank"><div class="pre-header-social-icon pre-header-social-icon--sound-cloude"><?php include get_template_directory() . '/assets/icons/sound-cloude-icon.svg' ?></div></a>
 					</div>
 					<div class="pre-header-social-col">
-						<a href="<?php echo get_field('facebook_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--facebook"><?php include get_template_directory() . '/assets/icons/facebook-icon.svg' ?></div></a>
+						<a href="<?php echo get_field('facebook_url', 'option'); ?>" target="_blank"><div class="pre-header-social-icon pre-header-social-icon--facebook"><?php include get_template_directory() . '/assets/icons/facebook-icon.svg' ?></div></a>
 					</div>
 					<div class="pre-header-social-col">
-						<a href="<?php echo get_field('instagram_url', 'option'); ?>"><div class="pre-header-social-icon pre-header-social-icon--instagram"><?php include get_template_directory() . '/assets/icons/instagram-icon.svg' ?></div></a>
+						<a href="<?php echo get_field('instagram_url', 'option'); ?>" target="_blank"><div class="pre-header-social-icon pre-header-social-icon--instagram"><?php include get_template_directory() . '/assets/icons/instagram-icon.svg' ?></div></a>
 					</div>
 				</div>
 			</div>
