@@ -76,29 +76,24 @@ function headerTopSearchFuc()
     global $post;
 
     // publisher search with search key
-    $the_query = new WP_Query([
-        'post_type' => 'publisher',
-        'posts_per_page' => 4,
-        // 's' => $searchKey
-        'search_prod_title' => $searchKey,
-        'post_status' => 'publish'
+    $publisher_term_list = get_terms([
+        'taxonomy' => 'ekdotes', 
+        'hide_empty' => true, 
+        'orderby' => 'title',
+        'order' => 'ASC',
+        'name__like' => $searchKey,
+        'number' => 4,
     ]);
 
     $publisher_list = [];
-    $publisher_list_count = $the_query->found_posts;
+    $publisher_list_count = count($publisher_term_list);
  
-    if ( $the_query->have_posts() ) {
-        while ( $the_query->have_posts() ) {
-            $the_query->the_post();
-
-            $publisher_list[] = [
-                'title' => $post->post_title,
-                'url' => get_permalink($post->ID),
-            ];
-        }
+    foreach($publisher_term_list as $term){
+        $publisher_list[] = [
+            'title' => $term->name,
+            'url' => get_term_link($term->term_id),
+        ];
     }
-
-    wp_reset_postdata();
 
     // contributor search with search key
     $the_query = new WP_Query([

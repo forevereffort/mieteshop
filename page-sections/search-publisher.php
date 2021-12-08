@@ -2,11 +2,12 @@
     global $post;
     $searchKey = get_search_query();
 
-    $the_query = new WP_Query([
-        'post_type' => 'publisher',
-        'posts_per_page' => -1,
-        // 'search_prod_title' => $searchKey,
-        'post_status' => 'publish',
+    $publisher_term_list = get_terms([
+        'taxonomy' => 'ekdotes', 
+        'hide_empty' => true, 
+        'orderby' => 'title',
+        'order' => 'ASC',
+        'name__like' => $searchKey,
     ]);
 
 ?>
@@ -14,28 +15,19 @@
     <div class="general-container">
         <div class="content-container">
             <div class="search-result-category-title">
-                <h2>ΕΚΔΟΤΕΣ/ ΟΡΓΑΝΙΣΜΟΙ: <?php echo $the_query->found_posts; ?></h2>
+                <h2>ΕΚΔΟΤΕΣ/ ΟΡΓΑΝΙΣΜΟΙ: <?php echo count($publisher_term_list); ?></h2>
             </div>
-            <?php
-                if ( $the_query->have_posts() ) {
-            ?>
-                    <div class="search-result-category-list">
-                        <?php
-                            while ( $the_query->have_posts() ) {
-                                $the_query->the_post();
-                        ?>
-                                <div class="search-result-category-item">
-                                    <a href="<?php echo get_permalink($post->ID); ?>"><?php echo $post->post_title; ?></a>
-                                </div>
-                        <?php
-                            }
-                        ?>
-                    </div>
-            <?php
-                }
-
-                wp_reset_postdata();
-            ?>
+            <div class="search-result-category-list">
+                <?php
+                    foreach($publisher_term_list as $term){
+                ?>
+                        <div class="search-result-category-item">
+                            <a href="<?php echo get_term_link($term->term_id); ?>"><?php echo $term->name; ?></a>
+                        </div>
+                <?php
+                    }
+                ?>
+            </div>
         </div>
     </div>
 </section>
