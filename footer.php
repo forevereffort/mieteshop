@@ -5,7 +5,12 @@
                 <div class="footer-top-left-col">
                     <div class="footer-news-letter-form">
                         <?php echo do_shortcode('[ms-form id=1]'); ?>
-                        <script>jQuery('.footer-news-letter-form input[type=email]').attr('placeholder', 'Διεύθυνση email')</script>
+                        <script>
+                            jQuery('.footer-news-letter-form input[type=email]').attr('placeholder', 'Διεύθυνση email');
+                            jQuery('.footer-news-letter-form form').submit(function(){
+                                mootrack('identify', jQuery('.footer-news-letter-form input[type=email]').val());
+                            })
+                        </script>
                     </div>
                 </div>
                 <div class="footer-top-right-col">
