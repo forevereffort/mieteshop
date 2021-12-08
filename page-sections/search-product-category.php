@@ -14,7 +14,7 @@
     <div class="general-container">
         <div class="content-container">
             <div class="search-result-category-title">
-                <h2>ΣΥΝΤΕΛΕΣΤΕΣ: <?php echo $child_cat_list_count; ?></h2>
+                <h2>ΘΕΜΑΤΙΚΕΣ: <?php echo $child_cat_list_count; ?></h2>
             </div>
             <div class="search-result-category-list">
                 <?php
