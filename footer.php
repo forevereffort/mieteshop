@@ -4,6 +4,7 @@
             <div class="footer-top-row">
                 <div class="footer-top-left-col">
                     <div class="footer-news-letter-form">
+                        <?php echo do_shortcode('[ms-form id=1]'); ?>
                         <form action="">
                             <div class="footer-news-letter-form-row">    
                                 <div class="footer-news-letter-form-col">
@@ -109,5 +110,15 @@
     </div>
 </footer>
 <?php wp_footer(); ?>
+<?php
+    // integrate moosend
+    if( is_user_logged_in() ){
+        global $current_user;
+        get_currentuserinfo();
+?>
+        <script>mootrack('identify', '<?php echo $current_user->user_email; ?>');</script>
+<?php
+    }
+?>
 </body>
 </html>
