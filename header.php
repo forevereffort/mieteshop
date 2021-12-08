@@ -48,7 +48,7 @@
 	<div class="general-container">
 		<div class="pre-header-row">
 			<div class="pre-header-col">
-				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--bus"><?php include get_template_directory() . '/assets/icons/bus-icon.svg' ?></span>Δωρεάν μεταφορικά από €30</div>
+				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--bus"><?php include get_template_directory() . '/assets/icons/bus-icon.svg' ?></span>Δωρεάν μεταφορικά από 30€</div>
 			</div>
 			<div class="pre-header-col">
 				<div class="pre-header-item"><span class="pre-header-item-icon pre-header-item-icon--calendar"><?php include get_template_directory() . '/assets/icons/calendar-icon.svg' ?></span>Αποστολή εντός 3 ημερών</div>
