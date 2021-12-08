@@ -5,19 +5,7 @@
                 <div class="footer-top-left-col">
                     <div class="footer-news-letter-form">
                         <?php echo do_shortcode('[ms-form id=1]'); ?>
-                        <form action="">
-                            <div class="footer-news-letter-form-row">    
-                                <div class="footer-news-letter-form-col">
-                                    <label for="newsletter-email">Newsletter</label>
-                                </div>
-                                <div class="footer-news-letter-form-col">
-                                    <input type="text" name="newsletter-email" id="newsletter-email" placeholder="Διεύθυνση email" />
-                                </div>
-                                <div class="footer-news-letter-form-col">
-                                    <input type="submit" value="εγγραφή">
-                                </div>
-                            </div>
-                        </form>
+                        <script>jQuery('.footer-news-letter-form input[type=email]').attr('placeholder', 'Διεύθυνση email')</script>
                     </div>
                 </div>
                 <div class="footer-top-right-col">

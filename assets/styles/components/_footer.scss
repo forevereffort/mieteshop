@@ -80,47 +80,58 @@
   padding-top: 2px;
 }
 
-.footer-news-letter-form-row {
-  align-items: center;
-  display: flex;
-}
 
-.footer-news-letter-form-col {
-  label {
+.footer-news-letter-form {
+  form {
+    align-items: center;
+    display: flex;
+  }
+
+  h3 {
     color: $color-black-1;
-    font-size: 14px;
+    font-size: 14px !important;
     font-weight: $font-weight-semi-bold;
     letter-spacing: 0.42px;
     line-height: 1.485;
   }
 
-  input[type=text] {
-    border: 1px solid #e3e8ee;
-    border-radius: 4px;
-    box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
-    color: $color-black-1;
-    font-size: 14px;
-    font-weight: $font-weight-light;
-    height: 36px;
-    padding: 0 7px;
-    width: 264px;
+  .form-block {
+    margin-left: 22px;
+
+    label {
+      display: none;
+    }
+
+    input[type=email] {
+      background-color: $color-white !important;
+      border: 1px solid $color-gray-2 !important;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(55, 65, 81, 0.08);
+      color: $color-black-1;
+      font-size: 14px;
+      font-weight: $font-weight-light;
+      height: 36px;
+      padding: 0 7px;
+      width: 264px;
+    }
   }
 
-  input[type=submit] {
-    background-color: $color-black-1;
-    border: 0;
-    border-radius: 4px;
-    color: $color-white;
-    font-size: 14px;
-    font-weight: $font-weight-normal;
-    height: 36px;
-    padding: 0;
-    padding: 0 12px 0 11px;
-  }
-}
+  .ms-form-submit-container {
+    margin-left: 22px;
 
-.footer-news-letter-form-col+.footer-news-letter-form-col {
-  margin-left: 22px;
+    button {
+      background-color: $color-black-1 !important;
+      border: 0;
+      border-radius: 4px;
+      color: $color-white !important;
+      font-size: 14px;
+      font-weight: $font-weight-normal;
+      height: 36px;
+      margin: 0 !important;
+      padding: 0;
+      padding: 0 12px 0 11px;
+    }
+  }
 }
 
 .footer-top-social-row {
@@ -169,19 +180,26 @@
     padding: 0;
   }
 
-  .footer-news-letter-form-row {
-    display: block;
-  }
-
-  .footer-news-letter-form-col {
-    input[type=text],
-    input[type=submit] {
-      width: 100%;
+  .footer-news-letter-form {
+    form {
+      display: block;
     }
-  }
 
-  .footer-news-letter-form-col+.footer-news-letter-form-col {
-    margin: 15px 0 0;
+    .form-block {
+      margin: 15px 0 0;
+
+      input[type=email] {
+        width: 100%;
+      }
+    }
+    
+    .ms-form-submit-container {
+      margin: 15px 0 0;
+      
+      button {
+        width: 100%;
+      }
+    }
   }
 
   .footer-top-right-col {
