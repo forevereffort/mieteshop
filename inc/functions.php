@@ -147,5 +147,6 @@ include_once 'page-functions/taxonomy_series_product.php';
 include_once 'page-functions/blog-function.php';
 include_once 'page-functions/offers-function.php';
 include_once 'page-functions/best-sellers-function.php';
+include_once 'page-functions/search-news.php';
 
 include_once 'admin/admin-products-list.php';

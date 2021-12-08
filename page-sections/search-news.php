@@ -21,15 +21,15 @@
 
     if ( $the_query->have_posts() ) {
 ?>
-        <section id="js-search-news__results-section" class="blog-result-section" data-nonce="<?php echo wp_create_nonce('filter_search_news_nonce'); ?>" data-search-key="<?php echo $searchKey; ?>">
+        <section class="search-results-section">
             <div class="general-container">
                 <div class="content-container">
                     <div class="pcat-results-title">
-                        <h2>ΤΙΤΛΟΙ: <span id="js-search-book__results-count"><?php echo $total_post_count; ?></span></h2>
+                        <h2>ΤΙΤΛΟΙ: <?php echo $total_post_count; ?></h2>
                     </div>
                 </div>
                 <div class="small-container">
-                    <div id="js-search-news__results-row" class="blog-result-row">
+                    <div id="js-search-news__results-row" class="blog-result-row" data-nonce="<?php echo wp_create_nonce('filter_search_news_nonce'); ?>" data-search-key="<?php echo $searchKey; ?>">
                         <?php
                             while ( $the_query->have_posts() ){
                                 $the_query->the_post();
@@ -42,9 +42,9 @@
                     <?php
                         if( $total_post_count > $posts_per_page ){
                             get_template_part('product/page-nav/page-nav', 'navigation', [ 
-                                'navWrapperDomId' => "js-search-book__results-navigation",
-                                'navDomClass' => "js-search-book__results-navigation-item",
-                                'gotoDomId' => "js-search-book__page-list",
+                                'navWrapperDomId' => "js-search-news__results-navigation",
+                                'navDomClass' => "js-search-news__results-navigation-item",
+                                'gotoDomId' => "js-search-news__page-list",
                                 'total' => $total_post_count,
                                 'perPage' => $posts_per_page
                             ]);
@@ -56,4 +56,4 @@
 <?php
     }
 ?>
-<div id="js-search-book__load-spinner" class="load-spinner hide"></div>
+<div id="js-search-news__load-spinner" class="load-spinner hide"></div>
