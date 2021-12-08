@@ -5,16 +5,16 @@
     $the_query = new WP_Query([
         'post_type' => 'publisher',
         'posts_per_page' => -1,
-        // 's' => $searchKey
-        'search_prod_title' => $searchKey,
+        // 'search_prod_title' => $searchKey,
         'post_status' => 'publish',
     ]);
+
 ?>
 <section class="search-result-category-section">
     <div class="general-container">
         <div class="content-container">
             <div class="search-result-category-title">
-                <h2>ΣΥΝΤΕΛΕΣΤΕΣ: <?php echo $the_query->found_posts; ?></h2>
+                <h2>ΕΚΔΟΤΕΣ/ ΟΡΓΑΝΙΣΜΟΙ: <?php echo $the_query->found_posts; ?></h2>
             </div>
             <?php
                 if ( $the_query->have_posts() ) {
