@@ -168,43 +168,42 @@
     ];
 
     $the_query = new WP_Query( $args );
-
-    if ( !empty($the_query->posts) ) {
 ?>
-        <section id="js-search-book__results-section" class="search-results-section" data-nonce="<?php echo wp_create_nonce('filter_search_book_nonce'); ?>" data-search-key="<?php echo $searchKey; ?>">
-            <div class="general-container">
-                <div class="content-container">
-                    <div class="pcat-results-title">
-                        <h2>ΤΙΤΛΟΙ: <span id="js-search-book__results-count"><?php echo $total_product_count; ?></span></h2>
-                    </div>
-                    <div id="js-search-book__results-row" class="pcat-results-row">
-                        <?php
-                            foreach( $the_query->posts as $postid ) {
-                        ?>
-                                <div class="pcat-results-col">
-                                    <?php get_template_part('product/loop/loop', 'product-card', [ 'postId' => $postid ]); ?>
-                                </div>
-                        <?php
-                            }
-                        ?>
-                    </div>
-                    <?php
-                        if( $total_product_count > $product_per_page ){
-                            get_template_part('product/page-nav/page-nav', 'navigation', [ 
-                                'navWrapperDomId' => "js-search-book__results-navigation",
-                                'navDomClass' => "js-search-book__results-navigation-item",
-                                'gotoDomId' => "js-search-book__page-list",
-                                'total' => $total_product_count,
-                                'perPage' => $product_per_page
-                            ]);
-                        }
-
-                        get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-search-book__per-page" ]);
-                    ?>
-                </div>
+<section id="js-search-book__results-section" class="search-result-category-section" data-nonce="<?php echo wp_create_nonce('filter_search_book_nonce'); ?>" data-search-key="<?php echo $searchKey; ?>">
+    <div class="general-container">
+        <div class="content-container">
+            <div class="pcat-results-title">
+                <h2>ΤΙΤΛΟΙ: <span id="js-search-book__results-count"><?php echo $total_product_count; ?></span></h2>
             </div>
-        </section>
-<?php
-    }
-?>
+            <div id="js-search-book__results-row" class="pcat-results-row">
+                <?php
+                    if ( !empty($the_query->posts) ) {
+                        foreach( $the_query->posts as $postid ) {
+                ?>
+                            <div class="pcat-results-col">
+                                <?php get_template_part('product/loop/loop', 'product-card', [ 'postId' => $postid ]); ?>
+                            </div>
+                <?php
+                        }
+                    }
+                ?>
+            </div>
+            <?php
+                if( $total_product_count > $product_per_page ){
+                    get_template_part('product/page-nav/page-nav', 'navigation', [ 
+                        'navWrapperDomId' => "js-search-book__results-navigation",
+                        'navDomClass' => "js-search-book__results-navigation-item",
+                        'gotoDomId' => "js-search-book__page-list",
+                        'total' => $total_product_count,
+                        'perPage' => $product_per_page
+                    ]);
+                }
+
+                if ( !empty($the_query->posts) ) {
+                    get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-search-book__per-page" ]);
+                }
+            ?>
+        </div>
+    </div>
+</section>
 <div id="js-search-book__load-spinner" class="load-spinner hide"></div>
