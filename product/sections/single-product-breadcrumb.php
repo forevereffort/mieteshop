@@ -1,8 +1,21 @@
 <?php
     global $product;
 
-    $title_types = get_the_terms( $product->ID, 'title_type' );
-    $product_cats = get_the_terms( $product->ID, 'product_cat' );
+    $title_types = get_the_terms( $product->get_id(), 'title_type' );
+    $product_cats = get_the_terms( $product->get_id(), 'product_cat' );
+
+    $breadcrumb_product_cat = $breadcrumb_product_cat;
+    $primary_product_cat_id = get_post_meta($product->get_id(), '_yoast_wpseo_primary_product_cat', true);
+
+    if( !empty($primary_product_cat_id) ){
+        $primary_product_cat_id = intval($primary_product_cat_id);
+
+        foreach($product_cats as $term) {
+            if( $primary_product_cat_id == $term->term_id ) {
+                $breadcrumb_product_cat = $term;    
+            }
+        }
+    }
 ?>
 <section class="breadcrumb-section">
     <div class="content-container">
@@ -15,7 +28,7 @@
                 }
 
                 if( !empty($product_cats) ){
-                    $product_cat_parent_list = array_reverse(get_ancestors($product_cats[0]->term_id, 'product_cat'));
+                    $product_cat_parent_list = array_reverse(get_ancestors($breadcrumb_product_cat->term_id, 'product_cat'));
 
                     foreach( $product_cat_parent_list as $parent ){
                         $parent_object = get_term($parent);
@@ -24,7 +37,7 @@
             <?php
                     }
             ?>
-                    <div class="breadcrumb-item"><a href="<?php echo get_term_link($product_cats[0]->term_id); ?>"><?php echo $product_cats[0]->name; ?></a></div>
+                    <div class="breadcrumb-item"><a href="<?php echo get_term_link($breadcrumb_product_cat->term_id); ?>"><?php echo $breadcrumb_product_cat->name; ?></a></div>
             <?php
                 }
             ?>
