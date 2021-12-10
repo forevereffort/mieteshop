@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="home-offers-link">
-            <a href="#">δείτε όλες τις Προσφορές</a>
+            <a href="<?php echo get_site_url(); ?>/offers/">δείτε όλες τις Προσφορές</a>
         </div>
     </div>
 </section>
