@@ -4,7 +4,7 @@
     $title_types = get_the_terms( $product->get_id(), 'title_type' );
     $product_cats = get_the_terms( $product->get_id(), 'product_cat' );
 
-    $breadcrumb_product_cat = $breadcrumb_product_cat;
+    $breadcrumb_product_cat = $product_cats[0];
     $primary_product_cat_id = get_post_meta($product->get_id(), '_yoast_wpseo_primary_product_cat', true);
 
     if( !empty($primary_product_cat_id) ){
