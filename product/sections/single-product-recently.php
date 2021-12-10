@@ -1,10 +1,15 @@
 <?php
+    // Get recently viewed product cookies data
+    $viewed_products = ! empty( $_COOKIE['woocommerce_recently_viewed'] ) ? (array) explode( '|', $_COOKIE['woocommerce_recently_viewed'] ) : array();
+    $viewed_products = array_filter( array_map( 'absint', $viewed_products ) );
+
     global $product;
     
     $args = [
         'post_type' => 'product',
         'posts_per_page' => 4,
-        'fields' => 'ids'
+        'fields' => 'ids',
+        'post__in' => $viewed_products,
     ];
 
     $loop = new WP_Query( $args );
