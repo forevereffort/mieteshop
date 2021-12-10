@@ -8,9 +8,15 @@
     $args = [
         'post_type' => 'product',
         'posts_per_page' => 4,
-        'fields' => 'ids',
-        'post__in' => $viewed_products,
+        'fields' => 'ids'
     ];
+
+    if( !empty($viewed_products) ){
+        // remove current single product id
+        $post__in = array_diff($viewed_products, [$product->get_id()]);
+        
+        $args['post__in'] = $post__in;
+    }
 
     $loop = new WP_Query( $args );
 
