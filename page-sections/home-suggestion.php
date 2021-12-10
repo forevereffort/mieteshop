@@ -11,6 +11,8 @@
                         $homepage_publisher_suggestions_rel = get_field('homepage_publisher_suggestions_rel');
 
                         foreach($homepage_publisher_suggestions_rel as $publisher){
+                            if( $publisher->post_status != 'publish' ) continue;
+
                             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $publisher->ID ), 'full' );
                             $authorIDs = get_field('book_contributors_syggrafeas', $publisher->ID);
                     ?>

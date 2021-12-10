@@ -239,3 +239,17 @@ add_filter( 'woocommerce_return_to_shop_redirect', 'st_woocommerce_shop_url' );
 function st_woocommerce_shop_url(){
     return site_url();
 }
+
+/* change availability text */
+add_filter( 'woocommerce_get_availability', 'pro_custom_get_availability', 1, 2);
+function pro_custom_get_availability( $availability, $_product ) {
+    // Change In Stock Text
+    if ( $_product->is_in_stock() ) {
+        $availability['availability'] = __('Άμεσα διαθέσιμο', 'woocommerce');
+    }
+    // Change Out of Stock Text
+    if ( ! $_product->is_in_stock() ) {
+        $availability['availability'] = __('Προσωρινά μη διαθέσιμο', 'woocommerce');
+    }
+    return $availability;
+}

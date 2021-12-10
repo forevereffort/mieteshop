@@ -11,6 +11,8 @@
                         $homepage_thematic_suggestions_rel = get_field('homepage_thematic_suggestions_rel');
 
                         foreach($homepage_thematic_suggestions_rel as $thematic){
+                            if( $thematic->post_status != 'publish' ) continue;
+
                             $image = wp_get_attachment_image_src( get_post_thumbnail_id( $thematic->ID ), 'full' );
                             $authorIDs = get_field('book_contributors_syggrafeas', $thematic->ID);
                     ?>
@@ -27,6 +29,7 @@
                                     </div>
                                     <div class="book-slider-info">
                                         <?php
+                                            echo $thematic->post_status;
                                             if( !empty($authorIDs) ){
                                                 echo '<div class="book-slider-author-list">';
                                                 if( count($authorIDs) > 3 ){
