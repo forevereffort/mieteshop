@@ -7,7 +7,7 @@ global $post;
 <?php get_header(); ?>
 <section class="single-publisher-title">
     <div class="content-container">
-        <h1>Σχετικά με το βιβλιοπωλείο του ΜΙΕΤ</h1>
+        <h1><?php echo $post->post_title; ?></h1>
     </div>
 </section>
 <div class="about-page-wrapper">
