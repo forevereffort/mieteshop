@@ -18,6 +18,7 @@
         'post_type' => 'product',
         'posts_per_page' => $productPerPage,
         'offset' => ($page - 1) * $productPerPage,
+        'post_status' => 'publish',
         //'meta_query' => [
 		//	[
 		//		'key'     => 'book_publishers',
