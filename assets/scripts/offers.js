@@ -13,7 +13,7 @@ jQuery(function(){
         const productOrder = jQuery('#js-offers-product-display-order').val();
 
         const nextURL = `?current_page=${page}&productPerPage=${productPerPage}&productOrder=${productOrder}`
-        const nextState = { additionalInformation: 'Updated the URL with JS' }
+        const nextState = { additionalInformation: 'mieteshop-nav-hash-change' }
 
         // This will create a new entry in the browser's history, without reloading
         window.history.pushState(nextState, null, nextURL)
