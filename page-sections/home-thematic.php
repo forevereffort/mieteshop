@@ -29,7 +29,6 @@
                                     </div>
                                     <div class="book-slider-info">
                                         <?php
-                                            echo $thematic->post_status;
                                             if( !empty($authorIDs) ){
                                                 echo '<div class="book-slider-author-list">';
                                                 if( count($authorIDs) > 3 ){
