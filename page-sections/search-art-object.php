@@ -25,10 +25,24 @@
         ],
         'fields' => 'ids',
         'post_status' => 'publish',
+        'meta_query' => [
+            'relation' => 'AND',
+            'book_subtitle_clause' => [
+                'key' => 'book_subtitle',
+                'compare' => 'EXISTS',
+            ],
+            'book_first_published_date_clause' => [
+                'key' => 'book_first_published_date',
+                'compare' => 'EXISTS',
+            ]
+        ],
+        'orderby' => [
+            'book_first_published_date_clause' => 'DESC',
+        ]
         // Need to add this so query_posts joins the postmeta table in the query. 
-        'meta_key' => 'book_first_published_date',
-        'orderby' => 'meta_value',
-        'order' => 'desc',
+        // 'meta_key' => 'book_first_published_date',
+        // 'orderby' => 'meta_value',
+        // 'order' => 'desc',
         // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
         // 'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
@@ -160,10 +174,24 @@
         ],
         'fields' => 'ids',
         'post_status' => 'publish',
+        'meta_query' => [
+            'relation' => 'AND',
+            'book_subtitle_clause' => [
+                'key' => 'book_subtitle',
+                'compare' => 'EXISTS',
+            ],
+            'book_first_published_date_clause' => [
+                'key' => 'book_first_published_date',
+                'compare' => 'EXISTS',
+            ]
+        ],
+        'orderby' => [
+            'book_first_published_date_clause' => 'DESC',
+        ]
         // Need to add this so query_posts joins the postmeta table in the query. 
-        'meta_key' => 'book_first_published_date',
-        'orderby' => 'meta_value',
-        'order' => 'desc',
+        // 'meta_key' => 'book_first_published_date',
+        // 'orderby' => 'meta_value',
+        // 'order' => 'desc',
         // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
         // 'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
@@ -171,42 +199,43 @@
 
     $the_query = new WP_Query( $args );
 
-    if ( !empty($the_query->posts) ) {
+    
 ?>
-        <section id="js-search-art-object__results-section" class="search-results-section" data-nonce="<?php echo wp_create_nonce('filter_search_art_object_nonce'); ?>" data-search-key="<?php echo $searchKey; ?>">
-            <div class="general-container">
-                <div class="content-container">
-                    <div class="pcat-results-title">
-                        <h2>ΤΙΤΛΟΙ: <span id="js-search-art-object__results-count"><?php echo $total_product_count; ?></span></h2>
-                    </div>
-                    <div id="js-search-art-object__results-row" class="pcat-results-row">
-                        <?php
-                            foreach( $the_query->posts as $postid ) {
-                        ?>
-                                <div class="pcat-results-col">
-                                    <?php get_template_part('product/loop/loop', 'product-card', [ 'postId' => $postid ]); ?>
-                                </div>
-                        <?php
-                            }
-                        ?>
-                    </div>
-                    <?php
-                        if( $total_product_count > $product_per_page ){
-                            get_template_part('product/page-nav/page-nav', 'navigation', [ 
-                                'navWrapperDomId' => "js-search-art-object__results-navigation",
-                                'navDomClass' => "js-search-art-object__results-navigation-item",
-                                'gotoDomId' => "js-search-art-object__page-list",
-                                'total' => $total_product_count,
-                                'perPage' => $product_per_page
-                            ]);
-                        }
-
-                        get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-search-art-object__per-page" ]);
-                    ?>
-                </div>
+<section id="js-search-art-object__results-section" class="search-result-category-section" data-nonce="<?php echo wp_create_nonce('filter_search_art_object_nonce'); ?>" data-search-key="<?php echo $searchKey; ?>">
+    <div class="general-container">
+        <div class="content-container">
+            <div class="pcat-results-title">
+                <h2>ΤΙΤΛΟΙ: <span id="js-search-art-object__results-count"><?php echo $total_product_count; ?></span></h2>
             </div>
-        </section>
-<?php
-    }
-?>
+            <div id="js-search-art-object__results-row" class="pcat-results-row">
+                <?php
+                    if ( !empty($the_query->posts) ) {
+                        foreach( $the_query->posts as $postid ) {
+                ?>
+                            <div class="pcat-results-col">
+                                <?php get_template_part('product/loop/loop', 'product-card', [ 'postId' => $postid ]); ?>
+                            </div>
+                <?php
+                        }
+                    }
+                ?>
+            </div>
+            <?php
+                if( $total_product_count > $product_per_page ){
+                    get_template_part('product/page-nav/page-nav', 'navigation', [ 
+                        'navWrapperDomId' => "js-search-art-object__results-navigation",
+                        'navDomClass' => "js-search-art-object__results-navigation-item",
+                        'gotoDomId' => "js-search-art-object__page-list",
+                        'total' => $total_product_count,
+                        'perPage' => $product_per_page
+                    ]);
+                }
+
+                if ( !empty($the_query->posts) ) {
+                    get_template_part('product/page-nav/page-nav', 'per-page', [ 'selectDomId' => "js-search-art-object__per-page" ]);
+                }
+            ?>
+        </div>
+    </div>
+</section>
 <div id="js-search-art-object__load-spinner" class="load-spinner hide"></div>

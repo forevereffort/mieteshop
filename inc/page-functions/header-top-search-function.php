@@ -135,10 +135,24 @@ function headerTopSearchFuc()
             ]
         ],
         'post_status' => 'publish',
+        'meta_query' => [
+            'relation' => 'AND',
+            'book_subtitle_clause' => [
+                'key' => 'book_subtitle',
+                'compare' => 'EXISTS',
+            ],
+            'book_first_published_date_clause' => [
+                'key' => 'book_first_published_date',
+                'compare' => 'EXISTS',
+            ]
+        ],
+        'orderby' => [
+            'book_first_published_date_clause' => 'DESC',
+        ]
         // Need to add this so query_posts joins the postmeta table in the query. 
-        'meta_key' => 'book_first_published_date',
-        'orderby' => 'meta_value',
-        'order' => 'desc',
+        // 'meta_key' => 'book_first_published_date',
+        // 'orderby' => 'meta_value',
+        // 'order' => 'desc',
         // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
         // 'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
@@ -193,10 +207,24 @@ function headerTopSearchFuc()
             ]
         ],
         'post_status' => 'publish',
+        'meta_query' => [
+            'relation' => 'AND',
+            'book_subtitle_clause' => [
+                'key' => 'book_subtitle',
+                'compare' => 'EXISTS',
+            ],
+            'book_first_published_date_clause' => [
+                'key' => 'book_first_published_date',
+                'compare' => 'EXISTS',
+            ]
+        ],
+        'orderby' => [
+            'book_first_published_date_clause' => 'DESC',
+        ]
         // Need to add this so query_posts joins the postmeta table in the query. 
-        'meta_key' => 'book_first_published_date',
-        'orderby' => 'meta_value',
-        'order' => 'desc',
+        // 'meta_key' => 'book_first_published_date',
+        // 'orderby' => 'meta_value',
+        // 'order' => 'desc',
         // Need to add this so query_posts joins the postmeta table in the query. 
         // Above I overwrite the where bit and use meta. Via title_sub_title_filter()
         // 'meta_query' => [['key' => '', 'value' => '', 'compare' => '', 'type' => '']]
