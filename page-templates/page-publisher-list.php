@@ -142,7 +142,7 @@ global $post;
 
                     $publisher_term_list = get_terms([
                         'taxonomy' => 'ekdotes', 
-                        'number' => 28,
+                        // 'number' => 28,
                         'hide_empty' => true, 
                         'orderby' => 'title',
                         'order' => 'ASC'
