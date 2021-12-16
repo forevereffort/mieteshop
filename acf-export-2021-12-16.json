@@ -566,7 +566,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_614b3ecf81a66",
@@ -1135,7 +1136,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_60ab442fbd087",
@@ -1404,7 +1406,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_60c9593100543",
@@ -1594,7 +1597,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_60c8c6d22800c",
@@ -1685,7 +1689,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_60ba1cdbefce0",
@@ -2211,7 +2216,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_610253dd276a6",
@@ -2419,7 +2425,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_60ffab9ebf926",
@@ -2501,7 +2508,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_60d205050749f",
@@ -2779,7 +2787,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_60a604c10e0af",
@@ -3078,7 +3087,7 @@
                 "key": "field_60a60a1c5f440",
                 "label": "Μορφή",
                 "name": "book_cover_type",
-                "type": "text",
+                "type": "select",
                 "instructions": "",
                 "required": 0,
                 "conditional_logic": 0,
@@ -3087,11 +3096,25 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": "",
-                "maxlength": ""
+                "choices": {
+                    "Χαρτόδετο": "Χαρτόδετο",
+                    "Πανόδετο": "Πανόδετο",
+                    "CD": "CD",
+                    "CD με βιβλίο": "CD με βιβλίο",
+                    "CD με δίγλωσσο βιβλίο": "CD με δίγλωσσο βιβλίο",
+                    "DVD": "DVD",
+                    "Δερματόδετο": "Δερματόδετο",
+                    "Κασετίνα": "Κασετίνα",
+                    "Σπειροειδές": "Σπειροειδές",
+                    "Άγνωστο Δέσιμο": "Άγνωστο Δέσιμο"
+                },
+                "default_value": false,
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 0,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": ""
             },
             {
                 "key": "field_60a60ae2e72e3",
@@ -3552,7 +3575,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": 0
     },
     {
         "key": "group_60d498d3b6a26",
@@ -3812,7 +3836,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_60d497ca413bc",
@@ -3911,7 +3936,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_615c1db34f2fe",
@@ -4175,7 +4201,8 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     },
     {
         "key": "group_60d59e1caa518",
@@ -4364,6 +4391,7 @@
         "instruction_placement": "label",
         "hide_on_screen": "",
         "active": true,
-        "description": ""
+        "description": "",
+        "show_in_rest": false
     }
 ]

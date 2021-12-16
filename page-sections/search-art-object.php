@@ -66,7 +66,7 @@
         foreach( $the_query->posts as $postid ) {
             // get author & publisher & product category list that include in the search result
             $authorIDs = get_field('book_contributors_syggrafeas', $postid);
-            $publisherIDs = get_field('book_publishers', $postid);
+            $publisher_categories = wp_get_post_terms($postid, 'ekdotes', ['fields' => 'id=>name']);
             $prorudct_categories = wp_get_post_terms($postid, 'product_cat', ['fields' => 'id=>name']);
 
             if( !empty($authorIDs) ){
@@ -75,9 +75,9 @@
                 }
             }
 
-            if( !empty($publisherIDs) ){
-                foreach($publisherIDs as $publisherID){
-                    $publisher_list_in_search_result[$publisherID] = get_the_title($publisherID);
+            if( !empty($publisher_categories) ){
+                foreach($publisher_categories as $term_id => $term_name){
+                    $publisher_list_in_search_result[$term_id] = $term_name;
                 }
             }
 

@@ -35,7 +35,8 @@ function filterSearchBookFunc()
 
     $args = [
         'post_type' => 'product',
-        'search_prod_title' => $searchKey,
+        // 'search_prod_title' => $searchKey,
+        'search_prod_title_sub_title' => $searchKey,
         'posts_per_page' => $productPerPage,
         'offset' => ( $page - 1 ) * $productPerPage,
         'tax_query' => [
@@ -44,7 +45,19 @@ function filterSearchBookFunc()
                 'field' => 'slug',
                 'terms' => 'book',
             ]
-        ]
+        ],
+        'post_status' => 'publish',
+        'meta_query' => [
+            'relation' => 'AND',
+            'book_subtitle_clause' => [
+                'key' => 'book_subtitle',
+                'compare' => 'EXISTS',
+            ],
+            'book_first_published_date_clause' => [
+                'key' => 'book_first_published_date',
+                'compare' => 'EXISTS',
+            ]
+        ],
     ];
 
     // if there is any of filter term id, change tax query
@@ -58,8 +71,6 @@ function filterSearchBookFunc()
         ];
     }
 
-    $args['meta_query'] = [];
-
     if( !empty($filterAuthorId) ){
         $args['meta_query'][] = [
             'key'     => 'book_contributors_syggrafeas',
@@ -69,10 +80,12 @@ function filterSearchBookFunc()
     }
 
     if( !empty($filterPublisherId) ){
-        $args['meta_query'][] = [
-            'key'     => 'book_publishers',
-            'value'   => '"' . $filterPublisherId . '"',
-            'compare' => 'LIKE'
+        $args['tax_query']['relation'] = 'AND';
+        
+        $args['tax_query'][] = [
+            'taxonomy' => 'ekdotes',
+            'field' => 'term_id',
+            'terms' => $filterPublisherId
         ];
     }
 
@@ -80,9 +93,9 @@ function filterSearchBookFunc()
         $args['orderby'] = 'title';
         $args['order'] = 'asc';
     } else if( $productOrder === 'published-date' ){
-        $args['meta_key'] = 'book_first_published_date';
-        $args['orderby'] = 'meta_value';
-        $args['order'] = 'desc';
+        $args['orderby'] = [
+            'book_first_published_date_clause' => 'DESC',
+        ];
     }
     
     global $post;
