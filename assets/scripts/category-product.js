@@ -82,7 +82,6 @@ jQuery(function(){
         allowClear: true
     }).on('change', function(){
         if( !jQuery('#js-pcat-author-list-wrapper').hasClass('hide') ){
-            // console.log('author', 'a' + jQuery('#js-pcat-author-list').val(), 'p' + jQuery('#js-pcat-publisher-list').val());
             categoryProductSearch(1);
         }
     });
@@ -92,7 +91,6 @@ jQuery(function(){
         allowClear: true
     }).on('change', function(){
         if( !jQuery('#js-pcat-publisher-list-wrapper').hasClass('hide') ){
-            // console.log('publisher', 'a' + jQuery('#js-pcat-author-list').val(), 'p' + jQuery('#js-pcat-publisher-list').val());
             categoryProductSearch(1);
         }
     });
@@ -261,16 +259,16 @@ jQuery(function(){
     jQuery('.js-pcat-author-publisher-choice-item').on('change', function(){
         const choiceType = jQuery('.js-pcat-author-publisher-choice-item:checked').val();
 
+        
         if( choiceType === 'publisher' ){
+            $('#js-pcat-author-list').val(null).trigger('change');
             jQuery('#js-pcat-author-list-wrapper').addClass('hide');
             jQuery('#js-pcat-publisher-list-wrapper').removeClass('hide');
         } else if( choiceType === 'author' ){
+            $('#js-pcat-publisher-list').val(null).trigger('change');
             jQuery('#js-pcat-publisher-list-wrapper').addClass('hide');
             jQuery('#js-pcat-author-list-wrapper').removeClass('hide');
         }
-        
-        $('#js-pcat-author-list').val(null).trigger('change');
-        $('#js-pcat-publisher-list').val(null).trigger('change');
     });
 
     // mobile product category click
