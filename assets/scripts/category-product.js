@@ -1,3 +1,4 @@
+import jquery from 'jquery';
 import $ from 'jquery';
 import 'select2';
 import 'select2/dist/css/select2.css';
@@ -10,9 +11,15 @@ jQuery(function(){
         }, 1000)
     }
 
+    // beforeFilterTermIds need to get author/publisher list when selected category was changed.
+    let beforeFilterTermIds = jQuery('#js-pcat-filter-detail-row').attr('data-filter-term-list');
+
     // get products with term, author, publisher and page
     function categoryProductSearch(page){
         const filterTermIds = jQuery('#js-pcat-filter-detail-row').attr('data-filter-term-list');
+        const changedSelectedTermIds = filterTermIds !== beforeFilterTermIds;
+        beforeFilterTermIds = filterTermIds;
+
         const filterAuthorId = jQuery('#js-pcat-author-list').val();
         const filterPublisherId = jQuery('#js-pcat-publisher-list').val();
         const nonce = jQuery('#js-pcat-list-title').attr('data-nonce');
@@ -41,7 +48,8 @@ jQuery(function(){
                 page,
                 mainProductCatId,
                 productPerPage,
-                productOrder
+                productOrder,
+                changedSelectedTermIds
             },
             success: function (response) {
                 jQuery('#js-pcat-results-row').html(response.result);
@@ -73,6 +81,35 @@ jQuery(function(){
 
                 // smoth go to the top of result section
                 goSearchResultTop();
+
+                if( changedSelectedTermIds ){
+                    $('#js-pcat-author-list').empty();
+                    $('#js-pcat-publisher-list').empty();
+
+                    let authorListHtml = '<option></option>';
+                    for(let authorID in response.author_list_in_search_result){
+                        authorListHtml += '<option value="' + authorID + '">' + response.author_list_in_search_result[authorID] + '</option>';
+                    }
+
+                    jQuery('#js-pcat-author-list').html(authorListHtml);
+
+                    let publisherListHtml = '<option></option>';
+                    for(let publisherID in response.publisher_terms_in_search_result){
+                        publisherListHtml += '<option value="' + publisherID + '">' + response.publisher_terms_in_search_result[publisherID] + '</option>';
+                    }
+
+                    jQuery('#js-pcat-publisher-list').html(publisherListHtml);
+                    
+                    $('#js-pcat-author-list').select2({
+                        placeholder: "Συγγραφείς",
+                        allowClear: true
+                    })
+                    
+                    $('#js-pcat-publisher-list').select2({
+                        placeholder: "Εκδότες",
+                        allowClear: true
+                    })
+                }
             }
         })
     }
@@ -128,7 +165,18 @@ jQuery(function(){
         });
 
         jQuery('#js-pcat-filter-detail-row').attr('data-filter-term-list', filterTermIds.join(','))
-        categoryProductSearch(1);
+        // categoryProductSearch(1);
+
+        // when category is clicked, rest author and publisher
+        const choiceType = jQuery('.js-pcat-author-publisher-choice-item:checked').val();
+        
+        if( choiceType === 'publisher' ){
+            // the following will happen categoryProductSearch(1);
+            $('#js-pcat-publisher-list').val(null).trigger('change');
+        } else if( choiceType === 'author' ){
+            // the following will happen categoryProductSearch(1);
+            $('#js-pcat-author-list').val(null).trigger('change');
+        }
 
         const filterCount = jQuery('#js-pcat-extra-thematic-filter-row .pcat-extra-thematic-filter-col').length;
 
@@ -258,7 +306,6 @@ jQuery(function(){
 
     jQuery('.js-pcat-author-publisher-choice-item').on('change', function(){
         const choiceType = jQuery('.js-pcat-author-publisher-choice-item:checked').val();
-
         
         if( choiceType === 'publisher' ){
             $('#js-pcat-author-list').val(null).trigger('change');
@@ -289,5 +336,22 @@ jQuery(function(){
 
     jQuery('#js-pcat-product-display-order').on('change', function(){
         categoryProductSearch(1);
+    })
+
+    // set event to initial category label list
+    jQuery('div[id^=js-pcat-extra-thematic-filter-col-] span').on('click', function(){
+        const termID = jQuery(this).attr('data-term-id');
+
+        // check this is parent or child
+        if( jQuery(this).parent().hasClass('pcat-extra-thematic-filter-item--root') > 0 ){
+            jQuery(`#js-pcat-extra-thematic-filter-col-${termID}`).remove();
+            jQuery('.js-pcat-filter-detail-parent[data-term-id=' + termID + ']').removeClass('active');
+            jQuery('.pcat-filter-detail-child', jQuery('.js-pcat-filter-detail-parent[data-term-id=' + termID + ']').parent()).removeClass('disable');
+        } else {
+            jQuery(`#js-pcat-extra-thematic-filter-col-${termID}`).remove();
+            jQuery('.js-pcat-filter-detail-child[data-term-id=' + termID + ']').removeClass('active');
+        }
+
+        updateFilterCountLabel();
     })
 })
