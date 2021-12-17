@@ -11,16 +11,18 @@
      */
 
      $currentPage = isset($args['currentPage']) ? intval($args['currentPage']) : 1; 
+     $total_product_count = isset($args['total']) ? intval($args['total']) : 0; 
+     $product_per_page = isset($args['perPage']) ? intval($args['perPage']) : 0; 
 ?>
-<div class="pcat-results-footer-options">
+<div id="<?php echo $args['navWrapperDomId']; ?>-wrapper" class="pcat-results-footer-options <?php echo $total_product_count > $product_per_page ? '' : 'hide'; ?>">
     <div class="pcat-results-footer-options-col">
         <div id="<?php echo $args['navWrapperDomId']; ?>" class="pcat-results-navigation">
             <?php
                 require_once get_template_directory() . '/inc/zebra-pagination.php';
 
                 $pagination = new Zebra_Pagination();
-                $pagination->records($args['total']);
-                $pagination->records_per_page($args['perPage']);
+                $pagination->records($total_product_count);
+                $pagination->records_per_page($product_per_page);
                 $pagination->selectable_pages(5);
                 $pagination->set_page($currentPage);
                 $pagination->padding(false);

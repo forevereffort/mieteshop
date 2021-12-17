@@ -22,7 +22,8 @@
     $selectedCatList = [];
     $filterAuthorId = isset($_GET['filterAuthorId']) ? intval($_GET['filterAuthorId']) : null;
     $filterPublisherId = isset($_GET['filterPublisherId']) ? intval($_GET['filterPublisherId']) : null;
-    $mainProductCatId = isset($_GET['mainProductCatId']) ? $_GET['mainProductCatId'] : 1;
+    $mainProductCatId = isset($_GET['mainProductCatId']) ? intval($_GET['mainProductCatId']) : 1;
+
 
     $product_per_page = 16;
 
@@ -30,8 +31,8 @@
         $product_per_page = 4;
     }
 
-    $product_per_page = isset($_GET['productPerPage']) ? $_GET['productPerPage'] : $product_per_page;
-    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+    $product_per_page = isset($_GET['productPerPage']) ? intval($_GET['productPerPage']) : $product_per_page;
+    $current_page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $productOrder = isset($_GET['productOrder']) ? $_GET['productOrder'] : 'published-date';
 ?>
 <section class="breadcrumb-section">
@@ -229,6 +230,7 @@
                 <div class="pcat-author-publisher-select-wrapper">
                     <?php
                         // get all products in current category
+                        // this query needs to get all authors and publisher in selected category
                         $args = [
                             'post_type' => 'product',
                             'tax_query' => [
@@ -252,28 +254,8 @@
                                 ],
                             ];
                         }
-
-                        if( !empty($filterAuthorId) ){
-                            $args['meta_query'] = [
-                                [
-                                    'key'     => 'book_contributors_syggrafeas',
-                                    'value'   => '"' . $filterAuthorId . '"',
-                                    'compare' => 'LIKE'
-                                ],
-                            ];
-                        }
                     
-                        if( !empty($filterPublisherId) ){
-                            $args['tax_query'][] = [
-                                'taxonomy'     => 'ekdotes',
-                                'terms'   => $filterPublisherId,
-                            ];
-                        }
-                    
-                        $loop = new WP_Query( $args );
-
-                        // get total search result count
-                        $total_product_count = $loop->found_posts;
+                        $the_query = new WP_Query( $args );
 
                         // get author list that included in search result
                         $author_list_in_search_result = [];
@@ -281,8 +263,8 @@
                         // get publisher terms that included in search result
                         $publisher_terms_in_search_result = [];
                     
-                        if ( !empty($loop->posts) ) {
-                            foreach( $loop->posts as $postid ) {
+                        if ( !empty($the_query->posts) ) {
+                            foreach( $the_query->posts as $postid ) {
                                 // get author & publisher list that include in the search result
                                 $authorIDs = get_field('book_contributors_syggrafeas', $postid);
 
@@ -403,6 +385,8 @@
     $the_query = new WP_Query( $args );
 
     if ( !empty($the_query->posts) ) {
+        // get total search result count
+        $total_product_count = $the_query->found_posts;
 ?>
         <section id="js-pcat-results-section" class="pcat-results-section">
             <div class="general-container">
@@ -422,16 +406,14 @@
                         ?>
                     </div>
                     <?php
-                        if( $total_product_count > $product_per_page ){
-                            get_template_part('product/page-nav/page-nav', 'navigation', [ 
-                                'navWrapperDomId' => "js-pcat-results-navigation",
-                                'navDomClass' => "js-pcat-results-navigation-item",
-                                'gotoDomId' => "js-pcat-products-page-list",
-                                'total' => $total_product_count,
-                                'perPage' => $product_per_page,
-                                'currentPage' => $current_page,
-                            ]);
-                        }
+                        get_template_part('product/page-nav/page-nav', 'navigation', [ 
+                            'navWrapperDomId' => "js-pcat-results-navigation",
+                            'navDomClass' => "js-pcat-results-navigation-item",
+                            'gotoDomId' => "js-pcat-products-page-list",
+                            'total' => $total_product_count,
+                            'perPage' => $product_per_page,
+                            'currentPage' => $current_page,
+                        ]);
 
                         get_template_part('product/page-nav/page-nav', 'per-page', [ 
                             'selectDomId' => "js-pcat-products-per-page",

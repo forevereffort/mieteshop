@@ -55,6 +55,13 @@ jQuery(function(){
                 
                 // reset page number list
                 const pageCounts = parseInt(response.pageCounts);
+                
+                if( pageCounts > 1 ){
+                    jQuery('#js-pcat-results-navigation-wrapper').removeClass('hide');
+                } else {
+                    jQuery('#js-pcat-results-navigation-wrapper').addClass('hide');
+                }
+
                 let pageHtmlInnterStr = '';
 
                 for(let i = 1; i <= pageCounts; i++){
@@ -75,15 +82,17 @@ jQuery(function(){
         allowClear: true
     }).on('change', function(){
         if( !jQuery('#js-pcat-author-list-wrapper').hasClass('hide') ){
+            // console.log('author', 'a' + jQuery('#js-pcat-author-list').val(), 'p' + jQuery('#js-pcat-publisher-list').val());
             categoryProductSearch(1);
         }
     });
-
+    
     $('#js-pcat-publisher-list').select2({
         placeholder: "Εκδότες",
         allowClear: true
     }).on('change', function(){
         if( !jQuery('#js-pcat-publisher-list-wrapper').hasClass('hide') ){
+            // console.log('publisher', 'a' + jQuery('#js-pcat-author-list').val(), 'p' + jQuery('#js-pcat-publisher-list').val());
             categoryProductSearch(1);
         }
     });
